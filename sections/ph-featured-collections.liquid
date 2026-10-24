@@ -1,0 +1,336 @@
+<style>
+  .collection-promo {
+  position: absolute;
+  bottom: 72px;
+  right: 36px;
+  white-space: pre-line;        /* honors the \n from textarea */
+  letter-spacing: 0.1em;
+  font-family: 'PhoriaBold';
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  pointer-events: none;
+  margin: 0 0 clamp(1rem, 2vw, 2rem); /* spacing: fluid gap below, centered */
+  text-align: end;
+  margin-right: -1%;
+}
+@media (max-width: 768px) {
+  .collection-promo {
+    bottom: 42px;
+    right: 16px;
+    font-size: 28px;
+    margin-bottom: clamp(0.75rem, 4vw, 1.5rem);
+  }
+}
+/* Tile 1 promo color */
+.promo-1 {
+  color: {{ section.settings.promo_text_1_color }};
+}
+
+/* Tile 2 promo color */
+.promo-2 {
+  color: {{ section.settings.promo_text_2_color }};
+}
+
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }  
+  .collection-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .collection-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .collection-title {
+    position: absolute;
+    bottom: 36px;
+    right: 36px;
+    color: #fff;
+    font-family: 'PhoriaBold';
+    font-size: 16px;
+  }
+  .collection-title__two-line {
+    display: inline-block;
+    line-height: 1.8;
+    text-align: right;
+  }
+  .collection-1{
+    color: {{section.settings.collection1_title_color}};
+  }
+  .collection-2{ 
+    color: {{section.settings.collection2_title_color}};
+  }
+
+  @media (min-width: 960px) {
+    .collection-title {
+      font-size: 18px;
+    }
+  }
+
+   @media (max-width: 959px) {
+    .two-column-grid {
+      grid-template-columns: 1fr;
+    }
+    .collection-title {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: clamp(3.75px, 1.2vw, 5.4px);
+      text-align: right;
+    }
+    .collection-title__two-line {
+      line-height: 1.8;
+      text-align: right;
+    }
+     {% if section.settings.reverse_columns %}
+      .collection-item:first-child{
+        order: 2;
+      }
+     {% endif %}
+  }
+  
+</style>
+<div class="two-column-grid">
+  <a class="collection-item" 
+    {% if section.settings.link_1 != blank %}
+       href="{{ section.settings.link_1 }}"
+    {% endif %}
+    {% if section.settings.link_1 == blank %}
+       aria-disabled="true"
+    {% endif %}>
+    {% if section.settings.image_1 %}
+      {{
+        section.settings.image_1
+        | image_url: width: 1200
+        | image_tag:
+          alt: section.settings.title_1,
+          loading: 'lazy',
+          widths: '600, 900, 1200, 1800',
+          sizes: '(max-width: 959px) 100vw, 50vw'
+      }}
+    {% endif %}
+    {% if section.settings.promo_text_1 %}
+  <div class="collection-promo promo-1">{{ section.settings.promo_text_1}}</div>
+{% endif %}
+    <div class="collection-title collection-1">
+      {%- assign title_1_text = section.settings.title_1 | strip -%}
+      {%- if title_1_text == 'SHOP HOOKUP CHAIN RINGS' -%}
+        <span class="collection-title__two-line">SHOP HOOKUP<br>CHAIN RINGS</span>
+      {%- else -%}
+        <span>{{ section.settings.title_1 }}</span>
+      {%- endif -%}
+    </div>
+  </a>
+  
+  <a class="collection-item" 
+    {% if section.settings.link_2 != blank %}
+        href="{{ section.settings.link_2 }}"
+    {% endif %}
+    {% if section.settings.link_2 == blank %}
+        aria-disabled="true"
+    {% endif %}>
+    {% if section.settings.image_2 %}
+      {{
+        section.settings.image_2
+        | image_url: width: 1200
+        | image_tag:
+          alt: section.settings.title_2,
+          loading: 'lazy',
+          widths: '600, 900, 1200, 1800',
+          sizes: '(max-width: 959px) 100vw, 50vw'
+      }}
+    {% endif %}
+    {% if section.settings.promo_text_2 %}
+  <div class="collection-promo promo-2">{{ section.settings.promo_text_2}}</div>
+{% endif %}
+
+    <div class="collection-title collection-2">
+      {%- assign title_2_text = section.settings.title_2 | strip -%}
+      {%- if title_2_text == 'SHOP HOOKUP CHAIN RINGS' -%}
+        <span class="collection-title__two-line">SHOP HOOKUP<br>CHAIN RINGS</span>
+      {%- else -%}
+        <span>{{ section.settings.title_2 }}</span>
+      {%- endif -%}
+    </div>
+  </a>
+</div>
+
+{% if section.settings.enable_animations %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined') {
+      const { animate, inView } = Motion;
+      const collectionItems = document.querySelectorAll('.collection-item');
+      collectionItems.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el,
+            { opacity: [0, 1], y: ['100px', 0] },
+            { duration: 0.7, delay: index * 0.2, easing: 'ease-out' }
+          );
+        }, { once: true, amount: 0.1 });
+      });
+    }
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ph Two-col Image Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collection 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Collection Title",
+      "default": "Collection 1"
+    },
+    {
+  "type": "text",
+  "id": "promo_text_1",
+  "label": "Promo Text (Tile 1)",
+  "default": "15% OFF SITE WIDE"
+},
+    {
+  "type": "color",
+  "id": "promo_text_1_color",
+  "label": "Promo Text Color (Tile 1)",
+  "default": "#ffffff"
+},
+
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Collection Link"
+    },
+    {
+      "type": "color",
+      "id": "collection1_title_color",
+      "label": "Font Color",
+      "default": "#1d1d1d"
+    },
+    {
+      "type": "select",
+      "id": "button_style_1",
+      "options": [
+          {
+              "value": "primary",
+              "label": "t:sections.all.button.button_style.options__1.label"
+          },
+          {
+              "value": "secondary",
+              "label": "t:sections.all.button.button_style.options__2.label"
+          },
+          {
+              "value": "tertiary",
+              "label": "t:sections.all.button.button_style.options__3.label"
+          },
+          {
+              "value": "simple",
+              "label": "t:sections.all.button.button_style.options__4.label"
+          }
+      ],
+      "default": "tertiary",
+      "label": "t:sections.all.button.button_style.label"
+    },
+    {
+      "type": "header",
+      "content": "Collection 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Collection Title",
+      "default": "Collection 2"
+    },
+    {
+  "type": "text",
+  "id": "promo_text_2",
+  "label": "Promo Text (Tile 2)",
+  "default": "15% OFF SITE WIDE"
+},
+    {
+  "type": "color",
+  "id": "promo_text_2_color",
+  "label": "Promo Text Color (Tile 2)",
+  "default": "#ffffff"
+},
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Collection Link"
+    },
+    {
+      "type": "color",
+      "id": "collection2_title_color",
+      "label": "Font Color",
+      "default": "#1d1d1d"
+    },
+    {
+      "type": "select",
+      "id": "button_style_2",
+      "options": [
+          {
+              "value": "primary",
+              "label": "t:sections.all.button.button_style.options__1.label"
+          },
+          {
+              "value": "secondary",
+              "label": "t:sections.all.button.button_style.options__2.label"
+          },
+          {
+              "value": "tertiary",
+              "label": "t:sections.all.button.button_style.options__3.label"
+          },
+          {
+              "value": "simple",
+              "label": "t:sections.all.button.button_style.options__4.label"
+          }
+      ],
+      "default": "tertiary",
+      "label": "t:sections.all.button.button_style.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_columns",
+      "label": "Reverse collection order on Mobile",
+      "default": false,
+      "info": "Reverse the order of collection items on mobile devices"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when collection items come into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Two-col Image Grid"
+    }
+  ]
+}
+{% endschema %}

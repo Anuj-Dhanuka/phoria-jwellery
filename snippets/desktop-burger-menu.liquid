@@ -1,0 +1,638 @@
+{% liquid
+  assign enable_burger_menu = false
+  for block in section.blocks
+    if block.type == 'burger_menu'
+      assign enable_burger_menu = true
+      assign burger_block = block
+    endif
+  endfor
+%}
+{% if enable_burger_menu %}
+
+	<burger-menu class="desktop-burger-menu" {{ burger_block.shopify_attributes }}>
+		<button
+			class="burger-menu__toggle burger-menu__toggle--open-btn button--unstyled focus-inset no-js-hidden {% if section.settings.menu == blank %}
+				no-main-menu
+			{% endif %}"
+			aria-label="{{ 'sections.header.burger_menu_open' | t }}"
+		>
+			{% render 'icon-hamburger' %}
+			{% if burger_block.settings.burger_menu_heading != blank %}
+				<span>{{ burger_block.settings.burger_menu_heading }}</span>
+			{% endif %}
+		</button>
+
+		<div class="burger-menu">
+			<div class="burger-menu__overlay"></div>
+			<div
+				class="burger-menu__wrapper color-background-1"
+				role="dialog"
+				aria-modal="true"
+				aria-label="{{ 'sections.header.burger_menu' | t }}"
+				tabindex="-1"
+			>
+				<div class="burger-menu__top">
+					<div class="burger-menu__header">
+						<button
+							type="button"
+							class="burger-menu__toggle burger-menu__toggle--close-btn modal-close-button focus-inset"
+							aria-label="{{ 'accessibility.close' | t }}"
+						>
+							{% render 'icon-close' %}
+						</button>
+					</div>
+
+					<ul class="burger-menu__list" role="list">
+						{% if burger_block.settings.main_menu.links != blank %}
+							{% for item in burger_block.settings.main_menu.links %}
+								<li>
+									{% if item.links != blank %}
+										<menu-drawer>
+											<details id="Details-BurgerMenu-Link-{{ forloop.index }}">
+												<summary
+													class="burger-menu__item burger-menu__summary"
+												>
+													<span class="burger-menu__link body-xl h3 link-hover-line">
+														{{- item.title | escape -}}
+													</span>
+
+													<div class="burger-menu__arrow">
+														{% render 'icon-caret-right-burger' %}
+													</div>
+												</summary>
+												<div
+													id="link-{{ forloop.index }}-{{ item.title | escape }}"
+													class="burger-menu__submenu"
+													tabindex="-1"
+												>
+													<div class="burger-menu__submenu-inner">
+														<div class="burger-menu__header">
+															<button
+																type="button"
+																class="burger-menu__submenu-back modal-close-button focus-inset"
+																aria-label="{{ 'accessibility.back' | t }}"
+																aria-expanded="true"
+															>
+																{% render 'icon-caret-left-burger' %}
+															</button>
+															<span> {{ item.title }} </span>
+															<button
+																type="button"
+																class="burger-menu__toggle burger-menu__toggle--close-btn modal-close-button focus-inset"
+																aria-label="{{ 'accessibility.close' | t }}"
+															>
+																{% render 'icon-close' %}
+															</button>
+														</div>
+														<ul
+															class="burger-menu__list"
+															role="list"
+															tabindex="-1"
+														>
+															{% for childlink in item.links %}
+																<li>
+																	{% if childlink.links == blank %}
+																		<a
+																			href="{{ childlink.url }}"
+																			class="burger-menu__item burger-menu__link link-hover-line body-xl h3"
+																			{% if childlink.current %}
+																				aria-current="page"
+																			{% endif %}
+																		>
+																			<span>{{ childlink.title | escape }}</span>
+																		</a>
+																	{% else %}
+																		<menu-drawer>
+																			<details id="Details-BurgerMenu-ChildLink-{{ forloop.index }}">
+																				<summary
+																					class="burger-menu__item burger-menu__summary"
+																				>
+																					<span class="burger-menu__link body-xl link-hover-line">
+																						{{- childlink.title | escape -}}
+																					</span>
+																					<div class="burger-menu__arrow">
+																						{% render 'icon-caret-right-burger' %}
+																					</div>
+																				</summary>
+																				<div
+																					id="childlink-{{ forloop.index }}-{{ childlink.title | escape }}"
+																					class="burger-menu__submenu"
+																				>
+																					<div class="burger-menu__submenu-inner">
+																						<div class="burger-menu__header">
+																							<button
+																								type="button"
+																								class="burger-menu__submenu-back modal-close-button focus-inset"
+																								aria-label="{{ 'accessibility.back' | t }}"
+																								aria-expanded="true"
+																							>
+																								{% render 'icon-caret-left-burger' %}
+																							</button>
+																							<span> {{ childlink.title }} </span>
+																							<button
+																								type="button"
+																								class="burger-menu__toggle burger-menu__toggle--close-btn modal-close-button focus-inset"
+																								aria-label="{{ 'accessibility.close' | t }}"
+																							>
+																								{% render 'icon-close' %}
+																							</button>
+																						</div>
+																						<ul
+																							class="burger-menu__list"
+																							role="list"
+																							tabindex="-1"
+																						>
+																							{% for grandchildlink in childlink.links %}
+																								<li>
+																									<a
+																										href="{{ grandchildlink.url }}"
+																										class="burger-menu__item burger-menu__link link-hover-line body-xl h3"
+																										{% if grandchildlink.current %}
+																											aria-current="page"
+																										{% endif %}
+																									>
+																										<span>
+																											{{-
+																												grandchildlink.title
+																												| escape
+																											-}}
+																										</span>
+																									</a>
+																								</li>
+																							{% endfor %}
+																						</ul>
+																						<div class="mega-menu__items">
+																							{% assign burger_menu_promo_1_trigger = burger_block.settings.burger_menu_promo_1_trigger
+																								| handle
+																								| strip
+																							%}
+																							
+																							{% if childlink.handle == burger_menu_promo_1_trigger %}
+																								<div class="mega-menu__item">
+																									<div class="mega-menu__image-item">
+																										{% if burger_block.settings.image_1 != blank %}
+																											{{
+																												burger_block.settings.image_1
+																												| image_url:
+																													width: burger_block.settings.image_1.width
+																												| image_tag:
+																													loading: 'lazy',
+																													sizes: '100vw',
+																													widths: '360, 550, 710',
+																													width: burger_block.settings.image_1.width,
+																													class: 'mega-menu__item-image'
+																											}}
+																										{%  else %}
+																											{{ "hero-apparel-1" | placeholder_svg_tag: 'placeholder-svg' }}
+																										{%- endif -%}
+																									</div>
+																									
+																									{% if burger_block.settings.heading_1 != blank %}
+																										<div class="mega-menu__item-heading subtitle">
+																											{{ burger_block.settings.heading_1 }}
+																										</div>
+																									{%- endif -%}
+																									{% if burger_block.settings.button_link_1 != blank %}
+																										<a
+																											href="{{ burger_block.settings.button_link_1 }}"
+																											class="mega-menu__item-button link link--overlay"
+																										>
+																										</a>
+																									{% endif %}
+																								</div>
+																							{% endif %}
+								
+																							{% assign burger_menu_promo_2_trigger = burger_block.settings.burger_menu_promo_2_trigger
+																								| handle
+																								| strip
+																							%}
+																							
+																							{% if childlink.handle == burger_menu_promo_2_trigger %}
+																								<div class="mega-menu__item">
+																									<div class="mega-menu__image-item">
+																										{% if burger_block.settings.image_2 != blank %}
+																											{{
+																												burger_block.settings.image_2
+																												| image_url:
+																													width: burger_block.settings.image_2.width
+																												| image_tag:
+																													loading: 'lazy',
+																													sizes: '100vw',
+																													widths: '360, 550, 710',
+																													width: burger_block.settings.image_2.width,
+																													class: 'mega-menu__item-image'
+																											}}
+																										{%  else %}
+																											{{ "hero-apparel-2" | placeholder_svg_tag: 'placeholder-svg' }}
+																										{%- endif -%}
+																									</div>
+																									{% if burger_block.settings.heading_2 != blank %}
+																										<div class="mega-menu__item-heading subtitle">
+																											{{ burger_block.settings.heading_2 }}
+																										</div>
+																									{%- endif -%}
+																									{% if burger_block.settings.button_link_2 != blank %}
+																										<a
+																											href="{{ burger_block.settings.button_link_2 }}"
+																											class="mega-menu__item-button link link--overlay"
+																										>
+																										</a>
+																									{% endif %}
+																								</div>
+																							{% endif %}
+								
+																							{% assign burger_menu_promo_3_trigger = burger_block.settings.burger_menu_promo_3_trigger
+																								| handle
+																								| strip
+																							%}
+								
+																							{% if childlink.handle == burger_menu_promo_3_trigger %}
+																								<div class="mega-menu__item">
+																									<div class="mega-menu__image-item ">
+																										{% if burger_block.settings.image_3 != blank %}
+																											{{
+																												burger_block.settings.image_3
+																												| image_url:
+																													width: burger_block.settings.image_3.width
+																												| image_tag:
+																													loading: 'lazy',
+																													sizes: '100vw',
+																													widths: '360, 550, 710',
+																													width: burger_block.settings.image_3.width,
+																													class: 'mega-menu__item-image'
+																											}}
+																										{%  else %}
+																											{{ "hero-apparel-3" | placeholder_svg_tag: 'placeholder-svg' }}
+																										{%- endif -%}
+																									</div>
+																									{% if burger_block.settings.heading_3 != blank %}
+																										<div class="mega-menu__item-heading subtitle">
+																											{{ burger_block.settings.heading_3 }}
+																										</div>
+																									{%- endif -%}
+																									{% if burger_block.settings.button_link_3 != blank %}
+																										<a
+																											href="{{ burger_block.settings.button_link_3 }}"
+																											class="mega-menu__item-button link link--overlay"
+																										>
+																										</a>
+																									{% endif %}
+																								</div>
+																							{% endif %}
+
+																							{% assign burger_menu_promo_4_trigger = burger_block.settings.burger_menu_promo_4_trigger
+																								| handle
+																								| strip
+																							%}
+								
+																							{% if childlink.handle == burger_menu_promo_4_trigger %}
+																								<div class="mega-menu__item">
+																									<div class="mega-menu__image-item ">
+																										{% if burger_block.settings.image_4 != blank %}
+																											{{
+																												burger_block.settings.image_4
+																												| image_url:
+																													width: burger_block.settings.image_4.width
+																												| image_tag:
+																													loading: 'lazy',
+																													sizes: '100vw',
+																													widths: '360, 550, 710',
+																													width: burger_block.settings.image_4.width,
+																													class: 'mega-menu__item-image'
+																											}}
+																										{%  else %}
+																											{{ "hero-apparel-1" | placeholder_svg_tag: 'placeholder-svg' }}
+																										{%- endif -%}
+																									</div>
+																									{% if burger_block.settings.heading_4 != blank %}
+																										<div class="mega-menu__item-heading subtitle">
+																											{{ burger_block.settings.heading_4 }}
+																										</div>
+																									{%- endif -%}
+																									{% if burger_block.settings.button_link_4 != blank %}
+																										<a
+																											href="{{ burger_block.settings.button_link_4 }}"
+																											class="mega-menu__item-button link link--overlay"
+																										>
+																										</a>
+																									{% endif %}
+																								</div>
+																							{% endif %}
+
+																							{% assign burger_menu_promo_5_trigger = burger_block.settings.burger_menu_promo_5_trigger
+																								| handle
+																								| strip
+																							%}
+								
+																							{% if childlink.handle == burger_menu_promo_5_trigger %}
+																								<div class="mega-menu__item">
+																									<div class="mega-menu__image-item ">
+																										{% if burger_block.settings.image_5 != blank %}
+																											{{
+																												burger_block.settings.image_5
+																												| image_url:
+																													width: burger_block.settings.image_5.width
+																												| image_tag:
+																													loading: 'lazy',
+																													sizes: '100vw',
+																													widths: '360, 550, 710',
+																													width: burger_block.settings.image_5.width,
+																													class: 'mega-menu__item-image'
+																											}}
+																										{%  else %}
+																											{{ "hero-apparel-2" | placeholder_svg_tag: 'placeholder-svg' }}
+																										{%- endif -%}
+																									</div>
+																									{% if burger_block.settings.heading_5 != blank %}
+																										<div class="mega-menu__item-heading subtitle">
+																											{{ burger_block.settings.heading_5 }}
+																										</div>
+																									{%- endif -%}
+																									{% if burger_block.settings.button_link_5 != blank %}
+																										<a
+																											href="{{ burger_block.settings.button_link_5 }}"
+																											class="mega-menu__item-button link link--overlay"
+																										>
+																										</a>
+																									{% endif %}
+																								</div>
+																							{% endif %}
+																						</div>
+																					</div>
+																				</div>
+																			</details>
+																		</menu-drawer>
+																	{% endif %}
+																</li>
+															{% endfor %}
+														</ul>
+														<div class="mega-menu__items">
+															{% assign burger_menu_promo_1_trigger = burger_block.settings.burger_menu_promo_1_trigger
+																| handle
+																| strip
+															%}
+															
+															{% if item.handle == burger_menu_promo_1_trigger %}
+																<div class="mega-menu__item">
+																	<div class="mega-menu__image-item">
+																		{% if burger_block.settings.image_1 != blank %}
+																			{{
+																				burger_block.settings.image_1
+																				| image_url:
+																					width: burger_block.settings.image_1.width
+																				| image_tag:
+																					loading: 'lazy',
+																					sizes: '100vw',
+																					widths: '360, 550, 710',
+																					width: burger_block.settings.image_1.width,
+																					class: 'mega-menu__item-image'
+																			}}
+																		{%  else %}
+																			{{ "hero-apparel-1" | placeholder_svg_tag: 'placeholder-svg' }}
+																		{%- endif -%}
+																	</div>
+																	
+																	{% if burger_block.settings.heading_1 != blank %}
+																		<div class="mega-menu__item-heading subtitle">
+																			{{ burger_block.settings.heading_1 }}
+																		</div>
+																	{%- endif -%}
+																	{% if burger_block.settings.button_link_1 != blank %}
+																		<a
+																			href="{{ burger_block.settings.button_link_1 }}"
+																			class="mega-menu__item-button link link--overlay"
+																		>
+																		</a>
+																	{% endif %}
+																</div>
+															{% endif %}
+
+															{% assign burger_menu_promo_2_trigger = burger_block.settings.burger_menu_promo_2_trigger
+																| handle
+																| strip
+															%}
+															
+															{% if item.handle == burger_menu_promo_2_trigger %}
+																<div class="mega-menu__item">
+																	<div class="mega-menu__image-item ">
+																		{% if burger_block.settings.image_2 != blank %}
+																			{{
+																				burger_block.settings.image_2
+																				| image_url:
+																					width: burger_block.settings.image_2.width
+																				| image_tag:
+																					loading: 'lazy',
+																					sizes: '100vw',
+																					widths: '360, 550, 710',
+																					width: burger_block.settings.image_2.width,
+																					class: 'mega-menu__item-image'
+																			}}
+																		{%  else %}
+																			{{ "hero-apparel-2" | placeholder_svg_tag: 'placeholder-svg' }}
+																		{%- endif -%}
+																	</div>
+																	{% if burger_block.settings.heading_2 != blank %}
+																		<div class="mega-menu__item-heading subtitle">
+																			{{ burger_block.settings.heading_2 }}
+																		</div>
+																	{%- endif -%}
+																	{% if burger_block.settings.button_link_2 != blank %}
+																		<a
+																			href="{{ burger_block.settings.button_link_2 }}"
+																			class="mega-menu__item-button link link--overlay"
+																		>
+																		</a>
+																	{% endif %}
+																</div>
+															{% endif %}
+
+															{% assign burger_menu_promo_3_trigger = burger_block.settings.burger_menu_promo_3_trigger
+																| handle
+																| strip
+															%}
+
+															{% if item.handle == burger_menu_promo_3_trigger %}
+																<div class="mega-menu__item">
+																	<div class="mega-menu__image-item ">
+																		{% if burger_block.settings.image_3 != blank %}
+																			{{
+																				burger_block.settings.image_3
+																				| image_url:
+																					width: burger_block.settings.image_3.width
+																				| image_tag:
+																					loading: 'lazy',
+																					sizes: '100vw',
+																					widths: '360, 550, 710',
+																					width: burger_block.settings.image_3.width,
+																					class: 'mega-menu__item-image'
+																			}}
+																		{%  else %}
+																			{{ "hero-apparel-3" | placeholder_svg_tag: 'placeholder-svg' }}
+																		{%- endif -%}
+																	</div>
+																	{% if burger_block.settings.heading_3 != blank %}
+																		<div class="mega-menu__item-heading subtitle">
+																			{{ burger_block.settings.heading_3 }}
+																		</div>
+																	{%- endif -%}
+																	{% if burger_block.settings.button_link_3 != blank %}
+																		<a
+																			href="{{ burger_block.settings.button_link_3 }}"
+																			class="mega-menu__item-button link link--overlay"
+																		>
+																		</a>
+																	{% endif %}
+																</div>
+															{% endif %}
+
+															{% assign burger_menu_promo_3_trigger = burger_block.settings.burger_menu_promo_3_trigger
+																| handle
+																| strip
+															%}
+
+															{% if item.handle == burger_menu_promo_4_trigger %}
+																<div class="mega-menu__item">
+																	<div class="mega-menu__image-item ">
+																		{% if burger_block.settings.image_4 != blank %}
+																			{{
+																				burger_block.settings.image_4
+																				| image_url:
+																					width: burger_block.settings.image_4.width
+																				| image_tag:
+																					loading: 'lazy',
+																					sizes: '100vw',
+																					widths: '360, 550, 710',
+																					width: burger_block.settings.image_4.width,
+																					class: 'mega-menu__item-image'
+																			}}
+																		{%  else %}
+																			{{ "hero-apparel-1" | placeholder_svg_tag: 'placeholder-svg' }}
+																		{%- endif -%}
+																	</div>
+																	{% if burger_block.settings.heading_4 != blank %}
+																		<div class="mega-menu__item-heading subtitle">
+																			{{ burger_block.settings.heading_4 }}
+																		</div>
+																	{%- endif -%}
+																	{% if burger_block.settings.button_link_4 != blank %}
+																		<a
+																			href="{{ burger_block.settings.button_link_4 }}"
+																			class="mega-menu__item-button link link--overlay"
+																		>
+																		</a>
+																	{% endif %}
+																</div>
+															{% endif %}
+
+															{% assign burger_menu_promo_5_trigger = burger_block.settings.burger_menu_promo_5_trigger
+																| handle
+																| strip
+															%}
+
+															{% if item.handle == burger_menu_promo_5_trigger %}
+																<div class="mega-menu__item">
+																	<div class="mega-menu__image-item ">
+																		{% if burger_block.settings.image_5 != blank %}
+																			{{
+																				burger_block.settings.image_5
+																				| image_url:
+																					width: burger_block.settings.image_5.width
+																				| image_tag:
+																					loading: 'lazy',
+																					sizes: '100vw',
+																					widths: '360, 550, 710',
+																					width: burger_block.settings.image_5.width,
+																					class: 'mega-menu__item-image'
+																			}}
+																		{%  else %}
+																			{{ "hero-apparel-2" | placeholder_svg_tag: 'placeholder-svg' }}
+																		{%- endif -%}
+																	</div>
+																	{% if burger_block.settings.heading_5 != blank %}
+																		<div class="mega-menu__item-heading subtitle">
+																			{{ burger_block.settings.heading_5 }}
+																		</div>
+																	{%- endif -%}
+																	{% if burger_block.settings.button_link_5 != blank %}
+																		<a
+																			href="{{ burger_block.settings.button_link_3 }}"
+																			class="mega-menu__item-button link link--overlay"
+																		>
+																		</a>
+																	{% endif %}
+																</div>
+															{% endif %}
+														</div>
+													</div>
+												</div>
+											</details>
+										</menu-drawer>
+									{%- else -%}
+										<a
+											href="{{ item.url }}"
+											{% if item.type == 'http_link' and settings.open_new_tab %}
+												target="_blank"
+											{% endif %}
+											class="burger-menu__item burger-menu__link link-hover-line body-xl h3"
+										>
+											<span>{{ item.title }}</span>
+										</a>
+									{%- endif -%}
+								</li>
+							{%- endfor -%}
+						{%- endif -%}
+					</ul>
+
+					{% if burger_block.settings.small_menu != blank %}
+						<ul
+							class="burger-menu__list burger-menu__list-second list-unstyled"
+							role="list"
+						>
+							{%- for link in burger_block.settings.small_menu.links -%}
+								<li>
+									{%- if link != blank -%}
+										<a
+											href="{{ link.url }}"
+											class=" burger-menu__item burger-menu__link link-hover-line body-xl"
+											{% if link.current %}
+												aria-current="page"
+											{% endif %}
+										>
+											<span>
+												{{ link.title | escape }}
+											</span>
+										</a>
+									{% endif %}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+				<div class="burger-menu__bottom">
+					{% if burger_block.settings.burger_menu_description != blank %}
+						<div class="mega_menu_description secondary_text">{{ burger_block.settings.burger_menu_description }}</div>
+					{% endif %}
+					{%- if burger_block.settings.burger_menu_button_label != blank -%}
+						<a
+							{% if burger_block.settings.burger_menu_button_link != blank %}
+								href="{{ burger_block.settings.burger_menu_button_link }}"
+							{% endif %}
+							class="block-heading__button button button--{{ burger_block.settings.burger_menu_button_style }} focus-inset"
+							{% if burger_block.settings.burger_menu_button_link == blank %}
+								aria-disabled="true"
+							{% endif %}
+						>
+							<span>
+								{{- burger_block.settings.burger_menu_button_label | escape -}}
+							</span>
+						</a>
+					{%- endif -%}
+
+					{%- if section.settings.scheme_position == "burger" -%}
+						{% render 'color-scheme' %}
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</burger-menu>
+{% endif %}

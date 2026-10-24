@@ -1,0 +1,337 @@
+{{ 'section-countdown-timer-bar.css' | asset_url | stylesheet_tag: preload: true}}
+<script src="{{ 'countdown-timer-bar.js' | asset_url }}" defer="defer"></script>
+
+<style>
+	:root {
+		--countdown-height: {{ section.settings.height_mobile }}px;
+	}
+
+	@media screen and (min-width: 576px) {
+		:root {
+			--countdown-height: {{ section.settings.height }}px;
+		}
+	}
+</style>
+
+{% liquid
+  assign timezone = 'now' | date: '%Z' | plus: 0 | append: ''
+
+  if timezone.size > 1
+    assign timezone = 'now' | date: '%Z' | divided_by: 100 | times: 3600.0 | plus: 1800
+  else
+    assign timezone = 'now' | date: '%Z' | minus: 1 | times: 3600.0
+  endif
+
+  assign date_merge = section.settings.date_picker | append: '-' | append: section.settings.time_picker | append: ':00'
+  assign date_now = 'now' | date: '%s' | minus: 0
+  assign date_settings = date_merge | date: '%s' | minus: 0
+
+  if date_now < date_settings
+    assign distance = date_settings | minus: date_now
+    assign days = distance | divided_by: 3600 | divided_by: 24 | floor | append: ''
+    assign hours = distance | modulo: 86400 | divided_by: 3600 | floor | append: ''
+    assign minutes = distance | modulo: 3600 | divided_by: 60 | floor | append: ''
+    assign seconds = distance | modulo: 60 | floor | append: ''
+  else
+    assign days = '00'
+    assign hours = '00'
+    assign minutes = '00'
+    assign seconds = '00'
+  endif
+%}
+
+{% assign template_base = template | split: '.' | first %}
+
+{% unless template_base == 'customers/login'
+  or template_base == 'customers/register'
+%}
+
+  <countdown-timer-bar
+    class="countdown-timer-bar color-{{ section.settings.color_scheme }} background"
+    role="region"
+    aria-label="{{ 'sections.header.announcement' | t }}"
+    data-date="{{ section.settings.date_picker }}"
+    data-time="{{ section.settings.time_picker }}"
+    data-completed="{{ section.settings.completed_countdown }}"
+  >
+    <div class="countdown-timer-bar__wrapper container{% if section.settings.promo_text == blank %} no-promo-text{% endif %}">
+			{% if section.settings.date_picker != blank %}
+				<div class="countdown-timer-bar__main">
+					{% liquid
+						assign delimetr_width = 0.4
+						assign delimetr_height = 1.2
+						assign body_scale = settings.body_scale | divided_by: 100.0
+						if section.settings.countdown_block_font == 'large'
+							assign font_1600 = 1.8 | times: body_scale
+							assign font_750 = 1.7 | times: body_scale
+							assign font_mobile = 1.6 | times: body_scale
+
+							assign delimetr_scale = 1
+						elsif section.settings.countdown_block_font == 'medium'
+							assign font_1600 = 1.57 | times: body_scale
+							assign font_750 = 1.5 | times: body_scale
+							assign font_mobile = 1.4 | times: body_scale
+
+							assign delimetr_scale = 0.8
+						elsif section.settings.countdown_block_font == 'small'
+							assign font_1600 = 1.4
+							assign font_750 = 1.3
+							assign font_mobile = 1.2
+
+							assign delimetr_scale = 0.7
+						endif
+					%}
+
+					{% style %}
+						#shopify-section-{{ section.id }} .countdown-timer-bar__delimiter svg {
+							width: calc({{ delimetr_width }}rem * {{ delimetr_scale }});
+							height: calc({{ delimetr_height }}rem * {{ delimetr_scale }});
+						}
+
+						@media screen and (min-width: 750px) {
+							#shopify-section-{{ section.id }} .countdown-timer-bar__delimiter {
+								margin-top: calc(({{ font_750 }}rem - ({{ delimetr_height }}rem * {{ delimetr_scale }})) / 2);
+							}
+						}
+
+						@media screen and (min-width: 1600px) {
+							#shopify-section-{{ section.id }} .countdown-timer-bar__delimiter {
+								margin-top: calc(({{ font_1600 }}rem - ({{ delimetr_height }}rem * {{ delimetr_scale }})) / 2);
+							}
+						}
+					{% endstyle %}
+
+					<div class="countdown-timer-bar__block">
+						<span class="countdown-timer-bar__number {{ section.settings.countdown_block_font }} countdown-timer-bar__days">
+							{% if days.size > 1 %}
+								{{ days }}
+							{% else %}
+								{{ 0 | append: days }}
+							{% endif %}
+						</span>
+						<span class="countdown-timer-bar__label secondary_text">
+							{{- 'general.countdown.days' | t }}
+						</span>
+					</div>
+					<div class="countdown-timer-bar__delimiter">
+						<svg width="3" height="10" viewBox="0 0 3 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.62 7.732H2.798V10H0.62V7.732ZM0.62 0.586H2.798V2.854H0.62V0.586Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<div class="countdown-timer-bar__block">
+						<span class="countdown-timer-bar__number {{ section.settings.countdown_block_font }} countdown-timer-bar__hours">
+							{% if hours.size > 1 %}
+								{{ hours }}
+							{% else %}
+								{{ 0 | append: hours }}
+							{% endif %}
+						</span>
+						<span class="countdown-timer-bar__label secondary_text">
+							{{- 'general.countdown.hours' | t -}}
+						</span>
+					</div>
+					<div class="countdown-timer-bar__delimiter">
+						<svg width="3" height="10" viewBox="0 0 3 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.62 7.732H2.798V10H0.62V7.732ZM0.62 0.586H2.798V2.854H0.62V0.586Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<div class="countdown-timer-bar__block">
+						<span class="countdown-timer-bar__number {{ section.settings.countdown_block_font }} countdown-timer-bar__minutes">
+							{% if minutes.size > 1 %}
+								{{ minutes }}
+							{% else %}
+								{{ 0 | append: minutes }}
+							{% endif %}
+						</span>
+						<span class="countdown-timer-bar__label secondary_text">
+							{{- 'general.countdown.minutes' | t -}}
+						</span>
+					</div>
+					<div class="countdown-timer-bar__delimiter">
+						<svg width="3" height="10" viewBox="0 0 3 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.62 7.732H2.798V10H0.62V7.732ZM0.62 0.586H2.798V2.854H0.62V0.586Z" fill="currentColor"/>
+						</svg>
+					</div>
+					<div class="countdown-timer-bar__block">
+						<span class="countdown-timer-bar__number {{ section.settings.countdown_block_font }} countdown-timer-bar__seconds">
+							{% if seconds.size > 1 %}
+								{{ seconds }}
+							{% else %}
+								{{ 0 | append: seconds }}
+							{% endif %}
+						</span>
+						<span class="countdown-timer-bar__label secondary_text">
+							{{- 'general.countdown.seconds' | t -}}
+						</span>
+					</div>
+				</div>
+			{% endif %}
+			{% if section.settings.countdown_heading %}
+        <div class="countdown-timer-bar__end">
+          <div class="countdown-timer-bar__end-wrapper">
+            <div class="h3 countdown-timer-bar__end-text">
+              {{ section.settings.countdown_heading }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if section.settings.promo_text != blank %}
+        <div class="countdown-timer-bar__text h3">
+          <span>{{ section.settings.promo_text }}</span>
+        </div>
+      {% endif %}
+      
+			{%- if section.settings.button_label != blank -%}
+				<a
+					{% if section.settings.button_link != blank %}
+						href="{{ section.settings.button_link }}"
+					{% endif %}
+					class="section-heading__button countdown-timer-bar__button button button--simple countdown-timer-bar {% if section.settings.overlay_mobile_link %} mobile-hidden countdown-timer-bar {% endif %} focus-inset"
+					{% if section.settings.button_link == blank %}
+						aria-disabled="true"
+					{% endif %}
+				>
+					<span>
+						{{- section.settings.button_label | escape -}}
+					</span>
+				</a>
+			{%- endif -%}
+    </div>
+    {% if section.settings.overlay_mobile_link and section.settings.button_link != blank %}
+      <a
+        href="{{ section.settings.button_link }}"
+        class="countdown-timer-bar__link--overlay"
+        aria-label="{{ section.settings.button_label}}"
+      >
+        <span class="visually-hidden">{{ section.settings.button_label }}</span>
+      </a>
+    {% endif %}
+  </countdown-timer-bar>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "t:sections.countdown-timer-bar.name",
+  "class": "section-countdown-timer-bar",
+	"limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+		{
+			"type": "range",
+			"id": "height",
+			"min": 40,
+			"max": 100,
+			"step": 5,
+			"default": 40,
+			"label": "t:sections.announcement-bar.settings.height.label"
+		},
+		{
+			"type": "range",
+			"id": "height_mobile",
+			"min": 40,
+			"max": 100,
+			"step": 5,
+			"default": 65,
+			"label": "t:sections.announcement-bar.settings.height_mobile.label"
+		},
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-3",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "promo_text",
+      "default": "Promo text",
+      "label": "t:sections.countdown-timer-bar.settings.promo_text.label"
+    },
+    {
+      "type": "text",
+      "id": "date_picker",
+      "default": "2024-10-01",
+      "info": "YYYY-MM-DD",
+      "label": "t:sections.countdown.settings.date_picker.label"
+    },
+    {
+      "type": "text",
+      "id": "time_picker",
+      "default": "00:00",
+      "info": "hh:mm",
+      "label": "t:sections.countdown.settings.time_picker.label"
+    },
+    {
+      "type": "select",
+      "id": "countdown_block_font",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.text_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.text_size.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.text_size.options__3.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.countdown.settings.countdown_block_font.label"
+    },
+    {
+      "type": "select",
+      "id": "completed_countdown",
+      "options": [
+        {
+          "value": "hide_section",
+          "label": "t:sections.countdown.settings.completed_countdown.options_1.label"
+        },
+        {
+          "value": "show_text",
+          "label": "t:sections.countdown.settings.completed_countdown.options_2.label"
+        }
+      ],
+      "default": "show_text",
+      "label": "t:sections.countdown.settings.completed_countdown.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "countdown_heading",
+      "default": "Text after countdown",
+      "label": "t:sections.countdown.settings.countdown_heading.label",
+      "info": "t:sections.countdown.settings.countdown_heading.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.button.header_button.content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop now",
+      "label": "t:sections.all.button.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.all.button.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_mobile_link",
+      "default": true,
+      "label": "t:sections.countdown-timer-bar.settings.overlay_mobile_link.label",
+      "info": "t:sections.countdown-timer-bar.settings.overlay_mobile_link.info"
+    }
+  ],
+  "presets": [
+		{
+			"name": "t:sections.countdown-timer-bar.name"
+		}
+	]
+}
+{% endschema %}

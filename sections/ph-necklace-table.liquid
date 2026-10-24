@@ -1,0 +1,266 @@
+<style>
+  .ph-modular-combinations-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0px 36px 90px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-modular-combinations-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .ph-modular-combinations-heading {
+    font-size: 1.25vw;
+    margin: 0px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-modular-combinations-description {
+    font-size: 10px;
+    line-height: 2.3;
+    margin: auto;
+    margin-top: 27px;
+    text-transform: uppercase;
+    max-width: 900px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-modular-combinations-table-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 36px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-modular-combinations-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #f1f2ee;
+  }
+  
+  .ph-table-header {
+    padding: 18px;
+    line-height: 2.3;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
+    background-color: #D5D5D5;
+    font-family: "PhoriaBold";
+  }
+
+  .ph-table-row{
+    border-bottom: 1px solid #f1f2ee;
+  }
+  
+  .ph-table-cell {
+    padding: 18px;
+    line-height: 2.3;
+    font-weight: 600;
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 1020px) {
+    .ph-modular-combinations-container {
+      max-width: 100%;
+      padding: 0px 18px 90px;
+    }
+
+    .ph-table-header, .ph-table-cell {
+      padding: 9px 5px;
+    }
+    
+    .ph-modular-combinations-heading {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<div class="ph-modular-combinations-container">
+  <div class="ph-modular-combinations-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-modular-combinations-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="ph-modular-combinations-description">{{ section.settings.description }}</div>
+    {% endif %}
+    
+    <div class="ph-modular-combinations-table-wrapper">
+      <table class="ph-modular-combinations-table">
+        {% if section.settings.table_header != blank %}
+          <thead>
+            <tr>
+              <th class="ph-table-header">{{ section.settings.table_header }}</th>
+            </tr>
+          </thead>
+        {% endif %}
+        
+        <tbody>
+          {% for block in section.blocks %}
+            {% if block.type == 'combination' %}
+              <tr class="ph-table-row">
+                <td class="ph-table-cell">{{ block.settings.combination_text }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate container
+      const container = document.querySelector('.ph-modular-combinations-container');
+      if (container) {
+        inView(container, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-modular-combinations-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate description
+      const description = document.querySelector('.ph-modular-combinations-description');
+      if (description) {
+        inView(description, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate table
+      const table = document.querySelector('.ph-modular-combinations-table-wrapper');
+      if (table) {
+        inView(table, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Necklace Table",
+  "tag": "section",
+  "class": "ph-modular-combinations-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FIND YOUR MODULAR NECKLACE CHAIN LENGTH"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "BELOW ARE A FEW EXAMPLES AND SUGGESTIONS OF BRACELET COMBINATIONS THAT WORK REALLY NICELY AS MODULAR NECKLACES:"
+    },
+    {
+      "type": "text",
+      "id": "table_header",
+      "label": "Table Header",
+      "default": "OUR RECOMMENDATIONS: MODULAR COMBINATIONS"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable Animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "combination",
+      "name": "Bracelet Combination",
+      "settings": [
+        {
+          "type": "text",
+          "id": "combination_text",
+          "label": "Combination Description",
+          "default": "X1 SCREW + X2 SCREW DOUBLED UP"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Necklace Table",
+      "blocks": [
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 SCREW + X2 SCREW DOUBLED UP"
+          }
+        },
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X2 SCREW DOUBLED UP + X1 BOND"
+          }
+        },
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 BOND"
+          }
+        },
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 BOND + X1 BOND + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        },
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE"
+          }
+        },
+        {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+{% comment %}
+  Gift Cards Tab Snippet - ph-gift-cards-snippet.liquid
+  Usage: {% render 'ph-gift-cards-snippet' %}
+{% endcomment %}
+
+<style>
+  .ph-gift-cards-tab-title{
+    font-size: 1.25vw;
+    margin: 0;
+    margin-left: -0.15vw;
+  }
+  
+  .ph-gift-cards-balance-label,
+  .ph-gift-cards-info,
+  .ph-gift-cards-text {
+    font-size: 10px;
+    line-height: 2.3;
+    margin: 18px 0 0 0;
+    text-transform: uppercase;
+  }
+  
+  .ph-gift-cards-balance {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 18px 0 0 0;
+  }
+  
+  .ph-gift-cards-heading {
+    font-size: 18px;
+    word-spacing: 3px;
+    margin: 54px 0px 0px -0.15vw;
+  }
+  
+  .ph-gift-cards-text {
+    margin-bottom: 24px;
+  }
+  
+  .ph-gift-card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .ph-gift-card-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-family: "PhoriaBold", sans-serif;
+    font-size: 14px;
+  }
+  
+  .ph-gift-card-submit {
+    background-color: #1d1d1d;
+    color: #fff;
+    border: none;
+    padding: 16px;
+    text-transform: uppercase;
+    font-family: "PhoriaBold", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .ph-gift-cards-table {
+    width: 100%;
+    margin-top: 18px;
+    border-collapse: collapse;
+  }
+  
+  .ph-gift-cards-table th {
+    font-size: 10px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    padding-bottom: 18px;
+  }
+
+  .ph-gift-cards-table th:last-child {
+    text-align: right;
+  }
+  
+  .ph-gift-cards-table td {
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    line-height: 2.3;
+    font-size: 10px;
+  }
+  
+  .ph-gift-cards-empty {
+    text-align: right;
+    padding: 18px 0 !important;
+    font-size: 10px !important;
+  }
+
+  @media screen and (max-width: 926px) {
+    .ph-gift-cards-tab-title{
+      font-size: 18px;
+    }
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .ph-gift-card-form {
+      gap: 12px;
+    }
+
+    .ph-gift-cards-table th {
+      display: none;  
+    }
+    
+    .ph-gift-cards-table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+    .ph-gift-cards-table th,
+    .ph-gift-cards-table td {
+      padding-right: 16px;
+      line-height: 2.3;
+    }
+  }
+</style>
+
+<div class="ph-gift-cards-container">
+  <h2 class="ph-gift-cards-tab-title">GIFT CARDS</h2>
+  
+
+    <p class="ph-gift-cards-balance-label">YOU HAVE A BALANCE OF:</p>
+    <h3 class="ph-gift-cards-balance">
+      {% assign total_balance = 0 %}
+      {% for gift_card in customer.gift_cards %}
+        {% assign total_balance = total_balance | plus: gift_card.balance %}
+      {% endfor %}
+      {% render 'ph-round-money', amount: total_balance %}
+    </h3>
+    <p class="ph-gift-cards-info">THAT CAN BE REDEEMED THROUGHOUT THE PHORIA WEBSITE.</p>
+
+    <h3 class="ph-gift-cards-heading">ACTIVE GIFT CARDS</h3>
+    
+    <table class="ph-gift-cards-table">
+      <thead>
+        <tr>
+          <th>DATE</th>
+          <th>CODE</th>
+          <th>AVAILABLE BALANCE</th>
+          <th>EXPIRES</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if customer.gift_cards.size > 0 %}
+          {% for gift_card in customer.gift_cards %}
+            <tr>
+              <td>{{ gift_card.created_at | date: "%d %b %Y" }}</td>
+              <td>{{ gift_card.code | slice: 0, 8 }}********</td>
+              <td>{% render 'ph-round-money', amount: gift_card.balance %}</td>
+              <td>{% if gift_card.expires_on %}{{ gift_card.expires_on | date: "%d %b %Y" }}{% else %}No expiry{% endif %}</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="4" class="ph-gift-cards-empty">YOU HAVE NO ACTIVE GIFT CARDS AT THE MOMENT</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>

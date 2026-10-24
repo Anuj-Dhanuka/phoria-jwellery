@@ -1,0 +1,542 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_anchor_text_PkcJ4W": {
+      "type": "ph-Anchor-text",
+      "blocks": {
+        "value_item_TcGyKH": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "TRANSPARENCY"
+          }
+        },
+        "value_item_3KM6bC": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUSTAINABLE DESIGN"
+          }
+        },
+        "value_item_njMYb8": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SLOW FASHION"
+          }
+        },
+        "value_item_WypraB": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "CONSIDERED PACKAGING"
+          }
+        },
+        "value_item_jPKJMj": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "DESIGNER - FOUNDER"
+          }
+        },
+        "value_item_BHaAdA": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "ETHICAL SOURCING"
+          }
+        },
+        "value_item_dAijD3": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "RESPONSIBLE JEWELLERY COUNCIL"
+          }
+        },
+        "value_item_dEVJj4": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "QUALITY + HANDMADE CRAFTSMANSHIP"
+          }
+        },
+        "value_item_AXtQ36": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUSTAINABLE PRACTICES"
+          }
+        },
+        "value_item_Qpxkk8": {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUPPORTING COMMUNITIES"
+          }
+        }
+      },
+      "block_order": [
+        "value_item_TcGyKH",
+        "value_item_3KM6bC",
+        "value_item_njMYb8",
+        "value_item_WypraB",
+        "value_item_jPKJMj",
+        "value_item_BHaAdA",
+        "value_item_dAijD3",
+        "value_item_dEVJj4",
+        "value_item_AXtQ36",
+        "value_item_Qpxkk8"
+      ],
+      "settings": {
+        "section_title": "OUR VALUES",
+        "divider_text": "//"
+      }
+    },
+    "or_image_text_Ba7JQf": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_ahr7W9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Transparency //"
+          }
+        },
+        "richtext_HLjHfb": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>In an era where false sustainability claims are abundant, we believe transparency is key. We want to distinguish between words and genuine actions and be as transparent as possible in our efforts to be as sustainably conscious as we can. We’ll be letting you in, inviting you behind the scenes, giving you an insider’s view of our journey.</p>"
+          }
+        },
+        "richtext_m7WL8e": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>As a start up, we’ll be continuously improving and will be seeking ways to become even more transparent. As we grow, we’ll be taking your feedback on and it’ll guide us on our journey!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ahr7W9",
+        "richtext_HLjHfb",
+        "richtext_m7WL8e"
+      ],
+      "custom_css": [
+        ".or-redesignable-feature {margin-top: -10.5vw; pointer-events: none;}",
+        "@media screen and (max-width: 1020px) {.or-redesignable-feature {margin-top: 0; }}"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/TRANSPARENCY-BLACK-AND-WHITE-2.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_pkQYEP": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_zEzrq9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sustainable Design //"
+          }
+        },
+        "richtext_NhjBbt": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We’re sustainable in more ways than one. It’s not just down to the materials we use, but our designs are transformable and versatile, meaning there’s never just one way to wear them, allowing you to get more use out of your jewellery. We’re all about investing in quality and versatility over quantity.</p>"
+          }
+        },
+        "richtext_7TUdV6": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our jewellery also requires less material to create since a single piece can serve multiple purposes. This reduced material usage contributes to lower resource consumption and less of an environmental impact.</p>"
+          }
+        },
+        "richtext_pmGX9W": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Designed to last, our jewellery’s modular and versatile nature allows you to reimagine our pieces over and over, encouraging you to adapt and redefine as well as hopefully helping you shift towards a more conscious and mindful approach to accessorising.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zEzrq9",
+        "richtext_NhjBbt",
+        "richtext_7TUdV6",
+        "richtext_pmGX9W"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/sustainable-design_efbbb03f-a98a-429d-b4f1-f61c8348b1ac.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_CBjMiP": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_39mkcA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Slow Fashion //"
+          }
+        },
+        "richtext_r3YATG": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We don’t believe in fast fashion in the jewellery industry, we’re all about quality over quantity. Every Phoria piece that leaves our studio has been a labour of love from the product down to every aspect of the packaging. In the world of fast fashion, jewellery is mass produced on assembly lines whereas every Phoria piece has been handmade by craftsman in small family-run studios.</p>"
+          }
+        },
+        "richtext_wKPQTL": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We also believe in timeless design and more considered collections, fast fashion often follows fleeting trends but every Phoria piece has been designed to be worn forever.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_39mkcA",
+        "richtext_r3YATG",
+        "richtext_wKPQTL"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/TOOLS.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_rYQE9t": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_f7YxyN": {
+          "type": "heading",
+          "settings": {
+            "heading": "Considered Packaging //"
+          }
+        },
+        "richtext_KWXBwy": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We want to not only adopt a sustainable approach to packaging, but also create a great unboxing experience while minimising waste. We want to show that you can be eco-conscious without compromising on aesthetics.</p>"
+          }
+        },
+        "richtext_takNQm": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Using luxe materials to develop packaging that is carefully handcrafted to be used and last long after unboxing your PHORIA piece for the first time.</p>"
+          }
+        },
+        "richtext_yacfmV": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our specially designed air-tight ‘phoria green’ velvet jewellery storage boxes were built to keep your treasured pieces safe when they’re not being worn. Our ‘Phoria green’ silk pouches are hand stitched locally in the UK and include multiple compartments for you to use when travelling with your pouch. Just like our pieces, our high quality packaging was designed to be used over and over, again and again.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_f7YxyN",
+        "richtext_KWXBwy",
+        "richtext_takNQm",
+        "richtext_yacfmV"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/PackagingImage-1.webp",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_jdLdNg": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_RpkDKE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Designer // Founder"
+          }
+        },
+        "richtext_PVPCLb": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our founder Charlotte is the creative vision and force behind everything at Phoria. She received her formal training as a designer at the prestigious Central Saint Martins College of Art and Design, graduating with a BA in Jewellery Design in 2015. Since then she’s worked in the luxury corporate fashion world as a Jewellery Designer, working for names like Tiffany & Co and Swarovski. After 8 years in the industry she decided to launch Phoria to create a line of jewellery that was completely her own.</p>"
+          }
+        },
+        "richtext_c9RmqL": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>As Charlotte has a design background, good design and quality is a non-negotiable standard. Everything from the initial sketch to choosing suppliers to the selection of materials is all done by her.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RpkDKE",
+        "richtext_PVPCLb",
+        "richtext_c9RmqL"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/1-1-headshot.webp",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_g6RRFA": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_Ny7QCa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ethical Sourcing //"
+          }
+        },
+        "richtext_9q7BDA": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Every Phoria piece starts with the materials we choose. We’re committed to sourcing our materials responsibly and our gemstones and metals are carefully selected to meet the highest standards. We work closely with our two suppliers who share our dedication to ethical sourcing, ensuring that the materials used in our jewellery meet our requirements. We only make in 100% recycled silver and gold and every natural gemstone we use is fully traceable.</p>"
+          }
+        },
+        "richtext_wLUVmy": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>100% Recycled: This means that all the silver (the base metal for every Phoria piece) and gold (the plating) used in the production of Phoria jewellery has been sourced from recycled materials. Instead of mining new silver and gold from the earth, the recycled metal is obtained from old 925 sterling silver and 18k gold jewellery. This helps reduce the environmental impact of silver and gold production by minimizing the need for new resource extraction.</p>"
+          }
+        },
+        "richtext_q7ydgA": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Fully traceable gemstones: Every white topaz and chrome diopside stone in our designs is fully traceable, from the moment it is unearthed to the time it’s set into a piece.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Ny7QCa",
+        "richtext_9q7BDA",
+        "richtext_wLUVmy",
+        "richtext_q7ydgA"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/ethical-sourcing.webp",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_MqDNpP": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_kRTUwi": {
+          "type": "heading",
+          "settings": {
+            "heading": "Responsible Jewellery Council //"
+          }
+        },
+        "richtext_XhJA84": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>We understand that true sustainability in the jewellery industry involves every step of the supply chain. That’s why our founder chose our two suppliers as they share our vision of responsible and ethical sourcing, being a part of the Responsible Jewellery Council.</p>"
+          }
+        },
+        "richtext_VbkzFn": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>The Responsible Jewellery Council (RJC) is a global organization dedicated to promoting responsible practices throughout the jewellery supply chain. They set rigorous standards and provide certification for ethical, social, and environmental practices within the industry.<br/><br/></p>"
+          }
+        },
+        "richtext_pxWJzg": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>THE RANGE IS MADE UP OF THE ULTIMATE STAPLES – DESIGNED TO BE REDESIGNED. WITH A SIMPLE YET POWERFUL AESTHETIC, AND AN URBAN-INDUSTRIAL EDGE.</p>"
+          }
+        },
+        "richtext_YL7nhL": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>By choosing suppliers who hold RJC certification, we are ensuring that all Phoria jewellery is crafted with the highest standards of integrity and sustainability.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kRTUwi",
+        "richtext_XhJA84",
+        "richtext_VbkzFn",
+        "richtext_pxWJzg",
+        "richtext_YL7nhL"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/responsible-jewellery-council.webp",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_86Ce8e": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_DGM3Hb": {
+          "type": "heading",
+          "settings": {
+            "heading": "Quality + Handmade Craftsmanship //"
+          }
+        },
+        "richtext_qdRQBJ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Quality and craftsmanship is at the heart of Phoria. Our founder Charlotte comes from a jewellery background and believes it’s important that all Phoria pieces are made from the best materials and are handmade. We only use premium 925 sterling silver and 18ct gold vermeil as well as carefully sourced and selected gemstones.</p>"
+          }
+        },
+        "richtext_nrpX8n": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Each piece is meticulously handcrafted by skilled artisans in Thailand who pour their expertise and passion into each and every piece. Charlotte works closely with them every step of the way and believes in quality over quantity – this ethos is reflected in the detail and care that goes into every Phoria piece.</p>"
+          }
+        },
+        "richtext_hCW9bB": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>An example of this is how our chain bracelets and necklaces are made: each are handmade and assembled link by link with state of the art tools. We do not use off the shelf chain in any of our designs as we take pride in designing and creating every single aspect of our jewellery.</p>"
+          }
+        },
+        "richtext_aCeLDJ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Before a piece leaves the studio, it’s hallmarked by the Goldsmiths Company Assay Office in London. This means that every piece is officially marked and certified to verify its composition and quality so you can trust that every item you buy from us is made from the finest 925 Sterling Silver.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DGM3Hb",
+        "richtext_qdRQBJ",
+        "richtext_nrpX8n",
+        "richtext_hCW9bB",
+        "richtext_aCeLDJ"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/making.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_qwVJUp": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_WhY6WR": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sustainable Practices //"
+          }
+        },
+        "richtext_DjLrER": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Phoria is committed to reducing our ecological footprint. We’ll always strive to minimize waste and utilise eco-friendly packaging as much as we can. From carefully selected family-run workshops to responsibly sourcing materials, we want to make sure every part of our journey is respectful to the environment and the people involved.</p>"
+          }
+        },
+        "richtext_CjRQ3t": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our two suppliers have these sustainability initiatives in place:</p>"
+          }
+        },
+        "richtext_FmpGyB": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>– Workplace Compliance Audited<br/>– Responsible Jewellery Council Code of Practice Certified (Since 2018)<br/>– ISO 9001 Quality Management Systems Certified<br/>– United Nations Global Compact Member<br/>– United Nations Women’s Empowerment Principles Signatory<br/>– 2% of energy is sourced from Renewable Energy sources<br/>– 9% of water used is recycled</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WhY6WR",
+        "richtext_DjLrER",
+        "richtext_CjRQ3t",
+        "richtext_FmpGyB"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/1sustainable-1-1.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
+    "or_image_text_Uz7KMx": {
+      "type": "or-image-text",
+      "blocks": {
+        "heading_6rH9ey": {
+          "type": "heading",
+          "settings": {
+            "heading": "Supporting Communities //"
+          }
+        },
+        "richtext_dPzcRP": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our two suppliers are family-run workshops in Thailand, who we want to support by enabling them to thrive. These workshops are the backbone of their communities, providing employment opportunities and preserving traditional craftsmanship, which we love. Charlotte – our founder, grew up in South East Asia so supporting these communities is close to her heart.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6rH9ey",
+        "richtext_dPzcRP"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 1020px) {.or-redesignable-feature__content {padding: 36px 18px 0px; }}"
+      ],
+      "name": "Or-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/supporting-communities.jpg",
+        "bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_anchor_text_PkcJ4W",
+    "or_image_text_Ba7JQf",
+    "or_image_text_pkQYEP",
+    "or_image_text_CBjMiP",
+    "or_image_text_rYQE9t",
+    "or_image_text_jdLdNg",
+    "or_image_text_g6RRFA",
+    "or_image_text_MqDNpP",
+    "or_image_text_86Ce8e",
+    "or_image_text_qwVJUp",
+    "or_image_text_Uz7KMx"
+  ]
+}

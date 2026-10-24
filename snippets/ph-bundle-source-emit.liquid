@@ -1,0 +1,11 @@
+{%- assign _bh = '' -%}{%- assign _sh = '' -%}
+{%- case product.id -%}
+  {%- when 10492554805514 -%}{%- assign _bh = 'anywear-charm-silver' -%}
+  {%- when 10492554838282 -%}{%- assign _bh = 'anywear-charm-gold' -%}
+  {%- when 10498030633226 -%}{%- assign _bh = 'screw-chain-bracelet-925-sterling-silver' -%}
+  {%- when 10498031583498 -%}{%- assign _bh = 'screw-chain-bracelet-18ct-gold-vermeil' -%}
+  {%- when 10515901710602 -%}{%- assign _sh = 'the-i-d-waist-chain-925-sterling-silver-small-no-letter' -%}
+  {%- when 10515902169354 -%}{%- assign _sh = 'the-i-d-waist-chain-18ct-gold-vermeil-small-no-letter' -%}
+{%- endcase -%}
+{%- if _bh != '' -%}{%- assign _bp = all_products[_bh] -%}window.bundleBaseAvailable={%- if _bp != blank -%}{{ _bp.available | json }}{%- else -%}null{%- endif -%};{%- endif -%}
+{%- if _sh != '' -%}{%- assign _sp = all_products[_sh] -%}{%- if _sp != blank -%}window.bundleSourceAvailBySize={ {%- for v in _sp.variants -%}"{{ v.title | strip | upcase }}":{"available":{{ v.available | json }},"inventory_quantity":{{ v.inventory_quantity | default: 0 | json }},"inventory_management":{{ v.inventory_management | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%} };{%- else -%}window.bundleSourceAvailBySize=null;{%- endif -%}{%- endif -%}

@@ -1,0 +1,191 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ph_collection_description_hxKAQE": {
+      "type": "ph-collection-description",
+      "name": "Ph Collection Description",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Gift Sets",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "Gift Sets",
+        "short_text": "",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 80,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "contain",
+        "image_filter_columns": 3,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_product_grid_v2_pGim9b": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_YVGeNQ": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-chain-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL // WHITE TOPAZ",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_rzn9FM": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-hookup-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "TWO-TONE SILVER CHAIN // WHITE TOPAZ",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_iUYyyH": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-modular-necklace-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER // WHITE TOPAZ",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_CfJzfF": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-hoop-stack-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "STERLING SILVER + GOLD VERMEIL // WHITE TOPAZ",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_MLHWq7": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-belly-bar-earring-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_yycYTg": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-runaway-set",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_YVGeNQ",
+        "product_rzn9FM",
+        "product_iUYyyH",
+        "product_CfJzfF",
+        "product_MLHWq7",
+        "product_yycYTg"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 20,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 10,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "ph_collection_description_hxKAQE",
+    "banner",
+    "product-grid",
+    "ph_product_grid_v2_pGim9b"
+  ]
+}

@@ -1,0 +1,320 @@
+{{ 'about-us.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+	{% render 'section-margin' %}
+{%- endstyle -%}
+
+{% assign index_count = 0 %}
+
+<div class="about-us container section-{{ section.id }}">
+	{%- if section.settings.heading != blank -%}
+		{% render 'section-header' %}
+	{% endif %}
+
+	<div class="about-us__item">
+		<div class="about-us__description{% if section.settings.sticky %} about-us__description--sticky{% endif %}">
+			{% for block in section.blocks %}
+				{% if block.type == 'about-us-description' %}
+					{% if block.settings.subheading != blank or block.settings.heading != blank or block.settings.description != blank %}
+						<div class="about-us__description--block">
+							{% if block.settings.subheading != blank %}
+								<p class="about-us__description--subheading subtitle {% if block.settings.heading == blank %} no_heading {% endif %}">{{ block.settings.subheading }}</p>
+							{%  endif %}
+							{% if block.settings.heading != blank %}
+								<p class="about-us__description--heading {{ block.settings.heading_size }}">{{ block.settings.heading }}</p>
+							{% endif %}
+							{% if block.settings.description != blank %}
+								<div class="about-us__description--description">{{ block.settings.description }}</div>
+							{% endif %}
+						</div>
+					{% endif %}
+				{% endif %}
+			{%  endfor %}
+		</div>
+		<div class="about-us__images-container">
+			{% for block in section.blocks %}
+				{% if block.type == 'image' %}
+					{% assign index_count = index_count | minus: 1 %}
+					{% assign placeholder_num = index_count | modulo: 3 %}
+					{% assign placeholder_num = placeholder_num | plus: 1 %}
+					{% assign image_placeholder = 'hero-apparel-' | append: placeholder_num %}
+					
+					<div class="about-us__image-wrapper about-us__image-wrapper--{{ block.settings.image_ratio }}">
+							{% if block.settings.image != blank %}
+								{{
+									block.settings.image
+									| image_url: width: 3840
+									| image_tag:
+										class: 'about-us__image',
+										loading: 'lazy',
+										width: block.settings.image.width,
+										widths: '375, 550, 750, 1100'
+								}}
+							{% else %}
+								{{
+									image_placeholder
+									| placeholder_svg_tag: 'placeholder-svg about-us__image'
+								}}
+							{% endif %}
+						</div>
+					{%  endif %}
+					{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "t:sections.about-us.name",
+	"tag": "section",
+	"class": "about-us-section spaced-section",
+	"enabled_on": {
+		"templates": ["*"]
+	},
+	"settings": [
+		{
+			"type": "header",
+			"content": "t:sections.header.settings.header-group.label"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "t:sections.all.subheading.label"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"default": "Stores",
+			"label": "t:sections.all.heading.label"
+		},
+		{
+			"type": "select",
+			"id": "heading_size",
+			"options": [
+				{
+					"value": "h1",
+					"label": "t:sections.all.heading_size.options__1.label"
+				},
+				{
+					"value": "h2",
+					"label": "t:sections.all.heading_size.options__2.label"
+				},
+				{
+					"value": "h3",
+					"label": "t:sections.all.heading_size.options__3.label"
+				}
+			],
+			"default": "h2",
+			"label": "t:sections.all.heading_size.label"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "t:sections.all.text.label"
+		},
+		{
+			"type": "text",
+			"id": "button_label",
+			"label": "t:sections.all.button.button_label.label"
+		},
+		{
+			"type": "url",
+			"id": "button_link",
+			"label": "t:sections.all.button.button_link.label"
+		},
+		{
+			"type": "select",
+			"id": "button_style",
+			"options": [
+				{
+					"value": "primary",
+					"label": "t:sections.all.button.button_style.options__1.label"
+				},
+				{
+					"value": "secondary",
+					"label": "t:sections.all.button.button_style.options__2.label"
+				},
+				{
+					"value": "tertiary",
+					"label": "t:sections.all.button.button_style.options__3.label"
+				},
+				{
+					"value": "simple",
+					"label": "t:sections.all.button.button_style.options__4.label"
+				}
+			],
+			"default": "simple",
+			"label": "t:sections.all.button.button_style.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "sticky",
+			"default": false,
+			"label": "t:sections.all.sticky.label_3"
+		},
+		{
+			"type": "header",
+			"content": "t:sections.all.section-margin.header.content"
+		},
+    {
+			"type": "select",
+			"id": "margin_top",
+			"options": [
+				{
+					"value": "no-indent",
+					"label": "t:sections.all.section-margin.options__1.label"
+				},
+				{
+					"value": "xs",
+					"label": "t:sections.all.section-margin.options__2.label"
+				},
+				{
+					"value": "s",
+					"label": "t:sections.all.section-margin.options__3.label"
+				},
+				{
+					"value": "m",
+					"label": "t:sections.all.section-margin.options__4.label"
+				},
+				{
+					"value": "l",
+					"label": "t:sections.all.section-margin.options__5.label"
+				},
+				{
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+			],
+			"default": "xs",
+			"label": "t:sections.all.section-margin.margin_top.label"
+		},
+		{
+			"type": "select",
+			"id": "margin_bottom",
+			"options": [
+				{
+					"value": "no-indent",
+					"label": "t:sections.all.section-margin.options__1.label"
+				},
+				{
+					"value": "xs",
+					"label": "t:sections.all.section-margin.options__2.label"
+				},
+				{
+					"value": "s",
+					"label": "t:sections.all.section-margin.options__3.label"
+				},
+				{
+					"value": "m",
+					"label": "t:sections.all.section-margin.options__4.label"
+				},
+				{
+					"value": "l",
+					"label": "t:sections.all.section-margin.options__5.label"
+				},
+				{
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+			],
+			"default": "m",
+			"label": "t:sections.all.section-margin.margin_bottom.label"
+		}
+	],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "t:sections.about-us.blocks.about-us-image.name",
+			"limit": 6,
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "t:sections.all.image.label"
+				},
+				{
+					"type": "select",
+					"id": "image_ratio",
+					"options": [
+						{
+							"value": "landscape",
+							"label": "t:sections.all.image_ratio.options__1.label"
+						},
+						{
+							"value": "portrait",
+							"label": "t:sections.all.image_ratio.options__2.label"
+						},
+						{
+							"value": "square",
+							"label": "t:sections.all.image_ratio.options__3.label"
+						}
+					],
+					"default": "portrait",
+					"label": "t:sections.steps.settings.image_ratio.label"
+				}
+			]
+		},
+		{
+			"type": "about-us-description",
+			"name": "t:sections.all.description.label",
+			"limit": 10,
+			"settings": [
+				{
+          "type": "text",
+          "id": "subheading",
+          "default": "Subheading",
+          "label": "t:sections.all.subheading.label"
+        },
+				{
+          "type": "text",
+          "id": "heading",
+          "default": "Heading for your section",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+					"type": "select",
+					"id": "heading_size",
+					"options": [
+						{
+							"value": "h1",
+							"label": "t:sections.all.heading_size.options__1.label"
+						},
+						{
+							"value": "h2",
+							"label": "t:sections.all.heading_size.options__2.label"
+						},
+						{
+							"value": "h3",
+							"label": "t:sections.all.heading_size.options__3.label"
+						}
+					],
+					"default": "h2",
+					"label": "t:sections.all.heading_size.label"
+				},
+				{
+          "type": "richtext",
+          "id": "description",
+          "default": "<p>Description for your section.</p>",
+          "label": "t:sections.all.text.label"
+        }
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "t:sections.about-us.name",
+			"blocks": [
+				{
+					"type": "image"
+				},
+				{
+					"type": "image"
+				},
+				{
+					"type": "about-us-description"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

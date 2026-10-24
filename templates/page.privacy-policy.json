@@ -1,0 +1,384 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_heading_text_Egf4wA": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_tKQfg3": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>PHORIA JEWELLERY LTD (“PHORIA”, “WE”, “OUR”, “US”)</p><p>PHORIA JEWELLERY LTD IS COMMITTED TO PROTECTING YOUR PRIVACY AND HANDLING YOUR PERSONAL INFORMATION LAWFULLY, FAIRLY AND TRANSPARENTLY.</p><p>THIS PRIVACY POLICY EXPLAINS HOW WE COLLECT, USE, STORE AND PROTECT YOUR PERSONAL DATA WHEN YOU BROWSE, PURCHASE FROM, OR OTHERWISE INTERACT WITH<a href=\"http://www.phoriajewellery.com\"> <span style=\"text-decoration:underline\">WWW.PHORIAJEWELLERY.COM</span></a>.</p><p>WE COMPLY WITH:</p><ul><li>THE UK GENERAL DATA PROTECTION REGULATION (UK GDPR)</li><li>THE DATA PROTECTION ACT 2018</li><li>THE PRIVACY AND ELECTRONIC COMMUNICATIONS REGULATIONS (PECR)</li><li>CURRENT INFORMATION COMMISSIONER’S OFFICE (ICO) GUIDANCE (AS APPLICABLE IN 2026)</li></ul><p>IF YOU HAVE ANY QUESTIONS REGARDING THIS PRIVACY POLICY OR YOUR RIGHTS, PLEASE CONTACT US AT INFO@PHORIAJEWELLERY.COM</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_tKQfg3"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 960px) {.ph-heading-text-section__title {padding-top: 20px; }}"
+      ],
+      "settings": {
+        "title": "Privacy Policy Last Updated: January 2026",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_mAV9Ck": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_EAE7tD": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>PHORIA JEWELLERY LTD</p><p>COMPANY NUMBER: 11951734</p><p>REGISTERED IN ENGLAND & WALES</p><p>EMAIL: INFO@PHORIAJEWELLERY.COM</p><p>PHORIA JEWELLERY LTD IS THE DATA CONTROLLER. THIS MEANS WE DETERMINE THE PURPOSES AND MEANS OF PROCESSING YOUR PERSONAL DATA.</p><p>WE ARE NOT LEGALLY REQUIRED TO APPOINT A DATA PROTECTION OFFICER. ALL DATA PROTECTION ENQUIRIES SHOULD BE DIRECTED TO THE EMAIL ADDRESS ABOVE.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_EAE7tD"
+      ],
+      "settings": {
+        "title": "Who We Are",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_MkNdqY": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_ywUAiP": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE MAY COLLECT AND PROCESS THE FOLLOWING CATEGORIES OF PERSONAL DATA:</p><p>INFORMATION YOU PROVIDE</p><ul><li>FULL NAME</li><li>BILLING AND SHIPPING ADDRESS</li><li>EMAIL ADDRESS</li><li>PHONE NUMBER</li><li>PAYMENT METHOD DETAILS (PROCESSED SECURELY BY THIRD-PARTY PROVIDERS)</li><li>ACCOUNT DETAILS</li><li>MARKETING PREFERENCES</li><li>ORDER HISTORY</li><li>RETURNS AND WARRANTY INFORMATION</li></ul><p>AUTOMATICALLY COLLECTED INFORMATION</p><p>WHEN YOU VISIT OUR WEBSITE, WE MAY COLLECT:</p><ul><li>IP ADDRESS</li><li>DEVICE TYPE</li><li>BROWSER TYPE & VERSION</li><li>OPERATING SYSTEM</li><li>TIME ZONE</li><li>GENERAL LOCATION DATA</li><li>PAGES VISITED AND TIME SPENT</li><li>REFERRING URLS</li><li>COOKIE AND TRACKING DATA</li></ul><p>PAYMENT INFORMATION</p><p>PHORIA DOES NOT STORE FULL DEBIT OR CREDIT CARD DETAILS.</p><p>PAYMENTS ARE PROCESSED SECURELY BY:</p><ul><li>SHOPIFY PAYMENTS (STRIPE)</li><li>PAYPAL</li><li>KLARNA</li></ul><p>ALL PAYMENT PROVIDERS OPERATE AS INDEPENDENT DATA CONTROLLERS AND ARE REQUIRED TO BE GDPR-COMPLIANT.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_ywUAiP"
+      ],
+      "settings": {
+        "title": "THE DATA WE COLLECT",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_4LwA8t": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_c3NVTa": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE USE YOUR PERSONAL DATA FOR THE FOLLOWING PURPOSES:</p><p>TO FULFIL YOUR ORDERS</p><ul><li>VERIFY PAYMENT</li><li>PROCESS TRANSACTIONS</li><li>DISPATCH GOODS</li><li>SEND ORDER CONFIRMATIONS</li><li>SEND SHIPPING UPDATES</li><li>HANDLE RETURNS, EXCHANGES AND WARRANTIES</li></ul><p>CUSTOMER SUPPORT</p><ul><li>RESPOND TO ENQUIRIES</li><li>PROVIDE ORDER UPDATES</li><li>RESOLVE ISSUES</li></ul><p>MARKETING (EMAIL & SMS)</p><p>WE ONLY SEND MARKETING COMMUNICATIONS WHERE:</p><ul><li>YOU HAVE PROVIDED CLEAR, INFORMED AND UNAMBIGUOUS CONSENT; OR</li><li>YOU QUALIFY FOR SOFT OPT-IN UNDER PECR (EXISTING CUSTOMER RELATIONSHIP AND CLEAR OPT-OUT PROVIDED)</li></ul><p>MARKETING MAY INCLUDE:</p><ul><li>PRODUCT ANNOUNCEMENTS</li><li>PROMOTIONS</li><li>DISCOUNTS</li><li>CART REMINDERS</li><li>BACK-IN-STOCK ALERTS</li><li>EXCLUSIVE OFFERS</li></ul><p>YOU MAY OPT OUT AT ANY TIME BY:</p><p>EMAIL: CLICKING “UNSUBSCRIBE”<br/>SMS: REPLYING “STOP”<br/>CONTACTING: INFO@PHORIAJEWELLERY.COM</p><p>OPT-OUT REQUESTS ARE PROCESSED WITHOUT UNDUE DELAY.</p><p>WEBSITE ANALYTICS & IMPROVEMENTS</p><p>WE USE ANALYTICS TO:</p><ul><li>IMPROVE WEBSITE PERFORMANCE</li><li>IDENTIFY TECHNICAL ISSUES</li><li>MONITOR TRAFFIC</li><li>PREVENT FRAUD</li></ul><p>LEGAL, COMPLIANCE & SECURITY</p><p>WE MAY PROCESS DATA TO:</p><ul><li>MEET TAX AND ACCOUNTING REQUIREMENTS</li><li>PREVENT FRAUD</li><li>MAINTAIN WEBSITE SECURITY</li><li>DEFEND LEGAL CLAIMS</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_c3NVTa"
+      ],
+      "settings": {
+        "title": "HOW WE USE YOUR INFORMATION",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_hejNXe": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_JrkaMc": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>UNDER UK GDPR, WE RELY ON:</p><p>CONTRACT</p><p>TO PROCESS AND FULFIL YOUR ORDERS.</p><p>CONSENT</p><p>FOR:</p><ul><li>EMAIL MARKETING</li><li>SMS MARKETING</li><li>NON-ESSENTIAL COOKIES</li><li>CERTAIN ANALYTICS</li></ul><p>YOU MAY WITHDRAW CONSENT AT ANY TIME.</p><p>LEGITIMATE INTERESTS</p><p>FOR:</p><ul><li>WEBSITE SECURITY</li><li>FRAUD PREVENTION</li><li>SYSTEM MONITORING</li><li>MAINTAINING SUPPRESSION LISTS</li></ul><p>WE DO NOT RELY ON LEGITIMATE INTEREST FOR UNSOLICITED SMS OR EMAIL MARKETING.</p><p>LEGAL OBLIGATION</p><p>FOR:</p><ul><li>TAX RECORD-KEEPING</li><li>ACCOUNTING</li><li>REGULATORY COMPLIANCE</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_JrkaMc"
+      ],
+      "settings": {
+        "title": "LEGAL BASIS FOR PROCESSING",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_GURzPV": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_jCfD3c": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE SHARE YOUR DATA ONLY WHERE NECESSARY AND WITH TRUSTED SERVICE PROVIDERS:</p><p>E-COMMERCE & OPERATIONS</p><ul><li>SHOPIFY</li><li>PAYMENT PROVIDERS (STRIPE, PAYPAL, KLARNA)</li><li>SMS PROVIDERS</li><li>EMAIL MARKETING PLATFORMS</li><li>DELIVERY COURIERS</li></ul><p>ANALYTICS & ADVERTISING</p><ul><li>GOOGLE ANALYTICS</li><li>META (WHERE USED)</li><li>SHOPIFY ANALYTICS</li></ul><p>SERVICE PROVIDERS</p><ul><li>CUSTOMER SUPPORT TOOLS</li><li>REVIEW PLATFORMS</li><li>FRAUD PREVENTION SERVICES</li></ul><p>ALL THIRD PARTIES PROCESS DATA UNDER CONTRACTUAL DATA PROCESSING AGREEMENTS.</p><p>WE DO NOT SELL PERSONAL DATA.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_jCfD3c"
+      ],
+      "settings": {
+        "title": "SHARING YOUR DATA",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_wX7Y6m": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_6QWrGQ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>SOME PROVIDERS MAY PROCESS DATA OUTSIDE THE UK.</p><p>WHERE THIS OCCURS, WE IMPLEMENT SAFEGUARDS SUCH AS:</p><ul><li>UK INTERNATIONAL DATA TRANSFER AGREEMENTS (IDTAS)</li><li>UK ADDENDUM TO EU STANDARD CONTRACTUAL CLAUSES</li><li>ADEQUACY DECISIONS</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_6QWrGQ"
+      ],
+      "settings": {
+        "title": "INTERNATIONAL DATA TRANSFERS",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_Dg8VUN": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_ibnrdb": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>PHORIA USES COOKIES TO:</p><ul><li>ENABLE ESSENTIAL WEBSITE FUNCTIONALITY</li><li>IMPROVE USER EXPERIENCE</li><li>ANALYSE WEBSITE PERFORMANCE</li><li>DELIVER MARKETING (WHERE CONSENTED)</li></ul><p>TYPES OF COOKIES:</p><ul><li>ESSENTIAL</li><li>PERFORMANCE</li><li>ANALYTICS</li><li>MARKETING</li></ul><p>NON-ESSENTIAL COOKIES ARE DEPLOYED ONLY WITH USER CONSENT.</p><p>YOU MAY MANAGE COOKIES THROUGH YOUR BROWSER SETTINGS OR OUR COOKIE BANNER.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_ibnrdb"
+      ],
+      "settings": {
+        "title": "COOKIES + TRACKING TECHNOLOGIES",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_wUgXzh": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_Hk7cXc": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>YOU HAVE THE RIGHT TO:</p><ul><li>ACCESS YOUR DATA</li><li>CORRECT INACCURATE DATA</li><li>REQUEST ERASURE</li><li>RESTRICT PROCESSING</li><li>OBJECT TO MARKETING</li><li>REQUEST DATA PORTABILITY</li><li>WITHDRAW CONSENT</li></ul><p>TO EXERCISE YOUR RIGHTS, CONTACT INFO@PHORIAJEWELLERY.COM</p><p>YOU MAY ALSO LODGE A COMPLAINT WITH THE INFORMATION COMMISSIONER’S OFFICE (ICO).</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_Hk7cXc"
+      ],
+      "settings": {
+        "title": "YOUR PRIVACY RIGHTS",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_87EGqF": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_JxrJwY": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE PROTECT PERSONAL DATA THROUGH:</p><ul><li>SSL ENCRYPTION</li><li>PCI-COMPLIANT PAYMENT PROCESSING</li><li>ACCESS CONTROLS</li><li>FIREWALLS</li><li>TWO-FACTOR AUTHENTICATION</li><li>REGULAR SECURITY REVIEWS</li></ul><p>IN THE EVENT OF A PERSONAL DATA BREACH, WE WILL NOTIFY THE ICO AND AFFECTED INDIVIDUALS WHERE LEGALLY REQUIRED.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_JxrJwY"
+      ],
+      "settings": {
+        "title": "DATA SECURITY",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_XXxja8": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_pAAzpf": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE RETAIN DATA ONLY AS LONG AS NECESSARY.</p><p>LEGAL & TAX OBLIGATIONS: UP TO 7 YEARSMARKETING DATA: UNTIL CONSENT IS WITHDRAWNSUPPRESSION LISTS: RETAINED TO PREVENT FURTHER MARKETINGCONSENT RECORDS: UP TO 6 YEARS FOR COMPLIANCE</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_pAAzpf"
+      ],
+      "settings": {
+        "title": "DATA RETENTION",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_Xz6GpM": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_63gCFn": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE ARE NOT RESPONSIBLE FOR THE PRIVACY PRACTICES OF EXTERNAL WEBSITES.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_63gCFn"
+      ],
+      "settings": {
+        "title": "THIRD PARTY LINKS",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_xxbeVK": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_EUTqYX": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE ENDEAVOUR TO ENSURE PRODUCT INFORMATION IS ACCURATE.</p><p>IF A PURCHASE WAS MADE BASED ON INCORRECT INFORMATION, WE WILL OFFER A REFUND OR REPLACEMENT.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_EUTqYX"
+      ],
+      "settings": {
+        "title": "ACCURACY OF INFORMATION",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_qcdBRh": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_fLEL6H": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>IF YOU ARE UNHAPPY WITH HOW WE USE YOUR DATA, CONTACT INFO@PHORIAJEWELLERY.COM</p><p>YOU MAY ALSO CONTACT THE ICO AT<a href=\"http://www.ico.org.uk\"> <span style=\"text-decoration:underline\">WWW.ICO.ORG.UK</span></a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_fLEL6H"
+      ],
+      "settings": {
+        "title": "YOUR RIGHT TO COMPLAIN",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_G9eKfB": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_RhBNCM": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>WE MAY UPDATE THIS PRIVACY POLICY TO REFLECT CHANGES IN:</p><ul><li>LAW</li><li>INDUSTRY PRACTICE</li><li>TECHNOLOGY</li><li>BUSINESS OPERATIONS</li></ul><p>THE LATEST VERSION WILL ALWAYS BE AVAILABLE ON OUR WEBSITE.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_RhBNCM"
+      ],
+      "settings": {
+        "title": "UPDATES TO THIS PRIVACY POLICY",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_4PQKiH": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_M9WWAW": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>LAST UPDATED: JANUARY 2026</p><p>THIS SECTION EXPLAINS HOW PHORIA JEWELLERY LTD COLLECTS AND PROCESSES PERSONAL DATA FOR OUR SMS MARKETING SERVICE.</p><p>WE COLLECT:</p><ul><li>TELEPHONE NUMBER</li><li>COUNTRY INFORMATION</li><li>CONSENT RECORDS (DATE, TIME, METHOD, WORDING DISPLAYED)</li><li>DELIVERY STATUS AND OPT-OUT LOGS</li></ul><p>WE USE YOUR DATA TO:</p><ul><li>SEND SMS MARKETING (WITH VALID CONSENT OR SOFT OPT-IN)</li><li>PROCESS OPT-OUT REQUESTS</li><li>MAINTAIN SUPPRESSION LISTS</li><li>COMPLY WITH PECR AND UK GDPR</li></ul><p>LEGAL BASIS:</p><p>CONSENT (ARTICLE 6(1)(A) UK GDPR)<br/>SOFT OPT-IN UNDER PECR (WHERE APPLICABLE)</p><p>WE DO NOT SEND SMS WITHOUT A VALID LEGAL BASIS.</p><p>WE SHARE SMS DATA ONLY WITH GDPR-COMPLIANT SMS PROCESSORS UNDER CONTRACT.</p><p>RETENTION:</p><p>CONSENT RECORDS: UP TO 6 YEARS<br/>SUPPRESSION LISTS: RETAINED FOR COMPLIANCE<br/>TECHNICAL LOGS: UP TO 12 MONTHS</p><p>YOU MAY WITHDRAW CONSENT AT ANY TIME BY TEXTING STOP OR EMAILING US.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_M9WWAW"
+      ],
+      "settings": {
+        "title": "SMS MARKETING",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "ph_heading_text_CLbUjz": {
+      "type": "ph-heading-text",
+      "blocks": {
+        "richtext_xGtVD3": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>PHORIA JEWELLERY LTDEMAIL: INFO@PHORIAJEWELLERY.COMWEBSITE:<a href=\"http://www.phoriajewellery.com\"> <span style=\"text-decoration:underline\">WWW.PHORIAJEWELLERY.COM</span></a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_xGtVD3"
+      ],
+      "settings": {
+        "title": "CONTACT US",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_heading_text_Egf4wA",
+    "ph_heading_text_mAV9Ck",
+    "ph_heading_text_MkNdqY",
+    "ph_heading_text_4LwA8t",
+    "ph_heading_text_hejNXe",
+    "ph_heading_text_GURzPV",
+    "ph_heading_text_wX7Y6m",
+    "ph_heading_text_Dg8VUN",
+    "ph_heading_text_wUgXzh",
+    "ph_heading_text_87EGqF",
+    "ph_heading_text_XXxja8",
+    "ph_heading_text_Xz6GpM",
+    "ph_heading_text_xxbeVK",
+    "ph_heading_text_qcdBRh",
+    "ph_heading_text_G9eKfB",
+    "ph_heading_text_4PQKiH",
+    "ph_heading_text_CLbUjz"
+  ]
+}

@@ -1,0 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.footer.settings.footer-group.label",
+  "sections": {
+    "ph_footer_RengN3": {
+      "type": "ph-footer",
+      "settings": {
+        "footer_link_group1": "footer-link-group-1",
+        "footer_img": "shopify://shop_images/footer_homepage.jpg",
+        "footer_img_redirection_url": "",
+        "footer_link_group2": "footer-link-group-2",
+        "footer_link_group3": "footer-link-group-4",
+        "footer_link_group4": "footer-link-group-5",
+        "enable_animations": true
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-1": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "Shop",
+            "menu": "footer",
+            "default_open": false
+          }
+        },
+        "footer-2": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "Company",
+            "menu": "footer",
+            "default_open": false
+          }
+        },
+        "show_socials": {
+          "type": "show_socials",
+          "settings": {
+            "heading": "Social medias",
+            "show_social_icons": false,
+            "default_open": false
+          }
+        },
+        "footer-3": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "Company",
+            "menu": "footer",
+            "default_open": false
+          }
+        },
+        "footer-4": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "Company",
+            "menu": "footer",
+            "default_open": false
+          }
+        }
+      },
+      "block_order": [
+        "footer-1",
+        "footer-2",
+        "show_socials",
+        "footer-3",
+        "footer-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "background-1",
+        "show_border": true,
+        "logo_width": 500,
+        "logo_layout": "center",
+        "description": "Description",
+        "enable_subscribe": true,
+        "subscribe_heading": "Subscribe to our Newsletter",
+        "subscribe_text": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "enable_follow_on_shop": true,
+        "copyright_bottom": true,
+        "enable_copyright_date": true,
+        "enable_copyright_shopname": true,
+        "padding_top": "m",
+        "padding_bottom": "xs"
+      }
+    }
+  },
+  "order": [
+    "ph_footer_RengN3",
+    "footer"
+  ]
+}

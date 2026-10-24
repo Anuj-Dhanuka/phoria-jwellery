@@ -1,0 +1,183 @@
+<style>
+.ph-values-section {
+  padding: 80px 36px;
+  margin: 0 auto;
+}
+
+.ph-values-section__title {
+  font-size: 2.266vw;
+  line-height: 1.2;
+  font-family: 'PhoriaBold';
+  font-weight: bold;
+  margin: 0 0 0 -0.4vw;
+  text-transform: uppercase;
+}
+
+.ph-values-section__list {
+  display: flex;
+  margin-top: 36px;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.ph-values-section__item {
+  display: flex;
+  align-items: center;
+}
+
+.ph-values-section__link {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #1D1D1D;
+  font-family: 'PhoriaBold';
+  line-height: 1.2;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.ph-values-section__divider {
+  margin-left: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 1020px) {
+  .ph-values-section__title {
+    font-size: 22px;
+    margin-bottom: 36px;
+  }
+
+  .ph-values-section {
+   padding: 100px 18px 72px;
+   margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ph-values-section {
+    padding: 50px 20px;
+  }
+}
+</style>
+
+<div class="ph-values-section">
+  <h2 id="our-values" class="ph-values-section__title">{{ section.settings.section_title }}</h2>
+  
+  <div class="ph-values-section__list">
+    {% for block in section.blocks %}
+      {% if block.type == 'value_item' %}
+        <div class="ph-values-section__item" {{ block.shopify_attributes }}>
+          <a href="#{{ block.settings.value_text | handleize }}" class="ph-values-section__link">
+            {{ block.settings.value_text }}  {{ section.settings.divider_text }}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Ph-Achor-Text",
+  "tag": "section",
+  "class": "ph-values-section-container",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "OUR VALUES"
+    },
+    {
+      "type": "text",
+      "id": "divider_text",
+      "label": "Divider Text",
+      "default": "//"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_item",
+      "name": "Value Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value_text",
+          "label": "Value Text",
+          "default": "TRANSPARENCY"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph-Achor-Text",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "TRANSPARENCY"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUSTAINABLE DESIGN"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SLOW FASHION"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "CONSIDERED PACKAGING"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "DESIGNER - FOUNDER"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "ETHICAL SOURCING"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "RESPONSIBLE JEWELLERY COUNCIL"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "QUALITY + HANDMADE CRAFTSMANSHIP"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUSTAINABLE PRACTICES"
+          }
+        },
+        {
+          "type": "value_item",
+          "settings": {
+            "value_text": "SUPPORTING COMMUNITIES"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,227 @@
+{% schema %}
+{
+  "name": "Phoria – Contact Page",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "PHORIA FINE" },
+    { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
+{ "type": "text", "id": "logo_alt", "label": "Logo alt text", "default": "Phoria Fine" },
+{ "type": "range", "id": "logo_width", "label": "Logo width (px)", "min": 80, "max": 600, "step": 10, "default": 260 },
+{ "type": "range", "id": "logo_width_mobile", "label": "Logo width mobile (px)", "min": 80, "max": 480, "step": 10, "default": 220 },
+
+    { "type": "textarea", "id": "copy", "label": "Intro paragraph", "default": "PHORIA FINE IS OUR NEW BESPOKE ..." },
+    { "type": "range", "id": "max_width", "label": "Content max width (px)", "min": 640, "max": 1280, "step": 40, "default": 1000 },
+    { "type": "range", "id": "top_spacing", "label": "Top spacing (px)", "min": 0, "max": 120, "step": 4, "default": 48 },
+    { "type": "range", "id": "bottom_spacing", "label": "Bottom spacing (px)", "min": 0, "max": 120, "step": 4, "default": 64 },
+    { "type": "text", "id": "submit_label", "label": "Button label", "default": "ENQUIRE NOW" },
+    { "type": "checkbox", "id": "require_lastname", "label": "Last name required", "default": false },
+    { "type": "image_picker", "id": "after_form_image", "label": "Image after form" },
+{ "type": "text", "id": "after_form_image_alt", "label": "After-image alt text", "default": "Phoria after-form image" },
+{ "type": "url", "id": "after_form_image_link", "label": "Optional link URL" },
+{ "type": "range", "id": "after_img_width", "label": "After-image max width (px)", "min": 120, "max": 1600, "step": 20, "default": 1000 },
+{ "type": "range", "id": "after_img_spacing_top", "label": "Image top margin (px)", "min": 0, "max": 120, "step": 4, "default": 32 },
+{ "type": "range", "id": "after_img_spacing_bottom", "label": "Image bottom margin (px)", "min": 0, "max": 120, "step": 4, "default": 0 }
+
+  ],
+  "presets": [
+    {
+      "name": "Phoria Contact Page",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="phoria-contact" style="--maxw: {{ section.settings.max_width }}px; --pt: {{ section.settings.top_spacing }}px; --pb: {{ section.settings.bottom_spacing }}px;">
+  <div class="phoria-contact__inner">
+
+    {% comment %} Heading + paragraph {% endcomment %}
+    <header class="phoria-contact__header"
+        style="--logo-w: {{ section.settings.logo_width }}px; --logo-w-m: {{ section.settings.logo_width_mobile }}px;">
+  {% if section.settings.logo_image != blank %}
+    <img
+      class="phoria-logo"
+      src="{{ section.settings.logo_image | image_url: width: 1200 }}"
+      srcset="
+        {{ section.settings.logo_image | image_url: width: 240  }} 240w,
+        {{ section.settings.logo_image | image_url: width: 360  }} 360w,
+        {{ section.settings.logo_image | image_url: width: 480  }} 480w,
+        {{ section.settings.logo_image | image_url: width: 720  }} 720w,
+        {{ section.settings.logo_image | image_url: width: 960  }} 960w,
+        {{ section.settings.logo_image | image_url: width: 1200 }} 1200w"
+      sizes="(max-width: 768px) var(--logo-w-m), var(--logo-w)"
+      alt="{{ section.settings.logo_alt | escape }}"
+      loading="lazy"
+      width="{{ section.settings.logo_width }}"
+      height="auto">
+  {% else %}
+    <h1 class="phoria-title">{{ section.settings.heading }}</h1>
+  {% endif %}
+
+  {% if section.settings.copy != blank %}
+    <p class="phoria-copy">{{ section.settings.copy }}</p>
+  {% endif %}
+</header>
+
+
+    {% comment %} Contact form {% endcomment %}
+    {% comment %} {% form 'contact', id: 'phoria-contact-form' %}
+      {% if form.posted_successfully? %}
+        <div>
+        <p class="phoria-success" style="font-family: PhoriaBold, sans-serif; role="status">THANK YOU FOR YOUR ENQUIRY.</p>
+        <p class="phoria-success" role="status">A MEMBER OF OUR TEAM SHOULD GET BACK TO YOU WITHIN 24HOURS.</p>
+        </div>
+      {% else %}
+        {% if form.errors %}
+          <div class="phoria-errors" role="alert">{{ form.errors | default_errors }}</div>
+        {% endif %}
+
+        <div class="phoria-grid">
+          <div class="phoria-field">
+            <label class="phoria-label" for="ContactFirstName">FIRST NAME:</label>
+            <input id="ContactFirstName" class="phoria-input" type="text" name="contact[first_name]" autocapitalize="words" required>
+          </div>
+
+          <div class="phoria-field">
+            <label class="phoria-label" for="ContactLastName">LAST NAME:</label>
+            <input id="ContactLastName" class="phoria-input" type="text" name="contact[last_name]" autocapitalize="words" {% if section.settings.require_lastname %}required{% endif %}>
+          </div>
+
+          <div class="phoria-field phoria-field--full">
+            <label class="phoria-label" for="ContactEmail">EMAIL ADDRESS:</label>
+            <input id="ContactEmail" class="phoria-input" type="email" name="contact[email]" autocorrect="off" autocapitalize="off" required>
+          </div>
+
+          <div class="phoria-field phoria-field--full">
+            <label class="phoria-label" for="ContactMessage">ENQUIRY:</label>
+            <textarea id="ContactMessage" class="phoria-textarea" name="contact[body]" rows="8" required></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="phoria-button">{{ section.settings.submit_label }}</button>
+      {% endif %}
+    {% endform %} {% endcomment %}
+
+    <div class="klaviyo-form-ShAKmx"></div>
+
+    {% if section.settings.after_form_image != blank %}
+  <figure class="phoria-after-image"
+          style="--after-w: {{ section.settings.after_img_width }}px; --mt: {{ section.settings.after_img_spacing_top }}px; --mb: {{ section.settings.after_img_spacing_bottom }}px;">
+    {% if section.settings.after_form_image_link != blank %}
+      <a class="phoria-after-image__link" href="{{ section.settings.after_form_image_link }}">
+    {% endif %}
+
+    <img
+      class="phoria-after-image__img"
+      src="{{ section.settings.after_form_image | image_url: width: 1600 }}"
+      srcset="
+        {{ section.settings.after_form_image | image_url: width: 480  }} 480w,
+        {{ section.settings.after_form_image | image_url: width: 720  }} 720w,
+        {{ section.settings.after_form_image | image_url: width: 960  }} 960w,
+        {{ section.settings.after_form_image | image_url: width: 1200 }} 1200w,
+        {{ section.settings.after_form_image | image_url: width: 1600 }} 1600w"
+      sizes="(max-width: 768px) 100vw, {{ section.settings.after_img_width }}px"
+      alt="{{ section.settings.after_form_image_alt | escape }}"
+      loading="lazy"
+      width="{{ section.settings.after_img_width }}"
+      height="auto">
+
+    {% if section.settings.after_form_image_link != blank %}
+      </a>
+    {% endif %}
+  </figure>
+{% endif %}
+
+
+  </div>
+
+  
+
+  <style>
+    .phoria-contact {
+      padding-top: var(--pt); padding-bottom: var(--pb);
+    }
+    .phoria-contact__inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .phoria-title {
+      font-size: 20px; letter-spacing: 6px; text-transform: uppercase; margin: 16px 0 20px;
+    }
+    .phoria-copy {
+      max-width: 900px; margin: 0 auto 28px; line-height: 1.8;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .phoria-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; margin-top: 8px;
+    }
+    .phoria-field--full { grid-column: 1 / -1; }
+    .phoria-label {
+      display: block; text-align: left; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-family: PhoriaBold, sans-serif;
+    }
+    .phoria-input, .phoria-textarea {
+      width: 100%; border: 1px solid #000; background: #fff; color: #000;
+      padding: 12px 14px; outline: none; transition: border-color .2s ease;
+          font-family: PhoriaRegular, sans-serif;
+          text-transform: uppercase;
+
+    }
+    .phoria-input:focus, .phoria-textarea:focus { border-color: #111; }
+    .phoria-textarea { min-height: 180px; resize: vertical; }
+    .phoria-button {
+      margin: 28px auto 0; display: inline-block; background: #000; color: #fff;
+      padding: 14px 40px; border: 0; cursor: pointer; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .phoria-success { margin-top: 20px; }
+    .phoria-errors { margin-bottom: 16px; color: #b00020; }
+    .phoria-logo {
+  display: inline-block;
+  width: var(--logo-w);
+  height: auto;
+  max-width: 100%;
+  margin: 16px 0 20px;
+} 
+
+.kl-private-reset-css-Xuajs1 label {
+  font-family: PhoriaBold, sans-serif !important;
+  margin-bottom: 8px;
+}
+
+.kl-private-reset-css-inner-Zxasda, .kl-private-reset-css-Xuajs1 input :not([type=image]) ::placeholder, .kl-private-reset-css-Xuajs1 ::before, .kl-private-reset-css-Xuajs1 ::after, .kl-private-reset-css-Xuajs1 input:not([type]), .kl-private-reset-css-Xuajs1 input[type=text], .kl-private-reset-css-Xuajs1 input[type=email], .kl-private-reset-css-Xuajs1 input[type=number], .kl-private-reset-css-Xuajs1 input[type=date], .kl-private-reset-css-Xuajs1 input[type=tel], .kl-private-reset-css-Xuajs1 {
+  gap: 2px !important;
+}
+
+
+@media (max-width: 768px) {
+  .phoria-logo { width: var(--logo-w-m); }
+}
+
+    @media (max-width: 768px) {
+      .phoria-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .phoria-input, .phoria-textarea { transition: none; }
+    }
+
+    .phoria-after-image {
+  margin-top: var(--mt);
+  margin-bottom: var(--mb);
+}
+
+.phoria-after-image__img {
+  display: block;
+  width: 100%;
+  max-width: var(--after-w);
+  height: auto;
+  margin: 0 auto;
+}
+
+.phoria-after-image__link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+
+  </style>
+</section>

@@ -1,0 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ph_rings_rebuild": {
+      "type": "ph-rings-rebuild-collection",
+      "blocks": {
+        "ring_01": {
+          "type": "product",
+          "settings": {
+            "product": "1x-hookup-chain-ring-all-silver",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "925 STERLING SILVER // WHITE TOPAZ"
+          }
+        },
+        "ring_02": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-all-silver",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "925 STERLING SILVER // WHITE TOPAZ"
+          }
+        },
+        "ring_03": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-all-gold",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "18CT GOLD VERMEIL // WHITE TOPAZ"
+          }
+        },
+        "ring_04": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-all-gold",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "18CT GOLD VERMEIL // WHITE TOPAZ"
+          }
+        },
+        "ring_05": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-white-topaz",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE SILVER // WHITE TOPAZ"
+          }
+        },
+        "ring_06": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-white-topaz",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE SILVER // WHITE TOPAZ"
+          }
+        },
+        "ring_07": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-white-topaz",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE GOLD // WHITE TOPAZ"
+          }
+        },
+        "ring_08": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-white-topaz",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE GOLD // WHITE TOPAZ"
+          }
+        },
+        "ring_09": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-chrome-diopside",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE SILVER // CHROME DIOPSIDE"
+          }
+        },
+        "ring_10": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-chrome-diopside",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE SILVER // CHROME DIOPSIDE"
+          }
+        },
+        "ring_11": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chrome-diopside",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE GOLD // CHROME DIOPSIDE"
+          }
+        },
+        "ring_12": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-chrome-diopside",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE GOLD // CHROME DIOPSIDE"
+          }
+        },
+        "ring_13": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE SILVER // PINK TOURMALINE"
+          }
+        },
+        "ring_14": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-pink-tourmaline",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE SILVER // PINK TOURMALINE"
+          }
+        },
+        "ring_15": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE GOLD // WHITE TOPAZ"
+          }
+        },
+        "ring_16": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-pink-tourmaline",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE GOLD // PINK TOURMALINE"
+          }
+        },
+        "ring_17": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chain-green-citrine",
+            "title": "HOOKUP CHAIN RING",
+            "finish": "TWO TONE GOLD // GREEN CITRINE"
+          }
+        },
+        "ring_18": {
+          "type": "product",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine",
+            "title": "HOOKUP CHAIN RING II",
+            "finish": "TWO TONE GOLD // GREEN CITRINE"
+          }
+        }
+      },
+      "block_order": [
+        "ring_01",
+        "ring_02",
+        "ring_03",
+        "ring_04",
+        "ring_05",
+        "ring_06",
+        "ring_07",
+        "ring_08",
+        "ring_09",
+        "ring_10",
+        "ring_11",
+        "ring_12",
+        "ring_13",
+        "ring_14",
+        "ring_15",
+        "ring_16",
+        "ring_17",
+        "ring_18"
+      ],
+      "settings": {
+        "hero_image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_286_FINAL_5X4_300DPI_WHITE_1_2c301051-6873-4ac7-bdb0-e806c7be9cc7.jpg",
+        "hero_alt": "Hookup chain rings worn on hand",
+        "hero_aspect_ratio": "1 / 1",
+        "hero_aspect_ratio_desktop": "16 / 7",
+        "hero_object_position": "center center",
+        "show_toolbar": true,
+        "sort_label": "SORT",
+        "filter_label": "FILTER",
+        "view_label": "VIEW",
+        "heading": "HOOKUP CHAIN RINGS",
+        "copy": "<p>OUR BESTSELLER FOR A REASON.</p><p>INTERCHANGEABLE, TRANSFORMABLE RINGS WORN MULTIPLE WAYS ON REPEAT</p>",
+        "letter_spacing": 4,
+        "products_per_row_desktop": 4
+      }
+    }
+  },
+  "order": [
+    "ph_rings_rebuild"
+  ]
+}

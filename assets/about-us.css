@@ -1,0 +1,118 @@
+.shopify-section-header-sticky:not(.shopify-section-header-hidden) ~ main .about-us__description {
+  top: calc(var(--header-height) + 2.4rem);
+}
+
+.about-us__item {
+  display: flex;
+  gap: 2.4rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 1200px) {
+  .about-us__item {
+    flex-wrap: nowrap;
+  }
+}
+.about-us__description {
+  flex: auto;
+  width: 100%;
+  position: static;
+  top: 2.4rem;
+}
+@media screen and (min-width: 1200px) {
+  .about-us__description {
+    flex: 1;
+    width: auto;
+  }
+  .about-us__description--sticky {
+    position: sticky;
+  }
+}
+.about-us__description--block {
+  max-width: 45rem;
+}
+.about-us__description--block:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+@media screen and (min-width: 1200px) {
+  .about-us__description--block {
+    min-width: 45rem;
+  }
+}
+.about-us__description--block > *:first-child {
+  margin-top: 0;
+}
+.about-us__description--block > *:last-child {
+  margin-bottom: 0;
+}
+.about-us__description--subheading.no_heading {
+  color: rgb(var(--color-foreground));
+}
+.about-us__description--subheading, .about-us__description--heading {
+  margin-bottom: 0;
+}
+.about-us__description--subheading + .about-us__description--heading {
+  margin-top: 0.8rem;
+}
+.about-us__description--subheading + .about-us__description--description {
+  margin-top: 0.6rem;
+}
+.about-us__description--heading {
+  margin-top: 0;
+}
+.about-us__description--description {
+  margin-top: 1.6rem;
+  margin-bottom: 0;
+  line-height: 1.44;
+}
+.about-us__description--description > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.about-us__description--description > p:empty:last-child {
+  height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.about-us__description > p:empty:last-child {
+  height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.about-us__images-container {
+  display: flex;
+  gap: 2.4rem;
+  flex: unset;
+  width: 100%;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 1200px) {
+  .about-us__images-container {
+    flex: 2;
+    width: auto;
+  }
+}
+.about-us__image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  border-radius: var(--border-radius-media);
+  transform: scale(1);
+  transition: transform var(--duration-default) ease;
+}
+.about-us__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: calc(50% - 1.2rem);
+}
+.about-us__image-wrapper--landscape {
+  aspect-ratio: 10/7;
+}
+.about-us__image-wrapper--portrait {
+  aspect-ratio: 10/13;
+}
+.about-us__image-wrapper--square {
+  aspect-ratio: 1/1;
+}

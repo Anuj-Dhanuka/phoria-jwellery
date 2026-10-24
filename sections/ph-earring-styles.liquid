@@ -1,0 +1,358 @@
+<style>
+  .ph-interchangeable-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0 36px 90px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-interchangeable-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .ph-interchangeable-heading {
+    font-size: 1.23vw;
+    letter-spacing: 0.1em;
+    margin-top: 0px;
+    margin-bottom: 27px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-interchangeable-subheading {
+    font-size: 10px;
+    line-height: 2.3;
+    margin-bottom: 36px;
+    text-transform: uppercase;
+    max-width: 800px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-earring-styles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 36px;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-earring-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ph-earring-style-image-wrapper {
+    width: 100%;
+    max-width: 18vw;
+    margin: 20px auto;
+  }
+  
+  .ph-earring-style-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .ph-placeholder-image {
+    width: 100%;
+    aspect-ratio: 1/1.5;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px dashed #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .ph-earring-style-text {
+    text-align: center;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-earring-style-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: "PhoriaBold";
+  }
+  
+  .ph-earring-style-subtitle {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: "PhoriaBold";
+  }
+  
+  .ph-interchangeable-footer {
+    font-size: 10px;
+    line-height: 2.3;
+    margin-top: 0px;
+    text-transform: uppercase;
+    max-width: 900px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  @media screen and (max-width: 989px) {
+    .ph-interchangeable-container {
+      padding: 0px 18px;
+      padding-bottom: 90px;
+    }
+    
+    .ph-interchangeable-heading {
+      font-size: 18px;
+    }
+    .ph-interchangeable-subheading{
+      padding-bottom: 54px;
+    }
+    .ph-earring-styles-grid {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+    .ph-earring-style-image-wrapper{
+      max-width: 350px;
+    }
+  }
+</style>
+
+<div class="ph-interchangeable-container">
+  <div class="ph-interchangeable-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-interchangeable-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <div class="ph-interchangeable-subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+    
+    <div class="ph-earring-styles-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'earring_style' %}
+          <div class="ph-earring-style" {{ block.shopify_attributes }}>
+            {% if block.settings.style_image != blank %}
+              <div class="ph-earring-style-image-wrapper">
+                <img 
+                  src="{{ block.settings.style_image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.style_title | escape }}" 
+                  class="ph-earring-style-image"
+                  loading="lazy"
+                  width="{{ block.settings.style_image.width }}"
+                  height="{{ block.settings.style_image.height }}"
+                >
+              </div>
+            {% else %}
+              <div class="ph-placeholder-image">
+                <span>Upload image</span>
+              </div>
+            {% endif %}
+            
+            <div class="ph-earring-style-text">
+              {% if block.settings.style_title != blank %}
+                <h3 class="ph-earring-style-title">{{ block.settings.style_title }}</h3>
+              {% endif %}
+              
+              {% if block.settings.style_subtitle != blank %}
+                <div class="ph-earring-style-subtitle">{{ block.settings.style_subtitle }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.footer_text != blank %}
+      <div class="ph-interchangeable-footer">{{ section.settings.footer_text }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate container
+      const container = document.querySelector('.ph-interchangeable-container');
+      if (container) {
+        inView(container, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-interchangeable-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate subheading
+      const subheading = document.querySelector('.ph-interchangeable-subheading');
+      if (subheading) {
+        inView(subheading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate grid
+      const grid = document.querySelector('.ph-earring-styles-grid');
+      if (grid) {
+        inView(grid, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate individual style texts
+      const styleTitles = document.querySelectorAll('.ph-earring-style-text');
+      if (styleTitles.length) {
+        styleTitles.forEach((title, index) => {
+          inView(title, (elem) => {
+            animate(elem, 
+              { opacity: [0, 1], y: [20, 0] }, 
+              { duration: 0.6, delay: 0.8 + (index * 0.1), easing: "ease-out" }
+            );
+          }, { once: true });
+        });
+      }
+      
+      // Animate footer
+      const footer = document.querySelector('.ph-interchangeable-footer');
+      if (footer) {
+        inView(footer, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 1.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Earrings Styles",
+  "tag": "section",
+  "class": "ph-interchangeable-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "INTERCHANGEABLE + TRANSFORMABLE"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "MORE THAN JUST A PAIR OF EARRINGS. THEIR TRANSFORMATIVE AND INTERCHANGEABLE DESIGN MEANS YOU CAN REIMAGINE THE WAYS YOU WEAR THEM AGAIN AND AGAIN AND AGAIN AND AGAIN."
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "IN ADDITION TO THE STYLING OPTIONS ABOVE, OUR HOODIES ARE FULLY REMOVABLE SO YOU CAN HOOK OFF THEIR LOOKS LIKE FOR BOTH MIX AND MATCH OR JUST TAKE THEM BOTH AROUND TO THEIR HAIL KICK KEEPING THINGS SIMPLE."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable Animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "earring_style",
+      "name": "Earring Style",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "style_image",
+          "label": "Earring Style Image"
+        },
+        {
+          "type": "text",
+          "id": "style_title",
+          "label": "Style Title",
+          "default": "AS SINGULAR PIERCINGS"
+        },
+        {
+          "type": "text",
+          "id": "style_subtitle",
+          "label": "Style Subtitle",
+          "default": "W/O THE CHAIN"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Earrings Styles",
+      "blocks": [
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS SINGULAR PIERCINGS",
+            "style_subtitle": "W/O THE CHAIN"
+          }
+        },
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS A SINGULAR PIERCING",
+            "style_subtitle": "WITH THE CHAIN ON ONE HOOP"
+          }
+        },
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "W/O THE CHAIN"
+          }
+        },
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ON ONE HOOP"
+          }
+        },
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ATTACHED TO BOTH"
+          }
+        },
+        {
+          "type": "earring_style",
+          "settings": {
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ATTACHED TO BOTH STYLES HIGHER"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,43 @@
+.template-404-section {
+  display: flex;
+  align-items: center;
+}
+.template-404-section .wrapper-404 {
+  text-align: center;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.template-404-section .wrapper-404 .page-header {
+  margin: 0 auto 1.6rem;
+}
+.template-404-section .wrapper-404 .page-header .title--page {
+  text-align: center;
+}
+.template-404-section .wrapper-404 .predictive-search-block {
+  margin-top: 2rem;
+  display: block;
+}
+.template-404-section .wrapper-404 .predictive-search-block[open] + .search__items {
+  display: none;
+}
+.template-404-section .wrapper-404 .search__form-inner .field {
+  min-height: unset;
+}
+.template-404-section .wrapper-404 .search__form-inner .field .button {
+  height: 3.6rem;
+  min-height: unset;
+}
+.template-404-section .wrapper-404 .search__form-inner .field .field__input.search__input {
+  padding: 0.9rem 1.6rem;
+  height: 3.6rem;
+  box-sizing: border-box;
+  min-height: unset;
+  font-size: 1.2rem;
+}
+.template-404-section .wrapper-404 .search__form-inner .field .field__input.search__input:hover {
+  border-color: initial !important;
+}
+.template-404-section .wrapper-404 .search__items {
+  padding: 0;
+}

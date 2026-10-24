@@ -1,0 +1,750 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .ph-carousel-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_desktop_top }}px;
+    padding-bottom: {{ section.settings.padding_desktop_bottom }}px;
+  }
+
+  .ph-carousel-heading-{{ section.id }} {
+    text-align: center;
+    font-family: 'PhoriaBold';
+    font-size: {{ section.settings.heading_size }}px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+
+  .ph-carousel-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    padding: 0;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    opacity: 0;
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__media {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__media img,
+  .ph-carousel-{{ section.id }} .ph-car__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-slide:hover .ph-car__media img,
+  .ph-carousel-{{ section.id }} .swiper-slide:hover .ph-car__media video {
+    transform: scale(1.05);
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__title {
+    font-family: 'PhoriaBold';
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 9px 0 0 0;
+    text-decoration: none !important;
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__finish {
+    font-family: 'PhoriaRegular';
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #666;
+    margin: 9px 0 0 0;
+  }
+
+  .ph-carousel-{{ section.id }} .ph-car__price {
+    font-family: 'PhoriaBold';
+    font-size: 12px;
+    color: #333;
+    margin: 18px 0 0 0;
+    white-space: nowrap;
+  }
+
+  .ph-car__price-inner {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .ph-car__compare-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.9em;
+  }
+
+  .ph-car__from-label {
+    font-family: 'PhoriaRegular';
+    text-transform: uppercase;
+  }
+
+  /* Navigation arrows */
+  .ph-carousel-{{ section.id }} .swiper-button-prev,
+  .ph-carousel-{{ section.id }} .swiper-button-next {
+    color: black;
+    width: 50px !important;
+    height: 50px !important;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-button-prev {
+    left: 12px;
+    justify-content: flex-start;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-button-next {
+    right: 12px;
+    justify-content: flex-end;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-button-prev::after,
+  .ph-carousel-{{ section.id }} .swiper-button-next::after {
+    font-size: 18px;
+    color: black;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-button-prev img,
+  .ph-carousel-{{ section.id }} .swiper-button-next img {
+    width: 30px !important;
+    height: 21px !important;
+    object-fit: contain;
+  }
+
+  /* Pagination dots */
+  .ph-carousel-{{ section.id }} .swiper-pagination {
+    position: relative;
+    margin-top: 24px;
+  }
+
+  .ph-carousel-{{ section.id }} .swiper-pagination-bullet-active {
+    background: black;
+  }
+
+  @media (max-width: 989px) {
+    .ph-carousel-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_mobile_top }}px;
+      padding-bottom: {{ section.settings.padding_mobile_bottom }}px;
+    }
+
+    .ph-carousel-{{ section.id }} .ph-car__title,
+    .ph-carousel-{{ section.id }} .ph-car__price {
+      font-size: 10px;
+    }
+
+    .ph-carousel-{{ section.id }} .swiper-button-prev,
+    .ph-carousel-{{ section.id }} .swiper-button-next {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .ph-carousel-{{ section.id }} .swiper-button-prev img,
+    .ph-carousel-{{ section.id }} .swiper-button-next img {
+      width: 20px !important;
+      height: 14px !important;
+    }
+
+    .ph-carousel-{{ section.id }} .swiper-button-prev {
+      left: 8px;
+    }
+
+    .ph-carousel-{{ section.id }} .swiper-button-next {
+      right: 8px;
+    }
+  }
+</style>
+
+<section class="ph-carousel-section-{{ section.id }}">
+  {% if section.settings.heading != blank %}
+    <h2 class="ph-carousel-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div class="swiper ph-carousel-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {%- assign product_link = '#' -%}
+          {%- if block.settings.product_item != blank -%}
+            {%- assign product_link = block.settings.product_item.url -%}
+
+            {%- if block.settings.custom_product_url != blank -%}
+              {%- assign product_link = block.settings.custom_product_url -%}
+            {%- elsif block.settings.custom_variant_id != blank -%}
+              {%- assign product_link = product_link | append: '?variant=' | append: block.settings.custom_variant_id -%}
+            {%- else -%}
+              {%- assign card_title_for_match = block.settings.override_title | default: block.settings.product_item.title | upcase -%}
+              {%- assign derived_letter = '' -%}
+
+              {%- if card_title_for_match contains 'THE ' -%}
+                {%- assign title_after_the = card_title_for_match | split: 'THE ' | last -%}
+                {%- assign derived_letter = title_after_the | remove: '"' | remove: '"' | remove: '"' | remove: "'" | strip | slice: 0, 1 -%}
+              {%- endif -%}
+
+              {%- if derived_letter != blank -%}
+                {%- assign matched_variant_id = '' -%}
+                {%- for variant in block.settings.product_item.variants -%}
+                  {%- assign option_1 = variant.option1 | upcase | strip -%}
+                  {%- assign option_2 = variant.option2 | upcase | strip -%}
+                  {%- assign option_3 = variant.option3 | upcase | strip -%}
+                  {%- if option_1 == derived_letter or option_2 == derived_letter or option_3 == derived_letter -%}
+                    {%- assign matched_variant_id = variant.id -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if matched_variant_id != blank -%}
+                  {%- assign product_link = product_link | append: '?variant=' | append: matched_variant_id -%}
+                {%- else -%}
+                  {%- assign product_link = product_link | append: '?ph_letter=' | append: derived_letter -%}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <a href="{{ product_link }}" class="ph-car__link">
+
+              <!-- Media -->
+              <div class="ph-car__media">
+                {% assign first_media = block.settings.product_item.media | first %}
+
+                {% if block.settings.show_custom_thumbnail %}
+                  {% if block.settings.is_video_product_thumbnail == false %}
+                    {% if block.settings.product_thumbnail_image != blank %}
+                      <img
+                        src="{{ block.settings.product_thumbnail_image | image_url: width: 700 }}"
+                        alt="{{ block.settings.override_title | default: block.settings.product_item.title }}"
+                        loading="lazy"
+                        width="350"
+                        height="350"
+                        {% if block.settings.scale_media %}style="transform: scale({{ block.settings.scale_value }});"{% endif %}
+                      >
+                    {% elsif first_media.media_type == 'image' %}
+                      <img
+                        src="{{ first_media | image_url: width: 700 }}"
+                        alt="{{ block.settings.product_item.title }}"
+                        loading="lazy"
+                        width="350"
+                        height="350"
+                        {% if block.settings.scale_media %}style="transform: scale({{ block.settings.scale_value }});"{% endif %}
+                      >
+                    {% elsif first_media.media_type == 'video' %}
+                      {% if block.settings.scale_media %}
+                        <style>.ph-car-vid-{{ block.id }}{transform: scale({{ block.settings.scale_value }});}</style>
+                      {% endif %}
+                      {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: 'ph-car-vid-' | append: block.id }}
+                    {% endif %}
+                  {% else %}
+                    {% if block.settings.product_thumbnail_video != blank %}
+                      {% if block.settings.scale_media %}
+                        <style>.ph-car-vid-{{ block.id }}{transform: scale({{ block.settings.scale_value }});}</style>
+                      {% endif %}
+                      {{ block.settings.product_thumbnail_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: 'ph-car-vid-' | append: block.id }}
+                    {% elsif first_media.media_type == 'image' %}
+                      <img
+                        src="{{ first_media | image_url: width: 700 }}"
+                        alt="{{ block.settings.product_item.title }}"
+                        loading="lazy"
+                        width="350"
+                        height="350"
+                        {% if block.settings.scale_media %}style="transform: scale({{ block.settings.scale_value }});"{% endif %}
+                      >
+                    {% elsif first_media.media_type == 'video' %}
+                      {% if block.settings.scale_media %}
+                        <style>.ph-car-vid-{{ block.id }}{transform: scale({{ block.settings.scale_value }});}</style>
+                      {% endif %}
+                      {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: 'ph-car-vid-' | append: block.id }}
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  {% if first_media.media_type == 'image' %}
+                    <img
+                      src="{{ first_media | image_url: width: 700 }}"
+                      alt="{{ block.settings.product_item.title }}"
+                      loading="lazy"
+                      width="350"
+                      height="350"
+                      {% if block.settings.scale_media %}style="transform: scale({{ block.settings.scale_value }});"{% endif %}
+                    >
+                  {% elsif first_media.media_type == 'video' %}
+                    {% if block.settings.scale_media %}
+                      <style>.ph-car-vid-{{ block.id }}{transform: scale({{ block.settings.scale_value }});}</style>
+                    {% endif %}
+                    {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: 'ph-car-vid-' | append: block.id }}
+                  {% endif %}
+                {% endif %}
+              </div>
+
+              <!-- Title -->
+              <h3 class="ph-car__title">
+                {{ block.settings.override_title | default: block.settings.product_item.title }}
+              </h3>
+
+              <!-- Finish -->
+              {% if block.settings.show_custom_finish %}
+                <p class="ph-car__finish">{{ block.settings.custom_finish_text }}</p>
+              {% elsif block.settings.product_item.metafields.custom.finish != blank %}
+                <p class="ph-car__finish">{{ block.settings.product_item.metafields.custom.finish.value }}</p>
+              {% endif %}
+
+              <!-- Price -->
+              <div class="ph-car__price">
+                {%- assign resolved_price = block.settings.product_item.price -%}
+                {%- assign resolved_price_override = false -%}
+                {%- assign linked_letter = '' -%}
+                {%- if block.settings.custom_product_url != blank and block.settings.custom_product_url contains 'ph_letter=' -%}
+                  {%- assign linked_letter = block.settings.custom_product_url | split: 'ph_letter=' | last | split: '&' | first | replace: '%20', ' ' | downcase -%}
+                {%- elsif product_link contains 'ph_letter=' -%}
+                  {%- assign linked_letter = product_link | split: 'ph_letter=' | last | split: '&' | first | replace: '%20', ' ' | downcase -%}
+                {%- endif -%}
+
+                {%- if linked_letter == blank -%}
+                  {%- assign card_title_for_price_match = block.settings.override_title | default: block.settings.product_item.title | upcase -%}
+                  {%- if card_title_for_price_match contains 'THE ' -%}
+                    {%- assign title_after_the = card_title_for_price_match | split: 'THE ' | last -%}
+                    {%- assign derived_title_letter = title_after_the | remove: '"' | remove: '"' | remove: '"' | remove: "'" | strip | slice: 0, 1 | downcase -%}
+                    {%- if derived_title_letter >= 'a' and derived_title_letter <= 'z' -%}
+                      {%- assign linked_letter = derived_title_letter -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- assign is_id_charm_gold_card = false -%}
+                {%- assign is_id_charm_silver_card = false -%}
+                {%- if block.settings.product_item.id == 10506235674890 or block.settings.product_item.handle == 'screw-chain-bracelet-18ct-gold-vermeil' or block.settings.custom_product_url contains '/products/the-i-d-charm-bracelet-1' -%}
+                  {%- assign is_id_charm_gold_card = true -%}
+                {%- elsif block.settings.product_item.id == 10506235838730 or block.settings.product_item.handle == 'screw-chain-bracelet-925-sterling-silver' or block.settings.custom_product_url contains '/products/the-i-d-charm-bracelet' -%}
+                  {%- assign is_id_charm_silver_card = true -%}
+                {%- endif -%}
+
+                {%- if is_id_charm_gold_card -%}
+                  {%- assign resolved_price = 28500 -%}
+                  {%- if linked_letter != blank and linked_letter != 'no letter' -%}
+                    {%- assign _car_lp_gold = all_products['letter-pendant-gold'] -%}
+                    {%- assign _car_addon_gold = _car_lp_gold.price_min | default: 11000 -%}
+                    {%- assign resolved_price = resolved_price | plus: _car_addon_gold -%}
+                  {%- endif -%}
+                  {%- assign resolved_price_override = true -%}
+                {%- elsif is_id_charm_silver_card -%}
+                  {%- assign resolved_price = 23500 -%}
+                  {%- if linked_letter != blank and linked_letter != 'no letter' -%}
+                    {%- assign _car_lp_silver = all_products['letter-pendant-silver'] -%}
+                    {%- assign _car_addon_silver = _car_lp_silver.price_min | default: 8500 -%}
+                    {%- assign resolved_price = resolved_price | plus: _car_addon_silver -%}
+                  {%- endif -%}
+                  {%- assign resolved_price_override = true -%}
+                {%- endif -%}
+
+                {% if block.settings.show_from_prefix %}
+                  <span class="ph-car__from-label">FROM </span>
+                {% endif %}
+                {% if block.settings.custom_price_text != blank %}
+                  {% assign custom_price_clean = block.settings.custom_price_text | strip | remove: ',' %}
+                  {% assign custom_price_cents = custom_price_clean | times: 100 %}
+                  {% if custom_price_cents > 0 %}
+                    <strong>{% render 'ph-round-money', amount: custom_price_cents %}</strong>
+                  {% else %}
+                    <strong>{{ block.settings.custom_price_text }}</strong>
+                  {% endif %}
+                {% elsif resolved_price_override %}
+                  <div class="ph-car__price-inner">
+                    <strong>{% render 'ph-round-money', amount: resolved_price %}</strong>
+                  </div>
+                {% else %}
+                  <div class="ph-car__price-inner">
+                    {% if block.settings.product_item.compare_at_price > block.settings.product_item.price %}
+                      <span class="ph-car__compare-price">{% render 'ph-round-money', amount: block.settings.product_item.compare_at_price %}</span>
+                    {% endif %}
+                    <strong>{% render 'ph-round-money', amount: block.settings.product_item.price %}</strong>
+                  </div>
+                {% endif %}
+              </div>
+
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.settings.show_pagination %}
+        <div class="swiper-pagination swiper-pagination-{{ section.id }}"></div>
+      {% endif %}
+
+      {% if section.settings.show_arrows %}
+        <div class="swiper-button-prev swiper-button-prev-{{ section.id }}">
+          <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/left-arrow-phoria.png" alt="Previous" width="30" height="21" loading="lazy">
+        </div>
+        <div class="swiper-button-next swiper-button-next-{{ section.id }}">
+          <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/right-arrow-phoria.png" alt="Next" width="30" height="21" loading="lazy">
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    <p style="text-align: center; font-family: 'PhoriaRegular';">Add products using the block panel on the left.</p>
+  {% endif %}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var sectionId = '{{ section.id }}';
+    var enableAnimations = {{ section.settings.enable_animations | json }};
+
+    // Heading animation
+    if (enableAnimations && typeof Motion !== 'undefined') {
+      var heading = document.querySelector('.ph-carousel-heading-' + sectionId);
+      if (heading) {
+        Motion.inView(heading, function (elem) {
+          Motion.animate(elem, { opacity: [0, 1], y: ['40px', '0px'] }, { duration: 0.6, easing: 'ease-out' });
+        }, { once: true });
+      }
+    } else {
+      var heading = document.querySelector('.ph-carousel-heading-' + sectionId);
+      if (heading) heading.style.opacity = '1';
+    }
+
+    var carouselEl = document.querySelector('.ph-carousel-' + sectionId);
+    if (!carouselEl) return;
+
+    var swiperInited = false;
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting || swiperInited) return;
+      swiperInited = true;
+      observer.disconnect();
+
+      if (typeof Swiper === 'undefined') return;
+
+      var swiper = new Swiper('.ph-carousel-' + sectionId, {
+      loop: {{ section.settings.loop_slides | json }},
+      spaceBetween: {{ section.settings.space_between }},
+      {% if section.settings.enable_autoplay %}
+      autoplay: {
+        delay: {{ section.settings.autoplay_delay | times: 1000 }},
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      {% endif %}
+      navigation: {
+        nextEl: '.swiper-button-next-' + sectionId,
+        prevEl: '.swiper-button-prev-' + sectionId,
+      },
+      {% if section.settings.show_pagination %}
+      pagination: {
+        el: '.swiper-pagination-' + sectionId,
+        clickable: true,
+      },
+      {% endif %}
+      breakpoints: {
+        320: { slidesPerView: {{ section.settings.slides_mobile }} },
+        550: { slidesPerView: {{ section.settings.slides_tablet }} },
+        990: { slidesPerView: {{ section.settings.slides_desktop }} }
+      },
+      on: {
+        init: function (sw) {
+          if (!enableAnimations || typeof Motion === 'undefined') {
+            sw.slides.forEach(function (slide) { slide.style.opacity = '1'; });
+            return;
+          }
+          var visibleCount = sw.slidesPerViewDynamic
+            ? parseInt(sw.params.slidesPerView)
+            : sw.params.slidesPerView;
+          sw.slides.forEach(function (slide, i) {
+            if (i < visibleCount) {
+              Motion.animate(slide, { opacity: [0, 1], y: ['40px', '0px'] }, { duration: 0.5, delay: i * 0.1, easing: 'ease-out' });
+            } else {
+              slide.style.opacity = '1';
+            }
+          });
+        }
+      }
+      });
+    }, { rootMargin: '200px' });
+    observer.observe(carouselEl);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Product Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+      "type": "range",
+      "id": "slides_desktop",
+      "label": "Slides Per View (Desktop)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slides_tablet",
+      "label": "Slides Per View (Tablet)",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "slides_mobile",
+      "label": "Slides Per View (Mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "label": "Gap Between Slides (px)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_slides",
+      "label": "Loop slides",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination dots",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay delay",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Animations"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Fade-in animation for initially visible slides"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Product"
+        },
+        {
+          "type": "header",
+          "content": "Custom Data"
+        },
+        {
+          "type": "checkbox",
+          "id": "scale_media",
+          "label": "Make product thumbnail bigger",
+          "default": false,
+          "info": "Enable this setting to apply scale value"
+        },
+        {
+          "type": "range",
+          "id": "scale_value",
+          "label": "Scale",
+          "min": 1,
+          "max": 1.5,
+          "step": 0.1,
+          "unit": "x",
+          "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "show_custom_thumbnail",
+          "label": "Override product media with custom thumbnail",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "is_video_product_thumbnail",
+          "label": "Show video as product thumbnail",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_custom_finish",
+          "label": "Show Custom Finish",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "custom_finish_text",
+          "label": "Finish Text"
+        },
+        {
+          "type": "video",
+          "id": "product_thumbnail_video",
+          "label": "Video"
+        },
+        {
+          "type": "url",
+          "id": "custom_product_url",
+          "label": "Custom Product URL",
+          "info": "Optional: force a specific product/variant URL for this card."
+        },
+        {
+          "type": "text",
+          "id": "custom_variant_id",
+          "label": "Variant code (ID)",
+          "info": "Optional: enter a Shopify variant ID to open this card on that exact variant."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_from_prefix",
+          "label": "Show 'FROM' before price",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "product_thumbnail_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "override_title",
+          "label": "Override Product Title"
+        },
+        {
+          "type": "text",
+          "id": "custom_price_text",
+          "label": "Custom Price Text",
+          "info": "Optional display override (for example: STARTS FROM £145)."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Product Carousel",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

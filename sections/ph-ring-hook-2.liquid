@@ -1,0 +1,291 @@
+<style>
+  .ph-hookup-chain-ring-ii-container {
+    width: 100%;
+  }
+  
+  .ph-hookup-chain-ring-ii-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .ph-hookup-chain-ring-ii-heading {
+    font-size: 1.25vw;
+    letter-spacing: 0.2em;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-hookup-chain-ring-ii-options {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    width: 100%;
+  }
+  
+  .ph-hookup-chain-ring-ii-option {
+    flex: 1;
+    max-width: 23vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-hookup-chain-ring-ii-image-wrapper {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  
+  .ph-hookup-chain-ring-ii-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .ph-placeholder-image {
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px dashed #ccc;
+    margin-bottom: 25px;
+  }
+  
+  .ph-hookup-chain-ring-ii-option-heading {
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .ph-hookup-chain-ring-ii-option-description {
+    font-size: 10px;
+    line-height: 2.3;
+    text-transform: uppercase;
+    max-width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .ph-hookup-chain-ring-ii-options {
+      gap: 30px;
+    }
+    
+    .ph-hookup-chain-ring-ii-option-description {
+      font-size: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ph-hookup-chain-ring-ii-inner{
+      padding: 0px !important;
+      max-width: 90vw;
+    }
+    .ph-hookup-chain-ring-ii-container {
+      padding: 40px 15px;
+    }
+    
+    .ph-hookup-chain-ring-ii-heading {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    
+    .ph-hookup-chain-ring-ii-options {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .ph-hookup-chain-ring-ii-option {
+      max-width: 100%;
+    }
+    
+    .ph-hookup-chain-ring-ii-option-heading {
+      font-size: 16px;
+    }
+    
+    .ph-hookup-chain-ring-ii-image-wrapper {
+      /* max-width: 250px; */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
+
+<div class="ph-hookup-chain-ring-ii-container" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="ph-hookup-chain-ring-ii-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-hookup-chain-ring-ii-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="ph-hookup-chain-ring-ii-options">
+      {% for block in section.blocks %}
+        {% if block.type == 'styling_option' %}
+          <div class="ph-hookup-chain-ring-ii-option" {{ block.shopify_attributes }}>
+            {% if block.settings.option_image != blank %}
+              <div class="ph-hookup-chain-ring-ii-image-wrapper">
+                <img 
+                  src="{{ block.settings.option_image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.option_heading | escape }}" 
+                  class="ph-hookup-chain-ring-ii-image"
+                  loading="lazy"
+                  width="{{ block.settings.option_image.width }}"
+                  height="{{ block.settings.option_image.height }}"
+                >
+              </div>
+            {% else %}
+              <div class="ph-placeholder-image">
+                <span>Upload image</span>
+              </div>
+            {% endif %}
+            
+            {% if block.settings.option_heading != blank %}
+              <h3 class="ph-hookup-chain-ring-ii-option-heading">{{ block.settings.option_heading }}</h3>
+            {% endif %}
+            
+            {% if block.settings.option_description != blank %}
+              <div class="ph-hookup-chain-ring-ii-option-description">{{ block.settings.option_description }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-hookup-chain-ring-ii-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate each option individually
+      const options = document.querySelectorAll('.ph-hookup-chain-ring-ii-option');
+      options.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.15 * index, easing: "ease-out" }
+          );
+        }, { once: true });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Hookup Ring II",
+  "tag": "section",
+  "class": "ph-hookup-chain-ring-ii-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "HOOKUP CHAIN RING II"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "styling_option",
+      "name": "Styling Option",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "option_image",
+          "label": "Option Image"
+        },
+        {
+          "type": "text",
+          "id": "option_heading",
+          "label": "Option Heading",
+          "default": "STYLE OPTION"
+        },
+        {
+          "type": "textarea",
+          "id": "option_description",
+          "label": "Option Description",
+          "default": "DESCRIPTION OF HOW TO WEAR THIS STYLE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Hookup Ring II",
+      "blocks": [
+        {
+          "type": "styling_option",
+          "settings": {
+            "option_heading": "STACK",
+            "option_description": "1) WRAP THE CONNECTING CHAIN AROUND A SINGLE FINGER AND STACK ALL THREE BANDS TOGETHER."
+          }
+        },
+        {
+          "type": "styling_option",
+          "settings": {
+            "option_heading": "SPLIT",
+            "option_description": "2) SEPARATE THE ONE BAND THAT LOCKS (IT HAS A CONNECTING RINGLET) AND PLACE ON ANOTHER FINGER THAT WORKS FOR YOU. YOU COULD WEAR THE TWO CONNECTING BANDS ON YOUR RING FINGER AND THE OTHER ON YOUR MIDDLE FINGER."
+          }
+        },
+        {
+          "type": "styling_option",
+          "settings": {
+            "option_heading": "SEPARATE",
+            "option_description": "3) SEPARATE THE BANDS ACROSS THREE FINGERS, LETTING THE CONNECTING CHAIN HANG FREELY BETWEEN THEM."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

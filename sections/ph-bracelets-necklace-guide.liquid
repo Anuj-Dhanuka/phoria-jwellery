@@ -1,0 +1,280 @@
+<style>
+  .ph-modular-necklace-guide-container {
+    width: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+  }
+  
+  .ph-modular-necklace-guide-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 36px;
+  }
+  
+  .ph-modular-necklace-guide-heading {
+    font-size: 1.25vw;
+    margin: 0px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+  }
+  
+  .ph-modular-necklace-guide-description {
+    font-size: 10px;
+    line-height: 2.3;
+    text-transform: uppercase;
+    margin-top: 27px;
+    max-width: 900px;
+  }
+  
+  .ph-modular-necklace-guide-image-wrapper {
+    width: 100%;
+    padding: 18px 36px;
+  }
+  
+  .ph-modular-necklace-guide-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .ph-placeholder-image {
+    width: 100%;
+    height: 400px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px dashed #ccc;
+    margin-bottom: 40px;
+  }
+  
+  .ph-modular-necklace-guide-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 0 36px;
+  }
+  
+  .ph-modular-necklace-guide-step {
+    font-size: 10px;
+    line-height: 2.3;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .ph-modular-necklace-guide-container {
+      padding: 0px 18px;
+      max-width: none;
+    }
+    .ph-modular-necklace-guide-inner{
+      padding: 0;
+    }
+    .ph-modular-necklace-guide-heading {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    
+    .ph-modular-necklace-guide-description {
+      margin-top: 0px;
+      margin-bottom: 18px;
+    }
+    .ph-placeholder-image {
+      height: 250px;
+    }
+    .ph-modular-necklace-guide-image-wrapper{
+      padding: 0px;
+      padding-bottom: 18px;
+    }
+    .ph-modular-necklace-guide-steps{
+      padding: 0px;
+    }
+  }
+</style>
+
+<div class="ph-modular-necklace-guide-container">
+  <div class="ph-modular-necklace-guide-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-modular-necklace-guide-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="ph-modular-necklace-guide-description">{{ section.settings.description }}</div>
+    {% endif %}
+    
+    {% if section.settings.guide_image != blank %}
+      <div class="ph-modular-necklace-guide-image-wrapper">
+        <img 
+          src="{{ section.settings.guide_image | image_url: width: 1200 }}"
+          alt="How to make a necklace using modular chain bracelets" 
+          class="ph-modular-necklace-guide-image"
+          loading="lazy"
+          width="{{ section.settings.guide_image.width }}"
+          height="{{ section.settings.guide_image.height }}"
+        >
+      </div>
+    {% else %}
+      <div class="ph-placeholder-image">
+        <span>Upload guide illustration image</span>
+      </div>
+    {% endif %}
+    
+    <div class="ph-modular-necklace-guide-steps">
+      {% if section.settings.step1 != blank %}
+        <div class="ph-modular-necklace-guide-step">{{ section.settings.step1 }}</div>
+      {% endif %}
+      
+      {% if section.settings.step2 != blank %}
+        <div class="ph-modular-necklace-guide-step">{{ section.settings.step2 }}</div>
+      {% endif %}
+      
+      {% if section.settings.step3 != blank %}
+        <div class="ph-modular-necklace-guide-step">{{ section.settings.step3 }}</div>
+      {% endif %}
+      
+      {% if section.settings.step4 != blank %}
+        <div class="ph-modular-necklace-guide-step">{{ section.settings.step4 }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate container
+      const container = document.querySelector('.ph-modular-necklace-guide-container');
+      if (container) {
+        inView(container, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-modular-necklace-guide-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate description
+      const description = document.querySelector('.ph-modular-necklace-guide-description');
+      if (description) {
+        inView(description, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate image or placeholder
+      const imageWrapper = document.querySelector('.ph-modular-necklace-guide-image-wrapper, .ph-placeholder-image');
+      if (imageWrapper) {
+        inView(imageWrapper, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate steps
+      const steps = document.querySelector('.ph-modular-necklace-guide-steps');
+      if (steps) {
+        inView(steps, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.8, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Modular Necklace Guide",
+  "tag": "section",
+  "class": "ph-modular-necklace-guide-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "HOW TO MAKE A NECKLACE USING OUR MODULAR CHAIN BRACELETS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "ALL PHORIA BRACELETS ARE MODULAR - OUR CARABINER CLASPS CAN BE CONNECTED WITH ANY OTHER PHORIA BRACELET TO CREATE ANY STYLE OF NECKLACE YOU CHOOSE."
+    },
+    {
+      "type": "header",
+      "content": "Illustration Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "guide_image",
+      "label": "Guide Illustration Image"
+    },
+    {
+      "type": "header",
+      "content": "Instructions"
+    },
+    {
+      "type": "text",
+      "id": "step1",
+      "label": "Step 1",
+      "default": "1) SIMPLY OPEN OUR CARABINER CLASP BY PULLING THE CLASP APART ON ONE OF YOUR BRACELETS"
+    },
+    {
+      "type": "text",
+      "id": "step2",
+      "label": "Step 2",
+      "default": "2) USE THIS TO LINK THROUGH THE CHAIN LINK ON YOUR SECOND NECKLACE"
+    },
+    {
+      "type": "text",
+      "id": "step3",
+      "label": "Step 3",
+      "default": "3) SHUT THE CLASP SHUT"
+    },
+    {
+      "type": "text",
+      "id": "step4",
+      "label": "Step 4",
+      "default": "4) DO THE SAME FOR THE SECOND BRACELET TO LINK TO YOUR OTHER ONE"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable Animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Modular Necklace Guide"
+    }
+  ]
+}
+{% endschema %}

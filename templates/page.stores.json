@@ -1,0 +1,77 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+	"sections": {
+		"about-us": {
+			"type": "about-us",
+			"settings": {},
+			"blocks": {
+				"image": {
+					"type": "image",
+					"settings": {}
+				},
+				"image1": {
+					"type": "image",
+					"settings": {}
+				},
+				"about-us-description": {
+					"type": "about-us-description",
+					"settings": {}
+				}
+			},
+			"block_order": ["image", "image1", "about-us-description"]
+		},
+		"about-us-1": {
+			"type": "about-us",
+			"settings": {
+				"heading": "",
+				"margin_top": "no-indent"
+			},
+			"blocks": {
+				"image": {
+					"type": "image",
+					"settings": {}
+				},
+				"image1": {
+					"type": "image",
+					"settings": {}
+				},
+				"about-us-description": {
+					"type": "about-us-description",
+					"settings": {}
+				}
+			},
+			"block_order": ["image", "image1", "about-us-description"]
+		},
+		"about-us-2": {
+			"type": "about-us",
+			"settings": {
+				"heading": "",
+				"margin_top": "no-indent"
+			},
+			"blocks": {
+				"image": {
+					"type": "image",
+					"settings": {}
+				},
+				"image1": {
+					"type": "image",
+					"settings": {}
+				},
+				"about-us-description": {
+					"type": "about-us-description",
+					"settings": {}
+				}
+			},
+			"block_order": ["image", "image1", "about-us-description"]
+		}
+	},
+	"order": ["about-us", "about-us-1", "about-us-2"]
+}

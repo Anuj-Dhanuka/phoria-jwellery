@@ -1,0 +1,1419 @@
+{%- if settings.cart_type == "drawer" -%}
+	{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+	{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+	<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+<style>
+    :root{
+        --ph-announcement-bar-bg: #000;
+        --ph-announcement-bar-color: #fff;
+        --ph-menu-bg: transparent;
+        --ph-inactive-tab-color: #81847A;
+        --ph-primary-text: #1D1D1D;
+        --ph-border-color: #D4D4D4;
+        --ph-menu-color: #1D1D1D;
+        --ph-menu-cart-bg: #1D1D1D;
+        --ph-menu-cart-text: #fff;
+    }
+    header.ph-header__container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+    }
+    .ph-announcement__bar{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        padding: 18px 36px 13px;
+        background: var(--ph-announcement-bar-bg);
+    }
+    .ph-announcement-text{
+        color: var(--ph-announcement-bar-color);
+        font-size: 10px;
+        text-transform: uppercase; 
+        text-align: center; 
+        margin: 0;
+    }
+    .ph-announcement-text a{
+      color: #fff;
+    }
+    .ph-announcement-text strong{
+      font-family: "PhoriaBold";
+    }
+
+    .ph-countdown-timer-outer-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+    }
+    .ph-announcement-timer {
+      color: #fff;
+      word-spacing: .3em;
+      font-family: var(--font-body-family);
+          font-weight: var(--font-body-weight);
+
+    }
+
+    .ph-timer-separator {
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 6px;
+  vertical-align: middle;
+}
+
+
+    .ph-countdown-timer-span {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ph-countdown-timer-count {
+      padding: 2px 8px 2px 8px;
+      background-color: #fff;
+      color: #000;
+      font-size: 12px;
+      font-family: 'PhoriaBold';
+      padding-top: 4px;
+    }
+
+    .ph-countdown-timer-count-text {
+      font-size: 8px;
+    }
+
+    .ph-countdown-timer-inner-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .ph-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 36px;
+        background: var(--ph-menu-bg);
+    }
+    .ph-menu{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 46px;
+        font-size: 12px;
+        color: var(--ph-menu-color);
+        text-transform: uppercase;
+        flex: 1;
+    }
+    .ph-menu:last-child{
+        justify-content: flex-end;
+    }
+    .ph-menu__items{
+        display: flex;
+        gap: 72px;
+        font-size: 12px;
+        padding-left: 0;
+    }
+    .ph-menu.right .ph-menu__items{
+      gap: 46px;
+    }
+    .ph-header-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .ph-menu__item{
+        list-style: none;
+        cursor: pointer;
+        font-family: 'PhoriaBold';
+        transition: var(--duration-default);
+    }
+    .ph-menu__item .header__account summary{
+      height: auto;
+      color: var(--ph-menu-color);
+    }
+    .ph-menu__item a{
+        text-decoration: none;
+        color: var(--ph-menu-color);
+        transition: var(--duration-default);
+    }
+    .ph-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 160px;
+        height: 14px;
+        padding: 25px 0;
+    }
+    .ph-logo img{
+        display: none;
+        max-width: 160px;
+    }
+    .ph-logo[data-logo-color="white"] .ph-white__logo{
+        display: block;
+    }
+    .ph-logo[data-logo-color="black"] .ph-black__logo{
+        display: block;
+    }
+    .ph-cart a > span, .cart-count-bubble > span{
+        font-size: 12px;
+        font-family: 'Phoriabold';
+    }
+   
+    .cart-count-bubble{
+        background: var(--ph-menu-cart-bg);
+        width: 21px;
+        height: 21px;
+    }
+    .cart-count-bubble > span{
+        color: var(--ph-menu-cart-text);
+        line-height: normal;
+    }
+
+    .ph-currency-selector {
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: var(--ph-menu-color);
+        font-family: 'PhoriaBold';
+        font-size: 12px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+    .ph-currency-selector .localization-form {
+        margin: 0;
+    }
+    .ph-currency-selector .disclosure {
+        position: relative;
+    }
+    .ph-currency-selector__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 21px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-family: 'PhoriaBold';
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+    .ph-currency-selector__button svg {
+        display: none;
+    }
+    .ph-currency-selector__list {
+        position: absolute;
+        top: calc(100% + 14px);
+        right: 0;
+        z-index: 10004;
+        width: 72px;
+        max-height: 320px;
+        margin: 0;
+        padding: 10px 0;
+        overflow-y: auto;
+        background: #fff;
+        border: 1px solid #d4d4d4;
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+        list-style: none;
+    }
+    .ph-currency-selector__list[hidden] {
+        display: none;
+    }
+    .ph-currency-selector__item a {
+        display: flex;
+        justify-content: center;
+        padding: 9px 10px;
+        color: #1d1d1d;
+        font-family: 'PhoriaRegular';
+        font-size: 10px;
+        letter-spacing: 0;
+        line-height: 1.4;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    .ph-currency-selector__item a:hover,
+    .ph-currency-selector__item a[aria-current="true"] {
+        font-family: 'PhoriaBold';
+    }
+    .ph-currency-selector__currency {
+        display: block;
+        font-family: inherit;
+    }
+
+    /* --- Menu drawer --- */
+    
+    #ph-side__nav__overlay{
+        cursor: pointer;
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        background-color: rgba(20, 22, 24, 0.95) !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 600ms, left 0s 600ms;
+        width: 100%;
+        height: 100%;
+    }
+    #ph-side__nav__overlay.open{
+        opacity: 0.5;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 0s, left 0s 0s;
+    }
+    .ph-menu__drawer.left{
+        box-sizing: border-box;
+        bottom: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 564px;
+        transition: box-shadow 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        z-index: 10002;
+        background-color: white;
+        transform: translateX(-100%);
+        opacity: 0.9;
+        max-width: 50%;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    .ph-menu__drawer.open {
+        box-shadow: 9px 0px 19px rgba(0, 0, 0, 0.04);
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .ph-nav__menu--close{
+        padding: 18px;
+        cursor: pointer;
+        font-size: 10px;
+        text-transform: uppercase;
+        display: block;
+        font-family: 'PhoriaBold';
+    }
+    .ph-menu__tabs {
+        display: flex;
+        padding-top: 134px;
+    }
+    .ph-tab__button {
+        padding: 0px 20px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--ph-inactive-tab-color);
+        text-transform: uppercase;
+        font-family: 'PhoriaRegular';
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 11px;
+    }
+    .ph-tab__button.active {
+        color: var(--ph-primary-text);
+    }
+    .ph-tab__content {
+        display: none;
+        padding: 0 18px;
+        padding-top: 45px;
+    }
+    .ph-tab__content li{
+        list-style: none;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-family: 'PhoriaBold';
+    }
+    .ph-tab__content.active {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+    }
+    .ph-tab__content.active .ph-tab__otherlinks--title {
+        font-size: 10px;
+        margin-top: 18px;
+        color: var(--ph-inactive-tab-color);
+    }
+    .ph-tab__content.active ul {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        padding-left: 0;
+    }
+
+    #ph-search__nav__overlay{
+        cursor: pointer;
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        background-color: rgba(20, 22, 24, 0.95) !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 600ms, left 0s 600ms;
+        width: 100%;
+        height: 100%;
+    }
+    #ph-search__nav__overlay.open{
+        opacity: 0.5;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 0s, left 0s 0s;
+    }
+    .ph-menu__drawer.right{
+        box-sizing: border-box;
+        /* bottom: 0; */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 564px;
+        transition: box-shadow 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        z-index: 10002;
+        background-color: white;
+        transform: translateX(100%);
+        opacity: 0.9;
+        max-width: 50%;
+        height: 100%;
+        padding: 18px 18px 18px 36px;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    .ph-menu__drawer.right.open{
+        box-shadow: 0 50px 50px -30px rgba(0, 0, 0, 0.2), 0 30px 50px 0 rgba(0, 0, 0, 0.15);
+        transform: translateX(0);
+    }
+    .ph-search__menu--close{
+        /* padding: 18px; */
+        cursor: pointer;
+        font-size: 10px;
+        text-transform: uppercase;
+        text-align: right;
+        font-family: 'PhoriaBold';
+    }
+    #ph-search__form{
+        padding-top: 130px;
+    }
+    #ph-search__form input{
+        margin: unset;
+        padding-left: 0px;
+        padding-right: 9px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--ph-primary-text);
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        transition: color 400ms cubic-bezier(0.785, 0.135, 0.15, 0.86), background-color 400ms cubic-bezier(0.785, 0.135, 0.15, 0.86), border-color 400ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        width: 100%;
+        border: none;
+        text-transform: uppercase;
+        outline: none;
+        font-family: 'PhoriaRegular';
+    }
+
+    .ph-search__suggestions{
+        padding-top: 45px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .ph-search__suggestions--title{
+        font-size: 10px;
+        color: var(--ph-inactive-tab-color);
+        text-transform: uppercase;
+        line-height: 11px;
+        text-align: left;
+        font-weight: 600;
+    }
+    .ph-search__suggestions--list{
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+        padding-left: 0;
+        margin: 0;
+    }
+    .ph-search__suggestions--list li{
+        list-style: none;
+    }
+    .ph-search__suggestions--list li a{
+        color: var(--ph-primary-text);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-family: 'PhoriaBold';
+        line-height: 2.3;
+    }
+    .ph-menu__content--mobile{
+        display: none;
+    }
+    .ph-menu__close--icon{
+        display: none;
+    }
+    .ph-submenu__mobile{
+       display: none; 
+    }
+    .ph-menu__back--icon{
+      display: none;
+    }
+    #MainContent{
+      {% if request.path != '/' %}
+       padding-top: 100px;
+      {% endif %}
+    }
+    @media screen and (min-width: 960px) {
+        .ph-menu__drawer.open {
+            border-right: 1px solid var(--ph-primary-text);
+        }
+    }
+    @media screen and (max-width: 959px) {
+        .ph-announcement__bar{
+          padding: 11px 18px; 
+        }
+        .ph-announcement-text{
+          font-size: 10px;
+        }
+        header.ph-header__container{
+            z-index: 10002 !important;
+        }
+        .ph-header{
+            z-index: 10002 !important;
+            padding: 0 18px;
+            position: relative;
+            justify-content: center;
+        }
+        .ph-menu.left,
+        .ph-menu.right{
+            position: absolute;
+            top: 50%;
+            z-index: 1;
+            flex: 0 0 auto;
+            transform: translateY(-50%);
+        }
+        .ph-menu.left{
+            left: 18px;
+        }
+        .ph-menu.right{
+            right: 18px;
+            justify-content: flex-end;
+            gap: 0;
+        }
+        .ph-header-actions {
+            gap: 10px;
+        }
+        .ph-menu.left .ph-menu__items, .ph-menu.right .ph-menu__items{
+            display: none;
+        }
+        .ph-menu.left .ph-menu__icon{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .ph-menu.left .ph-menu__icon span{
+            width: 20px;
+            height: 2px;
+            background: var(--ph-menu-color);
+            display: block;
+            transition: var(--duration-default);
+        }
+        .ph-menu__drawer.left{
+            max-width: none;
+            width: 100%;
+        }
+        .ph-menu__tabs, .ph-menu__content{
+            display: none;
+        }
+        .ph-menu__content--mobile{
+            display: block;
+        }
+        .ph-menu__content--mobile ul{
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            padding: 0 18px;
+            font-family: 'PhoriaBold';
+        }
+        .ph-menu__content--mobile li{
+            list-style: none;
+            text-transform: uppercase;
+        }
+        .ph-menu__content--mobile #ph-search__form--mobile{
+            padding: 54px 18px;
+            margin-top: 45px;
+        }
+        .ph-menu__content--mobile #ph-search__form--mobile input{
+            border: 1px solid var(--ph-border-color);
+            padding: 21px 27px;
+            width: 100%;
+            text-transform: uppercase;
+            outline: none;
+            font-family: 'PhoriaRegular';
+            border-radius: 0px;
+        }
+        .ph-nav__menu--close{
+            display: none;
+        }
+        .ph-menu__close--icon{
+            display: none;
+            cursor: pointer;
+            font-family: 'PhoriaBold';
+        }
+        ul.ph-submenu__mobile{
+          margin-left: unset;
+          overflow: hidden;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          bottom: 0;
+          top: 0;
+          right: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          z-index: 10003;
+          transform: translateX(-100%);
+          transition: box-shadow 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+          padding: 110px 18px !important;
+          align-items: flex-start;
+          gap: 36px;
+        }
+        .ph-submenu__mobile li{
+          /* padding: 64px 18px; */
+          font-size: 10px;  
+        }
+        .ph-submenu__mobile li:first-child{
+          color: var(--ph-inactive-tab-color);
+        }
+        .ph-submenu__mobile.active{
+          box-shadow: 0 50px 50px -30px rgba(0, 0, 0, 0.2), 0 30px 50px 0 rgba(0, 0, 0, 0.15);
+          transform: translateX(0);
+        }
+        .ph-submenu__mobile .ph-tab__otherlinks{
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          text-transform: uppercase;
+          margin-top: 18px;
+        }
+        .ph-submenu__mobile .ph-tab__otherlinks span{
+          font-size: 10px;
+        }
+        .ph-submenu__mobile .ph-tab__otherlinks span:first-child{
+          color: var(--ph-inactive-tab-color) !important;
+        }
+        .ph-menu__back--icon{
+          display: block;
+          visibility: hidden;
+          pointer-events: none;
+        }
+        .ph-user__account--mob{
+          position: fixed;
+          left: 0;
+          bottom: 48px;
+          margin-bottom: 54px;
+          justify-content: space-between;
+          width: 100%;
+          align-items: end;
+          display: inline-flex;
+          text-transform: uppercase;
+          cursor: pointer;
+          font-family: 'PhoriaBold';
+          font-size: 10px;
+          padding: 0 18px;
+        }
+        .ph-menu__mobile--triggers{
+          font-size: 10px;  
+        }
+        .ph-user__account--mob .header__account{
+          display: block;
+        }
+    }
+  .ph-i__icon{
+        position: absolute;
+        bottom: 0px;
+        right: 50%;
+        transform: translate(50%, -50%);
+        display: inline-flex;
+        max-width: 15px;
+        pointer-events: none;
+        margin-bottom: 5%;
+        opacity: 0;
+      }
+      .ph-i__icon img{
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+    .ph-i__icon.mobile{
+      display: none;
+    }
+  @media screen and (max-width: 959px){ 
+    .ph-i__icon.desktop{
+      display: none;
+    }
+    .ph-i__icon.mobile{
+      display: inline-flex;
+    }
+    .ph-logo img{
+      max-width: 137px;
+    }
+  }
+
+ /* Default styles for menu items */
+.ph-menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 46px;
+  font-size: 12px;
+  color: #1D1D1D; /* Default text color (black) */
+  background-color: transparent; /* Default background */
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.ph-menu__item a {
+  color: inherit;  /* Inherit the color set by .ph-menu */
+  text-decoration: none;
+  transition: var(--duration-default);
+}
+
+/* Set text color to white only on the home page */
+body.template-index   .ph-menu {
+  color: #fff;  /* Set menu text color to white */
+}
+
+body.template-index .ph-menu__item a {
+  color: #fff;  /* Ensure menu links are white on home page */
+}
+
+
+body.template-index .cart-count-bubble {
+  background-color: #fff;
+}
+
+	body.template-index .cart-count-bubble > span {
+	  color: #000;
+	}
+
+    body.template-index .ph-currency-selector {
+      color: #fff;
+    }
+
+
+
+.ph-logo[data-logo-color="white"] .ph-white__logo{
+        display: block;
+    }
+    .ph-logo[data-logo-color="black"] .ph-black__logo{
+        display: block;
+    }
+
+body.template-index .ph-white__logo {
+          display: block;
+
+}
+
+body.template-index .ph-black__logo {
+          display: none !important;
+
+}
+
+
+
+
+/* For mobile view adjustments */
+@media screen and (max-width: 959px) {
+  .ph-menu__item a {
+    font-size: 14px;  /* Example: Adjust font size for smaller screens */
+  }
+
+	  body.template-index .ph-menu.left .ph-menu__icon span {
+	  background: #fff;
+	}
+
+      .ph-currency-selector {
+        font-size: 10px;
+      }
+
+      .ph-currency-selector__button {
+        min-height: 21px;
+        font-size: 10px;
+        letter-spacing: 0;
+      }
+
+      .ph-currency-selector__list {
+        right: -16px;
+        width: min(76px, calc(100vw - 36px));
+        max-height: 360px;
+      }
+	}
+
+.remaining-text-container {
+  margin-bottom: 14px;
+}
+
+.remaining-text {
+  font-size: 10px;
+}
+
+
+</style>
+
+<div id="ph-side__nav__overlay"></div>
+<div id="ph-search__nav__overlay"></div>
+<div class="ph-menu__drawer left">
+    <div class="ph-nav__menu--close">
+        Close
+    </div>
+    <div class="ph-menu__tabs">
+        <button class="ph-tab__button" data-tab="0">{{ section.settings.menu_1_title }}</button>
+        <button class="ph-tab__button" data-tab="1">{{ section.settings.menu_2_title }}</button>
+    </div>
+    <div class="ph-menu__content">
+        <div class="ph-tab__content" data-content="0">
+          {%- if section.settings.menu_1 != blank -%}
+            <ul>
+              {%- for link in linklists[section.settings.menu_1].links -%}
+                {%- assign link_title_upcase = link.title | strip | upcase -%}
+                {%- if link_title_upcase == 'SOMETHING ELSE' and link.links != blank -%}
+                  {%- continue -%}
+                {%- endif -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+                <li class="ph-tab__otherlinks--title">{{ section.settings.other_links_title }}</li>
+                {%- if section.settings.other_links != blank -%}
+                  {%- for link in linklists[section.settings.other_links].links -%}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                {% endif %}
+            </ul>
+          {% endif %}
+            <!-- <ul class="ph-tab__otherlinks">
+            </ul> -->
+        </div>
+        <div class="ph-tab__content" data-content="1">
+            {%- if section.settings.menu_2 != blank -%}
+            <ul>
+              {%- for link in linklists[section.settings.menu_2].links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %} 
+        </div>
+    </div>
+    <div class="ph-menu__content--mobile">
+        <form action="/search" method="get" role="search" id="ph-search__form--mobile">
+            <input type="text" name="q" placeholder="Search..." aria-label="Search" required>
+            <input type="hidden" name="type" value="product">
+        </form>
+        <ul class="ph-menu__mobile--triggers">
+            <li data-index='0'>{{ section.settings.menu_1_title }}</li>
+            <li data-index='1'>{{ section.settings.menu_2_title }}</li>
+        </ul> 
+        <div class="ph-user__account--mob">
+          <a href="/account/login">Account</a>
+        </div>
+      <!-- <div class="ph-i__icon">
+          <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-animated-submit-edit.png">
+        </div> -->
+        <ul class="ph-submenu__mobile"  data-submenu="0">
+          <li>{{ section.settings.menu_1_title }}</li>
+          {%- if section.settings.menu_1 != blank -%}
+            {%- for link in linklists[section.settings.menu_1].links -%}
+              {%- assign link_title_upcase = link.title | strip | upcase -%}
+              {%- if link_title_upcase == 'SOMETHING ELSE' and link.links != blank -%}
+                {%- continue -%}
+              {%- endif -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% endif %}
+            <div class="ph-tab__otherlinks">
+              <span>{{ section.settings.other_links_title }}</span>
+              {%- if section.settings.other_links != blank -%}
+                {%- for link in linklists[section.settings.other_links].links -%}
+                  <span><a href="{{ link.url }}">{{ link.title }}</a></span>
+                {% endfor %}
+              {% endif %}
+            </div>
+          <div class="ph-i__icon mobile">
+            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-animated-submit-edit.png" width="15" height="15" alt="">
+          </div>
+        </ul>
+        <ul class="ph-submenu__mobile"  data-submenu="1">
+           <li>{{ section.settings.menu_2_title }}</li>
+          {%- if section.settings.menu_2 != blank -%}
+            {%- for link in linklists[section.settings.menu_2].links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% endif %}
+          <div class="ph-i__icon mobile">
+            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-animated-submit-edit.png" width="15" height="15" alt="">
+          </div>
+        </ul>
+    </div>
+  <div class="ph-i__icon desktop">
+    <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-animated-submit-edit.png" width="15" height="15" alt="">
+  </div>
+</div>
+<div class="ph-menu__drawer right">
+    <div class="ph-search__menu--close">
+        Close
+    </div>
+
+    <form action="/search" method="get" role="search" id="ph-search__form">
+        <input type="text" name="q" placeholder="Search..." aria-label="Search" required>
+        <input type="hidden" name="type" value="product">
+    </form>
+
+    <div class="ph-search__suggestions">
+        <span class="ph-search__suggestions--title">{{ section.settings.search_suggestions_title }}</span>
+        {%- if section.settings.search_suggestions != blank -%}
+          <ul class="ph-search__suggestions--list">
+            {%- for link in linklists[section.settings.search_suggestions].links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+    </div>
+</div>
+<header class="ph-header__container">
+    <div class="ph-announcement__bar">
+        <p class="ph-announcement-text">{{ section.settings.announcement_text }}</p>
+        {% comment %} <span class="ph-announcement-timer" id="ph-countdown-timer"></span> {% endcomment %}
+
+    </div>
+    <div class="ph-header">
+        <div class="ph-menu left">
+            <ul class="ph-menu__items">
+                <li class="ph-menu__item">{{ section.settings.menu_1_title }}</li>
+                <li class="ph-menu__item">{{ section.settings.menu_2_title }}</li>
+            </ul>
+            <div class="ph-menu__icon">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="ph-menu__close--icon">
+                Close
+            </div>
+            <div class="ph-menu__back--icon">
+                <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path>
+                </svg>
+            </div>
+        </div>
+
+        <a href="/" class="ph-logo" data-logo-color="white">
+            <img src="{{ section.settings.logo | image_url: width: 320 }}" class="ph-white__logo" alt="Phoria Logo">
+            <img src="{{ section.settings.logo_2 | image_url: width: 320 }}" class="ph-black__logo" alt="Phoria Logo">
+        </a>
+
+        <div class="ph-menu right">
+            <ul class="ph-menu__items">
+                <li class="ph-menu__item">Search</li>
+	                <li class="ph-menu__item">
+	                  <a href="{% if customer %}/account{% else %}/account/login{% endif %}">Account</a>
+	                </li>
+	            </ul>
+              <div class="ph-header-actions">
+                {%- if localization.available_countries.size > 1 -%}
+                  <localization-form class="ph-currency-selector region_language_dropdown_type">
+                    {%- form 'localization', id: 'PhHeaderCountryForm', class: 'localization-form' -%}
+                      <input type="hidden" name="return_to" value="{{ request.path }}">
+                      <div class="disclosure">
+                        <button
+                          type="button"
+                          class="ph-currency-selector__button disclosure__button-modal localization-form__select localization-selector link link--text focus-inset"
+                          aria-expanded="false"
+                          aria-controls="PhHeaderCountryList"
+                          aria-label="Change currency"
+                        >
+                          <span>{{ localization.country.currency.iso_code }}</span>
+                        </button>
+                        <ul
+                          id="PhHeaderCountryList"
+                          role="list"
+                          class="ph-currency-selector__list disclosure__list list-unstyled color-background-1"
+                          hidden
+                        >
+                          {%- for country in localization.available_countries -%}
+                            <li class="ph-currency-selector__item disclosure__item" tabindex="-1">
+                              <a
+                                class="link link--text disclosure__link{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset"
+                                href="#"
+                                {% if country.iso_code == localization.country.iso_code %}
+                                  aria-current="true"
+                                {% endif %}
+                                data-value="{{ country.iso_code }}"
+                                data-flag="{{ country.currency.iso_code }}"
+                                data-valuesave="{{ forloop.index }}"
+                              >
+                                <span class="ph-currency-selector__currency">{{ country.currency.iso_code }}</span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                        <input
+                          type="hidden"
+                          name="country_code"
+                          value="{{ localization.country.iso_code }}"
+                        >
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {%- endif -%}
+	            <div class="ph-cart"><div class="{% if request.page_type != 'cart' %}header__cart {% else %}header__cart header__cart--page{% endif %}">
+				<a
+					href="{{ routes.cart_url }}"
+				class=" header__icon header__icon--cart link link--text focus-inset"
+				id="cart-icon-bubble"
+			>
+				{% comment %}{% render 'icon-cart' %}{% endcomment %}
+				<!-- <span>{{ 'sections.header.cart' | t }}</span> -->
+				<!-- <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span> -->
+				<div class="cart-count-bubble">
+					{%- if cart.item_count < 100 -%}
+						<span aria-hidden="true">{{ cart.item_count }}</span>
+					{%- endif -%}
+					<span class="visually-hidden">
+						{{- 'sections.header.cart_count' | t: count: cart.item_count -}}
+					</span>
+				</div>
+			</a>
+		</div></div>
+              </div>
+        </div>
+    </div>
+</header>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = {
+        announcementBar: document.querySelector('.ph-announcement__bar'),
+        menuleft: document.querySelector('.ph-menu.left > .ph-menu__items'),
+        menuRight: document.querySelector('.ph-menu.right > .ph-menu__items > .ph-menu__item:first-child'),
+        navOverlay: document.getElementById('ph-side__nav__overlay'),
+        searchOverlay: document.getElementById('ph-search__nav__overlay'),
+        drawerLeft: document.querySelector('.ph-menu__drawer.left'),
+        drawerRight: document.querySelector('.ph-menu__drawer.right'),
+        navCloseBtn: document.querySelector('.ph-nav__menu--close'),
+        searchCloseBtn: document.querySelector('.ph-search__menu--close'),
+        buttons: document.querySelectorAll(".ph-tab__button"),
+        contents: document.querySelectorAll(".ph-tab__content"),
+        menuIcon: document.querySelector(".ph-menu__icon"),
+        menuCloseIconMob: document.querySelector(".ph-menu__close--icon"),
+        menuLogo: document.querySelector(".ph-logo"),
+        mobileTriggers: document.querySelector(".ph-menu__mobile--triggers"),
+        submenusMobile: document.querySelectorAll(".ph-submenu__mobile"),
+        submenusCloseBtnMobile: document.querySelector(".ph-menu__back--icon"),
+        header: document.querySelector(".ph-header__container"),
+        root: document.documentElement,
+        iIcon: document.querySelector('.ph-i__icon.desktop')
+    };
+
+    const firstFold = window.innerHeight;
+    const isHomePage = window.location.pathname === "/"; 
+    const facetsContainer = document.querySelector('.facets-container')
+    let scrolled
+    let activeTabIndex
+    const animate = typeof Motion !== 'undefined' ? Motion.animate : () => {};
+    const inView = typeof Motion !== 'undefined' ? Motion.inView : () => {};
+    const transform = typeof Motion !== 'undefined' ? Motion.transform : () => {};
+
+    const animateRevealUp = (item, index, delay = 0.1) =>{
+      animate(item, 
+          { opacity: [0, 1], y: [20, 0] },  // Animate from y: 20 to y: 0, opacity 0 to 1
+          { duration: 0.5, delay: index * delay, easing: "ease-out" } // Stagger effect
+      );
+    }
+    // Toggle drawer visibility
+    const toggleDrawer = (overlay, drawer, isOpen) => {
+      overlay.classList.toggle('open', isOpen);
+      drawer.classList.toggle('open', isOpen);
+      inView(".ph-menu__drawer.left.open ul", (element) => {
+        document.querySelectorAll('.ph-menu__drawer.left.open .ph-tab__content ul li').forEach((li, index) => {
+            animateRevealUp(li, index);
+        });
+      }, { once: false })
+      inView(elements.iIcon, (el) =>{
+        animateRevealUp(el, 1, document.querySelectorAll('.ph-menu__drawer.left.open .ph-tab__content ul li').length * 0.1);
+      })
+      inView(".ph-menu__drawer.right.open .ph-search__suggestions--list", (element) => {
+        document.querySelectorAll('.ph-menu__drawer.right.open .ph-search__suggestions--list li').forEach((li, index) => {
+            animateRevealUp(li, index);
+        });
+      }, { once: false })
+      if(window.innerWidth < 960){
+        scrolled = window.scrollY > (isHomePage ? firstFold : -1)
+        elements.announcementBar.style.display = isOpen ? 'none' : 'flex'
+        
+        document.documentElement.style.setProperty('--ph-menu-color', `${isOpen ? '#1D1D1D' : (scrolled || {{section.settings.is_header_transition}} == false) ? '#1D1D1D' : '#fff'}`);
+        document.documentElement.style.setProperty('--ph-menu-cart-bg', `${isOpen ? '#1D1D1D' : (scrolled || {{section.settings.is_header_transition}} == false) ? '#1D1D1D' : '#fff'}`);
+        document.documentElement.style.setProperty('--ph-menu-cart-text', `${isOpen ? '#fff' : (scrolled || {{section.settings.is_header_transition}} == false) ? '#fff' : '#1D1D1D'}`);
+        elements.menuCloseIconMob.style.display = isOpen ? 'block' : 'none'
+        elements.menuIcon.style.display = !isOpen ? 'flex' : 'none'
+        const oldLogoColor = elements.menuLogo.dataset.logoColor
+        elements.menuLogo.dataset.logoColor = isOpen ? "black" : (scrolled || {{section.settings.is_header_transition}} == false) ? 'black' : 'white';
+// -------------------- Animations on smaller screen sizes ------------------------
+        const mobileElements = {
+          triggers: [...document.querySelector('.ph-menu__drawer.left.open .ph-menu__content--mobile .ph-menu__mobile--triggers').children],
+          account: document.querySelector('.ph-user__account--mob'),
+        }
+  
+        mobileElements.triggers.forEach((trigger, index) => {
+            inView(trigger, (el) => {
+              animateRevealUp(el, index, 0.3);
+            }, { once: false});
+        })
+        inView(mobileElements.account, (el) => {
+          animateRevealUp(el, 1, mobileElements.triggers.length * 0.3 );
+        }, { once: false});
+      } 
+    };
+
+    // Handle tab activation
+    const activateTab = (index) => {
+      
+      elements.buttons.forEach(btn => btn.classList.remove("active"));
+      elements.contents.forEach(content => content.classList.remove("active"));
+
+      elements.buttons[index].classList.add("active");
+      elements.contents[index].classList.add("active");
+      setTimeout(()=>{
+        activeTabIndex != index && document.querySelectorAll('.ph-menu__drawer.left.open .ph-tab__content ul')[index].querySelectorAll('li').forEach((li, index) => {
+          animateRevealUp(li, index)
+      });
+      activeTabIndex = index
+      }, 0)
+    };
+
+    // Handle menu clicks
+    const handleMenuClick = (menu, overlay, drawer) => {
+      return (event) => {
+        if(menu.parentElement.classList.contains('left')){
+          const firstChildText = menu.children[0]?.innerText.toLowerCase();
+          const clickedText = event.target.innerText.toLowerCase();   
+          activateTab(clickedText === firstChildText ? 0 : 1);
+        }else{
+          document.getElementById('ph-search__form').querySelector('input').focus()
+        }
+        toggleDrawer(overlay, drawer, true);
+      };
+    };
+
+    elements.menuleft.addEventListener('click', handleMenuClick(elements.menuleft, elements.navOverlay, elements.drawerLeft));
+    elements.menuIcon.addEventListener('click', handleMenuClick(elements.menuleft, elements.navOverlay, elements.drawerLeft));
+    elements.menuRight.addEventListener('click', handleMenuClick(elements.menuRight, elements.searchOverlay, elements.drawerRight));
+
+    // Handle close actions
+    elements.navOverlay.addEventListener('click', () => toggleDrawer(elements.navOverlay, elements.drawerLeft, false));
+    elements.navCloseBtn.addEventListener('click', () => toggleDrawer(elements.navOverlay, elements.drawerLeft, false));
+    elements.menuCloseIconMob.addEventListener('click', () => toggleDrawer(elements.navOverlay, elements.drawerLeft, false));
+    elements.searchOverlay.addEventListener('click', () => toggleDrawer(elements.searchOverlay, elements.drawerRight, false));
+    elements.searchCloseBtn.addEventListener('click', () => toggleDrawer(elements.searchOverlay, elements.drawerRight, false));
+
+    // Attach tab event listeners
+    elements.buttons.forEach((button, index) => {
+        button.addEventListener("click", () => activateTab(index));
+    });
+
+    
+ function updateHeader() {
+    scrolled = window.scrollY > (isHomePage ? firstFold : 0);
+
+    if (isHomePage) {
+        elements.header.classList.toggle("scrolled", scrolled);
+      {% if section.settings.is_header_transition %}
+        elements.root.style.setProperty("--ph-menu-color", scrolled ? "#1D1D1D" : "#fff");
+        elements.root.style.setProperty("--ph-menu-cart-bg", scrolled ? "#1D1D1D" : "#fff");
+        elements.root.style.setProperty("--ph-menu-cart-text", scrolled ? "#fff" : "#1D1D1D");
+        elements.menuLogo.dataset.logoColor = scrolled ? "black" : "white";
+      {% else %}
+          elements.root.style.setProperty("--ph-menu-color", "#1D1D1D");
+        elements.root.style.setProperty("--ph-menu-cart-bg", "#1D1D1D");
+        elements.root.style.setProperty("--ph-menu-cart-text", "#fff");
+        elements.menuLogo.dataset.logoColor = "black";
+      {% endif %}
+    } else {
+        const headerHeight = elements.header.getBoundingClientRect().height;
+        elements.root.style.setProperty("--header-height", scrolled ? `${headerHeight}px` : "auto");
+    }
+}
+
+    // Initial setup
+    {% if section.settings.is_header_transition %}
+    const initialColor = isHomePage ? "#fff" : "#1D1D1D";
+    const initialCartBg = isHomePage ? "#fff" : "#1D1D1D";
+    const initialCartText = isHomePage ? "#1D1D1D" : "#fff";
+    const initialLogoColor = isHomePage ? "white" : "black";
+    {% else %}
+      const initialColor = "#1D1D1D";
+      const initialCartBg = "#1D1D1D";
+      const initialCartText = "#fff";
+      const initialLogoColor = "black";
+    {% endif %}
+    
+    elements.root.style.setProperty("--ph-menu-color", initialColor);
+    elements.root.style.setProperty("--ph-menu-cart-bg", initialCartBg);
+    elements.root.style.setProperty("--ph-menu-cart-text", initialCartText);
+    elements.menuLogo.dataset.logoColor = initialLogoColor;
+    
+    // Attach event listener
+    window.addEventListener("scroll", updateHeader);
+    if(window.innerWidth < 960){
+      let activeMobileSubmenuIndex = 0
+      const openSubmenuMobile = (index) =>{
+        elements.submenusMobile[index]?.classList.add('active');
+        elements.menuCloseIconMob.style.display = 'none';
+        elements.submenusCloseBtnMobile.style.pointerEvents = 'auto'
+        elements.submenusCloseBtnMobile.style.visibility = 'visible'
+        elements.submenusCloseBtnMobile.style.color = '#1D1D1D'
+// ---------------- Animations on smaller screen sizes ---------------------
+        const mobileElements = {
+          submenuItems: [...document.querySelector('.ph-menu__drawer.left.open .ph-menu__content--mobile .ph-submenu__mobile.active').children]
+        }
+        mobileElements.submenuItems.forEach((submenuItem, index) =>{
+         inView(submenuItem, (el) =>{
+           animateRevealUp(el, index);
+         }) 
+        })
+      }
+      const closeSubmenuMobile = () =>{
+        elements.submenusMobile[activeMobileSubmenuIndex].classList.remove('active');
+        elements.menuCloseIconMob.style.display = 'block';
+        elements.submenusCloseBtnMobile.style.pointerEvents = 'none'
+        elements.submenusCloseBtnMobile.style.visibility = 'hidden'
+        elements.submenusCloseBtnMobile.style.color = 'var(--ph-menu-color)'
+      }
+      elements.mobileTriggers.addEventListener('click', (e)=>{
+        openSubmenuMobile(e.target.dataset.index)
+        activeMobileSubmenuIndex = e.target.dataset.index
+      })
+      elements.submenusCloseBtnMobile.addEventListener('click', closeSubmenuMobile)
+    }
+
+      const announcementText = document.querySelector('.ph-announcement-text');
+  if (announcementText) {
+    // Get the original HTML
+    const originalHTML = announcementText.innerHTML;
+    
+    // Check if it contains the divider
+    if (originalHTML.includes('//')) {
+      // Create a temporary div to work with the HTML
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = originalHTML;
+      
+      // Get the text content to find the position of '//'
+      const fullText = tempDiv.textContent;
+      const dividerIndex = fullText.indexOf('//');
+      
+      if (dividerIndex !== -1) {
+        // Add a wrapper for the mobile version that preserves ALL content after the divider
+        announcementText.classList.add('has-divider');
+        
+        // Clone the original to preserve all HTML tags and structure
+        const mobileContent = tempDiv.cloneNode(true);
+        
+        // Create the HTML structure with appropriate wrappers
+        announcementText.innerHTML = 
+          '<span class="before-divider">' + originalHTML.substring(0, originalHTML.indexOf('//') + 2) + '</span>' +
+          '<span class="after-divider">' + originalHTML.substring(originalHTML.indexOf('//') + 2) + '</span>';
+      }
+    }
+  }
+});
+
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const timerElement = document.getElementById("ph-countdown-timer");
+  if (!timerElement) return;
+  const UK_TIMEZONE = "Europe/London";
+
+  function getLondonTimeParts() {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: UK_TIMEZONE,
+      hour12: false,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    }).formatToParts(new Date());
+
+    const obj = {};
+    parts.forEach(({ type, value }) => (obj[type] = value));
+    return obj;
+  }
+
+  function getLondonDate() {
+    const p = getLondonTimeParts();
+    return new Date(`${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:${p.second}`);
+  }
+
+  function updateCountdown() {
+    const now = getLondonDate();
+    let target = getLondonDate();
+
+    // 🔥 Set reset time to 12:00 AM UK time
+    target.setHours(0, 0, 0, 0);
+    if (now >= target) {
+      target.setDate(target.getDate() + 1); // next midnight
+    }
+
+    const remaining = target - now;
+    if (remaining <= 0 || isNaN(remaining)) return;
+
+    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+    const seconds = Math.floor((remaining / 1000) % 60);
+
+    timerElement.innerHTML = `
+      <div class="ph-countdown-timer-outer-container">
+        <div class="ph-countdown-timer-inner-container">
+          <div class="ph-countdown-timer-span">
+            <span class="ph-countdown-timer-count">${String(days).padStart(2,"0")}</span>
+            <span class="ph-countdown-timer-count-text">days</span>
+          </div>
+          <div class="ph-countdown-timer-span">
+            <span class="ph-countdown-timer-count">${String(hours).padStart(2,"0")}</span>
+            <span class="ph-countdown-timer-count-text">hours</span>
+          </div>
+          <div class="ph-countdown-timer-span">
+            <span class="ph-countdown-timer-count">${String(minutes).padStart(2,"0")}</span>
+            <span class="ph-countdown-timer-count-text">mins</span>
+          </div>
+          <div class="ph-countdown-timer-span">
+            <span class="ph-countdown-timer-count">${String(seconds).padStart(2,"0")}</span>
+            <span class="ph-countdown-timer-count-text">secs</span>
+          </div>
+        </div>
+        <div class="remaining-text-container">
+          <span class="remaining-text">remaining</span>
+        </div>
+      </div>`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
+
+    
+{% schema %}
+  {
+    "name": "Ph Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "is_header_transition",
+        "label": "Header transition on scroll",
+        "default": true
+      },
+      {
+        "type": "inline_richtext",
+        "id": "announcement_text",
+        "label": "Announcement bar text",
+        "default": "For a limited time only // enjoy 10% off your first order when you sign up to emails here + free UK shipping"
+      },
+      {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "t:sections.header.settings.logo.label"
+      },
+      {
+          "type": "image_picker",
+          "id": "logo_2",
+          "label": "t:sections.header.settings.logo_2.label",
+          "info": "t:sections.header.settings.logo_2.info"
+      },
+      {
+        "type": "header",
+        "content": "Menu 1"
+      },
+      {
+        "type": "text",
+        "id": "menu_1_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_1",
+        "label": "Menu",
+        "info": "Select a menu from navigation"
+      },
+      {
+        "type": "header",
+        "content": "Menu 2"
+      },
+      {
+        "type": "text",
+        "id": "menu_2_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_2",
+        "label": "Menu",
+        "info": "Select a menu from navigation"
+      },
+      {
+        "type": "header",
+        "content": "Other Links"
+      },
+      {
+        "type": "text",
+        "id": "other_links_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "other_links",
+        "label": "Menu",
+        "info": "Select a menu from navigation"
+      },
+      {
+        "type": "header",
+        "content": "Search Suggestions"
+      },
+      {
+        "type": "text",
+        "id": "search_suggestions_title",
+        "label": "Title"
+      },
+      {
+        "type": "link_list",
+        "id": "search_suggestions",
+        "label": "Menu",
+        "info": "Select a menu from navigation"
+      },
+    ],
+    "presets":[{
+      "name": "Ph Header"
+    }]
+  }
+{% endschema %}

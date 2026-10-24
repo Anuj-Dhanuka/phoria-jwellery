@@ -1,0 +1,23 @@
+{%- liquid
+  assign input_cents = amount | default: 0 | plus: 0
+  assign rounded_cents = input_cents | divided_by: 100.0 | round | times: 100
+-%}
+{% comment %}
+  UK-only pricing roundoff is currently not needed.
+  Previous logic rounded GB prices to the nearest £5:
+
+  assign customer_country_code = localization.country.iso_code | default: request.country.iso_code | default: ''
+
+  if customer_country_code == 'GB'
+    assign rounded_cents = input_cents | divided_by: 500.0 | round | times: 500
+  else
+    assign rounded_cents = input_cents | divided_by: 100.0 | round | times: 100
+  endif
+{% endcomment %}
+{%- if with_currency -%}
+  {%- assign rounded_display = rounded_cents | money_with_currency | replace: '.', ',' -%}
+  {{- rounded_display -}}
+{%- else -%}
+  {%- assign rounded_display = rounded_cents | money_without_trailing_zeros | replace: '.', ',' -%}
+  {{- rounded_display -}}
+{%- endif -%}

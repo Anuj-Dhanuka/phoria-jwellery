@@ -1,0 +1,632 @@
+<style>
+  .ph-redesignable-feature {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  {% if page.handle == 'our-story' %}
+  #ph-redesignable-feature{
+    margin-top: 85px;
+  }
+  {% endif %}
+
+  /* Media position classes */
+  .ph-redesignable-feature--media-left {
+    flex-direction: row;
+  }
+
+  .ph-redesignable-feature--media-right {
+    flex-direction: row-reverse;
+  }
+
+  .ph-redesignable-feature__media {
+    width: 50%;
+    overflow: hidden;
+  }
+
+  /* Media Padding Classes - Desktop Only */
+  .ph-redesignable-feature__media--padded-left {
+    padding-left: 36px;
+  }
+
+  .ph-redesignable-feature__media--padded-right {
+    padding-right: 36px;
+  }
+
+  .ph-redesignable-feature__media img,
+  .ph-redesignable-feature__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ph-redesignable-feature__content {
+    width: 50%;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    /* Base padding will be applied via inline styles based on settings */
+  }
+
+  /* Text alignment classes */
+  .ph-redesignable-feature__content--text-left {
+    text-align: left;
+  }
+
+  .ph-redesignable-feature__content--text-right {
+    text-align: right;
+  }
+
+  .ph-redesignable-feature__heading {
+    font-size: 16px;
+    margin: 0 0 20px 0;
+    word-spacing: 2px;
+    font-weight: 500;
+  }
+
+  .ph-redesignable-feature__richtext {
+    font-size: 10px;
+    line-height: 2.3;
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+
+  .ph-redesignable-feature__richtext p {
+    font-size: 10px;
+    line-height: 2.3;
+    margin-top: 0;
+    margin-bottom: 18px;
+  }
+
+  .ph-redesignable-feature__richtext p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ph-redesignable-feature__button-container {
+    margin-top: 36px;
+    /* Will inherit the text alignment from parent */
+  }
+
+  .ph-redesignable-feature__button {
+    display: inline-block;
+    padding: 13px 31px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 2.3;
+    font-weight: 800;
+  }
+
+  @media screen and (max-width: 1020px) {
+    {% if page.handle == 'our-story' %}
+  #ph-redesignable-feature{
+    margin-top: 0px;
+  }
+  {% endif %}
+
+    .ph-redesignable-feature__heading {
+    font-size: 16px;
+    margin: 0 0 9px 0;
+    word-spacing: 2px;
+    font-weight: 500;
+  }
+
+    .ph-redesignable-feature,
+    .ph-redesignable-feature--media-left,
+    .ph-redesignable-feature--media-right {
+      flex-direction: column;
+    }
+
+    .ph-redesignable-feature__media,
+    .ph-redesignable-feature__content {
+      width: 100%;
+    }
+
+    /* Remove custom padding on mobile */
+    .ph-redesignable-feature__media--padded-left,
+    .ph-redesignable-feature__media--padded-right {
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    {% if page.handle != 'our-story' %}
+    .ph-redesignable-feature__media {
+      padding: 0 18px;
+    }
+
+    .ph-redesignable-feature__content {
+      padding: 36px 18px 0 !important; /* Override inline styles for mobile */
+    }
+    {% else %}
+    .ph-redesignable-feature__media {
+      padding: 0px !important;
+      margin-top: -100px !important;
+    }
+
+    .ph-redesignable-feature__content {
+      padding: 90px 18px 0 !important; /* Override inline styles for mobile */
+    }
+
+
+
+    {% endif %}
+  }
+
+
+  .ph-feature-badge{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:36px;
+  }
+  .ph-feature-badge--left   { align-items:flex-start; text-align:left; }
+  .ph-feature-badge--center { 
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ph-feature-badge--right  { align-items:flex-end;  text-align:right; }
+
+  .ph-feature-badge__img{ display:block; height:auto; width:auto; }
+  @media (max-width:1020px){
+    .ph-feature-badge{ margin-bottom:48px; margin-top: 24px; }
+  }
+
+
+  .ph-feature-badge-span-text {
+    font-family: PhoriaBold, sans-serif;
+  }
+
+  @media (max-width: 767px) {
+    .ph-feature-badge__img {
+      max-width: 250px !important;
+      padding-bottom: 30px;
+    }
+  }
+@media (max-width: 480px) {
+  body.template-page-contact a[href^="mailto:"] {
+    font-size: 12px !important;
+    letter-spacing: 0;
+  }
+}
+
+
+</style>
+
+{% for block in section.blocks %}
+  <div id="{{ block.settings.heading | handleize }}"></div>
+{% endfor %}
+
+<div
+  id="ph-redesignable-feature"
+  class="ph-redesignable-feature ph-redesignable-feature--media-{{ section.settings.media_position }}"
+  style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};"
+>
+  <div
+    id="ph-redesignable-feature-media"
+    class="ph-redesignable-feature__media {% if section.settings.media_padding_left %}ph-redesignable-feature__media--padded-left{% endif %} {% if section.settings.media_padding_right %}ph-redesignable-feature__media--padded-right{% endif %}"
+  >
+    {% if section.settings.media_type == 'video' and section.settings.video != blank %}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, preload: 'none' }}
+    {% else %}
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            alt: section.settings.image.alt,
+            loading: 'lazy',
+            widths: '600, 900, 1200, 1800',
+            sizes: '(max-width: 1020px) 100vw, 50vw'
+        }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    {% endif %}
+  </div>
+
+
+<div
+  id="ph-redesignable-feature-content"
+  class="ph-redesignable-feature__content ph-redesignable-feature__content--text-{{ section.settings.text_alignment }}"
+  style="
+    padding-top: {{ section.settings.content_padding_top }}px;
+    padding-right: {{ section.settings.content_padding_right }}px;
+    padding-bottom: {{ section.settings.content_padding_bottom }}px;
+    padding-left: {{ section.settings.content_padding_left }}px;
+  "
+>
+
+  {%- comment -%} Render the badge first {%- endcomment -%}
+  {% assign badge_block = section.blocks | where: "type", "badge" | first %}
+  {% if badge_block and badge_block.settings.badge_image != blank %}
+    <div class="ph-feature-badge ph-feature-badge--{{ badge_block.settings.badge_align }}" {{ badge_block.shopify_attributes }}>
+      {% if badge_block.settings.badge_link != blank %}<a href="{{ badge_block.settings.badge_link }}">{% endif %}
+        <p class="ph-feature-badge-span-text" >Stocked In</p>
+      <img
+        class="ph-feature-badge__img"
+        src="{{ badge_block.settings.badge_image | image_url: width: 640 }}"
+        alt="{{ badge_block.settings.badge_image.alt | default: 'Retailer badge' | escape }}"
+        loading="lazy"
+        style="max-width: {{ badge_block.settings.badge_width }}px; width: 100%; height: auto;"
+      >
+      {% if badge_block.settings.badge_link != blank %}</a>{% endif %}
+    </div>
+  {% endif %}
+
+  <div>
+  {%- comment -%} Render all other blocks except badge {%- endcomment -%}
+  {% for block in section.blocks %}
+    {% if block.type != 'badge' %}
+      {% case block.type %}
+        {% when 'heading' %}
+          {% if block.settings.heading != blank %}
+            <h2 class="ph-redesignable-feature__heading" {{ block.shopify_attributes }}>
+              {{ block.settings.heading }}
+            </h2>
+          {% endif %}
+
+        {% when 'richtext' %}
+          {% if block.settings.content != blank %}
+            <div
+              id="{{ block.settings.content | strip | truncatewords: 5, '' | handleize }}"
+              class="ph-redesignable-feature__richtext"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.content }}
+            </div>
+          {% endif %}
+
+        {% when 'button' %}
+          {% if block.settings.button_text != blank %}
+            <div
+              id="ph-redesignable-feature-button-container"
+              class="ph-redesignable-feature__button-container"
+              {{ block.shopify_attributes }}
+            >
+              <a
+                id="{{ block.settings.button_text | handleize }}"
+                href="{{ block.settings.button_link }}"
+                class="ph-redesignable-feature__button"
+                style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}"
+              >
+                {{ block.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+      {% endcase %}
+    {% endif %}
+  {% endfor %}
+  </div>
+
+</div>
+
+
+{% if section.settings.enable_animations %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion === 'undefined') return;
+    const { animate, inView } = Motion;
+
+    const mediaElem = document.querySelector('#ph-redesignable-feature-media');
+    if (mediaElem) {
+      mediaElem.style.opacity = '0';
+      inView(mediaElem, (elem) => {
+        animate(elem, { opacity: [0, 1], y: ['100px', 0] }, { duration: 0.6, easing: 'ease-out' });
+      }, { once: true, amount: 0.1 });
+    }
+
+    const heading = document.querySelector('.ph-redesignable-feature__heading');
+    if (heading) heading.style.opacity = '0';
+
+    const button = document.querySelector('.ph-redesignable-feature__button-container');
+    if (button) button.style.opacity = '0';
+
+    const richTexts = document.querySelectorAll('.ph-redesignable-feature__richtext');
+    richTexts.forEach((rt) => (rt.style.opacity = '0'));
+
+    function animateElement(element) {
+      if (!element) return;
+      inView(element, () => {
+        animate(element, { opacity: [0, 1], y: ['100px', 0] }, { duration: 0.5, easing: 'ease-out' });
+      }, { once: true, amount: 0.1 });
+    }
+
+    animateElement(heading);
+    animateElement(button);
+
+    const contentContainer = document.querySelector('#ph-redesignable-feature-content');
+    if (contentContainer && richTexts.length > 0) {
+      inView(contentContainer, () => {
+        richTexts.forEach((rt) => {
+          animate(rt, { opacity: [0, 1], y: ['100px', 0] }, { duration: 0.5, easing: 'ease-out', delay: 0.1 });
+        });
+      }, { once: true, amount: 0.3 });
+    }
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ph-Image-text",
+  "tag": "section",
+  "class": "ph-redesignable-feature-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Options"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Media Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Position of the image/video relative to the text"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "Align the text within the content area"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_padding_left",
+      "label": "Add left padding to media (36px - Desktop only)",
+      "default": false,
+      "info": "Adds 36px of padding to the left side of the media on desktop only"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_padding_right",
+      "label": "Add right padding to media (36px - Desktop only)",
+      "default": false,
+      "info": "Adds 36px of padding to the right side of the media on desktop only"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Upload an image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Upload a video"
+    },
+    {
+      "type": "header",
+      "content": "Content Padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0,
+      "info": "Padding at the top of the content area"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Right Padding",
+      "default": 36,
+      "info": "Padding at the right of the content area"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36,
+      "info": "Padding at the bottom of the content area"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Left Padding",
+      "default": 36,
+      "info": "Padding at the left of the content area"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Animation Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when section comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading Text",
+          "default": "DESIGNED TO BE REDESIGNED //"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "Rich Text",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>THE RANGE IS MADE UP OF THE ULTIMATE STAPLES – DESIGNED TO BE REDESIGNED. WITH A SIMPLE YET POWERFUL AESTHETIC, AND AN URBAN-INDUSTRIAL EDGE.</p>"
+        }
+      ]
+    },
+
+    {
+      "type": "badge",
+      "name": "Availability badge",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "badge_image", "label": "Badge image (includes text)" },
+        {
+          "type": "range",
+          "id": "badge_width",
+          "min": 120,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "label": "Max width",
+          "default": 320
+        },
+        {
+          "type": "select",
+          "id": "badge_align",
+          "label": "Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        { "type": "url", "id": "badge_link", "label": "Optional link" }
+      ]
+    },
+
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "FIND OUT MORE"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph-Image-text",
+      "category": "Custom Content",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "richtext"
+        },
+        {
+          "type": "richtext"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

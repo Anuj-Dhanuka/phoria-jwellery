@@ -1,0 +1,197 @@
+{% comment %}
+  Customer Addresses Snippet for Shopify with Inline Editing and Adding
+  Usage: {% render 'ph-addresses' %}
+{% endcomment %}
+
+<style>
+.ph-cust-addresses-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ph-cust-addresses-header {
+  margin-bottom: 40px;
+}
+
+.ph-cust-addresses-title {
+  font-size: 1.25vw;
+  font-family: "PhoriaBold";
+  padding-bottom: 18px;
+  margin: 0;
+  margin-left: -0.15vw !important;
+}
+
+.ph-cust-addresses-subtitle {
+  font-size: 10px;
+  margin: 0;
+}
+
+.ph-cust-address-section {
+  margin-bottom: 40px;
+}
+
+.ph-cust-address-type-title {
+  font-size: 1.25vw;
+  padding-bottom: 18px;
+  margin: 0;
+  margin-left: -0.15vw !important;
+  text-transform: uppercase;
+}
+
+.ph-cust-address-details p {
+  margin: 0;
+  font-family: "PhoriaRegular";
+  font-size: 10px;
+}
+
+.ph-cust-no-address-container {
+  margin-bottom: 20px;
+}
+
+.ph-cust-no-address {
+  font-size: 10px;
+}
+
+.ph-cust-address-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.ph-cust-btn-address {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  padding: 0px;
+  font-family: "PhoriaBold";
+  color: #000;
+  text-decoration: none;
+  font-size: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.ph-cust-btn-save {
+  background-color: #000;
+  color: #fff;
+}
+
+.ph-cust-btn-add {
+  margin-top: 10px;
+}
+
+
+.ph-cust-address-edit-form {
+  margin-top: 20px;
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.ph-cust-form-field {
+  margin-bottom: 15px;
+}
+
+.ph-cust-form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.ph-cust-form-column {
+  flex: 1;
+}
+
+.ph-cust-form-field label,
+.ph-cust-form-column label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.ph-cust-form-field input,
+.ph-cust-form-field select,
+.ph-cust-form-column input,
+.ph-cust-form-column select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.ph-cust-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+ @media screen and (max-width: 926px) {
+ .ph-cust-addresses-title, .ph-cust-address-type-title {
+  font-size: 18px;
+ }
+}  
+
+@media screen and (max-width: 768px) {
+  
+  .ph-cust-form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+
+<div class="ph-cust-addresses-container">
+  <div class="ph-cust-addresses-header">
+    <h2 class="ph-cust-addresses-title">ADDRESSES</h2>
+    <p class="ph-cust-addresses-subtitle">THE FOLLOWING ADDRESSES WILL BE USED ON THE CHECKOUT PAGE BY DEFAULT.</p>
+  </div>
+  
+  <div class="ph-cust-address-section">
+    <h3 class="ph-cust-address-type-title">BILLING ADDRESS</h3>
+    
+    {% if customer.default_address %}
+      <div class="ph-cust-address-details" id="billing-address-details">
+        <p>{{ customer.default_address.first_name }} {{ customer.default_address.last_name }}</p>
+        <p>{{ customer.default_address.address1 }}</p>
+        {% if customer.default_address.address2 != blank %}
+          <p>{{ customer.default_address.address2 }}</p>
+        {% endif %}
+        <p>{{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}</p>
+        <p>{{ customer.default_address.country }}</p>
+        <p>{{ customer.default_address.phone }}</p>
+      </div>
+    {% else %}
+      <div class="ph-cust-no-address-container" id="billing-no-address">
+        <p class="ph-cust-no-address">YOU HAVE NOT SET UP THIS TYPE OF ADDRESS YET.</p>
+      </div>
+    {% endif %}
+  </div>
+  
+  <div class="ph-cust-address-section">
+    <h3 class="ph-cust-address-type-title">SHIPPING ADDRESS</h3>
+    
+    {% assign shipping_address = customer.addresses | where: "id", customer.metafields.customer.shipping_address_id | first %}
+    {% if shipping_address %}
+      <div class="ph-cust-address-details" id="shipping-address-details">
+        <p>{{ shipping_address.first_name }} {{ shipping_address.last_name }}</p>
+        <p>{{ shipping_address.address1 }}</p>
+        {% if shipping_address.address2 != blank %}
+          <p>{{ shipping_address.address2 }}</p>
+        {% endif %}
+        <p>{{ shipping_address.city }}, {{ shipping_address.province_code }} {{ shipping_address.zip }}</p>
+        <p>{{ shipping_address.country }}</p>
+        <p>{{ shipping_address.phone }}</p>
+      </div>
+
+    {% else %}
+      <div class="ph-cust-no-address-container" id="shipping-no-address">
+        <p class="ph-cust-no-address">YOU HAVE NOT SET UP THIS TYPE OF ADDRESS YET.</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ph-cust-address-actions">
+    <a href="{{ routes.account_addresses_url }}" class="ph-cust-btn-address ph-cust-btn-edit">EDIT</a>
+  </div>
+</div>

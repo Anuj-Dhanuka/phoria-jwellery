@@ -1,0 +1,209 @@
+.banner-with-text {
+  min-height: 100vh;
+}
+.banner-with-text .container {
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+}
+@media screen and (min-width: 990px) {
+  .banner-with-text .container {
+    height: 100%;
+    min-height: inherit;
+    flex-wrap: nowrap;
+  }
+}
+.banner-with-text--large {
+  min-height: 70vh;
+}
+.banner-with-text--large .banner-with-text__gallery {
+  min-height: 70vh;
+}
+@media screen and (min-width: 990px) {
+  .banner-with-text--large .banner-with-text__gallery {
+    min-height: unset;
+  }
+}
+.banner-with-text--medium {
+  min-height: 65vh;
+}
+.banner-with-text--medium .banner-with-text__gallery {
+  min-height: 65vh;
+}
+@media screen and (min-width: 990px) {
+  .banner-with-text--medium .banner-with-text__gallery {
+    min-height: unset;
+  }
+}
+.banner-with-text__content {
+  display: block;
+}
+.banner-with-text__description {
+  margin-top: 0.8rem;
+  max-width: 43rem;
+}
+.banner-with-text__description *:first-child {
+  margin-top: 0;
+}
+.banner-with-text__description *:last-child {
+  margin-bottom: 0;
+}
+.banner-with-text__gallery {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+@media screen and (min-width: 990px) {
+  .banner-with-text__gallery {
+    width: 50%;
+    min-height: unset;
+  }
+}
+.banner-with-text__gallery--image-wrapper {
+  position: absolute;
+  inset: 0;
+}
+.banner-with-text__gallery--image-wrapper .placeholder-svg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.banner-with-text__info {
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+@media screen and (min-width: 990px) {
+  .banner-with-text__info {
+    width: 50%;
+  }
+}
+.banner-with-text__info--wrapper {
+  width: min(52rem, 100%);
+}
+.banner-with-text__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.banner-with-text__top {
+  align-self: center;
+}
+.banner-with-text__button {
+  grid-row: 2;
+  grid-column: span 2;
+  margin-top: 1.6rem;
+  display: inline-block;
+}
+@media screen and (min-width: 576px) {
+  .banner-with-text__button {
+    grid-row: unset;
+    grid-column: 2;
+    margin-left: auto;
+  }
+}
+.banner-with-text__heading {
+  margin: 0;
+}
+.banner-with-text__items {
+  grid-column: span 2;
+}
+.banner-with-text__item {
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.08);
+  transition: opacity var(--duration-default);
+}
+.banner-with-text__item:first-child {
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.08);
+}
+.banner-with-text__item.active .banner-with-text__icon svg {
+  transform: rotate(180deg);
+}
+@media screen and (min-width: 1200px) {
+  .banner-with-text__item--opacity {
+    opacity: 0.5;
+  }
+}
+@media screen and (max-width: 575px) {
+  .banner-with-text__top + .banner-with-text__button {
+    grid-row: 3;
+  }
+}
+.banner-with-text__subheading {
+  margin: 0;
+}
+.banner-with-text__subheading + .banner-with-text__content {
+  margin-top: 0.8rem;
+}
+.banner-with-text__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 0;
+  cursor: pointer;
+}
+.banner-with-text__toggle:hover {
+  opacity: 0.6;
+}
+.banner-with-text__toggle-group {
+  display: flex;
+  align-items: center;
+}
+.banner-with-text__question {
+  margin: 0;
+  transition: var(--duration-default);
+}
+.banner-with-text__digit, .banner-with-text__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.banner-with-text__icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  transition: var(--duration-default);
+  transform: rotate(0deg);
+}
+@media screen and (min-width: 1200px) {
+  .banner-with-text__icon svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+.banner-with-text__answer {
+  display: none;
+  padding: 0;
+  padding-bottom: 1.6rem;
+}
+.banner-with-text__answer-inner {
+  color: rgb(var(--color-foreground-title));
+}
+.banner-with-text__answer-inner h1,
+.banner-with-text__answer-inner h2,
+.banner-with-text__answer-inner h3,
+.banner-with-text__answer-inner h4 {
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+}
+.banner-with-text__answer-inner h5,
+.banner-with-text__answer-inner h6 {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+}
+.banner-with-text__answer-inner p {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+}
+.banner-with-text__answer-inner *:first-child {
+  margin-top: 0;
+}
+.banner-with-text__answer-inner *:last-child {
+  margin-bottom: 0;
+}

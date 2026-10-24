@@ -1,0 +1,506 @@
+{% liquid
+  assign packaging_image = section.settings.packaging_image
+  assign packaging_image_2 = section.settings.packaging_image_2
+  assign packaging_image_3 = section.settings.packaging_image_3
+  assign packaging_image_4 = section.settings.packaging_image_4
+  assign handcrafted_image = section.settings.handcrafted_image
+  assign fine_image = section.settings.fine_image
+  assign production_video = section.settings.production_video
+%}
+
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .ph-product-story-{{ section.id }} {
+    background: #fff;
+    color: #050505;
+    font-family: 'PhoriaRegular', var(--font-body-family);
+    letter-spacing: 0;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__media {
+    display: block;
+    width: 100%;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__media--inset,
+  .ph-product-story-{{ section.id }} .ph-product-story__media--fine,
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--paper {
+    width: 100%;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__media img,
+  .ph-product-story-{{ section.id }} .ph-product-story__media video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__packaging-swiper,
+  .ph-product-story-{{ section.id }} .ph-product-story__packaging-swiper .swiper-wrapper,
+  .ph-product-story-{{ section.id }} .ph-product-story__packaging-swiper .swiper-slide {
+    width: 100%;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__production-video {
+    aspect-ratio: 430 / 538;
+    background: #111;
+    object-fit: cover;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy {
+    padding: 44px 20px 60px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy:not(.ph-product-story__copy--fine):not(.ph-product-story__copy--paper) {
+    width: 100%;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--right {
+    text-align: right;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--paper {
+    background: #fff;
+    min-height: 280px;
+    padding: 43px 20px 65px;
+    text-align: right;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine {
+    padding: 35px 22px 54px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__eyebrow,
+  .ph-product-story-{{ section.id }} .ph-product-story__title {
+    margin: 0;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__title {
+    margin-bottom: 33px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy:not(.ph-product-story__copy--fine) .ph-product-story__eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__eyebrow,
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__title {
+    font-size: clamp(15px, 4.2vw, 18px);
+    letter-spacing: 0;
+    line-height: 1.65;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__title {
+    margin-bottom: 24px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__fine-hallmarks {
+    display: block;
+    width: 96px;
+    height: auto;
+    margin: 0 0 32px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__body {
+    margin: 0;
+    color: #1d1d1d;
+    font-size: 9px;
+    letter-spacing: 0;
+    line-height: 22px;
+    text-transform: uppercase;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__body p {
+    margin: 0 0 22px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__body {
+    color: #050505;
+    font-size: 9px;
+    letter-spacing: 0;
+    line-height: 22px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__body p {
+    margin-bottom: 24px;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__body strong,
+  .ph-product-story-{{ section.id }} .ph-product-story__body b {
+    color: #050505;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-weight: 400;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__price-label {
+    display: block;
+    margin-top: 30px;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 8px;
+    letter-spacing: 0.48em;
+    line-height: 2.3;
+    text-transform: uppercase;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__price {
+    display: block;
+    margin-top: 2px;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    line-height: 1.8;
+    text-transform: uppercase;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__price-label {
+    margin-top: 28px;
+    font-size: clamp(8px, 2.1vw, 10px);
+    letter-spacing: 0;
+    line-height: 1.9;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__price {
+    margin-top: 4px;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    margin-top: 31px;
+    background: #111;
+    color: #fff;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .ph-product-story-{{ section.id }} .ph-product-story__copy--fine .ph-product-story__button {
+    min-height: 41px;
+    margin-top: 51px;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ph-product-story-{{ section.id }} {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__copy {
+      padding: 56px 40px 68px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__copy--fine {
+      padding: 66px 42px 84px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__copy--paper {
+      min-height: 410px;
+      padding: 72px 40px 78px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__media--inset,
+    .ph-product-story-{{ section.id }} .ph-product-story__media--fine {
+      width: 100%;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__eyebrow,
+    .ph-product-story-{{ section.id }} .ph-product-story__title {
+      font-size: 18px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__body {
+      font-size: 9px;
+      letter-spacing: 0;
+      line-height: 22px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__button {
+      max-width: 390px;
+    }
+
+    .ph-product-story-{{ section.id }} .ph-product-story__fine-hallmarks {
+      width: 112px;
+    }
+  }
+</style>
+
+<section class="ph-product-story ph-product-story-{{ section.id }}">
+  <div class="ph-product-story__media">
+    <div class="swiper ph-product-story__packaging-swiper" data-ph-story-packaging-swiper>
+      <div class="swiper-wrapper">
+        {% if packaging_image != blank %}
+          <div class="swiper-slide">
+            {{ packaging_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '430, 860, 1200', sizes: '(max-width: 749px) 100vw, 860px', alt: section.settings.packaging_alt }}
+          </div>
+        {% else %}
+          <div class="swiper-slide">
+            <img src="{{ 'ph-product-story-packaging.webp' | asset_url }}" alt="{{ section.settings.packaging_alt | escape }}" loading="lazy" width="860" height="866">
+          </div>
+          {% if packaging_image_2 == blank and packaging_image_3 == blank and packaging_image_4 == blank %}
+            <div class="swiper-slide">
+              <img src="{{ 'ph-product-story-packaging-2.jpg' | asset_url }}" alt="{{ section.settings.packaging_alt | escape }}" loading="lazy" width="1035" height="1035">
+            </div>
+          {% endif %}
+        {% endif %}
+
+        {% if packaging_image_2 != blank %}
+          <div class="swiper-slide">
+            {{ packaging_image_2 | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '430, 860, 1200', sizes: '(max-width: 749px) 100vw, 860px', alt: section.settings.packaging_alt }}
+          </div>
+        {% endif %}
+        {% if packaging_image_3 != blank %}
+          <div class="swiper-slide">
+            {{ packaging_image_3 | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '430, 860, 1200', sizes: '(max-width: 749px) 100vw, 860px', alt: section.settings.packaging_alt }}
+          </div>
+        {% endif %}
+        {% if packaging_image_4 != blank %}
+          <div class="swiper-slide">
+            {{ packaging_image_4 | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '430, 860, 1200', sizes: '(max-width: 749px) 100vw, 860px', alt: section.settings.packaging_alt }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="ph-product-story__copy">
+    <p class="ph-product-story__eyebrow">{{ section.settings.packaging_eyebrow }}</p>
+    <h2 class="ph-product-story__title">{{ section.settings.packaging_title }}</h2>
+    <div class="ph-product-story__body">{{ section.settings.packaging_copy }}</div>
+  </div>
+
+  <div class="ph-product-story__media ph-product-story__media--inset">
+    {% if production_video != blank %}
+      {{ production_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'auto', image_size: '860x', class: 'ph-product-story__production-video' }}
+    {% else %}
+      <video
+        class="ph-product-story__production-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="{{ 'ph-product-story-production-poster.webp' | asset_url }}"
+      >
+        <source src="{{ 'ph-product-story-production.mp4' | asset_url }}" type="video/mp4">
+      </video>
+    {% endif %}
+  </div>
+
+  <div class="ph-product-story__copy ph-product-story__copy--paper">
+    <p class="ph-product-story__eyebrow">{{ section.settings.handcrafted_eyebrow }}</p>
+    <h2 class="ph-product-story__title">{{ section.settings.handcrafted_title }}</h2>
+    <div class="ph-product-story__body">{{ section.settings.handcrafted_copy }}</div>
+  </div>
+
+  <div class="ph-product-story__media ph-product-story__media--fine">
+    {% if fine_image != blank %}
+      {{ fine_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '430, 860, 1200', sizes: '(max-width: 749px) 100vw, 860px', alt: section.settings.fine_alt }}
+    {% else %}
+      <img src="{{ 'ph-product-story-fine.webp' | asset_url }}" alt="{{ section.settings.fine_alt | escape }}" loading="lazy" width="860" height="1074">
+    {% endif %}
+  </div>
+
+  <div class="ph-product-story__copy ph-product-story__copy--fine">
+    <p class="ph-product-story__eyebrow">{{ section.settings.fine_eyebrow }}</p>
+    <h2 class="ph-product-story__title">{{ section.settings.fine_title }}</h2>
+    <img
+      class="ph-product-story__fine-hallmarks"
+      src="{{ 'ph-product-story-fine-hallmarks.png' | asset_url }}"
+      alt=""
+      loading="lazy"
+      width="320"
+      height="46"
+    >
+    <div class="ph-product-story__body">{{ section.settings.fine_copy }}</div>
+    {%- assign fine_price_dynamic = product.metafields.custom.phoria_fine_price.value -%}
+    {% if fine_price_dynamic != blank %}
+      <span class="ph-product-story__price-label">{{ section.settings.fine_price_label }}</span>
+      <span class="ph-product-story__price">{{ fine_price_dynamic }}</span>
+    {% endif %}
+    {% if section.settings.fine_button_label != blank %}
+      <a class="ph-product-story__button" href="{{ section.settings.fine_button_link | default: '/pages/contact' }}">{{ section.settings.fine_button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var packagingSwiper = document.querySelector('.ph-product-story-{{ section.id }} [data-ph-story-packaging-swiper]');
+    if (!packagingSwiper || typeof Swiper === 'undefined' || packagingSwiper.querySelectorAll('.swiper-slide').length < 2) return;
+
+    new Swiper(packagingSwiper, {
+      allowTouchMove: true,
+      nested: true,
+      slidesPerView: 1,
+      speed: 280,
+      threshold: 4,
+      touchAngle: 35,
+      touchReleaseOnEdges: true,
+      watchOverflow: true
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Product Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "packaging_image",
+      "label": "Packaging image"
+    },
+    {
+      "type": "image_picker",
+      "id": "packaging_image_2",
+      "label": "Packaging image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "packaging_image_3",
+      "label": "Packaging image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "packaging_image_4",
+      "label": "Packaging image 4"
+    },
+    {
+      "type": "text",
+      "id": "packaging_alt",
+      "label": "Packaging image alt",
+      "default": "Phoria packaging"
+    },
+    {
+      "type": "text",
+      "id": "packaging_eyebrow",
+      "label": "Packaging eyebrow",
+      "default": "All Packaging,"
+    },
+    {
+      "type": "text",
+      "id": "packaging_title",
+      "label": "Packaging title",
+      "default": "Considered"
+    },
+    {
+      "type": "richtext",
+      "id": "packaging_copy",
+      "label": "Packaging copy",
+      "default": "<p>Every Phoria order comes with a reusable airtight storage box and satin travel pouch intended to be kept to store your Phoria piece or any other pieces in your jewellery collection.</p><p>You’ll also receive a care guide and free polishing cloth to help look after for your piece.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "handcrafted_image",
+      "label": "Handcrafted image after copy"
+    },
+    {
+      "type": "video",
+      "id": "production_video",
+      "label": "Production video"
+    },
+    {
+      "type": "text",
+      "id": "handcrafted_alt",
+      "label": "Handcrafted image alt",
+      "default": "Jewellery handcrafting process"
+    },
+    {
+      "type": "text",
+      "id": "handcrafted_eyebrow",
+      "label": "Handcrafted eyebrow",
+      "default": "Every Piece,"
+    },
+    {
+      "type": "text",
+      "id": "handcrafted_title",
+      "label": "Handcrafted title",
+      "default": "Handcrafted"
+    },
+    {
+      "type": "richtext",
+      "id": "handcrafted_copy",
+      "label": "Handcrafted copy",
+      "default": "<p>Quality is at the heart of Phoria. Every piece is handcrafted by skilled artisans using 100% recycled 925 sterling silver, recycled 18ct gold and ethically sourced, fully traceable natural gemstones.</p><p>Our partner studio is part of the Responsible Jewellery Council, sharing our commitment to responsible sourcing, exceptional craftsmanship and jewellery designed to last.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "fine_image",
+      "label": "Phoria Fine image"
+    },
+    {
+      "type": "text",
+      "id": "fine_alt",
+      "label": "Phoria Fine image alt",
+      "default": "Phoria Fine jewellery"
+    },
+    {
+      "type": "text",
+      "id": "fine_eyebrow",
+      "label": "Fine eyebrow",
+      "default": "Reimagined in"
+    },
+    {
+      "type": "text",
+      "id": "fine_title",
+      "label": "Fine title",
+      "default": "Phoria Fine"
+    },
+    {
+      "type": "richtext",
+      "id": "fine_copy",
+      "label": "Fine copy",
+      "default": "<p>This Phoria design can be commissioned in any precious metal, any carat or any gemstone of your choice.</p><p>Every Phoria Fine piece is made to order, individually crafted to your specifications and ready within four weeks. Enquire to begin creating your piece.</p>"
+    },
+    {
+      "type": "text",
+      "id": "fine_price_label",
+      "label": "Fine price label",
+      "default": "Estimated starting price from:"
+    },
+    {
+      "type": "text",
+      "id": "fine_price",
+      "label": "Fine price",
+      "default": "£5,640"
+    },
+    {
+      "type": "text",
+      "id": "fine_button_label",
+      "label": "Fine button label",
+      "default": "Make an Enquiry"
+    },
+    {
+      "type": "url",
+      "id": "fine_button_link",
+      "label": "Fine button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Product Story"
+    }
+  ]
+}
+{% endschema %}

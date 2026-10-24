@@ -1,0 +1,85 @@
+<!-- templates/page.bundle-builder.liquid -->
+{% layout 'theme' %}
+
+<section class="bundle-builder">
+  <div class="container">
+    <h1>Exclusive Combos</h1>
+
+    <!-- Combo 1 -->
+    <div class="combo" data-combo="1">
+      <h2>Summer Essentials Combo</h2>
+      <p>Pick your sizes for each product below.</p>
+
+      {% assign combo1_products = "t-shirt,shorts,sneakers,cap,backpack" | split: "," %}
+      <div class="combo-products">
+        {% for handle in combo1_products %}
+          {% assign product = all_products[handle] %}
+          <div class="bundle-product">
+            <h3>{{ product.title }}</h3>
+            <select class="variant-select" data-product="{{ product.id }}">
+              {% for v in product.variants %}
+                <option value="{{ v.id }}">{{ v.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endfor %}
+      </div>
+
+      <button class="btn buy-combo">Buy This Combo</button>
+    </div>
+
+    <!-- Combo 2 -->
+    <div class="combo" data-combo="2">
+      <h2>Winter Warmth Combo</h2>
+      <p>Select variants for each product.</p>
+
+      {% assign combo2_products = "hoodie,joggers,boots,beanie,scarf" | split: "," %}
+      <div class="combo-products">
+        {% for handle in combo2_products %}
+          {% assign product = all_products[handle] %}
+          <div class="bundle-product">
+            <h3>{{ product.title }}</h3>
+            <select class="variant-select" data-product="{{ product.id }}">
+              {% for v in product.variants %}
+                <option value="{{ v.id }}">{{ v.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endfor %}
+      </div>
+
+      <button class="btn buy-combo">Buy This Combo</button>
+    </div>
+
+  </div>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".buy-combo").forEach(button => {
+    button.addEventListener("click", function() {
+      let comboSection = this.closest(".combo");
+      let variantSelectors = comboSection.querySelectorAll(".variant-select");
+      let items = [];
+
+      variantSelectors.forEach(select => {
+        items.push({
+          id: select.value,
+          quantity: 1
+        });
+      });
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items })
+      })
+      .then(res => res.json())
+      .then(data => {
+        window.location.href = "/cart";
+      });
+    });
+  });
+});
+</script>

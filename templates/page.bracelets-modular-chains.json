@@ -1,0 +1,388 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_bracelets_head_NnqBVe": {
+      "type": "ph-bracelets-head",
+      "settings": {
+        "heading": "MODULAR BRACELETS",
+        "description": "WEAR YOUR BRACELET ALONE, OR CONNECT TO ANY OF OUR BRACELET CHAINS USING OUR MODULAR CARABINER CLASPS, TO BUILD YOUR CUSTOMISED NECKLACE.",
+        "product_video": "shopify://files/videos/phoria-jewellery-animation-silver-gold.mp4",
+        "instruction_image": "shopify://shop_images/phoria-jewellery-modular-bracelet-clasp-opening-0.1.webp",
+        "enable_animations": true
+      }
+    },
+    "ph_bracelets_guide_pfBNPx": {
+      "type": "ph-bracelets-guide",
+      "settings": {
+        "heading": "HOW TO FIND YOUR BRACELET SIZE",
+        "intro_text": "UNSURE OF YOUR BRACELET SIZE? WE WANT TO MAKE IT AS EASY AS POSSIBLE FOR YOU TO MEASURE AT HOME.",
+        "method1_heading": "1) MAKE YOUR OWN PAPER WRIST SIZER",
+        "method1_description": "CLICK ON THE LINK BELOW. FOLLOW THE INSTRUCTIONS AND PRINT IT OUT ONTO A4 PAPER.",
+        "method1_button_text": "MAKE YOUR OWN WRIST SIZER - CLICK TO PRINT",
+        "method1_pdf_link": "https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-make-your-own-paper-wrist-sizer_d27643ca-0a61-4920-a9ae-173e6ff2ddd0.pdf?v=1744732133",
+        "divider_text": "OR",
+        "method2_heading": "2) MEASURE YOUR WRIST BY:",
+        "method2_step1": "1) WRAPPING A STRIP OF PAPER, OR PIECE OF STRING, AROUND YOUR WRIST WHERE YOU'D LIKE YOUR NEW BRACELET TO SIT.",
+        "method2_step2": "2) USE THE CHART BELOW TO DETERMINE YOUR BRACELET SIZE.",
+        "method2_step3": "3) MEASURE THIS LENGTH WITH A RULER TO FIND YOUR CIRCUMFERENCE. FALLING BETWEEN TWO SIZES? WE RECOMMEND SIZING UP IF YOU ENJOY A LOOSER FIT OR SIZING DOWN IF YOU PREFER IT TO FIT MORE SNUG.",
+        "enable_animations": true
+      }
+    },
+    "ph_bracelets_table_CnzMFE": {
+      "type": "ph-bracelets-table",
+      "blocks": {
+        "category_heading_q9LWYU": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "SCREW CHAIN BRACELET"
+          }
+        },
+        "size_row_Pnyadn": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "SMALL",
+            "wrist_cm": "16.5",
+            "wrist_inches": "6.5"
+          }
+        },
+        "size_row_EqjeTT": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "MEDIUM",
+            "wrist_cm": "17.5",
+            "wrist_inches": "7"
+          }
+        },
+        "size_row_Qaf3QY": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "LARGE",
+            "wrist_cm": "19",
+            "wrist_inches": "7.5"
+          }
+        },
+        "category_heading_wDnkmU": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "BOND CHAIN BRACELET"
+          }
+        },
+        "size_row_mXbFxK": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "SMALL",
+            "wrist_cm": "17.5",
+            "wrist_inches": "7"
+          }
+        },
+        "size_row_4NiWfQ": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "MEDIUM",
+            "wrist_cm": "19.5",
+            "wrist_inches": "7.75"
+          }
+        },
+        "category_heading_jjR6RW": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "HYPE CHAIN BRACELET"
+          }
+        },
+        "size_row_wt7K8q": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "SMALL",
+            "wrist_cm": "17.5",
+            "wrist_inches": "7"
+          }
+        },
+        "size_row_Lj4wD7": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "MEDIUM",
+            "wrist_cm": "19",
+            "wrist_inches": "7.5"
+          }
+        },
+        "size_row_LMWcNf": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "LARGE",
+            "wrist_cm": "20",
+            "wrist_inches": "8"
+          }
+        },
+        "size_row_bRXYnX": {
+          "type": "size_row",
+          "settings": {
+            "size_name": "EXTENDED",
+            "wrist_cm": "22.25",
+            "wrist_inches": "8.75"
+          }
+        }
+      },
+      "block_order": [
+        "category_heading_q9LWYU",
+        "size_row_Pnyadn",
+        "size_row_EqjeTT",
+        "size_row_Qaf3QY",
+        "category_heading_wDnkmU",
+        "size_row_mXbFxK",
+        "size_row_4NiWfQ",
+        "category_heading_jjR6RW",
+        "size_row_wt7K8q",
+        "size_row_Lj4wD7",
+        "size_row_LMWcNf",
+        "size_row_bRXYnX"
+      ],
+      "settings": {
+        "heading": "WRIST SIZE CHART",
+        "col_heading_1": "SIZE",
+        "col_heading_2": "WRIST (CM)",
+        "col_heading_3": "WRIST (INCHES)",
+        "enable_animations": true
+      }
+    },
+    "ph_bracelet_note_XtzKTm": {
+      "type": "ph-bracelet-note",
+      "settings": {
+        "note_text_1": "PLEASE NOTE THAT THE FIT OF A BRACELET IS INFLUENCED BY BOTH ITS LENGTH AND THE THICKNESS OF THE CHAIN. THAT'S WHY THE MEASUREMENTS OF OUR BRACELETS VARY DEPENDING ON THE STYLE/THICKNESS OF THE CHAIN.",
+        "note_text_2": "FOR EXAMPLE, A THIN CHAIN LIKE THE SCREW CHAIN WITH A LENGTH OF 17.5CM WILL FEEL LOOSER ON THE WRIST THAN A 17.5CM THICKER BOND CHAIN. PLEASE TAKE THIS INTO ACCOUNT WHEN MEASURING YOUR WRIST SIZE.",
+        "enable_animations": true
+      }
+    },
+    "ph_bracelets_necklace_guide_ARUCQN": {
+      "type": "ph-bracelets-necklace-guide",
+      "settings": {
+        "heading": "HOW TO MAKE A NECKLACE USING OUR MODULAR CHAIN BRACELETS",
+        "description": "ALL PHORIA BRACELETS ARE <strong>MODULAR</strong> - OUR CARABINER CLASPS CAN BE CONNECTED WITH ANY OTHER PHORIA BRACELET TO CREATE ANY STYLE OF <strong>NECKLACE</strong> YOU CHOOSE.",
+        "guide_image": "shopify://shop_images/phoria-jewellery-illustration-of-how-to-open-and-make-necklace-0.3c_1.webp",
+        "step1": "1) SIMPLY OPEN OUR CARABINER CLASP BY PULLING THE CLASP APART ON ONE OF YOUR BRACELETS",
+        "step2": "2) USE THIS TO LINK THROUGH THE CHAIN LINK ON YOUR SECOND NECKLACE",
+        "step3": "3) SHUT THE CLASP SHUT",
+        "step4": "4) DO THE SAME FOR THE SECOND BRACELET TO LINK TO YOUR OTHER ONE",
+        "enable_animations": true
+      }
+    },
+    "ph_bracelets_necklace_size_chart_TiEMa4": {
+      "type": "ph-bracelets-necklace-size-chart",
+      "blocks": {
+        "category_heading_7B7NMQ": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "SCREW CHAIN BRACELET"
+          }
+        },
+        "size_row_jw4tLG": {
+          "type": "size_row",
+          "settings": {
+            "combination": "SMALL + SMALL",
+            "length_cm": "35.6",
+            "length_inches": "14"
+          }
+        },
+        "size_row_ciHerp": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM + MEDIUM",
+            "length_cm": "35.6",
+            "length_inches": "14"
+          }
+        },
+        "category_heading_8Bc9RC": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "BOND CHAIN BRACELET"
+          }
+        },
+        "size_row_LTtYVz": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM + MEDIUM",
+            "length_cm": "39.4",
+            "length_inches": "15.5"
+          }
+        },
+        "category_heading_hw86BD": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "HYPE CHAIN BRACELET"
+          }
+        },
+        "size_row_Th6n9t": {
+          "type": "size_row",
+          "settings": {
+            "combination": "LARGE + LARGE",
+            "length_cm": "40.6",
+            "length_inches": "16"
+          }
+        },
+        "size_row_ApUVx4": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM + EXTENDED",
+            "length_cm": "41.3",
+            "length_inches": "16.25"
+          }
+        },
+        "category_heading_4YFcQN": {
+          "type": "category_heading",
+          "settings": {
+            "category_name": "CHAIN COMBINATION EXAMPLES"
+          }
+        },
+        "size_row_zPiM6f": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM SCREW + MEDIUM BOND",
+            "length_cm": "37.5",
+            "length_inches": "14.75"
+          }
+        },
+        "size_row_nHMyzg": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM SCREW + MEDIUM HYPE",
+            "length_cm": "36.8",
+            "length_inches": "14.5"
+          }
+        },
+        "size_row_CTzthx": {
+          "type": "size_row",
+          "settings": {
+            "combination": "MEDIUM BOND + MEDIUM HYPE",
+            "length_cm": "38.7",
+            "length_inches": "15.25"
+          }
+        }
+      },
+      "block_order": [
+        "category_heading_7B7NMQ",
+        "size_row_jw4tLG",
+        "size_row_ciHerp",
+        "category_heading_8Bc9RC",
+        "size_row_LTtYVz",
+        "category_heading_hw86BD",
+        "size_row_Th6n9t",
+        "size_row_ApUVx4",
+        "category_heading_4YFcQN",
+        "size_row_zPiM6f",
+        "size_row_nHMyzg",
+        "size_row_CTzthx"
+      ],
+      "settings": {
+        "heading": "SIZE COMBINATIONS",
+        "description": "PLEASE BE AWARE OF OUR CHAIN SIZES WHEN CREATING YOUR DESIRED NECKLACE. DIFFERENT CHAINS WILL SIT DIFFERENTLY ON YOUR NECK DEPENDING ON THE THICKNESS OF THE CHAIN. THE THICKER THE CHAIN THE LONGER IT NEEDS TO BE TO SIT NICELY ON THE NECK.\n\nPLEASE TAKE THIS INTO ACCOUNT WHEN BUYING MORE THAN ONE BRACELET FOR A MODULAR NECKLACE.\n\nWE RECOMMEND REFERRING TO THE SIZE CHART BELOW FOR MINIMUM TOTAL LENGTHS:",
+        "table_heading_1": "MINIMUM BRACELET SIZE COMBINATIONS",
+        "table_heading_2": "LENGTH (CM)",
+        "table_heading_3": "LENGTH (INCHES)",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "ph_modular_necklace_combo_wzb38j": {
+      "type": "ph-modular-necklace-combo",
+      "blocks": {
+        "combination_LiTjF6": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 SCREW + X2 SCREW DOUBLED UP"
+          }
+        },
+        "combination_G34fwY": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X2 SCREW DOUBLED UP + X1 BOND"
+          }
+        },
+        "combination_GAHMJ9": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 BOND"
+          }
+        },
+        "combination_KVYGCi": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 BOND + X1 BOND + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        },
+        "combination_3LJzRc": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE"
+          }
+        },
+        "combination_a8yUgr": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        }
+      },
+      "block_order": [
+        "combination_LiTjF6",
+        "combination_G34fwY",
+        "combination_GAHMJ9",
+        "combination_KVYGCi",
+        "combination_3LJzRc",
+        "combination_a8yUgr"
+      ],
+      "settings": {
+        "heading": "FIND YOUR MODULAR NECKLACE CHAIN LENGTH",
+        "description": "BELOW ARE A FEW EXAMPLES AND SUGGESTIONS OF BRACELET COMBINATIONS THAT WORK REALLY NICELY AS MODULAR NECKLACES:",
+        "table_header": "OUR RECOMMENDATIONS: MODULAR COMBINATIONS"
+      }
+    },
+    "ph_modular_necklace_length_guide_cGK3cz": {
+      "type": "ph-modular-necklace-length-guide",
+      "settings": {
+        "heading": "WHERE YOUR NECKLACE WILL SIT",
+        "description": "PLEASE REFER TO THE SKETCH BELOW FOR A ROUGH ESTIMATION FOR WHERE YOUR NECKLACE WILL SIT. PLEASE REMEMBER TO COMBINE THE TOTAL LENGTHS OF THE BRACELETS OF YOUR CHOICE TO GET YOUR TOTAL LENGTH IN INCHES.",
+        "guide_image": "shopify://shop_images/phoria-jewellery-illustration-necklace-length.webp",
+        "image_width": 50
+      }
+    },
+    "ph_necklace_cta_Ci9GyQ": {
+      "type": "ph-necklace-cta",
+      "settings": {
+        "heading": "STYLING OR SIZING QUESTION?",
+        "button_text": "CONTACT US",
+        "button_link": "shopify://pages/contact",
+        "padding_top": 10,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_bracelets_head_NnqBVe",
+    "ph_bracelets_guide_pfBNPx",
+    "ph_bracelets_table_CnzMFE",
+    "ph_bracelet_note_XtzKTm",
+    "ph_bracelets_necklace_guide_ARUCQN",
+    "ph_bracelets_necklace_size_chart_TiEMa4",
+    "ph_modular_necklace_combo_wzb38j",
+    "ph_modular_necklace_length_guide_cGK3cz",
+    "ph_necklace_cta_Ci9GyQ"
+  ]
+}

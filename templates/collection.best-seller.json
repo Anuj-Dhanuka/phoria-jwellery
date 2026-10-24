@@ -1,0 +1,324 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "contain",
+        "image_filter_columns": 3,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_collection_description_VPtNBY": {
+      "type": "ph-collection-description",
+      "name": "Ph Collection Description",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "Best Seller",
+        "short_text": "<p>CRYSTALLISE IS PHORIA’S NOSTALGIC DIVE INTO THE GLOSSY, GLIMMERING WORLD OF 90’S/Y2K FEMININITY - WHERE BODY PIERCINGS WERE ACTS OF SELF-LOVE, LIP GLOSS DRIPPED LIKE HONEY, AND CRYSTAL CHARMS SWUNG LOW WITH INTENTION. </p>",
+        "full_text": "<p>CRYSTALLISE IS PHORIA’S NOSTALGIC DIVE INTO THE GLOSSY, GLIMMERING WORLD OF 90’S/Y2K FEMININITY - WHERE BODY PIERCINGS WERE ACTS OF SELF-LOVE, LIP GLOSS DRIPPED LIKE HONEY, AND CRYSTAL CHARMS SWUNG LOW WITH INTENTION. </p>",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 25,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "ph_product_grid_v2_L8nJby": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_bkzU3y": {
+          "type": "product",
+          "settings": {
+            "product_item": "belly-bear-earrings-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_RPMx3t": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_n6xCAp": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-copy",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_HCXC8e": {
+          "type": "product",
+          "settings": {
+            "product_item": "drop-ring-stack-2",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_APhJrC": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_qCz3fV": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_bkzU3y",
+        "product_RPMx3t",
+        "product_n6xCAp",
+        "product_HCXC8e",
+        "product_APhJrC",
+        "product_qCz3fV"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_tJgGmc": {
+      "type": "ph-collection-banner",
+      "name": "Ph Collection Banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/MiniGoldPearPiercedDropRing2_1_8ea2b69e-f470-4181-9033-8f60a4b4afdf.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 20,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 10,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_nDADiA": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_VmtaRp": {
+          "type": "product",
+          "settings": {
+            "product_item": "belly-bear-earrings-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_9YayTC": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_hBfLVE": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-copy",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_DAiMPX": {
+          "type": "product",
+          "settings": {
+            "product_item": "drop-ring-stack-2",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_aiBWkr": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_UhBqUA": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_VmtaRp",
+        "product_9YayTC",
+        "product_hBfLVE",
+        "product_DAiMPX",
+        "product_aiBWkr",
+        "product_UhBqUA"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "ph_collection_description_VPtNBY",
+    "ph_product_grid_v2_L8nJby",
+    "ph_collection_banner_tJgGmc",
+    "ph_product_grid_v2_nDADiA"
+  ]
+}

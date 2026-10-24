@@ -1,0 +1,112 @@
+<div class="header__localization secondary_text">
+	<noscript>
+		{%- form 'localization',
+			id: 'HeaderCountryFormNoScript',
+			class: 'localization-form'
+		-%}
+			<input type="hidden" name="return_to" value="{{ request.path }}">
+			<div class="localization-form__select">
+				<select
+					class="localization-selector link"
+					name="country_code"
+					aria-labelledby="HeaderCountryLabelNoScript"
+				>
+					{%- for country in localization.available_countries -%}
+						<option
+							value="{{ country.iso_code }}"
+							{%- if country.iso_code == localization.country.iso_code %}
+								selected
+							{% endif %}
+						>
+							{{ country.name }} ({{ country.currency.iso_code }}
+							{{ country.currency.symbol }})
+						</option>
+					{%- endfor -%}
+				</select>
+			</div>
+			<button class="button button--primary focus-inset">
+				<span>
+					{{ 'localization.update_country' | t }}
+				</span>
+			</button>
+		{%- endform -%}
+	</noscript>
+	<localization-form>
+		{%- form 'localization',
+			id: 'HeaderCountryForm',
+			class: 'localization-form'
+		-%}
+			<input type="hidden" name="return_to" value="{{ request.path }}">
+			<div class="no-js-hidden">
+				<div class="disclosure">
+					<button
+						type="button"
+						class="secondary_text header__localization-button disclosure__button disclosure__button-modal localization-form__select localization-selector link link--text focus-inset"
+						aria-expanded="false"
+						aria-controls="HeaderCountryList"
+						aria-describedby="HeaderCountryLabel"
+						data-value-save=""
+					>
+						<div class="currency-country{% if settings.region_language_type == "dropdown" %} link-hover-line{% endif %}">
+							<div
+								class="currency-flag"
+								data-value="{{ localization.country.iso_code }}"
+								aria-hidden="true"
+							></div>
+							<span>
+								{{- localization.country.currency.name }}
+								(
+								{{- localization.country.currency.iso_code }}
+								{{ localization.country.currency.symbol -}}
+								)
+							</span>
+						</div>
+						{% render 'icon-caret' %}
+					</button>
+					<ul
+						id="HeaderCountryList"
+						role="list"
+						class="disclosure__list list-unstyled color-background-1"
+						hidden
+					>
+						{%- for country in localization.available_countries -%}
+							<li class="disclosure__item" tabindex="-1">
+								<a
+									class="secondary_text link link--text disclosure__link disclosure__link--flag caption-large{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset"
+									href="#"
+									{% if country.iso_code == localization.country.iso_code %}
+										aria-current="true"
+									{% endif %}
+									data-value="{{ country.iso_code }}"
+									data-flag="{{ country.currency.iso_code }}"
+									data-valuesave="{{ forloop.index }}"
+								>
+									<span>
+										{{ country.name }}
+										<span class="localization-form__currency"
+											>({{ country.currency.iso_code }}
+											{{ country.currency.symbol }})</span
+										>
+									</span>
+								</a>
+							</li>
+						{%- endfor -%}
+					</ul>
+					{% if settings.region_language_type == "popup" %}
+						<button
+							type="button"
+							class="button-save button button button--tertiary"
+						>
+							<span> {{ 'localization.save' | t }} </span>
+						</button>
+					{% endif %}
+				</div>
+				<input
+					type="hidden"
+					name="country_code"
+					value="{{ localization.country.iso_code }}"
+				>
+			</div>
+		{%- endform -%}
+	</localization-form>
+</div>

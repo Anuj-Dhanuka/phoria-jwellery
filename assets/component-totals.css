@@ -1,0 +1,31 @@
+.totals {
+  display: flex;
+}
+
+.totals > * {
+  margin: 0;
+}
+
+.totals * {
+  line-height: 1;
+}
+
+.totals > * + * {
+  margin-left: 0.5rem;
+}
+
+.totals__subtotal-value {
+  color: #1D1D1D;
+  font-size: 12px;
+  font-family: 'PhoriaBold';
+}
+
+.cart__ctas + .totals {
+  margin-top: 2rem;
+}
+.totals .subtitle{
+  font-family: 'PhoriaRegular';
+  font-size: 14px;
+  font-weight: 400;
+  color: #1D1D1D;
+}

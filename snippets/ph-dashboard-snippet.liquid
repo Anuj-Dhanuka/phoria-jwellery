@@ -1,0 +1,382 @@
+{% comment %}
+  Dashboard Tab Snippet - ph-dashboard-snippet.liquid
+  Usage: {% render 'ph-dashboard-snippet' %}
+{% endcomment %}
+
+<style>
+  /* Dashboard Container Styles */
+  /* .ph-account-welcome {
+    margin-bottom: 30px;
+  } */
+
+  .ph-account-welcome p{
+    font-size: 10px;
+    line-height: 2.3;
+    margin: 0;
+  }
+  p.ph-account-overview{
+    margin-top: 18px;
+  }
+  
+  .ph-account-greeting {
+    font-size: 10px;
+    margin: 0;
+    line-height: 2.3;
+    font-family: 'PhoriaBold';
+  }
+  
+  .ph-account-overview {
+    line-height: 2.3;
+    font-size: 10px;
+  }
+  .ph-account-overview strong{
+    font-family: "PhoriaBold";
+  }
+  
+  /* Account Sections Layout */
+  .ph-account-sections {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .ph-account-section {
+    flex: 1;
+    min-width: 250px;
+    margin-top: 54px;
+  }
+  
+  .ph-section-title {
+    font-size: 1.25vw;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .ph-account-section p {
+    margin: 0px;
+    font-size: 10px;
+    line-height: 2.3;
+  }
+  
+  /* Button Styles */
+  .ph-btn-account-1 {
+    display: inline-block;
+    margin-top: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  
+  
+  /* Orders Table */
+  .ph-account-orders {
+    margin-top: 54px;
+  }
+  .ph-account-orders h3{
+    margin-bottom: 36px;
+  }
+  
+  .ph-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-family: 'PhoriaRegular';
+  }
+  
+  .ph-orders-table th,
+  .ph-orders-table td {
+    padding: 18px 0px;
+    font-size: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f2ee;
+    line-height: 2.3;
+    font-family: 'PhoriaRegular';
+  }
+  
+  .ph-orders-table th {
+    /* background-color: #f8f8f8; */
+    padding: 4px 0px 18px 0px;
+    font-weight: 400;
+  }
+  
+  .ph-orders-table a {
+    color: #000;
+    text-decoration: none;
+    font-family: "PhoriaBold";
+  }
+  
+  .ph-orders-table a:hover {
+    text-decoration: underline;
+  }
+  
+  .ph-no-orders {
+    margin: 20px 0;
+  }
+  
+  .ph-no-orders span {
+    font-weight: 700;
+  }
+  .ph-btn-account-1{
+    font-family: 'PhoriaBold'; 
+    padding: 0;
+    margin-top: 27px;
+  }
+
+  /* Mobile table styles */
+  .ph-mobile-order-card {
+    background: #fff;
+    margin-bottom: 54px;
+    border-bottom: 1px solid #81847a !important;
+  }
+
+  .ph-mobile-order-card:last-child {
+    border-bottom: none;
+  }
+
+  .ph-mobile-order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f1f2ee !important;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .ph-mobile-order-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .ph-mobile-label {
+    color: #666;
+    font-weight: normal;
+  }
+
+  .ph-mobile-value {
+    color: #000;
+    font-weight: normal;
+    text-align: right;
+  }
+
+  .ph-mobile-value a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "PhoriaBold";
+  }
+
+  .ph-order-mobile-bold{
+    font-family: "PhoriaBold";
+  }
+
+  /* Responsive utilities */
+  .ph-desktop-orders {
+    display: table;
+  }
+
+  .ph-mobile-orders {
+    display: none;
+  }
+
+  @media screen and (max-width: 926px) {
+      .ph-section-title{
+        font-size: 18px;
+      }
+  }
+
+  /* Mobile styles */
+  @media (max-width: 760px) {
+    .ph-desktop-orders {
+      display: none;
+    }
+    
+    .ph-mobile-orders {
+      display: block;
+    }
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 760px) {
+    .ph-account-sections {
+      flex-direction: column;
+    }
+    
+    .ph-account-section {
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+</style>
+
+<div class="ph-account-welcome">
+  <p>HELLO <span class="ph-account-greeting">{{ customer.first_name | upcase }}{% if customer.last_name != blank %}_{{ customer.last_name | upcase }}{% endif %}.</span></p>
+   <p class="ph-cust-account-overview">
+    FROM YOUR ACCOUNT DASHBOARD YOU CAN VIEW YOUR 
+    <strong>
+      <a href="#" class="ph-cust-nav-link" data-navigate-tab="orders" data-navigate-mobile="orders">RECENT ORDERS</a>
+    </strong>, 
+    MANAGE YOUR 
+    <strong>
+      <a href="#" class="ph-cust-nav-link" data-navigate-tab="addresses" data-navigate-mobile="addresses">ADDRESSES</a>
+    </strong>, 
+    AND 
+    <strong>
+      <a href="#" class="ph-cust-nav-link" data-navigate-tab="account-details" data-navigate-mobile="account-details">VIEW YOUR ACCOUNT DETAILS.</a>
+    </strong>
+  </p>
+</div>
+
+<div class="ph-account-sections">
+  <div class="ph-account-section">
+    <h3 class="ph-section-title">CONTACT</h3>
+    
+    {% if customer.name != blank %}
+      <p>{{ customer.name }}</p>
+    {% else %}
+      <p>YOU HAVE NOT TOLD US YOUR NAME YET.</p>
+    {% endif %}
+    
+    <p>{{ customer.email }}</p>
+    
+    <button class="ph-btn-account-1 ph-tab-trigger" data-tab="account-details">EDIT</button>
+  </div>
+  
+  <div class="ph-account-section">
+    <h3 class="ph-section-title">ADDRESS</h3>
+    
+    {% if customer.default_address %}
+      <p>{{ customer.default_address.address1 }}</p>
+      <p>{{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}</p>
+      <p>{{ customer.default_address.country }}</p>
+    {% else %}
+      <p>YOU HAVE NOT SET UP THIS TYPE OF ADDRESS YET.</p>
+    {% endif %}
+    
+    <button class="ph-btn-account-1 ph-tab-trigger" data-tab="addresses">EDIT</button>
+  </div>
+</div>
+
+<div class="ph-account-orders">
+  <h3 class="ph-section-title">LATEST ORDERS</h3>
+  
+  {% if customer.orders.size > 0 %}
+    <!-- Desktop Table View -->
+    <table class="ph-orders-table ph-desktop-orders">
+      <thead>
+        <tr>
+          <th>ORDER</th>
+          <th>DATE</th>
+          <th>PAYMENT STATUS</th>
+          {% comment %}
+          <th>FULFILLMENT STATUS</th>
+          {% endcomment %}
+          <th>TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in customer.orders limit: 5 %}
+          <tr>
+            <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+            <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+            <td>{{ order.financial_status_label }}</td>
+            {% comment %}
+            <td>{{ order.fulfillment_status_label }}</td>
+            {% endcomment %}
+            <td>{% render 'ph-round-money', amount: order.total_price %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Mobile Card View -->
+    <div class="ph-mobile-orders">
+      {% for order in customer.orders limit: 5 %}
+        <div class="ph-mobile-order-card">
+          <div class="ph-mobile-order-row">
+            <span class="ph-mobile-label">ORDER:</span>
+            <span class="ph-mobile-value ph-order-mobile-bold">{{ order.name }}</span>
+          </div>
+          
+          <div class="ph-mobile-order-row">
+            <span class="ph-mobile-label">DATE:</span>
+            <span class="ph-mobile-value">{{ order.created_at | date: "%b %d, %Y" | upcase }}</span>
+          </div>
+          
+          <div class="ph-mobile-order-row">
+            <span class="ph-mobile-label">PAYMENT STATUS:</span>
+            <span class="ph-mobile-value">{{ order.financial_status_label | upcase }}</span>
+          </div>
+          
+          <div class="ph-mobile-order-row">
+            <span class="ph-mobile-label">TOTAL:</span>
+            <span class="ph-mobile-value">{% render 'ph-round-money', amount: order.total_price %}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="ph-no-orders">
+      <span>BROWSE PRODUCTS.</span> NO ORDER HAS BEEN MADE YET.
+    </p>
+    <a href="{{ routes.all_products_collection_url }}" class="ph-btn-account">CONTINUE SHOPPING</a>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle navigation links in dashboard
+  document.querySelectorAll('.ph-cust-nav-link, .ph-cust-view-all-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const tabId = this.getAttribute('data-navigate-tab');
+      const mobileViewId = this.getAttribute('data-navigate-mobile');
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile && mobileViewId) {
+        // Mobile navigation
+        // Hide all mobile views
+        document.querySelectorAll('.ph-mobile-content').forEach(view => {
+          view.style.display = 'none';
+        });
+        
+        // Hide main menu
+        const mainMenu = document.getElementById('mobile-main-menu');
+        if (mainMenu) {
+          mainMenu.style.display = 'none';
+        }
+        
+        // Show selected view
+        const selectedView = document.getElementById(`mobile-${mobileViewId}-view`);
+        if (selectedView) {
+          selectedView.style.display = 'block';
+          window.history.replaceState(null, null, `#${mobileViewId}`);
+        }
+      } else if (!isMobile && tabId) {
+        // Desktop navigation
+        // Remove active class from all tabs
+        document.querySelectorAll('.ph-tab-trigger').forEach(tab => {
+          tab.classList.remove('ph-active');
+        });
+        
+        document.querySelectorAll('.ph-tab-content').forEach(content => {
+          content.classList.remove('ph-active');
+        });
+        
+        // Add active class to selected tab
+        const selectedTab = document.querySelector(`.ph-tab-trigger[data-tab="${tabId}"]`);
+        const selectedContent = document.getElementById(`${tabId}-content`);
+        
+        if (selectedTab && selectedContent) {
+          selectedTab.classList.add('ph-active');
+          selectedContent.classList.add('ph-active');
+          window.history.replaceState(null, null, `#${tabId}`);
+        }
+      }
+    });
+  });
+});
+</script>

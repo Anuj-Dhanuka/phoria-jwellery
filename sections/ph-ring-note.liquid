@@ -1,0 +1,134 @@
+<style>
+  .ph-ring-sizing-note-container {
+    width: 100%;
+  }
+  
+  .ph-ring-sizing-note-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .ph-ring-sizing-note-text {
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    max-width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-sizing-note-text:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ph-ring-sizing-note-container {
+      padding: 30px 15px;
+    }
+    
+    .ph-ring-sizing-note-text {
+      /* font-size: 12px; */
+      margin-bottom: 20px;
+    }
+  }
+</style>
+<div class="ph-ring-sizing-note-container" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="ph-ring-sizing-note-inner" style="max-width: {{ section.settings.max_width }}px;">
+    {% if section.settings.note_text_1 != blank %}
+      <div class="ph-ring-sizing-note-text">{{ section.settings.note_text_1 }}</div>
+    {% endif %}
+    
+    {% if section.settings.note_text_2 != blank %}
+      <div class="ph-ring-sizing-note-text">{{ section.settings.note_text_2 }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate each note text individually when it comes into view
+      const noteTexts = document.querySelectorAll('.ph-ring-sizing-note-text');
+      
+      noteTexts.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: index * 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Ring Note",
+  "tag": "section",
+  "class": "ph-ring-sizing-note-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "note_text_1",
+      "label": "First Note Text",
+      "default": "PLEASE ALSO NOTE THAT YOUR DOMINANT HAND WILL DIFFER ACROSS FINGER SIZING: FOR EXAMPLE YOUR RING FINGER ON YOUR LEFT HAND MIGHT BE A DIFFERENT SIZE TO YOUR RING FINGER ON YOUR RIGHT HAND."
+    },
+    {
+      "type": "textarea",
+      "id": "note_text_2",
+      "label": "Second Note Text",
+      "default": "ALL OF OUR RINGS HAVE BEEN CAREFULLY CALIBRATED TO FIT TRUE TO SIZE."
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "default": 1000,
+      "unit": "px",
+      "label": "Maximum Width"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when note text comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Ring Note"
+    }
+  ]
+}
+{% endschema %}

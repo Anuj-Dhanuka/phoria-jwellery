@@ -1,0 +1,301 @@
+<style>
+  .ph-footer{
+    width: 100%;
+    height: auto;
+    padding-bottom: 45px;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+  .ph-footer__content{
+    padding-top: 180px;
+    display: grid;
+    text-transform: uppercase;
+    grid-template-columns: 1fr 1fr;
+    -moz-column-gap: 0px;
+    column-gap: 0px;
+    grid-template-areas:
+        "shop image"
+        "content image";
+    line-height: 2.3;
+    margin-bottom: 45px;
+  }
+  .ph-footer__navItems:first-child{
+    grid-area: shop;
+  }
+  .ph-footer__navItems:nth-child(2){
+    grid-area: image;
+    width: 672px;
+    justify-self: end;
+    align-self: end;
+    max-width: 50vw;
+  }
+  .ph-footer__navItems:nth-child(3){
+    grid-area: content;
+    align-self: end;
+  }
+  .ph-footer__navItems > ul{
+    padding-left: 0;
+    margin: 0;
+    padding-bottom: 18px;
+  }
+  .ph-footer__navItems > ul:last-child{
+    padding-bottom: 0px;
+    padding-top: 27px;
+  }
+  .ph-footer__navItems > ul > li{
+    list-style: none;
+    padding-bottom: 27px;
+  }
+  .ph-footer__navItems > ul > li:last-child{
+    padding-bottom: 0;
+  }
+  .ph-footer__navItems ul li > a{
+    text-decoration: none;
+    font-family: 'PhoriaBold';
+    font-size: 10px;
+  }
+  .ph-footer__navItems ul li > a:hover{
+    color: #81847A !important
+  }
+
+  .ph-footer__secondary{
+    text-transform: uppercase;
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+  }
+
+  .ph-footer__links:first-child{
+    display: flex;
+    gap: 27px;
+  }
+  .ph-footer__links:last-child{
+    display: flex;
+    justify-content: end;
+  }
+  .ph-footer__link, .ph-footer__link a{
+    text-decoration: none;
+    font-family: 'PhoriaRegular', sans-serif;
+    font-size: 10px;
+    line-height: 2.3;
+  }
+  .ph-footer__link a:hover{
+    color: #81847A !important
+  }
+@media screen and (min-width: 1260px) {
+    .ph-footer__navItems:nth-child(2){
+        max-width: calc(33.3333vw - 36px) !important;
+    }
+}
+  @media screen and (max-width: 959px) {
+    .ph-footer{
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .ph-footer__content {
+        grid-template-areas:
+        "shop image"
+        ". image"
+        "content .";
+        margin-bottom: 36px;
+        padding-top: 144px;
+    }
+    .ph-footer__navItems > ul:first-child{
+      padding-top: 45px;
+    }
+    .ph-footer__navItems > ul > li{
+      list-style: none;
+      padding-bottom: 18px;
+    }
+    .ph-footer__navItems:nth-child(2) {
+        max-width: calc(50vw - 18px);
+    }
+    .ph-footer__navItems:nth-child(3) ul:last-child{
+      padding-top: 18px;
+    }
+    .ph-footer__secondary{
+      grid-template-columns: 1fr;
+    }
+    .ph-footer__links:first-child{
+      flex-direction: column;
+      gap: 18px;
+    }
+    .ph-footer__links:last-child{
+      justify-content: start;
+      /* margin-top: 3rem; */
+    }
+    .ph-footer__navItems:first-child{
+      padding-bottom: 45px;
+    }
+    .ph-footer__navItems > ul:last-child{
+      padding-top: 18px;
+    }
+  }
+  @media screen and (max-width: 569px) {
+    .ph-footer__content {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+        "shop"
+        "image"
+        "content";
+    }
+    .ph-footer__navItems:nth-child(2) {
+        max-width: calc(60vw - 18px);
+    }
+  }
+</style>
+
+<footer class="ph-footer">
+  <div class="ph-footer__content">
+    <div class="ph-footer__navItems">
+      <ul>
+        {% for link in linklists[section.settings.footer_link_group1].links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    {%- liquid
+      assign _footer_img = nil
+      assign _footer_img_link = '/'
+      assign _use_rings_rebuild_footer_asset = false
+      if template.name == 'collection' and template.suffix == 'rings-rebuild'
+        assign _use_rings_rebuild_footer_asset = true
+      endif
+
+      if template.name == 'product' and product.metafields.custom.footer_image
+        assign _footer_img = product.metafields.custom.footer_image
+        assign _footer_img_link = product.metafields.custom.footer_image_link | default: '/'
+      elsif template.name == 'collection' and collection.metafields.custom.footer_image
+        assign _footer_img = collection.metafields.custom.footer_image
+        assign _footer_img_link = collection.metafields.custom.footer_image_link | default: '/'
+      elsif template.name == 'page' and page.metafields.custom.footer_image
+        assign _footer_img = page.metafields.custom.footer_image
+        assign _footer_img_link = page.metafields.custom.footer_image_link | default: '/'
+      elsif section.settings.footer_img != blank
+        assign _footer_img = section.settings.footer_img
+      endif
+    -%}
+    <a href="{{ _footer_img_link }}" class="ph-footer__navItems">
+      {%- if _use_rings_rebuild_footer_asset -%}
+        <img
+          src="{{ 'phoria-rings-footer-bag.webp' | asset_url }}"
+          alt="footer image"
+          style="width: 100%; height: auto;"
+          loading="lazy"
+          width="450"
+          height="595"
+        >
+      {%- elsif _footer_img -%}
+        {{
+          _footer_img
+          | image_url: width: 450
+          | image_tag:
+            alt: 'footer image',
+            loading: 'lazy',
+            style: 'width: 100%; height: auto;',
+            widths: '300, 450, 600',
+            sizes: '(max-width: 749px) 100vw, 25vw'
+        }}
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/FOOTERXMASDEFAULT.webp" alt="footer image" style="width: 100%; height: auto;" loading="lazy" width="800" height="1053">
+      {%- endif -%}
+    </a>
+
+    <div class="ph-footer__navItems">
+      <ul>
+        {% for link in linklists[section.settings.footer_link_group2].links %}
+        <li><a href="{{ link.url }}" {% if link.url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <ul>
+        {% for link in linklists[section.settings.footer_link_group3].links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="ph-footer__secondary">
+    <div class="ph-footer__links">
+      <span class="ph-footer__link">© Phoria Jewellery 2026.</span>
+      {% for link in linklists[section.settings.footer_link_group4].links %}
+        <span class="ph-footer__link"><a href="{{ link.url }}">{{ link.title }}</a></span>
+      {% endfor %}
+    </div>
+    <div class="ph-footer__links">
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if Motion library is available
+    if (typeof Motion !== 'undefined') {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate the first nav group (shop links)
+      const footer = document.querySelector('.ph-footer');
+      if (footer) {
+      inView(footer, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: ['100px', 0] }, 
+            { duration: 0.5, easing: "ease-out" }
+          );
+        }, { once: true, amount: 0.2 });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_link_group1",
+      "label": "Footer Link Group 1",
+      "default": "footer"
+    },
+    {
+        "type": "image_picker",
+        "id": "footer_img",
+        "label": "Image",
+    },
+    {
+        "type": "url",
+        "id": "footer_img_redirection_url",
+        "label": "Image Redirection Url",
+    },
+    {
+      "type": "link_list",
+      "id": "footer_link_group2",
+      "label": "Footer Link Group 2",
+      "default": "footer"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_link_group3",
+      "label": "Footer Link Group 3",
+      "default": "footer"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_link_group4",
+      "label": "Footer Link Group 4",
+      "default": "footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when elements come into view"
+    }
+  ],
+  "presets": [{
+    "name": "Ph Footer"
+  }]
+}
+{% endschema %}

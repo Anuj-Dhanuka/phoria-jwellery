@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-login",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "overlay_opacity": 0.2
+      }
+    },
+    "login_register_hnwHXC": {
+      "type": "login-register",
+      "name": "Login/Register Tabs",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "login_register_hnwHXC"
+  ]
+}

@@ -1,0 +1,39 @@
+.page-nav:not(.active-0, .active-1) {
+  position: sticky;
+  top: 0;
+  z-index: 11;
+  background: rgb(var(--color-background));
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  transition: top 0.15s;
+}
+
+.shopify-section-header-sticky:not(.shopify-section-header-hidden) ~ main .page-nav {
+  top: var(--header-height);
+  border-color: rgb(var(--color-border));
+}
+
+.main-page-nav .section-heading {
+  margin: 0;
+}
+.main-page-nav .section-heading + .page-nav-blocks {
+  margin-top: 2rem;
+}
+.main-page-nav .page-nav-blocks {
+  display: flex;
+  gap: 1.6rem;
+}
+.main-page-nav .page-nav-blocks .page-nav__button {
+  padding: 0.8rem 2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--duration-default);
+  cursor: pointer;
+}
+.main-page-nav .page-nav-blocks .page-nav__button:hover {
+  border: 1px solid rgba(var(--color-foreground), 1);
+}
+.main-page-nav .page-nav-blocks .page-nav__button.active {
+  border: 1px solid rgba(var(--color-foreground), 1);
+}

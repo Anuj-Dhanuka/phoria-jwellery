@@ -1,0 +1,16 @@
+{%- assign dark_mode_toggle = settings.dark_mode_toggle -%}
+{%- if dark_mode_toggle -%}
+	<div class="header__scheme">
+		<button
+			class="header__toggle-scheme toggle-scheme-button link-hover-line focus-inset"
+			aria-label="{{ 'general.dark_mode.dark'}}"
+		>
+			<div class="header__toggle-scheme-item header__toggle-scheme-item--light">
+				{{- 'sections.header.dark_mode' | t -}}
+			</div>
+			<div class="header__toggle-scheme-item header__toggle-scheme-item--dark">
+				{{- 'sections.header.Light_mode' | t -}}
+			</div>
+		</button>
+	</div>
+{%- endif -%}

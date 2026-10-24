@@ -1,0 +1,964 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}" data-scheme="{{ settings.color_scheme }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#1D1D1D">
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!window.IntersectionObserver) return;
+        var seen = new WeakSet();
+        document.querySelectorAll('video[autoplay]').forEach(function (v) {
+          if (seen.has(v)) return;
+          var rect = v.getBoundingClientRect();
+          if (rect.top < window.innerHeight + 300) return;
+          seen.add(v);
+          var srcs = Array.from(v.querySelectorAll('source')).map(function (s) {
+            return { el: s, src: s.src };
+          }).filter(function (x) { return x.src; });
+          if (!srcs.length) return;
+          srcs.forEach(function (x) { x.el.removeAttribute('src'); });
+          new IntersectionObserver(function (entries, obs) {
+            if (!entries[0].isIntersecting) return;
+            obs.disconnect();
+            srcs.forEach(function (x) { x.el.src = x.src; });
+            v.load();
+            v.play().catch(function () {});
+          }, { rootMargin: '200px' }).observe(v);
+        });
+      });
+    </script>
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "n7nyohfjh0");
+    </script>
+
+    <!-- Google Tag Manager -->
+    {% comment %} <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TC4X84GB');
+    </script> {% endcomment %}
+    <!-- End Google Tag Manager -->
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    <title>{{ page_title }}</title>
+
+    {%- assign meta_description = page_description | default: shop.description -%}
+    {%- if meta_description -%}
+      <meta name="description" content="{{ meta_description | strip_html | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+    <script src="https://cdn.jsdelivr.net/npm/motion@12.42.0/dist/motion.js" defer="defer"></script>
+    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
+    {%- if settings.quickview_show or settings.add_to_cart_enabled or settings.show_on_mobile -%}
+      <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {%- liquid
+      assign body_font_ligh = settings.type_body_font | font_modify: 'weight', '300'
+      assign body_font_regular = settings.type_body_font | font_modify: 'weight', '400'
+      assign body_font_medium = settings.type_body_font | font_modify: 'weight', '500'
+      assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+      assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+      assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+      assign heading_font_italic = settings.type_header_font | font_modify: 'style', 'italic'
+    %}
+
+    {% style %}
+            {{ settings.type_header_font | font_face: font_display: 'swap' }}
+            {{ settings.type_header_font_card | font_face: font_display: 'swap' }}
+            {{ settings.type_text_font_card | font_face: font_display: 'swap' }}
+            {{ settings.type_body_font | font_face: font_display: 'swap' }}
+            {{ settings.type_subtitle_font | font_face: font_display: 'swap' }}
+            {{ settings.type_button_font | font_face: font_display: 'swap' }}
+            {{ settings.type_header_menu_font | font_face: font_display: 'swap' }}
+            {{ settings.type_footer_menu_font | font_face: font_display: 'swap' }}
+            {{ settings.type_popups_heading_font | font_face: font_display: 'swap' }}
+            {{ settings.type_popups_text_font | font_face: font_display: 'swap' }}
+            {{ body_font_ligh | font_face: font_display: 'swap' }}
+            {{ body_font_regular | font_face: font_display: 'swap' }}
+            {{ body_font_medium | font_face: font_display: 'swap' }}
+            {{ body_font_bold | font_face: font_display: 'swap' }}
+            {{ body_font_italic | font_face: font_display: 'swap' }}
+            {{ heading_font_italic | font_face: font_display: 'swap' }}
+            {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+
+            {% for scheme in settings.color_schemes -%}
+            	{% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+          {% if forloop.index == 1 -%}
+          	:root,
+          {%- endif %}
+            	[data-scheme=light] .color-{{ scheme.id }} {
+            		--color-background: {{ scheme.settings.colors_background_1.red }},{{ scheme.settings.colors_background_1.green }},{{ scheme.settings.colors_background_1.blue }};
+                --color-background-secondary: {{ scheme.settings.colors_background_2.red }},{{ scheme.settings.colors_background_2.green }},{{ scheme.settings.colors_background_2.blue }};
+            		{% if scheme.settings.background_gradient != empty %}
+            			--gradient-background: {{ scheme.settings.background_gradient }};
+            		{% else %}
+            			--gradient-background: {{ scheme.settings.colors_background_1 }};
+            		{% endif %}
+            		--color-foreground: {{ scheme.settings.colors_text.red }}, {{ scheme.settings.colors_text.green }}, {{ scheme.settings.colors_text.blue }};
+            		--color-foreground-secondary: {{ scheme.settings.colors_secondary_text.red }}, {{ scheme.settings.colors_secondary_text.green }}, {{ scheme.settings.colors_secondary_text.blue }};
+            		--color-foreground-title: {{ scheme.settings.colors_text_title.red }}, {{ scheme.settings.colors_text_title.green }}, {{ scheme.settings.colors_text_title.blue }};
+
+            		--color-button-text: {{ scheme.settings.colors_solid_button_labels.red }}, {{ scheme.settings.colors_solid_button_labels.green }}, {{ scheme.settings.colors_solid_button_labels.blue }};
+            		--color-button-text-hover: {{ scheme.settings.colors_solid_button_labels_hover.red }}, {{ scheme.settings.colors_solid_button_labels_hover.green }}, {{ scheme.settings.colors_solid_button_labels_hover.blue }};
+            		--color-button: {{ scheme.settings.colors_solid_button_background.red }}, {{ scheme.settings.colors_solid_button_background.green }}, {{ scheme.settings.colors_solid_button_background.blue }};
+            		--color-button-hover: {{ scheme.settings.colors_solid_button_background_hover.red }}, {{ scheme.settings.colors_solid_button_background_hover.green }}, {{ scheme.settings.colors_solid_button_background_hover.blue }};
+
+            		--color-button-secondary: {{ scheme.settings.colors_outline_button_labels.red }}, {{ scheme.settings.colors_outline_button_labels.green }}, {{ scheme.settings.colors_outline_button_labels.blue }};
+            		--color-button-secondary-hover: {{ scheme.settings.colors_outline_button_labels_hover.red }}, {{ scheme.settings.colors_outline_button_labels_hover.green }}, {{ scheme.settings.colors_outline_button_labels_hover.blue }};
+            		--color-button-secondary-text: {{ scheme.settings.colors_secondary_button_labels.red }}, {{ scheme.settings.colors_secondary_button_labels.green }}, {{ scheme.settings.colors_secondary_button_labels.blue }};
+            		--color-button-secondary-text-hover: {{ scheme.settings.colors_secondary_button_labels_hover.red }}, {{ scheme.settings.colors_secondary_button_labels_hover.green }}, {{ scheme.settings.colors_secondary_button_labels_hover.blue }};
+
+            		--color-button-tertiary-text: {{ scheme.settings.colors_tertiary_button_labels.red }}, {{ scheme.settings.colors_tertiary_button_labels.green }}, {{ scheme.settings.colors_tertiary_button_labels.blue }};
+            		--color-button-tertiary-text-hover: {{ scheme.settings.colors_tertiary_button_labels_hover.red }}, {{ scheme.settings.colors_tertiary_button_labels_hover.green }}, {{ scheme.settings.colors_tertiary_button_labels_hover.blue }};
+            		--color-button-tertiary: {{ scheme.settings.colors_tertiary_button_background.red }}, {{ scheme.settings.colors_tertiary_button_background.green }}, {{ scheme.settings.colors_tertiary_button_background.blue }};
+            		--color-button-tertiary-hover: {{ scheme.settings.colors_tertiary_button_background_hover.red }}, {{ scheme.settings.colors_tertiary_button_background_hover.green }}, {{ scheme.settings.colors_tertiary_button_background_hover.blue }};
+
+            		--color-overlay: {{ scheme.settings.colors_background_overlay.red }}, {{ scheme.settings.colors_background_overlay.green }}, {{ scheme.settings.colors_background_overlay.blue }};
+            		--color-border-input: {{ scheme.settings.colors_input_border.red }}, {{ scheme.settings.colors_input_border.green }}, {{ scheme.settings.colors_input_border.blue }};
+            		--color-border-input-hover: {{ scheme.settings.colors_input_hover_border.red }}, {{ scheme.settings.colors_input_hover_border.green }}, {{ scheme.settings.colors_input_hover_border.blue }};
+            		--color-background-input: {{ scheme.settings.colors_input_background.red }}, {{ scheme.settings.colors_input_background.green }}, {{ scheme.settings.colors_input_background.blue }};
+            		--color-border: {{ scheme.settings.color_border.red }}, {{ scheme.settings.color_border.green }}, {{ scheme.settings.color_border.blue }};
+            	}
+            	@media (prefers-color-scheme: light) {
+          	{% if forloop.index == 1 -%}
+                	:root,
+          	{%- endif %}
+            		[data-scheme=auto] .color-{{ scheme.id }} {
+            			--color-background: {{ scheme.settings.colors_background_1.red }},{{ scheme.settings.colors_background_1.green }},{{ scheme.settings.colors_background_1.blue }};
+                  --color-background-secondaryu: {{ scheme.settings.colors_background_2.red }},{{ scheme.settings.colors_background_2.green }},{{ scheme.settings.colors_background_2.blue }};
+            			{% if scheme.settings.background_gradient != empty %}
+            				--gradient-background: {{ scheme.settings.background_gradient }};
+            			{% else %}
+            				--gradient-background: {{ scheme.settings.colors_background_1 }};
+            			{% endif %}
+            			--color-foreground: {{ scheme.settings.colors_text.red }}, {{ scheme.settings.colors_text.green }}, {{ scheme.settings.colors_text.blue }};
+            			--color-foreground-secondary: {{ scheme.settings.colors_secondary_text.red }}, {{ scheme.settings.colors_secondary_text.green }}, {{ scheme.settings.colors_secondary_text.blue }};
+            			--color-foreground-title: {{ scheme.settings.colors_text_title.red }}, {{ scheme.settings.colors_text_title.green }}, {{ scheme.settings.colors_text_title.blue }};
+
+            			--color-button-text: {{ scheme.settings.colors_solid_button_labels.red }}, {{ scheme.settings.colors_solid_button_labels.green }}, {{ scheme.settings.colors_solid_button_labels.blue }};
+            			--color-button-text-hover: {{ scheme.settings.colors_solid_button_labels_hover.red }}, {{ scheme.settings.colors_solid_button_labels_hover.green }}, {{ scheme.settings.colors_solid_button_labels_hover.blue }};
+            			--color-button: {{ scheme.settings.colors_solid_button_background.red }}, {{ scheme.settings.colors_solid_button_background.green }}, {{ scheme.settings.colors_solid_button_background.blue }};
+            			--color-button-hover: {{ scheme.settings.colors_solid_button_background_hover.red }}, {{ scheme.settings.colors_solid_button_background_hover.green }}, {{ scheme.settings.colors_solid_button_background_hover.blue }};
+
+            			--color-button-secondary: {{ scheme.settings.colors_outline_button_labels.red }}, {{ scheme.settings.colors_outline_button_labels.green }}, {{ scheme.settings.colors_outline_button_labels.blue }};
+            			--color-button-secondary-hover: {{ scheme.settings.colors_outline_button_labels_hover.red }}, {{ scheme.settings.colors_outline_button_labels_hover.green }}, {{ scheme.settings.colors_outline_button_labels_hover.blue }};
+            			--color-button-secondary-text: {{ scheme.settings.colors_secondary_button_labels.red }}, {{ scheme.settings.colors_secondary_button_labels.green }}, {{ scheme.settings.colors_secondary_button_labels.blue }};
+            			--color-button-secondary-text-hover: {{ scheme.settings.colors_secondary_button_labels_hover.red }}, {{ scheme.settings.colors_secondary_button_labels_hover.green }}, {{ scheme.settings.colors_secondary_button_labels_hover.blue }};
+
+            			--color-button-tertiary-text: {{ scheme.settings.colors_tertiary_button_labels.red }}, {{ scheme.settings.colors_tertiary_button_labels.green }}, {{ scheme.settings.colors_tertiary_button_labels.blue }};
+            			--color-button-tertiary-text-hover: {{ scheme.settings.colors_tertiary_button_labels_hover.red }}, {{ scheme.settings.colors_tertiary_button_labels_hover.green }}, {{ scheme.settings.colors_tertiary_button_labels_hover.blue }};
+            			--color-button-tertiary: {{ scheme.settings.colors_tertiary_button_background.red }}, {{ scheme.settings.colors_tertiary_button_background.green }}, {{ scheme.settings.colors_tertiary_button_background.blue }};
+            			--color-button-tertiary-hover: {{ scheme.settings.colors_tertiary_button_background_hover.red }}, {{ scheme.settings.colors_tertiary_button_background_hover.green }}, {{ scheme.settings.colors_tertiary_button_background_hover.blue }};
+
+            			--color-overlay: {{ scheme.settings.colors_background_overlay.red }}, {{ scheme.settings.colors_background_overlay.green }}, {{ scheme.settings.colors_background_overlay.blue }};
+            			--color-border-input: {{ scheme.settings.colors_input_border.red }}, {{ scheme.settings.colors_input_border.green }}, {{ scheme.settings.colors_input_border.blue }};
+            			--color-border-input-hover: {{ scheme.settings.colors_input_hover_border.red }}, {{ scheme.settings.colors_input_hover_border.green }}, {{ scheme.settings.colors_input_hover_border.blue }};
+            			--color-background-input: {{ scheme.settings.colors_input_background.red }}, {{ scheme.settings.colors_input_background.green }}, {{ scheme.settings.colors_input_background.blue }};
+            			--color-border: {{ scheme.settings.color_border.red }}, {{ scheme.settings.color_border.green }}, {{ scheme.settings.color_border.blue }};
+            		}
+            	}
+            {% endfor %}
+
+            {{ scheme_classes | prepend: 'body' }} {
+            color: rgba(var(--color-foreground));
+            /*background-color: rgb(var(--color-background));*/
+            background: rgb(var(--color-background));
+           background: var(--gradient-background);
+            background-attachment: fixed;
+            }
+              @font-face {
+                font-family: 'PhoriaRegular';
+                src: url('https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria_regular-webfont.woff2?v=1746261159') format('woff2'),
+                font-weight: 400;
+                font-style: normal;
+                font-display: swap;
+              }
+              @font-face {
+                font-family: 'PhoriaBold';
+                src: url('https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria_bold-webfont.woff2?v=1746261317') format('woff2'),
+                font-weight: 400;
+                font-style: normal;
+                font-display: swap;
+              }
+              @font-face {
+                font-family: 'PhoriaTight';
+                src: url('{{ "PHORIA_TIGHT_30.ttf" | asset_url }}') format('truetype');
+                font-weight: 400;
+                font-style: normal;
+                font-display: swap;
+              }
+
+            :root {
+            	--announcement-height: 0px;
+            	--header-height: 0px;
+            	--breadcrumbs-height: 0px;
+            	--spaced-section: 5rem;
+
+      		--border-radius-media: {{ settings.media_border_radius }}px;
+
+            	/* --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}; */
+            	--font-body-family: "PhoriaRegular", {{ settings.type_body_font.fallback_families }};
+            	--font-body-style: {{ settings.type_body_font.style }};
+            	--font-body-weight: {{ settings.type_body_font.weight }};
+
+            	--font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+            	--font-body-second-scale: {{ settings.body_second_scale | divided_by: 100.0 }};
+            	--font-body-line-height: {{ settings.type_body_line_height }};
+
+            	--font-heading-family: "PhoriaBold", {{ settings.type_header_font.fallback_families }};
+            	--font-heading-style: {{ settings.type_header_font.style }};
+            	--font-heading-weight: {{ settings.type_header_font.weight }};
+            	--font-heading-letter-spacing: {{ settings.type_header_letter_spacing }}em;
+            	--font-heading-line-height: {{ settings.type_header_line_height }};
+
+            	/* --font-subtitle-family: {{ settings.type_subtitle_font.family }}, {{ settings.type_subtitle_font.fallback_families }}; */
+            	--font-subtitle-family: "PhoriaSemiBold", {{ settings.type_subtitle_font.fallback_families }};
+            	--font-subtitle-style: {{ settings.type_subtitle_font.style }};
+            	--font-subtitle-weight: {{ settings.type_subtitle_font.weight }};
+            	--font-subtitle-text-transform: {{ settings.subtitle_text_transform }};
+            	--font-subtitle-scale: {{ settings.subtitle_scale | divided_by: 100.0 }};
+
+            	--font-heading-h1-scale: {{ settings.heading_h1_scale | divided_by: 100.0 }};
+            	--font-heading-h2-scale: {{ settings.heading_h2_scale | divided_by: 100.0 }};
+            	--font-heading-h3-scale: {{ settings.heading_h3_scale | divided_by: 100.0 }};
+
+            	/* --font-heading-card-family: {{ settings.type_header_font_card.family }}, {{ settings.type_header_font_card.fallback_families }}; */
+            	--font-heading-card-family: "PhoriaRegular", {{ settings.type_header_font_card.fallback_families }};
+            	--font-heading-card-style: {{ settings.type_header_font_card.style }};
+            	--font-heading-card-weight: {{ settings.type_header_font_card.weight }};
+            	/* --font-text-card-family: {{ settings.type_text_font_card.family }}, {{ settings.type_text_font_card.fallback_families }}; */
+            	--font-text-card-family: "PhoriaRegular", {{ settings.type_text_font_card.fallback_families }};
+            	--font-text-card-style: {{ settings.type_text_font_card.style }};
+            	--font-text-card-weight: {{ settings.type_text_font_card.weight }};
+            	--font-heading-card-letter-spacing: {{ settings.heading_card_letter_spacing }}em;
+
+
+            	--font-heading-card-scale: {{ settings.heading_scale_card | divided_by: 100.0 }};
+            	--font-text-card-scale: {{ settings.text_scale_card | divided_by: 100.0 }};
+
+            	/* --font-button-family: {{ settings.type_button_font.family }}, {{ settings.type_button_font.fallback_families }}; */
+            	--font-button-family: "PhoriaBold", {{ settings.type_button_font.fallback_families }};
+            	--font-button-style: {{ settings.type_button_font.style }};
+            	--font-button-weight: {{ settings.type_button_font.weight }};
+            	--font-button-text-transform: {{ settings.button_text_transform }};
+            	--font-button-scale: {{ settings.button_scale | divided_by: 100.0 }};
+
+            	/* --font-button-family: {{ settings.type_button_font.family }}, {{ settings.type_button_font.fallback_families }}; */
+            	--font-button-family: "PhoriaBold", {{ settings.type_button_font.fallback_families }};
+            	--font-button-style: {{ settings.type_button_font.style }};
+            	--font-button-weight: {{ settings.type_button_font.weight }};
+            	--font-button-text-transform: {{ settings.button_text_transform }};
+            	--font-button-letter-spacing: {{ settings.button_letter_spacing }}em;
+            	--font-subtitle-letter-spacing: {{ settings.subtitle_letter_spacing }}em;;
+
+            	/* --font-header-menu-family: {{ settings.type_header_menu_font.family }}, {{ settings.type_header_menu_font.fallback_families }}; */
+            	--font-header-menu-family: "PhoriaBold", {{ settings.type_header_menu_font.fallback_families }};
+            	--font-header-menu-style: {{ settings.type_header_menu_font.style }};
+            	--font-header-menu-weight: {{ settings.type_header_menu_font.weight }};
+            	--font-header-menu-scale: {{ settings.header_menu_scale | divided_by: 100.0 }};
+            	--font-header-menu-letter-spacing: {{ settings.type_header_menu_letter_spacing }}em;
+            	--font-header-menu-text-transform: {{ settings.header_menu_text_transform }};
+
+            	/* --font-footer-menu-family: {{ settings.type_footer_menu_font.family }}, {{ settings.type_footer_menu_font.fallback_families }}; */
+            	--font-footer-menu-family: "PhoriaBold", {{ settings.type_footer_menu_font.fallback_families }};
+            	--font-footer-menu-style: {{ settings.type_footer_menu_font.style }};
+            	--font-footer-menu-weight: {{ settings.type_footer_menu_font.weight }};
+              --font-footer-menu-scale: {{ settings.header_footer_menu_scale | divided_by: 100.0 }};
+              --font-footer-menu-letter-spacing: {{ settings.type_footer_menu_letter_spacing }}em;
+            	--font-footer-menu-text-transform: {{ settings.footer_menu_text_transform }};
+
+            	/* --font-popups-heading-family: {{ settings.type_popups_heading_font.family }}, {{ settings.type_popups_heading_font.fallback_families }}; */
+            	--font-popups-heading-family: "PhoriaRegular", {{ settings.type_popups_heading_font.fallback_families }};
+              --font-popups-heading-style: {{ settings.type_popups_heading_font.style }};
+              --font-popups-heading-weight: {{ settings.type_popups_heading_font.weight }};
+              /* --font-popups-text-family: {{ settings.type_popups_text_font.family }}, {{ settings.type_popups_text_font.fallback_families }}; */
+              --font-popups-text-family: "PhoriaRegular", {{ settings.type_popups_text_font.fallback_families }};
+              --font-popups-text-style: {{ settings.type_popups_text_font.style }};
+              --font-popups-text-weight: {{ settings.type_popups_text_font.weight }};
+              --font-popup-heading-scale: {{ settings.popup_heading_scale | divided_by: 100.0 }};
+              --font-popup-desc-scale: {{ settings.popup_desc_scale | divided_by: 100.0 }};
+              --font-popup-text-scale: {{ settings.popup_text_scale | divided_by: 100.0 }};
+              --font-notification-heading-scale: {{ settings.notification_heading_scale | divided_by: 100.0 }};
+              --font-notification-text-scale: {{ settings.notification_text_scale | divided_by: 100.0 }};
+
+            	--border-radius-button: {{ settings.button_border_radius }}px;
+            	--payment-terms-background-color: {{ settings.colors_background_1 }};
+            	--color-card-price-new: {{ settings.card_new_price_color.red }}, {{ settings.card_new_price_color.green }}, {{ settings.card_new_price_color.blue }};
+            	--color-card-price-old: {{ settings.card_old_price_color.red }}, {{ settings.card_old_price_color.green }}, {{ settings.card_old_price_color.blue }};
+              --color-badge-sale-background: {{ settings.badge_sale_background_color.red }}, {{ settings.badge_sale_background_color.green }}, {{ settings.badge_sale_background_color.blue }};
+          	--color-badge-sale-text: {{ settings.badge_sale_text_color.red }}, {{ settings.badge_sale_text_color.green }}, {{ settings.badge_sale_text_color.blue }};
+              --color-badge-soldout-background: {{ settings.badge_soldout_background_color.red }}, {{ settings.badge_soldout_background_color.green }}, {{ settings.badge_soldout_background_color.blue }};
+              --color-badge-soldout-text: {{ settings.badge_soldout_text_color.red }}, {{ settings.badge_soldout_text_color.green }}, {{ settings.badge_soldout_text_color.blue }};
+              --color-badge-custom-background: {{ settings.badge_custom_background_color.red }}, {{ settings.badge_custom_background_color.green }}, {{ settings.badge_custom_background_color.blue }};
+              --color-badge-custom-text: {{ settings.badge_custom_text_color.red }}, {{ settings.badge_custom_text_color.green }}, {{ settings.badge_custom_text_color.blue }};
+              --color-product-card-slider-control: {{ settings.product_slider_control_color.red }}, {{ settings.product_slider_control_color.green }}, {{ settings.product_slider_control_color.blue }};
+            }
+
+            @media screen and (min-width: 990px) {
+            	:root {
+            		--spaced-section: 16rem;
+            	}
+            }
+
+            *,
+            *::before,
+            *::after {
+              box-sizing: inherit;
+            }
+
+            html {
+              box-sizing: border-box;
+              font-size: 10px;
+              height: 100%;
+            }
+
+            body {
+              position: relative;
+              display: grid;
+              grid-template-rows: auto auto 1fr auto;
+              grid-template-columns: 100%;
+              min-height: 100%;
+              margin: 0;
+              font-size: calc(var(--font-body-scale) * 1rem);
+              line-height: var(--font-body-line-height);
+              font-family: var(--font-body-family);
+              font-style: var(--font-body-style);
+              font-weight: var(--font-body-weight);
+              overflow-x: hidden;
+              text-transform: uppercase !important;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
+         #custom__cursor{
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0ms 300ms;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 999999;
+            mix-blend-mode: difference;
+          }
+      .drawer.active .drawer__inner{
+        outline: none;
+      }
+      .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept, .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline, .shopify-pc__banner__btn-manage-prefs span{
+        text-transform: uppercase !important;
+      }
+      .shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs{
+        order: 3;
+        flex-basis: 100%;
+        font-size: 10px;
+      }
+      .shopify-pc__banner__dialog{
+        max-width: 400px !important;
+        padding: 15px 20px !important;
+        text-align: center !important;
+        bottom: 36px !important;
+        right: 36px !important;
+        z-index: 2147483647 !important;
+        pointer-events: auto !important;
+        -webkit-transform: translateZ(0);
+      }
+      .shopify-pc__banner__dialog p{
+        font-size: 10px !important;
+        line-height: 2.3 !important;
+      }
+      .shopify-pc__banner__dialog a{
+        font-family: 'PhoriaBold';
+        text-decoration: none !important;
+      }
+      .shopify-pc__banner__btns{
+        display: block !important;
+        text-align: center !important;
+        font-family: 'PhoriaBold' !important;
+      }
+      .shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept, .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline{
+        font-size: 15px !important;
+        margin: 4px 3px !important;
+        pointer-events: auto !important;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .shopify-pc__banner__dialog button,
+      .shopify-pc__banner__dialog a {
+        position: relative;
+        z-index: 1;
+      }
+      .shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline{
+        background: #1d1d1d !important;
+        color: #fff !important;
+        border: 0 !important;
+      }
+      .shopify-pc__banner__btn-decline:after{
+        background-color: #1d1d1d !important;
+      }
+      
+      /* slider image customization */
+        /* @media screen and (max-width: 989px) and (min-width: 750px) {
+          .slideshow__image {
+            object-position: 70%;
+          }
+        } */
+        @media (orientation: portrait) {
+          .slideshow__image {
+            object-position: 70%;
+          }
+        }
+      /* -------------------------- */
+      @media screen and (max-width: 549px){
+        .shopify-pc__banner__dialog{
+          bottom: 0px !important;
+          right: 0px !important;
+          margin: 18px;
+        }
+      }
+      .ph-menu__drawer.right.open {
+    box-shadow: 0 50px 50px -30px rgba(0, 0, 0, 0.2), 0 30px 50px 0 rgba(0, 0, 0, 0.15);
+    transform: translateX(0);
+    pointer-events: all;
+    visibility: visible;
+}
+    {% endstyle %}
+    {% render 'color-scheme-vars' %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'product' -%}
+      {{ 'ph-sticky-mobile-title-override.css' | asset_url | stylesheet_tag }}
+      {{ 'ph-pdp-desktop-revert.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'ph-sticky-bundle-size-dropdown.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%- if settings.enable_styles -%}
+      {{ 'section-reviews.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- endif -%}
+    {%- if settings.predictive_search_enabled -%}
+      <link
+        rel="stylesheet"
+        href="{{ 'component-predictive-search.css' | asset_url }}"
+        media="print"
+        onload="this.media='all'"
+      >
+    {%- endif -%}
+
+    {%- if settings.quickview_show or settings.show_on_mobile -%}
+      <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="all">
+      <link
+        rel="preload"
+        href="{{ 'quick-add.css' | asset_url }}"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+      >
+    {%- endif -%}
+
+    {%- unless settings.type_body_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
+    <link rel="preload" as="font" href="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria_bold-webfont.woff2?v=1746261317" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria_regular-webfont.woff2?v=1746261159" type="font/woff2" crossorigin>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+
+    <script src="{{ 'jquery-3.6.0.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'popup.js' | asset_url }}" defer="defer"></script>
+    {% if settings.home_page_slider and template.name == 'index' %}
+      <script src="{{ 'slider-demo.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+    {% if settings.show_back_to_top %}
+      <script src="{{ 'scroll-top.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    <script>
+      let cscoDarkMode = {};
+
+      (function () {
+        const body = document.querySelector('html[data-scheme]');
+
+        cscoDarkMode = {
+          init: function (e) {
+            this.initMode(e);
+            window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
+              this.initMode(e);
+            });
+
+            window.addEventListener('load', () => {
+              const toggleBtns = document.querySelectorAll('.header__toggle-scheme');
+              toggleBtns.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                  e.preventDefault();
+
+                  if ('auto' === body.getAttribute('data-scheme')) {
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      cscoDarkMode.changeScheme('light', true);
+                    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+                      cscoDarkMode.changeScheme('dark', true);
+                    }
+                  } else {
+                    if ('dark' === body.getAttribute('data-scheme')) {
+                      cscoDarkMode.changeScheme('light', true);
+                    } else {
+                      cscoDarkMode.changeScheme('dark', true);
+                    }
+                  }
+                });
+              });
+            });
+          },
+          initMode: function (e) {
+            let siteScheme = false;
+            switch (
+              '{{ settings.color_scheme }}'
+            ) {
+              case 'dark':
+                siteScheme = 'dark';
+                break;
+              case 'light':
+                siteScheme = 'light';
+                break;
+              case 'system':
+                siteScheme = 'auto';
+                break;
+            }
+            if ('{{ settings.dark_mode_toggle }}') {
+              // Field. Enable dark/light mode toggle.
+              if ('light' === localStorage.getItem('_color_schema')) {
+                siteScheme = 'light';
+              }
+              if ('dark' === localStorage.getItem('_color_schema')) {
+                siteScheme = 'dark';
+              }
+            }
+            if (siteScheme && siteScheme !== body.getAttribute('data-scheme')) {
+              this.changeScheme(siteScheme, false);
+            }
+          },
+          changeScheme: function (siteScheme, cookie) {
+            body.classList.add('scheme-toggled');
+            body.setAttribute('data-scheme', siteScheme);
+            if (cookie) {
+              localStorage.setItem('_color_schema', siteScheme);
+            }
+            setTimeout(() => {
+              body.classList.remove('scheme-toggled');
+            }, 100);
+          },
+        };
+      })();
+
+      cscoDarkMode.init();
+
+      document.addEventListener('shopify:section:load', function () {
+        setTimeout(() => {
+          cscoDarkMode.init();
+        }, 100);
+      });
+    </script>
+
+    {%- comment -%} Disable accelerated checkout buttons (Shop Pay / Buy it now / etc.) site-wide {%- endcomment -%}
+    <style>
+      shop-pay-button,
+      shop-pay-wallet-button,
+      shopify-accelerated-checkout,
+      shopify-accelerated-checkout-cart,
+      [data-shopify-buttoncontainer],
+      [data-shopify="payment-button"],
+      .shopify-payment-button,
+      .shopify-payment-button__button,
+      .shopify-payment-button__button--branded,
+      .shopify-payment-button__button--unbranded,
+      .shopify-payment-button__button--branded-shop-pay,
+      [data-testid="shop-pay-button"],
+      .shop-pay-button-container,
+      .product-form__checkout,
+      .ph-pdp-wallet-buttons {
+        display: none !important;
+      }
+    </style>
+    <script>
+      (function () {
+        var sels = 'shop-pay-button, shop-pay-wallet-button, shopify-accelerated-checkout, shopify-accelerated-checkout-cart, [data-shopify-buttoncontainer], [data-shopify="payment-button"], .shopify-payment-button, .shopify-payment-button__button, .shopify-payment-button__button--branded, .shopify-payment-button__button--unbranded, .shopify-payment-button__button--branded-shop-pay, [data-testid="shop-pay-button"], .shop-pay-button-container, .product-form__checkout, .ph-pdp-wallet-buttons';
+        function nuke() {
+          document.querySelectorAll(sels).forEach(function (el) {
+            el.style.display = 'none';
+            el.setAttribute('aria-hidden', 'true');
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', nuke);
+        } else {
+          nuke();
+        }
+        window.addEventListener('load', nuke);
+        new MutationObserver(nuke).observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
+  </head>
+
+  <body class="template-{{ template.name }} template-{{ template | replace: '.', '-' }}">
+    <script>
+      (function () {
+        if (window.location.pathname !== '/localization') return;
+        var fallback = '/';
+        if (document.referrer) {
+          try {
+            var ref = new URL(document.referrer);
+            if (ref.origin === window.location.origin && ref.pathname !== '/localization') {
+              fallback = ref.pathname + ref.search + ref.hash;
+            }
+          } catch (e) {}
+        }
+        window.location.replace(fallback);
+      })();
+    </script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TC4X84GB"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a class="skip-to-content-link button button--primary visually-hidden" href="#MainContent">
+      <span> {{ 'accessibility.skip_to_text' | t }} </span>
+    </a>
+
+    {% sections 'header-group' %}
+    {% sections 'overlay-group' %}
+
+    <main
+      id="MainContent"
+      class="content-for-layout focus-none {% if settings.home_page_slider and template.name == "index" %} home_page_slider {% endif %}"
+      role="main"
+      tabindex="-1"
+    >
+      {% if settings.home_page_slider and template.name == 'index' %}
+        <div class="swiper slider-demo">
+          <div class="swiper-wrapper slider-demo-wrapper">
+      {% endif %}
+      {{ content_for_layout }}
+
+      {% if settings.home_page_slider and template.name == 'index' %}
+        {% sections 'footer-group' %}
+        </div>
+        </div>
+      {% endif %}
+    </main>
+    {% if settings.show_breadcrumbs %}
+      {% render 'breadcrumbs' %}
+    {% endif %}
+    {% if settings.home_page_slider == false or template.name != 'index' %}
+      {% sections 'footer-group' %}
+    {% endif %}
+
+    {% if settings.show_back_to_top %}
+      {% comment %}{% render 'scroll-top' %}{% endcomment %}
+      {% render 'back-to-top' %}
+    {% endif %}
+
+    {%- if request.page_type != 'cart' and settings.cart_type == 'drawer' -%}
+      {%- render 'cart-drawer' -%}
+    {%- endif -%}
+
+    {% render 'search-modal' %}
+
+    {%- if request.page_type != 'customers/account' and settings.account_type == 'drawer' -%}
+      {% render 'acoount-modal' %}
+    {%- endif -%}
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+    </ul>
+
+    <script>
+      {% capture content %}{% include 'quickview' %}{% endcapture %}
+      let content = {{ content | json }};
+    </script>
+
+    <script>
+      
+			window.routes = {
+				cart_add_url: '{{ routes.cart_add_url }}',
+				cart_change_url: '{{ routes.cart_change_url }}',
+				cart_update_url: '{{ routes.cart_update_url }}',
+				cart_url: '{{ routes.cart_url }}',
+				predictive_search_url: '{{ routes.predictive_search_url }}'
+			};
+
+			window.cartStrings = {
+				error: `{{ 'sections.cart.cart_error' | t }}`,
+				quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t }}`,
+				empty: `{{ 'general.cart.empty_cart' | t }}`,
+				shop_now: `{{ 'customer.account.account_button_shop' | t }}`,
+				collections_url: `{{ routes.collections_url | sort_by: 'best-selling' }}`
+			}
+
+			window.variantStrings = {
+				addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+				soldOut: `{{ 'products.product.sold_out' | t }}`,
+				unavailable: `{{ 'products.product.unavailable' | t }}`,
+        unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`
+			}
+
+			window.theme = {
+				moneyFormat: {{ shop.money_format | json }},
+				moneyFormatNoDecimals: {{ shop.money_without_trailing_zeros_format | json }},
+				quickviewMore: `{{ 'general.card.view__full' | t }}`,
+                reviews: `{{ 'products.product.reviews' | t }}`
+			}
+    </script>
+
+    {% comment %} commented the default search that works with default header provided by Madrid theme {% endcomment %}
+    {% comment %}
+      {%- if settings.predictive_search_enabled -%}
+        <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+    {% endcomment %}
+
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        // Find all links in the footer
+        const footerLinks = document.querySelectorAll('.ph-footer a');
+
+        // Look for any link with text "VIP ACCESS"
+        footerLinks.forEach(function(link) {
+          if (link.textContent.trim() === "VIP ACCESS") {
+            // Add the klaviyo_form_trigger class to the link
+            link.classList.add('klaviyo_form_trigger');
+
+            // Add the klaviyo form trigger event listener to this specific link
+            link.addEventListener('click', function(e) {
+              e.preventDefault(); // Prevent the default link behavior
+              window._klOnsite = window._klOnsite || [];
+              window._klOnsite.push(['openForm', 'TdgdaL']);
+            });
+          }
+        });
+      });
+    </script>
+
+    <script src="{{ 'custom-cursor.js' | asset_url }}" defer="defer"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          if (['127.0.0.1', 'localhost'].includes(window.location.hostname)) return;
+          if (window.location.pathname === '/localization') return;
+          var detectedCountry = (window.Shopify && window.Shopify.country ? String(window.Shopify.country) : '').toUpperCase();
+          if (!/^[A-Z]{2}$/.test(detectedCountry)) return;
+
+          var storageKey = 'ph_market_country_applied_v1';
+          if (window.sessionStorage && sessionStorage.getItem(storageKey) === detectedCountry) return;
+
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = '/localization';
+          form.style.display = 'none';
+
+          var safePath = window.location.pathname === '/localization' ? '/' : window.location.pathname;
+          var fields = {
+            form_type: 'localization',
+            utf8: '✓',
+            _method: 'put',
+            country_code: detectedCountry,
+            return_to: safePath + window.location.search + window.location.hash
+          };
+
+          Object.keys(fields).forEach(function (name) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = fields[name];
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          if (window.sessionStorage) sessionStorage.setItem(storageKey, detectedCountry);
+          form.submit();
+        } catch (error) {
+          // no-op: fallback is default Shopify market/currency
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const headingTokens = new Set([
+          'specs',
+          'features',
+          'composition',
+          'materials',
+          'necklace chains',
+          'bracelet chains',
+          'details'
+        ]);
+
+        document.querySelectorAll('.ph-pdp-accordion-content p').forEach((paragraph) => {
+          const text = (paragraph.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+          if (!text) return;
+          if (headingTokens.has(text)) {
+            paragraph.classList.add('ph-pdp-accordion-subheading');
+          }
+        });
+      });
+    </script>
+    {% if request.page_type == 'product' and product and product.handle != 'gift-card' %}
+      {% assign collection_handles = product.collections | map: 'handle' %}
+      {% assign is_name_drop_collection = false %}
+      {% for product_collection in product.collections %}
+        {% assign collection_title_normalized = product_collection.title | downcase | strip | replace: '-', ' ' %}
+        {% assign collection_handle_normalized = product_collection.handle | downcase | strip %}
+        {% assign collection_id_string = product_collection.id | append: '' %}
+        {% if collection_handle_normalized == 'the-name-drop' or collection_id_string == '571383054602' or collection_title_normalized contains 'the name drop' %}
+          {% assign is_name_drop_collection = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if collection_handles contains 'crystallised-collection' or collection_handles contains 'crystallise-collection' %}
+        {% render 'ph-prsize-chart' %}
+      {% elsif is_name_drop_collection %}
+        {% render 'ph-lcsize-chart' %}
+      {% else %}
+        {% render 'ph-size-chart' %}
+      {% endif %}
+    {% endif %}
+
+    {% comment %}
+      {% if request.path contains '/pages/we-will-come-back-soon' %}
+       <script> window.location.href = "/"; </script>
+      {% endif %}
+    {% endcomment %}
+
+    <script>
+      var _phShopCurrency = '{{ shop.currency }}';
+
+      (function() {
+        function phFormatPresentmentCents(presentmentCents, currency) {
+          var roundedSmallest = Math.round(presentmentCents / 100) * 100;
+          var amount = roundedSmallest / 100;
+          try {
+            var formatted = new Intl.NumberFormat('en', {
+              style: 'currency',
+              currency: currency,
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0
+            }).format(amount);
+            if (currency.toUpperCase() === 'INR') {
+              formatted = formatted.replace('₹', 'RS, ');
+            }
+            return formatted.replace(/\./g, ',');
+          } catch (e) {
+            return amount.toLocaleString();
+          }
+        }
+
+        window.phFormatManualPrice = function(baseCents, rate, currency) {
+          var convertedSmallest = Math.round(baseCents * rate);
+          return phFormatPresentmentCents(convertedSmallest, currency || 'INR');
+        };
+
+        function phUpdateNodes(el, text) {
+          el.querySelectorAll('.price-item--regular, .price-item, .ph-search-product-price, .ph-search-product-compare-price').forEach(function(node) {
+            node.textContent = text;
+          });
+        }
+
+        window.phVariantJsonCache = window.phVariantJsonCache || {};
+        window.phFetchVariantJson = window.phFetchVariantJson || function(variantId) {
+          var id = String(variantId || '').trim();
+          if (!id) return Promise.resolve(null);
+          if (!window.phVariantJsonCache[id]) {
+            window.phVariantJsonCache[id] = fetch('/variants/' + id + '.js').then(function(response) {
+              if (!response.ok) return null;
+              return response.json();
+            }).catch(function() {
+              return null;
+            });
+          }
+          return window.phVariantJsonCache[id];
+        };
+
+        function convertManualPriceCards() {
+          var shopCurrency = window._phShopCurrency;
+          var currency = window.Shopify && window.Shopify.currency && window.Shopify.currency.active;
+          var rate = parseFloat((window.Shopify && window.Shopify.currency && window.Shopify.currency.rate) || '1');
+          if (!currency || !isFinite(rate) || rate <= 0) return;
+          if (currency.toUpperCase() === (shopCurrency || '').toUpperCase()) return;
+
+          document.querySelectorAll('[data-ph-manual-base-cents]:not([data-ph-converted])').forEach(function(el) {
+            var baseCents = parseInt(el.getAttribute('data-ph-manual-base-cents') || '0', 10);
+            if (!baseCents) return;
+            el.setAttribute('data-ph-converted', '1');
+
+            var variantId = el.getAttribute('data-ph-variant-id');
+            if (variantId) {
+              window.phFetchVariantJson(variantId)
+                .then(function(data) {
+                  var presentmentCents = data && data.price;
+                  var text = (presentmentCents && presentmentCents > 0)
+                    ? phFormatPresentmentCents(presentmentCents, currency)
+                    : window.phFormatManualPrice(baseCents, rate, currency);
+                  phUpdateNodes(el, text);
+                })
+                .catch(function() {
+                  phUpdateNodes(el, window.phFormatManualPrice(baseCents, rate, currency));
+                });
+            } else {
+              phUpdateNodes(el, window.phFormatManualPrice(baseCents, rate, currency));
+            }
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', convertManualPriceCards);
+        } else {
+          convertManualPriceCards();
+        }
+        setTimeout(convertManualPriceCards, 800);
+      })();
+    </script>
+    <script>
+      document.querySelectorAll('video img:not([alt])').forEach(function(img) { img.setAttribute('alt', ''); });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<script>
+  (function () {
+    const initOverlay = (section) => {
+      const header = document.querySelector('.shopify-section-header');
+      const main = document.querySelector('main');
+      const breadcrumbs = document.querySelector('.breadcrumbs-wrapper');
+      if (main.querySelectorAll('.shopify-section')[0] === section && 
+      !main.querySelectorAll(".shopify-section")[0]?.classList.contains("not-margin")) {
+        header.classList.add('color-background-1', 'color-background-2');
+        if (breadcrumbs) {
+          breadcrumbs.classList.add('color-background-2');
+        }
+      }
+      else {
+        header.classList.remove('color-background-1', 'color-background-2');
+      }
+    };
+
+    const currentSection = document.currentScript.parentElement;
+    initOverlay(currentSection);
+
+    document.addEventListener('shopify:section:load', function (section) {
+      initOverlay(section.target);
+    });
+
+    document.addEventListener('shopify:section:reorder', function (section) {
+      initOverlay(section.target);
+    });
+  })();
+</script>

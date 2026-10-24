@@ -1,0 +1,310 @@
+{% comment %}
+  Account Details Tab Snippet - ph-cust-account-details-snippet.liquid
+  Usage: {% render 'ph-cust-account-details-snippet' %}
+{% endcomment %}
+<style>
+  .ph-cust-account-info-section{
+    margin-top: 18px;
+  }
+  
+  .ph-cust-marketing-section{
+    margin-top: 54px;
+  }
+  
+  .ph-cust-section-title, .ph-cust-account-info-tab-title {
+    font-size: 1.25vw;
+    font-family: "PhoriaBold";
+    margin: 0;
+    margin-left: -0.15vw !important;
+  }
+  
+  .ph-cust-account-info-row {
+    display: flex;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .ph-cust-account-info-column {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 20px;
+  }
+  
+  .ph-cust-account-info-column.full-width {
+    flex-basis: 100%;
+  }
+  
+  .ph-cust-account-info-column label {
+    display: block;
+    font-size: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .ph-cust-account-info-value {
+    padding: 2px 0 8px 0;
+    font-size: 10px;
+  }
+  
+  .ph-cust-form-row {
+    display: flex;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .ph-cust-form-column {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 20px;
+  }
+  
+  .ph-cust-form-column.full-width {
+    flex-basis: 100%;
+  }
+  
+  .ph-cust-form-column label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .ph-cust-checkbox-container {
+    margin: 18px 0 10px 0;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .ph-cust-custom-checkbox {
+    display: inline-block;
+  }
+
+  .ph-cust-custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .ph-cust-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 1px solid #000;
+    background-color: #fff;
+  }
+
+  .ph-cust-custom-checkbox input:checked ~ .ph-cust-checkmark:after {
+    content: "✓";
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: #000;
+  }
+
+  .ph-cust-checkbox-container label {
+    margin-left: 30px;
+    display: inline-block;
+  }
+  
+  .ph-cust-marketing-text {
+    margin-bottom: 15px;
+    font-size: 10px;
+  }
+  
+  .ph-cust-btn-account {
+    padding: 10px 20px;
+    background-color: #000;
+    font-family: "PhoriaBold";
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ph-cust-message {
+    margin-top: 15px;
+    padding: 10px;
+    font-family: "PhoriaRegular";
+    font-size: 12px;
+    display: none;
+    clear: both;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ph-cust-message.success {
+    color: #1d1d1d;
+  }
+
+  .ph-cust-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+
+@media screen and (max-width: 926px) {
+  .ph-cust-section-title,
+  .ph-cust-account-info-tab-title {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ph-cust-btn-account {
+    padding: 10px 20px;
+    background-color: #000;
+    width: 100%;
+    font-family: "PhoriaBold";
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .ph-cust-message {
+    font-size: 14px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .ph-cust-account-info-column {
+    min-width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .ph-cust-checkbox-container {
+    margin: 20px 0 15px 0;
+  }
+}
+  
+</style>
+<div class="ph-cust-account-details-container">
+  <h2 class="ph-cust-account-info-tab-title">EDIT ACCOUNT</h2>
+  
+  <div class="ph-cust-account-info-section">
+    <div class="ph-cust-account-info-row">
+      <div class="ph-cust-account-info-column">
+        <label>FIRST NAME</label>
+        <div class="ph-cust-account-info-value">{{ customer.first_name }}</div>
+      </div>
+      <div class="ph-cust-account-info-column">
+        <label>LAST NAME</label>
+        <div class="ph-cust-account-info-value">{{ customer.last_name }}</div>
+      </div>
+    </div>
+    
+    <div class="ph-cust-account-info-row">
+      <div class="ph-cust-account-info-column full-width">
+        <label>EMAIL</label>
+        <div class="ph-cust-account-info-value">{{ customer.email }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="ph-cust-marketing-section">
+    <h3 class="ph-cust-section-title">MARKETING</h3>
+    
+    <form id="klaviyo-newsletter-form">
+      <div class="ph-cust-checkbox-container">
+        <label for="KlaviyoNewsletter">
+          <div class="ph-cust-custom-checkbox">
+            <input type="checkbox" id="KlaviyoNewsletter" name="klaviyo_newsletter">
+            <span class="ph-cust-checkmark"></span>
+          </div>
+          <span class="ph-cust-checkbox-text">SUBSCRIBE TO NEWSLETTER</span>
+        </label>
+      </div>
+      
+      <div class="ph-cust-form-actions">
+        <button type="submit" class="ph-cust-btn-account">SAVE CHANGES</button>
+      </div>
+      
+      <div id="klaviyo-message" class="ph-cust-message"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const klaviyoForm = document.getElementById('klaviyo-newsletter-form');
+  const checkbox = document.getElementById('KlaviyoNewsletter');
+  
+  // Check current subscription status on page load
+  checkKlaviyoSubscription();
+  
+  function checkKlaviyoSubscription() {
+    if (typeof _learnq !== 'undefined' && '{{ customer.email }}') {
+      _learnq.push(['identify', {
+        '$email': '{{ customer.email }}',
+        '$first_name': '{{ customer.first_name }}',
+        '$last_name': '{{ customer.last_name }}'
+      }]);
+      
+      // You can check subscription status here if needed
+      // This would require additional Klaviyo API calls
+    }
+  }
+  
+  klaviyoForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const messageDiv = document.getElementById('klaviyo-message');
+    
+    if (!checkbox.checked) {
+      // Unsubscribe from newsletter
+      if (typeof _learnq !== 'undefined') {
+        _learnq.push(['unsubscribe', { email: '{{ customer.email }}' }]);
+        showMessage('You have been unsubscribed from our newsletter.', 'success');
+      } else {
+        showMessage('Please try again.', 'error');
+      }
+    } else {
+      // Subscribe to newsletter
+      if (typeof _learnq !== 'undefined') {
+        _learnq.push(['identify', {
+          '$email': '{{ customer.email }}',
+          '$first_name': '{{ customer.first_name }}',
+          '$last_name': '{{ customer.last_name }}',
+          '$consent': 'email'
+        }]);
+        
+        _learnq.push(['subscribe', {
+          email: '{{ customer.email }}',
+          first_name: '{{ customer.first_name }}',
+          last_name: '{{ customer.last_name }}'
+        }]);
+        
+        showMessage('You have been subscribed to our newsletter.', 'success');
+      } else {
+        showMessage('Please try again.', 'error');
+      }
+    }
+  });
+  
+  function showMessage(text, type) {
+    const messageDiv = document.getElementById('klaviyo-message');
+    messageDiv.textContent = text;
+    messageDiv.className = 'ph-cust-message ' + type;
+    messageDiv.style.display = 'block';
+    
+    // Force a reflow to ensure the message appears
+    messageDiv.offsetHeight;
+    
+    // Scroll to message on mobile for better visibility
+    if (window.innerWidth <= 768) {
+      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    // Hide message after 5 seconds
+    setTimeout(function() {
+      messageDiv.style.display = 'none';
+    }, 5000);
+  }
+});
+</script>

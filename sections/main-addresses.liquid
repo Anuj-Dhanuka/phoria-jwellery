@@ -1,0 +1,871 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+<script src="{{ 'input.js' | asset_url }}" defer="defer"></script>
+
+<style>
+.ph-cust-addresses-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 98px 36px 0;
+  min-height: 85vh;
+}
+
+.ph-cust-addresses-header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ph-cust-addresses-title {
+  font-size: 1.25vw;
+  font-family: "PhoriaBold";
+  margin: 0;
+  margin-left: -0.15vw !important;
+  text-transform: uppercase;
+}
+
+.ph-cust-addresses-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.ph-cust-btn-address {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #000;
+  padding: 10px 20px;
+  color: #000;
+  text-decoration: none;
+  font-size: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: "PhoriaBold";
+  transition: all 0.2s ease;
+}
+
+.ph-cust-btn-address:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.ph-cust-btn-address.primary {
+  background-color: #000;
+  color: #fff;
+}
+
+.ph-cust-btn-address.primary:hover {
+  background-color: #333;
+}
+
+.ph-cust-address-section {
+  margin-bottom: 50px;
+}
+
+.ph-cust-address-item {
+  border: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.ph-cust-address-header {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ph-cust-address-type {
+  font-size: 12px;
+  font-family: "PhoriaBold";
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ph-cust-address-default-badge {
+  background-color: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 8px;
+  text-transform: uppercase;
+  font-family: "PhoriaBold";
+}
+
+.ph-cust-address-content {
+  padding: 20px;
+}
+
+.ph-cust-address-display {
+  font-size: 10px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.ph-cust-address-display p {
+  margin: 0 0 5px 0;
+  font-family: "PhoriaRegular";
+}
+
+.ph-cust-address-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.ph-cust-address-form {
+  display: none;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+
+.ph-cust-address-form.active {
+  display: block;
+}
+
+.ph-cust-form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.ph-cust-form-column {
+  flex: 1;
+}
+
+.ph-cust-form-field {
+  margin-bottom: 15px;
+}
+
+.ph-cust-form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-family: "PhoriaBold";
+  color: #1d1d1d;
+}
+
+.ph-cust-form-field input,
+.ph-cust-form-field select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #1d1d1d;
+  font-size: 10px;
+  font-family: "PhoriaRegular";
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.ph-cust-form-field input:focus,
+.ph-cust-form-field select:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.ph-cust-checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 10px;
+}
+
+.ph-cust-custom-checkbox {
+  display: inline-block;
+}
+
+.ph-cust-custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.ph-cust-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.ph-cust-custom-checkbox input:checked ~ .ph-cust-checkmark:after {
+  content: "✓";
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #000;
+}
+
+.ph-cust-checkbox-container label {
+  margin-left: 30px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "PhoriaBold";
+}
+
+.ph-cust-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.ph-cust-no-addresses {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px solid #e5e5e5;
+  background-color: #f9f9f9;
+}
+
+.ph-cust-no-addresses h3 {
+  font-size: 18px;
+  font-family: "PhoriaBold";
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.ph-cust-no-addresses p {
+  font-size: 10px;
+  color: #666;
+  margin: 0 0 30px 0;
+  font-family: "PhoriaRegular";
+}
+
+.ph-cust-add-form {
+  display: none;
+  margin-top: 30px;
+}
+
+.ph-cust-add-form.active {
+  display: block;
+}
+
+.ph-cust-add-form-container {
+  border: 1px solid #e5e5e5;
+  background-color: #f9f9f9;
+  padding: 30px;
+}
+
+.ph-cust-add-form-title {
+  font-size: 14px;
+  font-family: "PhoriaBold";
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 926px) {
+  .ph-cust-addresses-title {
+    font-size: 18px;
+  }
+  
+  .ph-cust-addresses-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ph-cust-addresses-page {
+    padding: 60px 20px 0;
+  }
+  
+  .ph-cust-form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .ph-cust-address-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .ph-cust-address-buttons,
+  .ph-cust-form-actions {
+    flex-direction: column;
+  }
+  
+  .ph-cust-btn-address {
+    text-align: center;
+  }
+}
+</style>
+
+{%- paginate customer.addresses by 5 -%}
+  <div class="ph-cust-addresses-page">
+    
+    <!-- Header -->
+    <div class="ph-cust-addresses-header">
+      <h1 class="ph-cust-addresses-title">ADDRESSES</h1>
+      <div class="ph-cust-addresses-actions">
+        <button type="button" class="ph-cust-btn-address primary" onclick="toggleAddForm()">
+          ADD NEW ADDRESS
+        </button>
+        <a href="{{ routes.account_url }}" class="ph-cust-btn-address">
+          BACK TO ACCOUNT
+        </a>
+      </div>
+    </div>
+
+    <!-- Add New Address Form -->
+    <div class="ph-cust-add-form" id="add-address-form">
+      <div class="ph-cust-add-form-container">
+        <h2 class="ph-cust-add-form-title">ADD NEW ADDRESS</h2>
+        
+        {%- form 'customer_address', customer.new_address -%}
+          <div class="ph-cust-form-row">
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field">
+                <label for="AddressFirstNameNew">FIRST NAME *</label>
+                <input
+                  type="text"
+                  id="AddressFirstNameNew"
+                  name="address[first_name]"
+                  value="{{ form.first_name }}"
+                  autocomplete="given-name"
+                  required
+                >
+              </div>
+            </div>
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field">
+                <label for="AddressLastNameNew">LAST NAME *</label>
+                <input
+                  type="text"
+                  id="AddressLastNameNew"
+                  name="address[last_name]"
+                  value="{{ form.last_name }}"
+                  autocomplete="family-name"
+                  required
+                >
+              </div>
+            </div>
+          </div>
+          
+          <div class="ph-cust-form-field">
+            <label for="AddressCompanyNew">COMPANY</label>
+            <input
+              type="text"
+              id="AddressCompanyNew"
+              name="address[company]"
+              value="{{ form.company }}"
+              autocomplete="organization"
+            >
+          </div>
+          
+          <div class="ph-cust-form-field">
+            <label for="AddressAddress1New">ADDRESS *</label>
+            <input
+              type="text"
+              id="AddressAddress1New"
+              name="address[address1]"
+              value="{{ form.address1 }}"
+              autocomplete="address-line1"
+              required
+            >
+          </div>
+          
+          <div class="ph-cust-form-field">
+            <label for="AddressAddress2New">APARTMENT, SUITE, ETC.</label>
+            <input
+              type="text"
+              id="AddressAddress2New"
+              name="address[address2]"
+              value="{{ form.address2 }}"
+              autocomplete="address-line2"
+            >
+          </div>
+          
+          <div class="ph-cust-form-row">
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field">
+                <label for="AddressCityNew">CITY *</label>
+                <input
+                  type="text"
+                  id="AddressCityNew"
+                  name="address[city]"
+                  value="{{ form.city }}"
+                  autocomplete="address-level2"
+                  required
+                >
+              </div>
+            </div>
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field">
+                <label for="AddressCountryNew">COUNTRY *</label>
+                <select
+                  id="AddressCountryNew"
+                  name="address[country]"
+                  data-default="{{ form.country }}"
+                  autocomplete="country"
+                  required
+                >
+                  {{ all_country_option_tags }}
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="ph-cust-form-row">
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field" id="AddressProvinceContainerNew">
+                <label for="AddressProvinceNew">PROVINCE/STATE</label>
+                <select
+                  id="AddressProvinceNew"
+                  name="address[province]"
+                  data-default="{{ form.province }}"
+                  autocomplete="address-level1"
+                ></select>
+              </div>
+            </div>
+            <div class="ph-cust-form-column">
+              <div class="ph-cust-form-field">
+                <label for="AddressZipNew">POSTAL/ZIP CODE *</label>
+                <input
+                  type="text"
+                  id="AddressZipNew"
+                  name="address[zip]"
+                  value="{{ form.zip }}"
+                  autocomplete="postal-code"
+                  required
+                >
+              </div>
+            </div>
+          </div>
+          
+          <div class="ph-cust-form-field">
+            <label for="AddressPhoneNew">PHONE</label>
+            <input
+              type="tel"
+              id="AddressPhoneNew"
+              name="address[phone]"
+              value="{{ form.phone }}"
+              autocomplete="tel"
+            >
+          </div>
+          
+          <div class="ph-cust-checkbox-container">
+            <label for="address_default_address_new">
+              <div class="ph-cust-custom-checkbox">
+                {{ form.set_as_default_checkbox }}
+                <span class="ph-cust-checkmark"></span>
+              </div>
+              <span class="ph-cust-checkbox-text">SET AS DEFAULT ADDRESS</span>
+            </label>
+          </div>
+          
+          <div class="ph-cust-form-actions">
+            <button type="submit" class="ph-cust-btn-address primary">
+              ADD ADDRESS
+            </button>
+            <button type="button" class="ph-cust-btn-address" onclick="toggleAddForm()">
+              CANCEL
+            </button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+
+    <!-- Addresses List -->
+    {%- if customer.addresses_count == 0 -%}
+      <div class="ph-cust-no-addresses">
+        <h3>NO ADDRESSES SAVED</h3>
+        <p>You haven't added any addresses yet. Add your first address to make checkout faster.</p>
+        <button type="button" class="ph-cust-btn-address primary" onclick="toggleAddForm()">
+          ADD YOUR FIRST ADDRESS
+        </button>
+      </div>
+    {%- else -%}
+      <div class="ph-cust-address-section">
+        {%- for address in customer.addresses -%}
+          <div class="ph-cust-address-item">
+            <div class="ph-cust-address-header">
+              <h3 class="ph-cust-address-type">
+                {%- if address == customer.default_address -%}
+                  DEFAULT ADDRESS
+                {%- else -%}
+                  ADDRESS {{ forloop.index }}
+                {%- endif -%}
+              </h3>
+              {%- if address == customer.default_address -%}
+                <span class="ph-cust-address-default-badge">DEFAULT</span>
+              {%- endif -%}
+            </div>
+            
+            <div class="ph-cust-address-content">
+              <div class="ph-cust-address-display" id="address-display-{{ address.id }}">
+                <p><strong>{{ address.first_name }} {{ address.last_name }}</strong></p>
+                {%- if address.company != blank -%}
+                  <p>{{ address.company }}</p>
+                {%- endif -%}
+                <p>{{ address.address1 }}</p>
+                {%- if address.address2 != blank -%}
+                  <p>{{ address.address2 }}</p>
+                {%- endif -%}
+                <p>{{ address.city }}, {{ address.province_code }} {{ address.zip }}</p>
+                <p>{{ address.country }}</p>
+                {%- if address.phone != blank -%}
+                  <p>{{ address.phone }}</p>
+                {%- endif -%}
+              </div>
+              
+              <div class="ph-cust-address-buttons">
+                <button type="button" class="ph-cust-btn-address" onclick="toggleEditForm('{{ address.id }}')">
+                  EDIT
+                </button>
+                <button type="button" class="ph-cust-btn-address" onclick="deleteAddress('{{ address.url }}')">
+                  DELETE
+                </button>
+              </div>
+            </div>
+            
+            <!-- Edit Form -->
+            <div class="ph-cust-address-form" id="address-form-{{ address.id }}">
+              {%- form 'customer_address', address -%}
+                <div class="ph-cust-form-row">
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field">
+                      <label for="AddressFirstName_{{ form.id }}">FIRST NAME *</label>
+                      <input
+                        type="text"
+                        id="AddressFirstName_{{ form.id }}"
+                        name="address[first_name]"
+                        value="{{ form.first_name }}"
+                        autocomplete="given-name"
+                        required
+                      >
+                    </div>
+                  </div>
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field">
+                      <label for="AddressLastName_{{ form.id }}">LAST NAME *</label>
+                      <input
+                        type="text"
+                        id="AddressLastName_{{ form.id }}"
+                        name="address[last_name]"
+                        value="{{ form.last_name }}"
+                        autocomplete="family-name"
+                        required
+                      >
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="ph-cust-form-field">
+                  <label for="AddressCompany_{{ form.id }}">COMPANY</label>
+                  <input
+                    type="text"
+                    id="AddressCompany_{{ form.id }}"
+                    name="address[company]"
+                    value="{{ form.company }}"
+                    autocomplete="organization"
+                  >
+                </div>
+                
+                <div class="ph-cust-form-field">
+                  <label for="AddressAddress1_{{ form.id }}">ADDRESS *</label>
+                  <input
+                    type="text"
+                    id="AddressAddress1_{{ form.id }}"
+                    name="address[address1]"
+                    value="{{ form.address1 }}"
+                    autocomplete="address-line1"
+                    required
+                  >
+                </div>
+                
+                <div class="ph-cust-form-field">
+                  <label for="AddressAddress2_{{ form.id }}">APARTMENT, SUITE, ETC.</label>
+                  <input
+                    type="text"
+                    id="AddressAddress2_{{ form.id }}"
+                    name="address[address2]"
+                    value="{{ form.address2 }}"
+                    autocomplete="address-line2"
+                  >
+                </div>
+                
+                <div class="ph-cust-form-row">
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field">
+                      <label for="AddressCity_{{ form.id }}">CITY *</label>
+                      <input
+                        type="text"
+                        id="AddressCity_{{ form.id }}"
+                        name="address[city]"
+                        value="{{ form.city }}"
+                        autocomplete="address-level2"
+                        required
+                      >
+                    </div>
+                  </div>
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field">
+                      <label for="AddressCountry_{{ form.id }}">COUNTRY *</label>
+                      <select
+                        id="AddressCountry_{{ form.id }}"
+                        name="address[country]"
+                        data-address-country-select
+                        data-default="{{ form.country }}"
+                        data-form-id="{{ form.id }}"
+                        autocomplete="country"
+                        required
+                      >
+                        {{ all_country_option_tags }}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="ph-cust-form-row">
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field" id="AddressProvinceContainer_{{ form.id }}">
+                      <label for="AddressProvince_{{ form.id }}">PROVINCE/STATE</label>
+                      <select
+                        id="AddressProvince_{{ form.id }}"
+                        name="address[province]"
+                        data-default="{{ form.province }}"
+                        autocomplete="address-level1"
+                      ></select>
+                    </div>
+                  </div>
+                  <div class="ph-cust-form-column">
+                    <div class="ph-cust-form-field">
+                      <label for="AddressZip_{{ form.id }}">POSTAL/ZIP CODE *</label>
+                      <input
+                        type="text"
+                        id="AddressZip_{{ form.id }}"
+                        name="address[zip]"
+                        value="{{ form.zip }}"
+                        autocomplete="postal-code"
+                        required
+                      >
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="ph-cust-form-field">
+                  <label for="AddressPhone_{{ form.id }}">PHONE</label>
+                  <input
+                    type="tel"
+                    id="AddressPhone_{{ form.id }}"
+                    name="address[phone]"
+                    value="{{ form.phone }}"
+                    autocomplete="tel"
+                  >
+                </div>
+                
+                <div class="ph-cust-checkbox-container">
+                  <label for="address_default_address_{{ form.id }}">
+                    <div class="ph-cust-custom-checkbox">
+                      {{ form.set_as_default_checkbox }}
+                      <span class="ph-cust-checkmark"></span>
+                    </div>
+                    <span class="ph-cust-checkbox-text">SET AS DEFAULT ADDRESS</span>
+                  </label>
+                </div>
+                
+                <div class="ph-cust-form-actions">
+                  <button type="submit" class="ph-cust-btn-address primary">
+                    UPDATE ADDRESS
+                  </button>
+                  <button type="button" class="ph-cust-btn-address" onclick="toggleEditForm('{{ address.id }}')">
+                    CANCEL
+                  </button>
+                </div>
+              {%- endform -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if paginate.pages > 1 -%}
+      {%- if paginate.parts.size > 0 -%}
+        <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+          <ul role="list">
+            {%- if paginate.previous -%}
+              <li>
+                <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                  ← Previous
+                </a>
+              </li>
+            {%- endif -%}
+
+            {%- for part in paginate.parts -%}
+              <li>
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                    {{- part.title -}}
+                  </a>
+                {%- else -%}
+                  {%- if part.title == paginate.current_page -%}
+                    <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                      {{- part.title -}}
+                    </span>
+                  {%- else -%}
+                    <span>{{ part.title }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+
+            {%- if paginate.next -%}
+              <li>
+                <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                  Next →
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+<script>
+function toggleAddForm() {
+  const form = document.getElementById('add-address-form');
+  form.classList.toggle('active');
+  
+  if (form.classList.contains('active')) {
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function toggleEditForm(addressId) {
+  const form = document.getElementById('address-form-' + addressId);
+  const display = document.getElementById('address-display-' + addressId);
+  
+  form.classList.toggle('active');
+  
+  if (form.classList.contains('active')) {
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function deleteAddress(url) {
+  if (confirm('{{ "customer.addresses.delete_confirm" | t }}')) {
+    // Create a form to submit the delete request
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = url;
+    
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = '_method';
+    input.value = 'delete';
+    form.appendChild(input);
+    
+    document.body.appendChild(form);
+    form.submit();
+  }
+}
+
+window.onload = () => {
+  typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+};
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-addresses.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Some heading for empty address placeholder",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "default": "Some text for empty address placeholder",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "s",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

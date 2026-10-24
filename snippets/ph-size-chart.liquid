@@ -1,0 +1,1058 @@
+<style>
+    .ph-size__chart--overlay{
+        cursor: pointer;
+        position: fixed;
+        inset: 0;
+        z-index: 10001;
+        background-color: rgba(29, 29, 29, .26) !important;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 600ms, left 0s 600ms;
+    }
+    .ph-size__chart--overlay.open{
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), visibility 0s 0s, left 0s 0s;
+    }
+    .ph-size__chart--close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 9px;
+        cursor: pointer;
+        font-size: 10px;
+        text-transform: uppercase;
+        line-height: 17px;
+        z-index: 10002;
+        font-family: "PhoriaBold" !important;
+    }
+    .ph-size__chart{
+        max-width: 828px;
+        margin: 0 auto;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 45px 0 36px 0;
+        height: 90vh;
+        max-height: 1185px;
+        position: fixed;
+        z-index: 10002;
+        top: 50%;
+        left: 50%;
+        transform: translate(-250%, -50%);
+        visibility: hidden;
+        pointer-events: none;
+        transition: box-shadow 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    .ph-size__chart.open{
+        transform: translate(-50%, -50%);
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .ph-size__chart--content{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        overflow: auto;
+        height: 100%;
+        padding: 0 36px;
+    }
+    .ph-size__chart--content::-webkit-scrollbar{
+        width: 0px;
+    }
+    .ph-size__chart--section{
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+    }
+    .ph-size__chart--section strong{
+        font-family: 'PhoriaBold';
+    }
+    .ph-size__chart--title{
+        font-size: 1.25vw;
+        line-height: 1.2;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'PhoriaBold';
+    }
+    .ph-size__chart--desc{
+        font-size: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 2.3;
+        margin: 0;
+    }
+    .ph-size__chart--desc strong{
+        font-family: 'PhoriaBold';
+        line-height: 1.2;
+    }
+    .ph-size__chart--subtitle{
+        font-size: 12px;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'PhoriaBold';
+        margin: 0;
+        line-height: 1.2;
+    }
+    .ph-size__chart--cta{
+        font-family: 'PhoriaBold';
+        font-size: 12px;
+        text-align: center;
+        text-transform: uppercase;
+        background: #1D1D1D;
+        max-width: 215px;
+        padding: 9px 27px;
+        text-decoration: none;
+        color: #fff;
+        line-height: 2.3;
+        margin-top: -9px;
+    }
+    .ph-size__chart--content__grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        gap: 12px;
+    }
+    .ph-size__chart--content__grid.two__columns{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ph-size__chart--content__grid.one__column {
+        grid-template-columns: 1fr;
+    }
+    .ph-size__chart--grid__item{
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+    }
+    .ph-size__chart--grid__item--image{
+        width: 100%;
+        height: 100%;
+    }
+    .ph-size__chart--grid__item--image__img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .ph-size__chart--grid__item--title{
+        font-size: 12px;
+        text-transform: uppercase;
+        font-family: 'PhoriaBold';
+    }
+    .ph-size__chart--grid__item--desc{
+        font-size: 10px;
+        text-transform: uppercase;
+        line-height: 2.3;
+        margin: 0;
+    }
+    .ph-size__chart--table{
+        table-layout: fixed;
+        width: 100%;
+        border-color: #f1f2ee !important;
+        empty-cells: show;
+        border: 1px solid;
+        border-collapse: collapse;
+        border-spacing: 0;
+        text-align: center;
+        color: #1D1D1D;
+    }
+    .ph-size__chart--table .table__header {
+        font-family: "PhoriaBold" !important;
+        font-size: 10px;
+        text-align: center;
+        line-height: 2.3;
+        vertical-align: middle;
+        background-color: #d5d5d5;
+        border-color: #f1f2ee !important;
+        padding: 18px;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        text-transform: uppercase;
+        font-weight: normal !important;
+    }
+    .ph-size__chart--table .table__header.title {
+        background-color: #f1f2ee;
+        color: #1d1d1d;
+        line-height: 2.3;
+    }
+    .ph-size__chart--table .table__header:first-child, .ph-size__chart--table td:first-child {
+        border-left-width: 0;
+    }
+    .ph-size__chart--table .table__header:last-child, .ph-size__chart--table td:last-child {
+        border-right-width: 0;
+    }
+    .ph-size__chart--table td{
+        padding: 18px;
+        text-align: center;
+        line-height: 2.3;
+        vertical-align: middle;
+        border-color: #f1f2ee !important;
+        background-color: transparent;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        font-size: 10px;
+        margin: 0;
+        overflow: visible;
+        text-transform: uppercase;
+    }
+    .ph-size__chart--link__text{
+        text-decoration: none;
+        color: #1D1D1D;
+        font-family: 'PhoriaBold';
+    }
+    .ph-size__chart--necklace__diagram {
+        max-width: 700px;
+        width: 100%;
+    }
+    .ph-size__chart--waist .ph-size__chart--desc{
+        text-transform: uppercase;
+    }
+
+    .ph-neckl-diagram-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .ph-size__chart--bracelet__illustration {
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .ph-size__chart--bracelet__illustration img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+        }
+
+        .ph-brac-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .ph-brac-th {
+            background-color: #ddd;
+            padding: 15px;
+            text-align: center;
+            font-weight: normal;
+            font-family: 'PhoriaBold';
+        }
+
+        .ph-brac-td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ph-brac-chart-header {
+            background-color: #f2f2f2;
+            font-family: 'PhoriaBold';
+        }
+
+        .ph-brac-table-header {
+            background-color: #ddd;
+            padding: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-family: 'PhoriaBold';
+        }
+
+        .ph-brac-table-row {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .ph-brac-table-row:last-child {
+            border-bottom: none;
+        }
+
+        .ph-brac-row-number {
+            padding: 15px;
+            width: 40px;
+            text-align: center;
+            border-right: 1px solid #eee;
+            color: #999;
+            font-size: 10px;
+        }
+
+        .ph-brac-row-content {
+            padding: 15px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+    /* utility classes */
+    .ph-font__bold{
+      font-family: "PhoriaBold";
+    }
+    .ph-font__12{
+      font-size: 12px;
+    }
+    .ph-pb-54{
+      padding-bottom: 54px;
+    }
+    .ph-pb-45{
+      padding-bottom: 45px;
+    }
+    .ph-mt-9{
+      margin-top: 9px;
+    }
+    .ph-mt--9{
+      margin-top: -9px;
+    }
+    .ph-mt--18{
+      margin-top: -18px;
+    }
+    .ph-mt-18{
+      margin-top: 18px;
+    }
+    .ph-gap-18{
+      gap: 18px;
+    }
+    .fixed__height{
+        height: 227px;
+    }
+    .ph-aspect-ratio{
+        height: 1.57/1;
+    }
+    .fixed__height2{
+        max-height: 291px;
+    }
+    .fixed__max__width{
+        max-width: 230px;
+    }
+    .margin__auto{
+      margin: 0 auto;
+    }
+    .extra__spacing{
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+  .grid__row_gap{
+    row-gap: 36px;
+  }
+    #ph-size__chart--trigger__desktop, #ph-size__chart--trigger__mobile{
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+
+  @media screen and (min-width: 960px){
+    .fixed__max__width--vw{
+        max-width: 18vw;
+      }
+    .ph-fixed__maxwidth{
+      max-width: 230px;
+      margin: 0 auto;
+    }
+    .ph-fixed__height3{
+      height: 146px;
+    }
+  }
+
+
+    @media screen and (max-width: 960px) {
+        .ph-size__chart{
+            max-width: 90vw;
+            margin: auto;
+            width: 100%;
+           transform: translate(-140vw, -50%);
+        }
+        .ph-size__chart--content__grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+            gap: 12px;
+        }
+        .ph-size__chart--content__grid.two__columns{
+            grid-template-columns:1fr;
+        }
+        .ph-size__chart--title{
+          font-size: 18px;
+        }
+      .ph-fixed__maxwidth{
+        max-width: 350px;
+        margin: 0 auto;
+      }
+      .ph-fixed__height3{
+        height: auto;
+      }
+      #ph-size__chart--trigger__desktop{
+        display: none;
+      }
+    }
+    @media screen and (max-width: 569px) {
+        .ph-size__chart--table{
+            table-layout: auto;
+        }
+        .ph-size__chart--table .small {
+            width: 16.666%;
+        }
+        .ph-size__chart--table .wide {
+            width: 50%;
+        }
+        .ph-size__chart--table .table__header, .ph-size__chart--table td {
+        padding: 9px 5px;
+        word-break: break-word;
+        }
+    }
+</style>
+<div class="ph-size__chart--overlay"></div>
+<div class="ph-size__chart">
+  <span class="ph-size__chart--close">Close</span>
+  <div class="ph-size__chart--content"></div>
+</div>
+
+<script>
+      document.addEventListener("DOMContentLoaded", ()=>{
+        const sizeChartContent = {
+          rings: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">How to // find your ring size</div>
+                <p class="ph-size__chart--desc">There are multiple ways to check your ring size, and we want to make it as easy as possible for you to do.</p>
+            </section>
+            <section class="ph-size__chart--section">
+                <p class="ph-size__chart--subtitle">1) Check the size of your existing ring</p>
+                <p class="ph-size__chart--desc">Click on the link below, follow the instructions and print it out onto A4 paper.</p>
+                <a href="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-ring-size-guide.pdf" class="ph-size__chart--cta" target="_blank">Click for .PDF</a>
+            </section>
+            <section class="ph-size__chart--section ph-font__12"><strong>or</strong></section>
+            
+            <section class="ph-size__chart--section ph-pb-54">
+                <p class="ph-size__chart--subtitle">2) Make your own paper ring sizer</p>
+                <p class="ph-size__chart--desc">Click on the link below, follow the instructions and print it out onto A4 paper.</p>
+                <a href="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-make-your-own-paper-ring-sizer.pdf" target="_blank" class="ph-size__chart--cta">Click for .PDF</a>
+            </section>
+
+            <section class="ph-size__chart--section ph-gap-18 ph-pb-54">
+                <div class="ph-size__chart--title">Ring Styling // Choosing the finger to size</div>
+                <p class="ph-size__chart--desc ph-mt-9">Our Hookup Chain Rings are composed of 3 interconnected bands and offer adaptable styling on one, two or three fingers.</p>
+                <p class="ph-size__chart--desc">To figure out what size you are you need to figure out what finger you want to wear the ring on. If you plan on wearing the ring across multiple fingers, please specify the size of your largest finger, typically your middle or pointer finger.</p>
+                <p class="ph-size__chart--desc">It’s important to note that the ring can only be stacked on the largest finger you’ve sized.</p>
+            </section>
+            <section class="ph-size__chart--section ph-pb-45">
+                <div class="ph-size__chart--title">Hookup Chain Ring</div>
+                <div class="ph-size__chart--content__grid">
+                    <div class="ph-size__chart--grid__item">
+                        <div class="ph-size__chart--grid__item--image ph-fixed__height3 ph-fixed__maxwidth">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-hookup-chain-ring-ii-illustration-1.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <div class="ph-size__chart--grid__item--title">Stack</div>
+                        <p class="ph-size__chart--grid__item--desc">1) Wrap the connecting chain around a single finger and stack all three bands together.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item">
+                        <div class="ph-size__chart--grid__item--image ph-fixed__height3 ph-fixed__maxwidth">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-hookup-chain-ring-ii-illustration-2.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <div class="ph-size__chart--grid__item--title">Split</div>
+                        <p class="ph-size__chart--grid__item--desc">2) Separate the one band that doesn’t have a connecting annulet and place on another finger that works for you. You could wear the two connecting bands on your ring finger and the other on your pointer finger for example.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item">
+                        <div class="ph-size__chart--grid__item--image ph-fixed__height3 ph-fixed__maxwidth">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-hookup-chain-ring-ii-illustration-3.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <div class="ph-size__chart--grid__item--title">Separate</div>
+                        <p class="ph-size__chart--grid__item--desc">3) Separate the bands across three fingers, letting the connecting chain hang freely between them.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="ph-size__chart--section ph-pb-54">
+                <p class="ph-size__chart--desc">Please also note that your dominant hand will differ across finger sizing: for example your ring finger on your left hand might be a different size to your ring finger on your right hand.</p>
+                <p class="ph-size__chart--desc ph-mt--9">All of our rings have been carefully calibrated to fit true to size.</p>
+                <p class="ph-size__chart--desc ph-mt--9"> IF YOU ARE LOOKING TO STACK YOUR RINGS ON ONE FINGER WE RECOMMEND SIZING UP BY ONE UK SIZE FOR THE THIRD/FOURTH RINGS IF YOU ARE STACKING MORE THAN 2 RINGS FOR A COMFORTABLE FIT.</p>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Ring Size Conversion Chart</div>
+            </section>
+            <section class="ph-size__chart--section ph-mt--18">
+    <table class="ph-size__chart--table">
+        <thead>
+            <tr>
+                <th class="table__header small">UK</th>
+                <th class="table__header small">US</th>
+                <th class="table__header small">EU</th>
+                <th class="table__header wide">Inner Diameter (MM)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>E</td>
+                <td>2.5</td>
+                <td>44</td>
+                <td>13.67mm</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>3</td>
+                <td>44.5</td>
+                <td>14.07mm</td>
+            </tr>
+            <tr>
+                <td>G</td>
+                <td>3.5</td>
+                <td>45.5</td>
+                <td>14.48mm</td>
+            </tr>
+            <tr>
+                <td>H</td>
+                <td>4</td>
+                <td>46</td>
+                <td>14.88mm</td>
+            </tr>
+            <tr>
+                <td>I</td>
+                <td>4.5</td>
+                <td>47</td>
+                <td>15.10mm</td>
+            </tr>
+            <tr>
+                <td>J</td>
+                <td>5</td>
+                <td>48.5</td>
+                <td>15.49mm</td>
+            </tr>
+            <tr>
+                <td>K</td>
+                <td>5.5</td>
+                <td>50</td>
+                <td>15.90mm</td>
+            </tr>
+            <tr>
+                <td>L</td>
+                <td>6</td>
+                <td>51</td>
+                <td>16.31mm</td>
+            </tr>
+            <tr>
+                <td>M</td>
+                <td>6.5</td>
+                <td>52</td>
+                <td>16.71mm</td>
+            </tr>
+            <tr>
+                <td>O</td>
+                <td>7</td>
+                <td>55</td>
+                <td>17.53mm</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>7.5</td>
+                <td>56</td>
+                <td>17.93mm</td>
+            </tr>
+            <tr>
+                <td>Q</td>
+                <td>8</td>
+                <td>57</td>
+                <td>18.34mm</td>
+            </tr>
+            <tr>
+                <td>R</td>
+                <td>8.5</td>
+                <td>58.5</td>
+                <td>18.75mm</td>
+            </tr>
+            <tr>
+                <td>S</td>
+                <td>9</td>
+                <td>59.5</td>
+                <td>19.15mm</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section class="ph-size__chart--section ph-mt--9">
+                <p class="ph-size__chart--desc">If you are still unsure of your size we would be happy to send you a <strong> free ring sizer</strong>. Please send us an email to <a href="mailto:studio@phoriajewellery.com" class="ph-size__chart--link__text">studio@phoriajewellery.com</a> and we’ll take care of the rest.</p>
+            </section>
+            
+            <section class="ph-size__chart--section ph-mt-18">
+                <div class="ph-size__chart--subtitle">Styling or sizing question?</div>
+                <a href="/pages/contact" class="ph-size__chart--cta ph-mt-9" target="_blank">Contact Us</a>
+            </section>`,
+          earrings: ` <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Interchangeable + Transformable</div>
+                <p class="ph-size__chart--desc">More than just a pair of earrings, their transformative and interchangeable design means you can reimagine the ways you wear them again and again and again and again.</p>
+            </section>
+            <section class="ph-size__chart--section extra__spacing">
+                <div class="ph-size__chart--content__grid grid__row_gap">                
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-left_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As singular piercings w/o the chain.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-left_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As a singular piercing with the chain on one hoop.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-right_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As a double piercing w/o the chain.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-right_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As a double piercing with the chain on one hoop.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-right_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As a double piercing with the chain attached to both.</p>
+                    </div>
+                    <div class="ph-size__chart--grid__item fixed__max__width margin__auto">
+                        <div class="ph-size__chart--grid__item--image fixed__max__width--vw margin__auto fixed_aspect__ratio fixed__height2">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-earring-powerplay-right_264x300.webp" alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                        <p class="ph-size__chart--grid__item--desc ph-font__bold">As a double piercing with the chain attached to both styled higher.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Reversible + Two Toned</div>
+                <p class="ph-size__chart--desc">In addition to the styling options above, our huggies are fully reversible so you can show off their stone side for both, mix and match or turn them both around to their metal side keeping things simple.</p>
+            </section>
+            <section class="ph-size__chart--section">
+                <p class="ph-size__chart--subtitle">Styling or Sizing Question?</p>
+                <a href="/pages/contact" class="ph-size__chart--cta" target="_blank">Contact Us</a>
+            </section>`,
+          bracelets: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Modular Bracelets</div>
+                <p class="ph-size__chart--desc">
+                    Wear your bracelet alone, or connect to any of our bracelet chains using our modular carabiner
+                    clasps, to build
+                    your customised necklace.
+                </p>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--bracelet__illustration">
+                    <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-modular-bracelet-clasp-opening-0.1_279eb129-252f-471b-a2c0-139f14b2358a_600x300.webp"
+                        alt="Hands connecting modular bracelet with carabiner clasps" />
+                </div>
+            </section>
+
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">How to Find Your Bracelet Size</div>
+                <p class="ph-size__chart--desc">
+                    Unsure of your bracelet size? We want to make it as easy as possible for you to measure at home.
+                </p>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--subtitle">1) Make your own paper wrist sizer</div>
+                <p class="ph-size__chart--desc">
+                    Click on the link below, follow the instructions and print it out onto A4 paper.
+                </p>
+                <a href="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-make-your-own-paper-wrist-sizer.pdf"
+                    class="ph-size__chart--cta">Click for .PDF</a>
+            </section>
+            <section class="ph-size__chart--section">or</section>
+            <section class="ph-size__chart--section">
+                <div class="ph-brac-section-subtitle">2) Measure your wrist by:</div>
+                <p class="ph-size__chart--desc">
+                    1) Wrapping a strip of paper, or piece of string, around your wrist where you'd like your new
+                    bracelet to sit.
+                </p>
+
+                <p class="ph-size__chart--desc">
+                    2) Use the chart below to determine your bracelet size.
+                </p>
+
+                <p class="ph-size__chart--desc">
+                    3) Measure this length with a ruler to find your circumference. Falling between two sizes? We
+                    recommend sizing
+                    up if you enjoy a looser fit or sizing down if you prefer it to fit more snug.
+                </p>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Wrist Size Chart</div>
+
+                <table class="ph-size__chart--table">
+          		<thead>
+          			<tr>
+          				<th class="table__header">Size</th>
+          				<th class="table__header">Wrist (CM)</th>
+          				<th class="table__header">Wrist (Inches)</th>
+          			</tr>
+          		</thead>
+          		<tbody>
+          			<tr>
+          				<td colspan="3" class="table__header title">Screw Chain Bracelet</td>
+          			</tr>
+          			<tr>
+          				<td>Small</td>
+          				<td>16.5</td>
+          				<td>6.5</td>
+          			</tr>
+          			<tr>
+          				<td>Medium</td>
+          				<td>17.5</td>
+          				<td>7</td>
+          			</tr>
+          			<tr>
+          				<td>Large</td>
+          				<td>19</td>
+          				<td>7.5</td>
+          			</tr>
+          			<tr>
+          				<td colspan="3" class="table__header title">Bond Chain Bracelet</td>
+          			</tr>
+          			<tr>
+          				<td>Small</td>
+          				<td>17.5</td>
+          				<td>7</td>
+          			</tr>
+          			<tr>
+          				<td>Medium</td>
+          				<td>19.5</td>
+          				<td>7.75</td>
+          			</tr>
+          			<tr>
+          				<td colspan="3" class="table__header title">Hype Chain Bracelet</td>
+          			</tr>
+          			<tr>
+          				<td>Small</td>
+          				<td>17.5</td>
+          				<td>7</td>
+          			</tr>
+          			<tr>
+          				<td>Medium</td>
+          				<td>19</td>
+          				<td>7.5</td>
+          			</tr>
+          			<tr>
+          				<td>Large</td>
+          				<td>20</td>
+          				<td>8</td>
+          			</tr>
+          			<tr>
+          				<td>Extended</td>
+          				<td>22.25</td>
+          				<td>8.75</td>
+          			</tr>
+          		</tbody>
+          	</table>
+            </section>
+
+            <section class="ph-size__chart--section">
+                <p class="ph-size__chart--desc">Please note that the fit of a bracelet is influenced by both its length
+                    and the thickness of the chain, that’s why the measurements of our bracelets vary depending on the
+                    style/thickness of the chain.</p>
+                <p class="ph-size__chart--desc">For example, a thin chain like the Screw Chain with a length of 17.5cm
+                    will feel looser on the wrist than a 17.5cm thicker Bond Chain. Please take this into account when
+                    measuring your wrist size.</p>
+            </section>
+
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">
+                    How to make a necklace using our modular chain bracelets
+                </div>
+                <p class="ph-size__chart--desc">
+                    All Phoria bracelets are modular – our carabiner clasps can be connected with any other Phoria
+                    bracelet to create any style of necklace you choose.
+                </p>
+
+                <div class="ph-size__chart--content__grid one__column">
+                    <div class="ph-size__chart--grid__item">
+                        <div class="ph-size__chart--grid__item--image">
+                            <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-of-how-to-open-and-make-necklace-0.3c_271e8aba-edc2-46d0-9026-09bb84b0131e.webp"
+                                alt="Ring Styling 1" class="ph-size__chart--grid__item--image__img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <p class="ph-size__chart--desc">1) Simply open our carabiner clasp by pulling the clasp apart on one of
+                    your bracelets</p>
+                <p class="ph-size__chart--desc">2) Use this to link through the chain link on your second necklace</p>
+                <p class="ph-size__chart--desc">3) Shut the clasp shut</p>
+                <p class="ph-size__chart--desc">4) Do the same for the second bracelet to link to your other one</p>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">
+                    Size Combinations
+                </div>
+                <p class="ph-size__chart--desc">Please be aware of our chain sizes when creating your desired necklace.
+                    Different chains will sit differently on your neck depending on the thickness of the chain. The
+                    thicker the chain the longer it needs to be to sit nicely on the neck.</p>
+                <p class="ph-size__chart--desc">Please take this into account when buying more than one bracelet for a
+                    modular necklace.
+                    We recommend referring to the size chart below for minimum total lengths:</p>
+                    <table class="ph-size__chart--table">
+                        <thead>
+                            <tr>
+                                <th class="table__header">Minimum Bracelet Size Combinations</th>
+                                <th class="table__header">Length (CM)</th>
+                                <th class="table__header">Length (Inches)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="table__header title">Screw Chain Bracelet</td>
+                            </tr>
+                            <tr>
+                                <td>Small x Large</td>
+                                <td>35.6</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>Medium x Medium</td>
+                                <td>35.6</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="table__header title">Bond Chain Bracelet</td>
+                            </tr>
+                            <tr>
+                                <td>Medium x Medium</td>
+                                <td>39.4</td>
+                                <td>15.5</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="table__header title">Hype Chain Bracelet</td>
+                            </tr>
+                            <tr>
+                                <td>Large x Large</td>
+                                <td>40.6</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>Medium x Extended</td>
+                                <td>41.3</td>
+                                <td>16.25</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="table__header title">Chain Combination Examples</td>
+                            </tr>
+                            <tr>
+                                <td>Medium Screw x Medium Bond</td>
+                                <td>37.5</td>
+                                <td>14.75</td>
+                            </tr>
+                            <tr>
+                                <td>Medium Screw x Medium Hype</td>
+                                <td>36.8</td>
+                                <td>14.5</td>
+                            </tr>
+                            <tr>
+                                <td>Medium Bond x Medium Hype</td>
+                                <td>38.7</td>
+                                <td>15.25</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Find your modular necklace chain length</div>
+                <p class="ph-size__chart--desc">Below are a few examples and suggestions of bracelet combinations that work really nicely as modular necklaces:</p>
+
+                <table class="ph-size__chart--table">
+                    <thead>
+                        <tr>
+                            <th class="table__header">Our Recommendations: Modular Combinations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>x1 Screw + x2 Screw Doubled Up</td>
+                        </tr>
+                        <tr>
+                            <td>x2 Screw Doubled Up + x1 Bond</td>
+                        </tr>	
+                        <tr>
+                            <td>x1 Hype + x1 Bond</td>
+                        </tr>	
+                        <tr>
+                            <td>x1 Bond + x1 Bond + x1 Screw attached from the side</td>
+                        </tr>	
+                        <tr>
+                            <td>x1 Hype + x1 Hype </td>
+                        </tr>	
+                        <tr>
+                            <td>x1 Hype + x1 Hype + x1 Screw attached from the side</td>
+                        </tr>	
+                    </tbody>
+                </table>
+            </section>
+            <section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Where your necklace will sit</div>
+                <p class="ph-size__chart--desc">
+                    Please refer to the sketch below for a rough estimation for where your necklace will sit. Please remember to combine the total lengths of the bracelets of your choice to get your total length in inches.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-necklace-length-runaway-text_768x827.webp" alt="Diagram showing where different length necklaces sit on the body" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          necklaces: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">Where Your Necklace Will Sit</div>
+                
+                <p class="ph-size__chart--desc">
+                    Please refer to the sketch below for a rough estimation for where your necklace will sit:
+                </p>
+                
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-illustration-necklace-length-runaway-text_768x827.webp" alt="Diagram showing where different length necklaces sit on the body" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          necklace_chains: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">WHERE YOUR NECKLACE WILL SIT</div>
+                <p class="ph-size__chart--desc">
+                    PLEASE REFER TO THE SKETCH BELOW FOR A ROUGH ESTIMATION FOR WHERE YOUR NECKLACE WILL SIT.
+                </p>
+                <p class="ph-size__chart--desc">
+                    OUR CHAINS COME IN X2 ADJUSTABLE LENGTH SIZES:
+                </p>
+                <p class="ph-size__chart--desc">
+                    <strong>SMALL: 14 - 16 INCHES</strong><br>
+                    At 14 inches sits snugly at the base of your neck. Perfect for layering and high necklines. At 16 inches it will sit just below the collarbone.
+                </p>
+                <p class="ph-size__chart--desc">
+                    <strong>MEDIUM: 16 - 18 INCHES</strong><br>
+                    At 16 inches it will sit just below the collarbone. At 18 inches it falls more in the centre of the chest.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="{{ 'letter-pendants-necklace-guide.png' | asset_url }}" alt="Necklace length guide for 14 to 18 inches" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          id_modular_charm_necklace: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">HOW TO STYLE OUR I.D. MODULAR CHARM NECKLACE</div>
+                <p class="ph-size__chart--desc">
+                    Featuring our signature carabiner clasps, each end can be unclipped, reconfigured, and styled your way by adding your chosen letter charms. Built to adapt, you can break it back down into bracelets, remove the clasp and clip it anywhere to turn it into a charm or reassemble it in seconds. One necklace, endless possibilities.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="{{ 'id-modular-charm-necklace-size-guide.png' | asset_url }}" alt="How to style our I.D. Modular Charm Necklace" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          id_charm_bracelet: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">HOW TO STYLE THE I.D. CHARM BRACELET</div>
+                <p class="ph-size__chart--desc">
+                    Designed for complete versatility, it’s more than just a bracelet. Featuring our signature carabiner design - unclip the clasp and transform it into your charm base. Add your letter charm and wear it as a bracelet or unclip it and wear it beyond the wrist - on your shoes, bag or jeans. If it clips, it fits.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="{{ 'id-charm-bracelet-size-guide.png' | asset_url }}" alt="How to style the I.D. Charm Bracelet" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          the_id_charm_bracelet_configurator: `<section class="ph-size__chart--section">
+                <div class="ph-size__chart--title">HOW TO STYLE THE I.D. CHARM BRACELET</div>
+                <p class="ph-size__chart--desc">
+                    Designed for complete versatility, it’s more than just a bracelet. Featuring our signature carabiner design - unclip the clasp and transform it into your charm base. Add your letter charm and wear it as a bracelet or unclip it and wear it beyond the wrist - on your shoes, bag or jeans. If it clips, it fits.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="{{ 'id-charm-bracelet-size-guide.png' | asset_url }}" alt="How to style the I.D. Charm Bracelet" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`,
+          id_waist_chain: `<section class="ph-size__chart--section ph-size__chart--waist">
+                <div class="ph-size__chart--title">HOW TO STYLE THE I.D. WAIST CHAIN</div>
+                <p class="ph-size__chart--desc">
+                    Designed for an adjustable fit, they can be styled high on the waist or worn lower on the hips over your favourite fit.
+                </p>
+                <p class="ph-size__chart--desc">
+                    Designed to pair seamlessly with our I.D. letter pendants, add your letter onto the end of the chain and slide across to your desired position.
+                </p>
+                <div class="ph-size__chart--necklace__diagram">
+                    <img src="{{ 'Waist_Chain_BG_Remove.png' | file_url }}" alt="How to style the I.D. waist chain" class="ph-neckl-diagram-image"/>
+                </div>
+            </section>
+            <section class="ph-size__chart--section">
+                <h2 class="ph-size__chart--subtitle">Styling or Sizing Question?</h2>
+                <a href="/pages/contact" class="ph-size__chart--cta">Contact Us</a>
+            </section>`
+        }
+        const sizeChartElements = {
+            triggerDesktop: document.querySelectorAll('#ph-size__chart--trigger__desktop'),
+            triggerMobile: document.querySelectorAll('#ph-size__chart--trigger__mobile'),
+            overlay: document.querySelector('.ph-size__chart--overlay'),
+            close: document.querySelector('.ph-size__chart--close'),
+            chart: document.querySelector('.ph-size__chart'),
+            content: document.querySelector('.ph-size__chart--content')
+        }
+        if (!sizeChartElements.overlay || !sizeChartElements.close || !sizeChartElements.chart || !sizeChartElements.content) return;
+        const categoryKeyRaw = "{{ product.category | default: product.type | default: '' }}".toLowerCase();
+        const productHandle = "{{ product.handle }}".toLowerCase();
+        const isNecklaceChainProduct = [
+          'necklace-chain-silver',
+          'necklace-chain-gold',
+          'letter-pendants-silver',
+          'letter-pendants-gold',
+          'letter-pendant-silver',
+          'letter-pendant-gold'
+        ].includes(productHandle);
+        const isIdModularCharmNecklaceProduct = ['the-i-d-modular-charm-necklace-silver', 'the-i-d-modular-charm-necklace-gold'].includes(productHandle);
+        const isIdCharmBraceletProduct = ['screw-chain-bracelet-925-sterling-silver', 'screw-chain-bracelet-18ct-gold-vermeil'].includes(productHandle);
+        const isIdCharmBraceletConfigurator = ['the-i-d-charm-bracelet', 'the-i-d-charm-bracelet-1'].includes(productHandle);
+        const productId = Number({{ product.id | json }});
+        const productTags = {{ product.tags | json }}.map((tag) => String(tag || '').trim().toLowerCase());
+        const hasWaistChainTag = productTags.includes('waist chain');
+        const isIdWaistChainProduct = hasWaistChainTag || [10515901710602, 10515902169354].includes(productId) || ['the-i-d-waist-chain-silver', 'the-i-d-waist-chain-gold'].includes(productHandle);
+        let resolvedChartKey = '';
+        if (isIdWaistChainProduct) resolvedChartKey = 'id_waist_chain';
+        else if (isIdCharmBraceletConfigurator) resolvedChartKey = 'the_id_charm_bracelet_configurator';
+        else if (isIdCharmBraceletProduct) resolvedChartKey = 'id_charm_bracelet';
+        else if (isIdModularCharmNecklaceProduct) resolvedChartKey = 'id_modular_charm_necklace';
+        else if (isNecklaceChainProduct) resolvedChartKey = 'necklace_chains';
+        else if (categoryKeyRaw.includes('ring')) resolvedChartKey = 'rings';
+        else if (categoryKeyRaw.includes('ear')) resolvedChartKey = 'earrings';
+        else if (categoryKeyRaw.includes('necklace') || categoryKeyRaw.includes('chain') || categoryKeyRaw.includes('charm') || categoryKeyRaw.includes('pendant')) resolvedChartKey = 'necklaces';
+        else if (categoryKeyRaw.includes('bracelet')) resolvedChartKey = 'bracelets';
+        const resolvedChartContent = sizeChartContent[resolvedChartKey] || sizeChartContent.necklaces || sizeChartContent.bracelets || '';
+        sizeChartElements.content.innerHTML = resolvedChartContent;
+        const openSizeChart = () => {
+          sizeChartElements.overlay.classList.add('open');
+          sizeChartElements.chart.classList.add('open');
+        };
+        const closeSizeChart = () => {
+          sizeChartElements.overlay.classList.remove('open');
+          sizeChartElements.chart.classList.remove('open');
+        };
+        sizeChartElements.triggerDesktop.forEach((el) => {
+          el.addEventListener('click', openSizeChart);
+        });
+        sizeChartElements.triggerMobile.forEach((el) => {
+          el.addEventListener('click', () => {
+            if (!sizeChartElements.overlay.classList.contains('open')) {
+              openSizeChart();
+            }
+          });
+        });
+        sizeChartElements.close.addEventListener('click', closeSizeChart);
+        sizeChartElements.overlay.addEventListener('click', closeSizeChart);
+      })
+</script>

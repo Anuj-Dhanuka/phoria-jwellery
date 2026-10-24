@@ -1,0 +1,150 @@
+{{ 'blog-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'blog-slider.js' | asset_url }}" defer="defer"></script>
+
+{% assign slides_count = 0 %}
+{% for block in blocks %}
+  {% assign slides_count = slides_count | plus: 1 %}
+
+  {% assign article = block.settings.article %}
+
+  {% unless article.id %}
+    {% assign per_row = per_row | minus: 1 %}
+    {% assign slides_count = slides_count | minus: 1 %}
+  {% endunless %}
+{% endfor %}
+
+{% if slides_count <= per_row %}
+  {% assign duplicate = true %}
+{% else %}
+  {% assign duplicate = false %}
+{% endif %}
+
+{% if slides_count < 3 %}
+  {% assign duplicate = false %}
+{% endif %}
+
+{% assign multiply = 1 %}
+
+{% if duplicate %}
+  {% assign mod = per_row | modulo: slides_count %}
+  {% assign multiply = per_row | minus: mod %}
+  {% assign multiply = multiply | divided_by: slides_count %}
+  {% assign multiply = multiply | plus: 1 %}
+{% endif %}
+
+<div class="blog-slider">
+  <div
+    class="blog-slider__wrapper blog-slider-slider"
+    data-id="{{ section_id }}"
+    data-speed="{{ slideshow_speed }}"
+    data-autoplay="{{ autoplay }}"
+    data-stop-autoplay="{{ stop_autoplay }}"
+    data-show-arrows="false"
+    data-per-row="{{ per_row }}"
+    data-mobile="{{ mobile }}"
+    data-slides-count="{{ slides_count }}"
+  >
+    <div class="blog-slider-list swiper">
+      <div class="blog-slider-list__wrapper swiper-wrapper blog-slider-list__wrapper--static">
+        {% for i in (1..multiply) %}
+          {%- for block in blocks -%}
+            {% assign article = block.settings.article %}
+            {% if article.id %}
+              <div
+                class="blog-slider-card blog-slider-list__item swiper-slide color-{{ button_color_scheme }}"
+                {{ article.shopify_attributes }}
+              >
+                <a href="{{ article.url }}" class="blog-slider__link-general">
+                  <div class="blog-slider-card__image-wrapper blog-slider-card__image-wrapper--{{ image_ratio }}">
+                    {%- if article.image != blank and show_image -%}
+                      {{
+                        article.image
+                        | image_url: width: 1800
+                        | image_tag:
+                          loading: 'lazy',
+                          sizes: '100vw',
+                          widths: '165, 360, 535, 720, 940, 1300, 1500, 1800'
+                      }}
+                    {%- endif -%}
+                    <div
+                      class="blog-slider-card--standard-overlay"
+                      style="background: rgba(0, 0, 0, {{ article.overlay_opacity }})"
+                    ></div>
+                  </div>
+                </a>
+                <div class="blog-slider-card__info">
+                  {%- if article.title != blank -%}
+                    <div
+                      class="blog-slider-card__heading {{ slider_heading_size }}"
+                      {% if article.button_label != blank and article.description == blank %}
+                        style="margin-bottom: 0;"
+                      {% endif %}
+                    >
+                      <a href="{{ article.url }}" class="blog-slider__link-general">{{ article.title | escape }}</a>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if show_excerpt and article.excerpt_or_content.size > 0 -%}
+                    <p class="blog-slider-card__description blog-slider-card__excerpt">
+                      <a href="{{ article.url }}" class="blog-slider__link-general">
+                        {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+                      </a>
+                    </p>
+                  {%- endif -%}
+
+                  <div class="blog-slider-card__meta secondary_text">
+                    {%- if show_tags and article.tags != blank -%}
+                      <ul class="blog-slider-card__tags">
+                        {%- for tag in article.tags -%}
+                          <li class="blog-slider-card__tag">
+                            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-card__tag">
+                              <span title="{{ tag }}">
+                                {{- tag }}
+                                {%- if forloop.last == false -%},{%- endif -%}
+                              </span>
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+
+                    {%- if show_date -%}
+                      <span class="blog-slider-card__date">
+                        <a href="{{ article.url }}" class="blog-slider__link-general">
+                          {{- article.published_at | date: "%d/%m/%Y" -}}
+                        </a>
+                      </span>
+                    {%- endif -%}
+
+                    {%- if show_author -%}
+                      <span class="blog-slider-card__author">
+                        <span>
+                          <a href="{{ article.url }}" class="blog-slider__link-general">{{- article.author -}}</a>
+                        </span>
+                      </span>
+                    {%- endif -%}
+                  </div>
+
+                  {%- if article.comments_count > 0 and blog.comments_enabled? -%}
+                    <div class="blog-slider-card__title blog-slider-card__title secondary_text_bottom">
+                      <span class="blog-slider-card__comments secondary_text">
+                        <a href="{{ article.url }}" class="blog-slider__link-general">
+							{{- 'blogs.article.comments' | t: count: article.comments_count -}}
+						</a>
+                      </span>
+                    </div>
+                  {%- endif -%}
+                </div>
+                {% if hover_effect %}
+                  <a href="{{ article.url }}" class="blog-slider__link-general ">
+                    <div class="blog-slider__link-overlay" style="opacity: {{ overlay_opacity }}"></div>
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_collection_description_Mtmc4h": {
+      "type": "ph-collection-description",
+      "name": "Ph Collection Description",
+      "settings": {
+        "show_title": false,
+        "logo_image": "shopify://shop_images/PhoriaFineLogo.png",
+        "logo_alt": "Phoria Fine",
+        "logo_width": 450,
+        "logo_width_mobile": 220,
+        "title": "",
+        "short_text": "<p>PHORIA FINE is our new bespoke fine jewellery service, where we bring your PHORIA jewellery dreams to life.<br/><br/>You can now have any existing PHORIA design crafted in your choice of solid gold: yellow, white, or rose in any carat, or even in platinum. Personalise your piece further by selecting any gemstones you desire, from lab-grown diamonds to sapphires, emeralds, or any other precious stones that reflect your unique style.<br/><br/>Every PHORIA Fine piece is made to order<strong>,</strong> individually crafted with care, and ready to be with you within 4 weeks.<br/><br/>Please enquire using the form below and include as much detail as possible. We aim to get back to you within 2 business days.<br/><br/>We can’t wait to make your dream PHORIA piece a reality.</p>",
+        "full_text": "<p>Some examples of our bespoke pricing starting from (all quoted in 14 carat solid gold and lab grown diamonds):<br/><br/>Sugar Rush Huggies: GBP £1,900<br/>Hookup Chain Ring: GBP £3,400<br/>Hookup Chain Ring II: GBP £4,700<br/>Pierced Drop Ring - Marquise: GBP £3,000<br/>Mini Pierced Drop Ring - Marquise: GBP £1,700<br/><br/>Please note we will require a non-refundable 50% deposit before we start work on the piece and the remaining 50% will need to be paid before it’s dispatched to you</p>",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 60,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "page_phoria_contact_h8UJmY": {
+      "type": "page-phoria-contact",
+      "name": "Phoria Contact Page",
+      "settings": {
+        "heading": "",
+        "logo_alt": "",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "copy": "",
+        "max_width": 1000,
+        "top_spacing": 48,
+        "bottom_spacing": 64,
+        "submit_label": "ENQUIRE NOW",
+        "require_lastname": false,
+        "after_form_image": "shopify://shop_images/Untitled-4-2.jpg",
+        "after_form_image_alt": "Phoria after-form image",
+        "after_form_image_link": "",
+        "after_img_width": 1000,
+        "after_img_spacing_top": 32,
+        "after_img_spacing_bottom": 0
+      }
+    },
+    "ph_collection_banner_HKTGaA": {
+      "type": "ph-collection-banner",
+      "disabled": true,
+      "name": "Ph Collection Banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/pbs7erqzdokybutyjcmo.webp",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 20,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 10,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_collection_description_Mtmc4h",
+    "page_phoria_contact_h8UJmY",
+    "ph_collection_banner_HKTGaA"
+  ]
+}

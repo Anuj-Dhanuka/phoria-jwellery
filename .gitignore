@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Local design reference downloads (not part of the theme)
+_figma-exports/

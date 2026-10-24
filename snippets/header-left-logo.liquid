@@ -1,0 +1,169 @@
+{% liquid
+	assign enable_burger_menu = false
+	for block in section.blocks
+		if block.type == 'burger_menu'
+			assign enable_burger_menu = true
+		endif
+	endfor
+%}
+
+{%- if section.settings.menu != blank or enable_burger_menu -%}
+	{% render 'header-drawer' %}
+{%- endif -%}
+
+<div class="menu_left_block">
+	{% render 'desktop-burger-menu' %}
+
+	{% render 'header-logo', tag: 'h1' %}
+
+	<nav class="header__inline-menu">
+		{%- if section.settings.menu != blank -%}
+			<ul class="list-menu list-menu--inline" role="list">
+				{%- for link in section.settings.menu.links -%}
+					{% liquid
+						assign mega_menu = false
+					%}
+					{%- if link.links != blank -%}
+						{% if section.blocks.size > 0 %}
+							{% for block in section.blocks %}
+								{% liquid
+									assign mega_menu_trigger = block.settings.mega_menu_trigger | handle | strip
+
+									if link.handle == mega_menu_trigger
+										assign mega_menu = true
+										assign shopify_attributes = block.shopify_attributes
+									endif
+								%}
+							{% endfor %}
+						{% endif %}
+						<li
+							class="list-menu-item {% if mega_menu %}list-menu--megamenu {% else %}list-menu--submenu{% endif %}"
+							{{ shopify_attributes }}
+						>
+							{% if mega_menu %}
+								{% render 'mega-menu', link: link, blocks: section.blocks %}
+							{% endif %}
+							<a
+								href="{{ link.url }}"
+								class="header__menu-item list-menu__item link focus-inset {%- if link.active %} header__active-menu-item{% endif %}"
+								{% if link.current %}
+									aria-current="page"
+								{% endif %}
+								aria-label="{{ link.title | escape }}"
+							>
+								<span
+									class="list-menu-line link-hover-line"
+									title="{{ link.title | escape }}"
+								>
+									{{ link.title | escape }}
+								</span>
+							</a>
+							{% if mega_menu == false %}
+								{% render 'submenu', link: link %}
+							{% endif %}
+						</li>
+					{%- else -%}
+						<li class="list-menu-item">
+							<a
+								href="{{ link.url }}"
+								class="header__menu-item list-menu__item link focus-inset {%- if link.active %} header__active-menu-item{% endif %}"
+								{% if link.current %}
+									aria-current="page"
+								{% endif %}
+								aria-label="{{ link.title | escape }}"
+							>
+								<span
+									class="list-menu-line link-hover-line"
+									title="{{ link.title | escape }}"
+								>
+									{{ link.title | escape }}
+								</span>
+							</a>
+						</li>
+					{%- endif -%}
+				{%- endfor -%}
+			</ul>
+		{%- endif -%}
+	</nav>
+</div>
+
+<div class="header__column">
+	<div class="header__icons">
+		{% render 'header-region', section: section %}
+
+		{% render 'color-scheme' %}
+
+		{%- if section.settings.enable_search -%}
+			{% if request.page_type != 'search' %}
+				<div class="header__search">
+					<div
+						class="header__icon header__icon--search link--text  header__icon--summary focus-inset modal__toggle "
+						aria-haspopup="dialog"
+						role="button"
+						id="search-icon-open"
+					>
+						{% render 'icon-search' %}
+						<span class="link-hover-line search-name">
+							{{- 'sections.header.search' | t -}}
+						</span>
+					</div>
+				</div>
+			{% else %}
+				<div class="header__search">
+					<a
+						href="{{ routes.search_url }}"
+						class="header__icon header__icon--search focus-inset"
+						title="{{ 'general.search.search' | t }}"
+						aria-label="{{ 'general.search.search' | t }}"
+					>
+						{% render 'icon-search' %}
+						<span class="link-hover-line search-name">
+							{{- 'sections.header.search' | t -}}
+						</span>
+					</a>
+				</div>
+			{% endif %}
+		{%- endif -%}
+
+		{%- if shop.customer_accounts_enabled -%}
+			<div class="header__account link-hover-line">
+				{%- if request.page_type != 'customers/account' and settings.account_type == 'drawer' -%}
+					<details>
+						<summary
+							class="header__icon header__icon--account link--text  header__icon--summary focus-inset modal__toggle"
+							aria-haspopup="dialog"
+							id="account-icon-open"
+						>
+							<span>{{ 'sections.header.account' | t }}</span>
+						</summary>
+					</details>
+				{%- else -%}
+					<a class="header__icon header__icon-link header__icon--account link--text  header__icon--summary focus-inset modal__toggle"
+						href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+						<span>{{ 'sections.header.account' | t }}</span>
+					</a>
+   		  {%- endif -%}
+			</div>
+		{%- endif -%}
+
+		<div class="{% if request.page_type != 'cart' %}header__cart {% else %}header__cart header__cart--page{% endif %} link-hover-line">
+			<a
+				href="{{ routes.cart_url }}"
+				class=" header__icon header__icon--cart link link--text focus-inset"
+				id="cart-icon-bubble"
+			>
+				{% comment %}{% render 'icon-cart' %}{% endcomment %}
+				<span>{{ 'sections.header.cart' | t }}</span>
+				<span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+				<div class="cart-count-bubble">
+					{%- if cart.item_count < 100 -%}
+						<span aria-hidden="true">({{ cart.item_count }})</span>
+					{%- endif -%}
+					<span class="visually-hidden">
+						{{- 'sections.header.cart_count' | t: count: cart.item_count -}}
+					</span>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

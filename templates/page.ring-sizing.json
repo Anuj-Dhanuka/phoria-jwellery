@@ -1,0 +1,333 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_ring_sizing_FEbz4h": {
+      "type": "ph-ring-sizing",
+      "settings": {
+        "pre_heading": "",
+        "heading": "HOW TO // FIND YOUR RING SIZE",
+        "description": "THERE ARE MULTIPLE WAYS TO CHECK YOUR RING SIZE, AND WE WANT TO MAKE IT AS EASY AS POSSIBLE FOR YOU TO DO.",
+        "guide_video": "shopify://files/videos/phoria-jewellery-illustration-rings-intro.mp4",
+        "show_controls": true,
+        "video_width": 70,
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "ph_ring_guide_zGHeFi": {
+      "type": "ph-ring-guide",
+      "settings": {
+        "method1_heading": "1) CHECK THE SIZE OF YOUR EXISTING RING",
+        "method1_description": "CLICK ON THE LINK BELOW. FOLLOW THE INSTRUCTIONS AND PRINT IT OUT ONTO A4 PAPER.",
+        "method1_button_text": "EXISTING RING SIZE GUIDE - CLICK FOR .PDF",
+        "method1_pdf_link": "https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-ring-size-guide_7c510ae4-a499-435d-86fc-e50a15b538b4.pdf?v=1744700019",
+        "divider_text": "OR",
+        "method2_heading": "2) MAKE YOUR OWN PAPER RING SIZER",
+        "method2_description": "CLICK ON THE LINK BELOW. FOLLOW THE INSTRUCTIONS AND PRINT IT OUT ONTO A4 PAPER.",
+        "method2_button_text": "MAKE YOUR OWN RING SIZER - CLICK FOR .PDF",
+        "method2_pdf_link": "https://cdn.shopify.com/s/files/1/0891/3541/5562/files/phoria-jewellery-make-your-own-paper-ring-sizer_9e34fa21-2404-45ef-9f2e-c3a052689fa5.pdf?v=1744700073",
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    },
+    "ph_ring_info_En47Yf": {
+      "type": "ph-ring-info",
+      "settings": {
+        "heading": "RING STYLING // CHOOSING THE FINGER TO SIZE",
+        "description_1": "OUR HOOKUP CHAIN RINGS ARE COMPOSED OF EITHER 2 OR 3 INTERCONNECTED BANDS AND OFFER ADAPTABLE STYLING ON ONE, TWO OR THREE FINGERS.",
+        "description_2": "TO FIGURE OUT WHAT SIZE YOU ARE YOU NEED TO FIGURE OUT WHAT FINGER YOU WANT TO WEAR THE RING ON. IF YOU PLAN ON WEARING THE RING ACROSS MULTIPLE FINGERS, PLEASE SPECIFY THE SIZE OF YOUR LARGEST FINGER, TYPICALLY YOUR MIDDLE OR POINTER FINGER.",
+        "description_3": "IT'S IMPORTANT TO NOTE THAT THE RING CAN ONLY BE STACKED ON THE LARGEST FINGER YOU'VE SIZED.",
+        "max_width": 900,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "ph_ring_hook_qJwcmq": {
+      "type": "ph-ring-hook",
+      "settings": {
+        "heading": "HOOKUP CHAIN RING",
+        "stack_image": "shopify://shop_images/phoria-jewellery-hookup-chain-ring-illustration-1-1024x653.webp",
+        "stack_heading": "STACK",
+        "stack_description": "1) WRAP THE CONNECTING CHAIN AROUND A SINGLE FINGER AND STACK THE TWO BANDS TOGETHER.",
+        "separate_image": "shopify://shop_images/phoria-jewellery-hookup-chain-ring-illustration-2-1024x653.webp",
+        "separate_heading": "SEPARATE",
+        "separate_description": "2) OR SEPARATE THE BANDS ACROSS TWO FINGERS, LETTING THE CONNECTING CHAIN HANG FREELY BETWEEN THEM.",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    },
+    "ph_ring_hook_2_GmztgL": {
+      "type": "ph-ring-hook-2",
+      "blocks": {
+        "styling_option_AcEcCa": {
+          "type": "styling_option",
+          "settings": {
+            "option_image": "shopify://shop_images/phoria-jewellery-hookup-chain-ring-ii-illustration-1-1024x653.webp",
+            "option_heading": "STACK",
+            "option_description": "1) WRAP THE CONNECTING CHAIN AROUND A SINGLE FINGER AND STACK ALL THREE BANDS TOGETHER."
+          }
+        },
+        "styling_option_razkRX": {
+          "type": "styling_option",
+          "settings": {
+            "option_image": "shopify://shop_images/phoria-jewellery-hookup-chain-ring-ii-illustration-2-1024x653.webp",
+            "option_heading": "SPLIT",
+            "option_description": "2) SEPARATE THE ONE BAND THAT LOCKS (IT HAS A CONNECTING RINGLET) AND PLACE ON ANOTHER FINGER THAT WORKS FOR YOU. YOU COULD WEAR THE TWO CONNECTING BANDS ON YOUR RING FINGER AND THE OTHER ON YOUR MIDDLE FINGER."
+          }
+        },
+        "styling_option_diwDAm": {
+          "type": "styling_option",
+          "settings": {
+            "option_image": "shopify://shop_images/phoria-jewellery-hookup-chain-ring-ii-illustration-3-1024x653.webp",
+            "option_heading": "SEPARATE",
+            "option_description": "3) SEPARATE THE BANDS ACROSS THREE FINGERS, LETTING THE CONNECTING CHAIN HANG FREELY BETWEEN THEM."
+          }
+        }
+      },
+      "block_order": [
+        "styling_option_AcEcCa",
+        "styling_option_razkRX",
+        "styling_option_diwDAm"
+      ],
+      "settings": {
+        "heading": "HOOKUP CHAIN RING II",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    },
+    "ph_ring_note_zfHQnP": {
+      "type": "ph-ring-note",
+      "settings": {
+        "note_text_1": "PLEASE ALSO NOTE THAT YOUR DOMINANT HAND WILL DIFFER ACROSS FINGER SIZING: FOR EXAMPLE YOUR RING FINGER ON YOUR LEFT HAND MIGHT BE A DIFFERENT SIZE TO YOUR RING FINGER ON YOUR RIGHT HAND.",
+        "note_text_2": "ALL OF OUR RINGS HAVE BEEN CAREFULLY CALIBRATED TO FIT TRUE TO SIZE.",
+        "max_width": 1000,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "enable_animations": true
+      }
+    },
+    "ph_ring_chart_HE6cHa": {
+      "type": "ph-ring-chart",
+      "blocks": {
+        "size_row_xq9amz": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "E",
+            "us_size": "2.5",
+            "eu_size": "44",
+            "diameter": "13.67mm"
+          }
+        },
+        "size_row_eQCRKD": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "F",
+            "us_size": "3",
+            "eu_size": "44.5",
+            "diameter": "14.07mm"
+          }
+        },
+        "size_row_dJJ3zJ": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "G",
+            "us_size": "3.5",
+            "eu_size": "45.5",
+            "diameter": "14.48mm"
+          }
+        },
+        "size_row_VaDmJd": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "H",
+            "us_size": "4",
+            "eu_size": "46",
+            "diameter": "14.88mm"
+          }
+        },
+        "size_row_xLKH4B": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "I",
+            "us_size": "4.5",
+            "eu_size": "47",
+            "diameter": "15.10mm"
+          }
+        },
+        "size_row_frNHTd": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "J",
+            "us_size": "5",
+            "eu_size": "48.5",
+            "diameter": "15.49mm"
+          }
+        },
+        "size_row_7VyhGN": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "K",
+            "us_size": "5.5",
+            "eu_size": "50",
+            "diameter": "15.90mm"
+          }
+        },
+        "size_row_tjcbmM": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "L",
+            "us_size": "6",
+            "eu_size": "51",
+            "diameter": "16.31mm"
+          }
+        },
+        "size_row_KwwYRi": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "M",
+            "us_size": "6.5",
+            "eu_size": "52",
+            "diameter": "16.71mm"
+          }
+        },
+        "size_row_tJ7U6Q": {
+          "type": "size_row",
+          "disabled": true,
+          "settings": {
+            "uk_size": "N",
+            "us_size": "7",
+            "eu_size": "53",
+            "diameter": "17.06mm"
+          }
+        },
+        "size_row_q7G7eP": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "O",
+            "us_size": "7",
+            "eu_size": "55",
+            "diameter": "17.53mm"
+          }
+        },
+        "size_row_tpyCFN": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "P",
+            "us_size": "7.5",
+            "eu_size": "56",
+            "diameter": "17.93mm"
+          }
+        },
+        "size_row_83EkG3": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "Q",
+            "us_size": "8",
+            "eu_size": "57",
+            "diameter": "18.34mm"
+          }
+        },
+        "size_row_zkM699": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "R",
+            "us_size": "8.5",
+            "eu_size": "58.5",
+            "diameter": "18.75mm"
+          }
+        },
+        "size_row_ytfWh3": {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "S",
+            "us_size": "9",
+            "eu_size": "59.5",
+            "diameter": "19.15mm"
+          }
+        },
+        "size_row_R77Mqa": {
+          "type": "size_row",
+          "disabled": true,
+          "settings": {
+            "uk_size": "T",
+            "us_size": "10",
+            "eu_size": "60.5",
+            "diameter": "19.51mm"
+          }
+        }
+      },
+      "block_order": [
+        "size_row_xq9amz",
+        "size_row_eQCRKD",
+        "size_row_dJJ3zJ",
+        "size_row_VaDmJd",
+        "size_row_xLKH4B",
+        "size_row_frNHTd",
+        "size_row_7VyhGN",
+        "size_row_tjcbmM",
+        "size_row_KwwYRi",
+        "size_row_tJ7U6Q",
+        "size_row_q7G7eP",
+        "size_row_tpyCFN",
+        "size_row_83EkG3",
+        "size_row_zkM699",
+        "size_row_ytfWh3",
+        "size_row_R77Mqa"
+      ],
+      "settings": {
+        "heading": "RING SIZE CONVERSION CHART",
+        "col_heading_1": "UK",
+        "col_heading_2": "US",
+        "col_heading_3": "EU",
+        "col_heading_4": "INNER DIAMETER (MM)",
+        "footer_text": "<p>IF YOU ARE STILL UNSURE OF YOUR SIZE WE WOULD BE HAPPY TO SEND YOU A <strong>FREE RING SIZER</strong>. PLEASE SEND US AN EMAIL TO <a href=\"mailto:HELLO@PHORIAJEWELLERY.COM\"><strong>HELLO@PHORIAJEWELLERY.COM</strong></a> AND WE'LL TAKE CARE OF THE REST!</p>",
+        "max_width": 800,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    },
+    "ph_necklace_cta_N3NkPV": {
+      "type": "ph-necklace-cta",
+      "settings": {
+        "heading": "STYLING OR SIZING QUESTION?",
+        "button_text": "CONTACT US",
+        "button_link": "shopify://pages/contact",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_ring_sizing_FEbz4h",
+    "ph_ring_guide_zGHeFi",
+    "ph_ring_info_En47Yf",
+    "ph_ring_hook_qJwcmq",
+    "ph_ring_hook_2_GmztgL",
+    "ph_ring_note_zfHQnP",
+    "ph_ring_chart_HE6cHa",
+    "ph_necklace_cta_N3NkPV"
+  ]
+}

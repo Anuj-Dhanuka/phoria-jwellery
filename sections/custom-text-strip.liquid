@@ -1,0 +1,58 @@
+{% style %}
+    .cts-reset * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        
+      .cts-container {
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .cts-text {
+        color: #fff;
+        font-size: 10px;
+        font-family: var(--font-body-family);
+        text-align: center;
+    }
+
+    .cts-text strong{
+      font-family: "PhoriaBold";
+    }
+
+{% endstyle %}
+
+<section class="cts-reset">
+    <div class="cts-container">
+        <p class="cts-text">{{ section.settings.content }}</p>
+    </div>   
+</section>
+
+{% schema %}
+    {
+        "name": "custom-text-strip",
+        "settings": [
+            {
+                "type": "color",
+                "id": "strip-color",
+                "label": "Background Color",
+                "default": "#000",
+            },
+            {
+                "type": "inline_richtext",
+                "id": "content",
+                "label": "Description",
+                "default": "BLACK FRIDAY IS LIVE // OUR ONLY SALE OF THE YEAR. ARCHIVE15 FOR 15% OFF + COMPLIMENTARY UK SHIPPING + GIFTWRAPPING",
+            }
+        ],
+        "presets": [
+            {
+                "name": "custom-text-strip",
+            }
+        ]
+    }
+{% endschema %}

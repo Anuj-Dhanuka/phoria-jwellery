@@ -1,0 +1,790 @@
+{% comment %}
+  Login and Registration tabs section for Shopify
+  This section creates a tabbed interface with login and registration forms
+{% endcomment %}
+
+<style>
+.ph-cust-page-width{
+  padding: 98px 36px 0;
+  height: 85vh;
+}
+
+  
+.ph-cust-login-register-container {
+     max-width: 456px;
+     margin: auto;
+}
+
+.ph-cust-tabs-header {
+  display: flex;
+}
+
+.ph-cust-tab-button {
+  flex: 1;
+  text-align: center;
+  padding: 0 23px 10px;
+  cursor: pointer;
+}
+
+.ph-cust-tab-button a {
+  text-decoration: none;
+  color: #ccc;
+  line-height: 2.3;
+  font-family: 'PhoriaBold';
+}
+
+.ph-cust-tab-button.ph-cust-active {
+  border-bottom: 2px solid #000;
+}
+
+.ph-cust-tab-button.ph-cust-active a {
+  color: #000;
+}
+
+.ph-cust-tabs-content {
+  margin-top: 30px;
+}
+
+.ph-cust-tab-content {
+  display: none;
+}
+
+.ph-cust-tab-content.ph-cust-active {
+  display: block;
+}
+
+.ph-cust-login-register-container h2 {
+  font-size: 2.266vw;
+  margin: 36px 0 18px -0.4vw;
+  font-weight: 600;
+}
+
+.ph-cust-forgot-password-link{
+  font-family: 'PhoriaBold';
+  font-size: 10px;
+  color: #1d1d1d;
+  margin-top: -9px;
+}
+
+.ph-cust-field {
+  margin-bottom: 18px;
+}
+
+.ph-cust-login-register-container label {
+  display: block;
+  margin-bottom: 15px;
+  color: #1d1d1d;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.ph-cust-required {
+    color: #ff3100;
+    font-weight: 600;
+    border: 0;
+}
+
+.ph-cust-login-register-container input[type="email"],
+.ph-cust-login-register-container input[type="password"],
+.ph-cust-login-register-container input[type="text"],
+.ph-cust-login-register-container input[type="tel"] {
+    text-transform: uppercase;
+    height: 54px;
+    width: 100%;
+    border-radius: 0px;
+    box-shadow: unset;
+    font-family: 'PhoriaRegular';
+    border: 1px solid #1d1d1d;
+    padding: 10px 15px 10px 15px;
+    font-size: 10px;
+    line-height: 2.3;
+}
+
+.ph-cust-login-register-container input[type="email"]:focus,
+.ph-cust-login-register-container input[type="password"]:focus,
+.ph-cust-login-register-container input[type="text"]:focus,
+.ph-cust-login-register-container input[type="tel"]:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+label[for="customer_remember_me"],
+label[for="privacy_policy"], label [for="register_newsletter"] {
+  /* margin-bottom: -10px; */
+}
+
+
+.ph-cust-password-field {
+  position: relative;
+  width: 100%;
+}
+
+.ph-cust-password-field input {
+  width: 100%;
+}
+
+.ph-cust-password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}
+
+.ph-cust-checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.ph-cust-custom-checkbox {
+  display: inline-block;
+}
+
+.ph-cust-custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.ph-cust-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.ph-cust-custom-checkbox input:checked ~ .ph-cust-checkmark:after {
+  content: "✓";
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #000;
+}
+
+
+.ph-cust-checkbox-container label {
+  margin-left: 30px;
+  display: inline-block;
+}
+
+.ph-cust-btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'PhoriaBold';
+  text-transform: uppercase;
+}
+
+.ph-cust-continue-btn {
+  width: 180px;
+  padding: 15px;
+  background-color: #aaa;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  float: right;
+}
+
+.ph-cust-additional-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.ph-cust-additional-links a {
+  color: #222;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.ph-cust-register-step {
+  display: none;
+}
+
+.ph-cust-register-step.ph-cust-active {
+  display: block;
+}
+
+.ph-cust-back-to-login {
+  text-align: center;
+  font-family: 'PhoriaBold';
+  font-size: 9px;
+  margin-top: -8px;
+}
+
+#lost-your-password-heading{
+  font-size: 18px !important;
+  margin-left: 0;
+}
+
+.ph-cust-forgot-password-instructions {
+  font-size: 9px;
+  margin: 0 0 18px;
+  line-height: 2.3;
+  color: #555;
+}
+
+.ph-cust-step-indicator {
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.ph-cust-marketing-heading {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.ph-cust-marketing-option {
+  margin-bottom: 8px;
+}
+
+/* Form errors */
+.ph-cust-login-register-container .errors {
+  color: #d20000;
+  margin-bottom: 20px;
+}
+
+.ph-cust-login-register-container .errors ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+/* Hide tabs header when forgot password is shown */
+.ph-cust-tabs-header.hide {
+  display: none;
+}
+
+/* Success message styling */
+.ph-cust-success-message {
+  background-color: #f8f8f8;
+  border: 1px solid #4CAF50;
+  border-left: 5px solid #4CAF50;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.ph-cust-success-message p {
+  color: #333;
+  font-size: 16px;
+  margin: 0;
+}
+/* prevent any overlay from covering the submit button */
+.ph-cust-field { position: relative; }
+.ph-cust-btn-submit {
+  position: relative;
+  z-index: 5;         /* lift the button above neighbors */
+}
+
+/* custom checkbox visuals should not capture clicks outside the box */
+.ph-cust-checkmark { pointer-events: none; }
+
+/* make the actual hidden checkbox occupy the click area (and not float elsewhere) */
+.ph-cust-custom-checkbox { position: relative; width: 20px; height: 20px; }
+.ph-cust-custom-checkbox input {
+  position: absolute;
+  left: 0; top: 0;
+  width: 20px; height: 20px;
+  opacity: 0;          /* still invisible but click-targeted correctly */
+}
+
+/* ensure the checkbox row doesn’t overlap what follows */
+.ph-cust-checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  /* creates proper height so it doesn't sit over the button */
+}
+.ph-cust-checkbox-container label {
+  margin-left: 0px;   /* you already had this; keeping it is okay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+</style>
+
+<div class="ph-cust-page-width">
+  <div class="ph-cust-login-register-container">
+    <!-- Tabs header - will be hidden for forgot password screen -->
+    <div class="ph-cust-tabs-header" id="tabs-header">
+      <div class="ph-cust-tab-button {% if template == 'customers/login' %}ph-cust-active{% endif %}" data-tab="login">
+        <a href="#login">LOGIN</a>
+      </div>
+      <div class="ph-cust-tab-button {% if template == 'customers/register' %}ph-cust-active{% endif %}" data-tab="register">
+        <a href="#register">REGISTER</a>
+      </div>
+    </div>
+
+    <div class="ph-cust-tabs-content">
+      <!-- Login Form -->
+      <div id="login" class="ph-cust-tab-content {% if template == 'customers/login' or template != 'customers/register' %}ph-cust-active{% endif %}">
+        <h2 class="ph-cust-heading">LOGIN</h2>
+        {% form 'customer_login' %}
+          {{ form.errors | default_errors }}
+
+          <div class="ph-cust-field">
+            <label for="customer_email">USERNAME OR EMAIL ADDRESS <span class="ph-cust-required">*</span></label>
+            <input type="email" name="customer[email]" id="customer_email" autocomplete="email" autofocus>
+          </div>
+
+          <div class="ph-cust-field">
+            <label for="customer_password">PASSWORD <span class="ph-cust-required">*</span></label>
+            <div class="ph-cust-password-field">
+              <input type="password" name="customer[password]" id="customer_password" autocomplete="current-password">
+              <span class="ph-cust-password-toggle" onclick="togglePasswordVisibility('customer_password')">
+                <svg class="ph-cust-eye-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="ph-cust-field">
+            <div class="ph-cust-checkbox-container">
+              <label for="customer_remember_me">
+                <div class="ph-cust-custom-checkbox">
+                  <input type="checkbox" name="customer[remember_me]" id="customer_remember_me">
+                  <span class="ph-cust-checkmark"></span>
+                </div>
+                <span class="ph-cust-checkbox-text">REMEMBER ME</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="ph-cust-field">
+            <button type="submit" class="ph-cust-btn-submit">LOGIN</button>
+          </div>
+
+          <div class="ph-cust-additional-links">
+            <a href="/account/login#recover" class="ph-cust-forgot-password-link">LOST YOUR PASSWORD?</a>
+          </div>
+        {% endform %}
+      </div>
+      
+      <!-- Forgot Password Form -->
+    
+      <div id="forgot-password" class="ph-cust-tab-content">
+        <h2 id="lost-your-password-heading" class="ph-cust-heading">LOST YOUR PASSWORD?</h2>
+        
+        <p class="ph-cust-forgot-password-instructions">PLEASE ENTER YOUR USERNAME OR EMAIL ADDRESS. YOU WILL RECEIVE A LINK TO CREATE A NEW PASSWORD VIA EMAIL.</p>
+        
+        <!-- Success message (hidden by default) -->
+        <div id="recover-success" class="ph-cust-success-message" style="display: none;">
+          <p>We've sent you an email with a link to update your password.</p>
+        </div>
+        
+        <div id="recover-form-container">
+          {% form 'recover_customer_password' %}
+            {{ form.errors | default_errors }}
+            
+            <div class="ph-cust-field">
+              <label for="recover_email">USERNAME OR EMAIL</label>
+              <input type="email" name="email" id="recover_email" autocomplete="email">
+            </div>
+            
+            <div class="ph-cust-field">
+              <button type="submit" class="ph-cust-btn-submit" id="recover-submit-btn">RESET PASSWORD</button>
+            </div>
+            
+            <div class="ph-cust-additional-links ph-cust-back-to-login">
+              <a href="#login" class="ph-cust-login-link">BACK TO LOGIN</a>
+            </div>
+          {% endform %}
+        </div>
+      </div>
+      
+
+      <!-- Registration Form - Step 1 -->
+      <div id="register" class="ph-cust-tab-content {% if template == 'customers/register' %}ph-cust-active{% endif %}">
+        <h2 class="ph-cust-heading">REGISTER</h2>
+        <div id="register-step-1" class="ph-cust-register-step ph-cust-active">
+          <form id="register-step-1-form">
+            <div class="ph-cust-field">
+              <label for="register_email">EMAIL ADDRESS <span class="ph-cust-required">*</span></label>
+              <input type="email" name="customer[email]" id="register_email" autocomplete="email" required>
+            </div>
+
+            <div class="ph-cust-field">
+              <label for="register_password">PASSWORD <span class="ph-cust-required">*</span></label>
+              <div class="ph-cust-password-field">
+                <input type="password" name="customer[password]" id="register_password" autocomplete="new-password" required>
+                <span class="ph-cust-password-toggle" onclick="togglePasswordVisibility('register_password')">
+                  <svg class="ph-cust-eye-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="ph-cust-field">
+              <p class="ph-cust-step-indicator">STEP 1 OF 2</p>
+              <button type="button" class="ph-cust-btn-submit" id="continue-to-step-2">CONTINUE</button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Registration Form - Step 2 -->
+        <div id="register-step-2" class="ph-cust-register-step">
+          {% form 'create_customer' %}
+            {{ form.errors | default_errors }}
+            
+            <div class="ph-cust-field">
+              <label for="register_first_name">FIRST NAME <span class="ph-cust-required">*</span></label>
+              <input type="text" name="customer[first_name]" id="register_first_name" required>
+            </div>
+            
+            <div class="ph-cust-field">
+              <label for="register_last_name">LAST NAME <span class="ph-cust-required">*</span></label>
+              <input type="text" name="customer[last_name]" id="register_last_name" required>
+            </div>
+            
+            <div class="ph-cust-field">
+              <label for="register_phone">PHONE NUMBER <span class="ph-cust-required">*</span></label>
+              <input type="tel" name="customer[phone]" id="register_phone" required>
+            </div>
+            
+            <div class="ph-cust-field">
+              <label for="register_birthday">BIRTHDAY (MM/DD)</label>
+              <input type="text" name="customer[note][birthday]" id="register_birthday" placeholder="MM/DD">
+            </div>
+            
+            <!-- Hidden fields to store Step 1 data -->
+            <input type="hidden" name="customer[email]" id="hidden_email">
+            <input type="hidden" name="customer[password]" id="hidden_password">
+            
+            <div class="ph-cust-field">
+              <div class="ph-cust-checkbox-container">
+                <label for="register_newsletter">
+                  <div class="ph-cust-custom-checkbox">
+                    <input type="checkbox" name="customer[accepts_marketing]" id="register_newsletter">
+                    <span class="ph-cust-checkmark"></span>
+                  </div>
+                  <span class="ph-cust-checkbox-text">SUBSCRIBE TO NEWSLETTER</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="ph-cust-field">
+              <div class="ph-cust-checkbox-container">
+                <label for="register_newsletter">
+                  <div class="ph-cust-custom-checkbox">
+                    <input type="checkbox" name="customer[accepts_marketing]" id="register_newsletter">
+                    <span class="ph-cust-checkmark"></span>
+                  </div>
+                  <span class="ph-cust-checkbox-text">SUBSCRIBE TO SMS</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="ph-cust-field">
+              <div class="ph-cust-checkbox-container">
+                <label for="privacy_policy">
+                  <div class="ph-cust-custom-checkbox">
+                    <input type="checkbox" name="privacy_policy" id="privacy_policy" required>
+                    <span class="ph-cust-checkmark"></span>
+                  </div>
+                  <span class="ph-cust-checkbox-text">I ACCEPT THE <a href="/pages/privacy-policy" target="_blank"><strong>PRIVACY POLICY</strong></a> <span class="ph-cust-required">*</span></span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="ph-cust-field">
+              <button type="submit" class="ph-cust-btn-submit">REGISTER</button>
+            </div>
+            
+            <div class="ph-cust-additional-links">
+              <a href="#" id="back-to-step-1">BACK TO STEP 1</a>
+            </div>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.ph-cust-tab-button');
+    const tabsHeader = document.getElementById('tabs-header');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get the tab to show
+        const tabId = this.getAttribute('data-tab');
+        
+        // Hide all tabs and remove ph-cust-active class from buttons
+        document.querySelectorAll('.ph-cust-tab-content').forEach(tab => {
+          tab.classList.remove('ph-cust-active');
+        });
+        
+        tabButtons.forEach(btn => {
+          btn.classList.remove('ph-cust-active');
+        });
+        
+        // Show the selected tab and set button ph-cust-active
+        document.getElementById(tabId).classList.add('ph-cust-active');
+        this.classList.add('ph-cust-active');
+        
+        // Make sure tabs header is visible when switching to login or register
+        tabsHeader.classList.remove('hide');
+        
+        // Reset recover form if going back to another tab
+        resetRecoverForm();
+      });
+    });
+    
+    // Handle forgot password link
+    const forgotPasswordLink = document.querySelector('.ph-cust-forgot-password-link');
+    if (forgotPasswordLink) {
+      forgotPasswordLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Hide all tabs
+        document.querySelectorAll('.ph-cust-tab-content').forEach(tab => {
+          tab.classList.remove('ph-cust-active');
+        });
+        
+        // Show forgot password tab
+        document.getElementById('forgot-password').classList.add('ph-cust-active');
+        
+        // Hide tabs header when showing forgot password
+        tabsHeader.classList.add('hide');
+        
+        // Reset recover form when entering the tab
+        resetRecoverForm();
+      });
+    }
+    
+    // Handle back to login link
+    const backToLoginLink = document.querySelector('.ph-cust-login-link');
+    if (backToLoginLink) {
+      backToLoginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Hide all tabs
+        document.querySelectorAll('.ph-cust-tab-content').forEach(tab => {
+          tab.classList.remove('ph-cust-active');
+        });
+        
+        // Show login tab
+        document.getElementById('login').classList.add('ph-cust-active');
+        
+        // Set login tab button ph-cust-active
+        document.querySelector('[data-tab="login"]').classList.add('ph-cust-active');
+        
+        // Show tabs header when going back to login
+        tabsHeader.classList.remove('hide');
+      });
+    }
+    
+    // Handle forgot password form submission
+    const recoverForm = document.querySelector('#forgot-password form');
+    if (recoverForm) {
+      recoverForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        
+        const emailInput = document.getElementById('recover_email');
+        const email = emailInput.value.trim();
+        
+        if (!email) {
+          alert('Please enter your email address.');
+          return;
+        }
+        
+        // Hide the form and show success message
+        document.getElementById('recover-form-container').style.display = 'none';
+        document.getElementById('recover-success').style.display = 'block';
+        
+        // If you want to actually submit the form in the background, uncomment one of these:
+        
+        // Option 1: Use fetch to submit the form asynchronously
+        // const formData = new FormData(this);
+        // fetch(this.action, {
+        //   method: 'POST',
+        //   body: formData
+        // });
+        
+        // Option 2: Submit the form normally in the background
+        // this.submit();
+      });
+    }
+    
+    // Registration multi-step form
+    const continueToStep2Button = document.getElementById('continue-to-step-2');
+    if (continueToStep2Button) {
+      continueToStep2Button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get form values from step 1
+        const email = document.getElementById('register_email').value;
+        const password = document.getElementById('register_password').value;
+        
+        // Validate step 1 form
+        if (!email || !password) {
+          alert('Please fill out all required fields.');
+          return;
+        }
+        
+        // Transfer values to hidden fields in step 2
+        document.getElementById('hidden_email').value = email;
+        document.getElementById('hidden_password').value = password;
+        
+        // Hide step 1, show step 2
+        document.getElementById('register-step-1').classList.remove('ph-cust-active');
+        document.getElementById('register-step-2').classList.add('ph-cust-active');
+      });
+    }
+
+    //added for login landing 03-10-2025
+document.addEventListener('DOMContentLoaded', function () {
+  // Flag just before Shopify creates the account
+  const createForm = document.querySelector('#register-step-2 form');
+  if (createForm) {
+    createForm.addEventListener('submit', function () {
+      // store a one-time flag + email to prefill the login form
+      const email = document.getElementById('hidden_email')?.value || '';
+      sessionStorage.setItem('phoriaJustRegistered', '1');
+      sessionStorage.setItem('phoriaRegEmail', email);
+    });
+  }
+});
+    //added for login landing 03-10-2025
+
+    
+    // Back to step 1 button
+    const backToStep1Button = document.getElementById('back-to-step-1');
+    if (backToStep1Button) {
+      backToStep1Button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Hide step 2, show step 1
+        document.getElementById('register-step-2').classList.remove('ph-cust-active');
+        document.getElementById('register-step-1').classList.add('ph-cust-active');
+      });
+    }
+    
+    // Check if URL has #forgot-password hash
+    if (window.location.hash === '#forgot-password') {
+      // Hide all tabs
+      document.querySelectorAll('.ph-cust-tab-content').forEach(tab => {
+        tab.classList.remove('ph-cust-active');
+      });
+      
+      // Show forgot password tab
+      document.getElementById('forgot-password').classList.add('ph-cust-active');
+      
+      // Hide tabs header for forgot password
+      tabsHeader.classList.add('hide');
+      
+      // Reset recover form
+      resetRecoverForm();
+    }
+    
+    // Function to reset recover form
+    function resetRecoverForm() {
+      const recoverFormContainer = document.getElementById('recover-form-container');
+      const recoverSuccess = document.getElementById('recover-success');
+      
+      if (recoverFormContainer && recoverSuccess) {
+        recoverFormContainer.style.display = 'block';
+        recoverSuccess.style.display = 'none';
+        
+        // Clear the email input
+        const emailInput = document.getElementById('recover_email');
+        if (emailInput) {
+          emailInput.value = '';
+        }
+      }
+    }
+  });
+  
+  // Toggle password visibility
+  function togglePasswordVisibility(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
+  }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // If redirected after registration, show success + switch to LOGIN tab and prefill email
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('created') === '1') {
+    // switch tab visually
+    document.querySelectorAll('.ph-cust-tab-content').forEach(t => t.classList.remove('ph-cust-active'));
+    document.getElementById('login')?.classList.add('ph-cust-active');
+    document.querySelectorAll('.ph-cust-tab-button').forEach(b => b.classList.remove('ph-cust-active'));
+    document.querySelector('[data-tab="login"]')?.classList.add('ph-cust-active');
+
+    // show success banner
+    var box = document.getElementById('phoria-register-success');
+    if (box) box.style.display = 'block';
+
+    // prefill login email (from URL or sessionStorage)
+    var email = params.get('email') || sessionStorage.getItem('phoriaRegEmail') || '';
+    if (email) {
+      var input = document.getElementById('customer_email');
+      if (input) input.value = email;
+    }
+
+    // clear stored email (optional)
+    sessionStorage.removeItem('phoriaRegEmail');
+  }
+});
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "Login/Register Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Login and Registration Tabs"
+    },
+    {
+      "type": "paragraph",
+      "content": "A tabbed interface for customer login and registration."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Login/Register Tabs",
+      "category": "Customer"
+    }
+  ]
+}
+{% endschema %}

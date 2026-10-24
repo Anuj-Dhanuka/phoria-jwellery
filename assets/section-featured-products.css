@@ -1,0 +1,247 @@
+:root {
+  --delay: 0s;
+}
+
+.featured-products.color-background-2 {
+  background: none !important;
+}
+.featured-products__gallery {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.featured-products__gallery.is_slider {
+  flex-wrap: nowrap;
+  transition-timing-function: linear;
+}
+.featured-products__gallery--1 .featured-products__item {
+  width: 100%;
+}
+.featured-products__gallery--2 .featured-products__item {
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .featured-products__gallery--2 .featured-products__item {
+    width: 50%;
+  }
+}
+.featured-products__gallery--3 .featured-products__item {
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .featured-products__gallery--3 .featured-products__item {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 750px) {
+  .featured-products__gallery--3 .featured-products__item {
+    width: 33.3333333333%;
+  }
+}
+.featured-products__gallery--4 .featured-products__item {
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .featured-products__gallery--4 .featured-products__item {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 750px) {
+  .featured-products__gallery--4 .featured-products__item {
+    width: 33.3333333333%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .featured-products__gallery--4 .featured-products__item {
+    width: 25%;
+  }
+}
+.featured-products__item {
+  position: relative;
+  overflow: hidden;
+}
+.featured-products__item-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(var(--color-overlay));
+  transition: opacity var(--duration-default) ease;
+}
+.featured-products__item-heading {
+  font-weight: 400;
+}
+@media screen and (min-width: 990px) {
+  .featured-products__item--hover-effect .featured-products__info {
+    opacity: 0;
+  }
+  .featured-products__item--hover-effect:not(:hover) .featured-products__item-overlay {
+    opacity: 0 !important;
+  }
+  .featured-products__item--hover-effect:hover .featured-products__info {
+    opacity: 1;
+  }
+}
+.featured-products__item-card {
+  color: inherit !important;
+  background: rgba(255, 255, 255, 0);
+}
+.featured-products__item-card .card-horizontal-wrapper {
+  position: static;
+}
+.featured-products__item-card .price--on-sale .price-item--regular {
+  opacity: 0.6;
+}
+.featured-products__item-card * {
+  color: inherit !important;
+  background: rgba(255, 255, 255, 0);
+}
+.featured-products__item-card .card-horizontal__title a {
+  background-image: unset !important;
+}
+.featured-products__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.featured-products__image-wrapper {
+  width: 100%;
+  position: relative;
+  padding-bottom: 100%;
+}
+.featured-products__image-wrapper--portrait {
+  padding-bottom: 133%;
+}
+.featured-products__image-wrapper--landscape {
+  padding-bottom: 60%;
+}
+.featured-products__image-wrapper.observe-me {
+  transform-origin: center center;
+  transform: scale(1.1);
+}
+.featured-products__image-wrapper.observe-me.is-inview {
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 1.7s calc(var(--delay) + 0.2s) cubic-bezier(0.23, 0, 0.25, 1);
+}
+.featured-products__image-wrapper.observe-me.is-inview:after, .featured-products__image-wrapper.observe-me.is-inview:before {
+  transition: transform 1.1666666667s var(--delay) cubic-bezier(0.23, 0, 0.25, 1);
+}
+.featured-products__image-wrapper.observe-me.is-inview:before {
+  transform: translate3d(0, -105%, 0);
+}
+.featured-products__image-wrapper.observe-me.is-inview:after {
+  transform: translate3d(0, 105%, 0);
+}
+.featured-products__image-wrapper.observe-me:after, .featured-products__image-wrapper.observe-me:before {
+  content: "";
+  background: white;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+.featured-products__image-wrapper.observe-me:before {
+  top: 0;
+  height: 90%;
+  transform-origin: top left;
+}
+.featured-products__image-wrapper.observe-me:after {
+  bottom: 0;
+  height: 10%;
+  transform-origin: bottom left;
+}
+.featured-products__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+  padding: 2rem;
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  transition: opacity var(--duration-default) ease;
+}
+@media screen and (min-width: 1200px) {
+  .featured-products__info {
+    padding: 2.4rem;
+  }
+}
+.featured-products__info > p {
+  margin: 0;
+}
+.featured-products .card-horizontal__image .media {
+  height: 0;
+}
+.featured-products .card-horizontal-wrapper {
+  gap: 1.6rem !important;
+}
+.featured-products .quick-add-block {
+  display: none;
+}
+.featured-products .products-button-prev {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+}
+.featured-products .products-button-next {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  height: 100%;
+  width: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+}
+@media (min-width: 750px) {
+  .featured-products .products-button-next {
+    width: 20rem;
+  }
+}
+.featured-products .cursor {
+  height: 20px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 5;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+}
+.featured-products .cursor:not([data-type=""]) > .cursor-icon {
+  opacity: 1;
+}
+.featured-products .cursor-icon {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.featured-products.products-cursor .cursor {
+  opacity: 0;
+  transition: opacity var(--duration-default);
+}
+.featured-products.products-cursor .products__buttons {
+  opacity: 0;
+  transition: opacity var(--duration-default);
+}
+.featured-products.products-cursor:hover .products__buttons {
+  opacity: 1;
+  cursor: none;
+}
+.featured-products.products-cursor:hover .cursor {
+  opacity: 1;
+}

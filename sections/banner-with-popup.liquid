@@ -1,0 +1,568 @@
+{{ 'banner-with-popup.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'banner-with-popup.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+{% assign count = 0 %}
+{%- for block in section.blocks -%}
+  {% if block.type == 'image' %}
+    {% assign count = count | plus: 1 %}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="banner-with-popup {% if section.settings.full_screen_image_mode %}banner-with-popup--full-screen-image {%  endif %} section-{{ section.id }}">
+  <div class="container">
+    {% if count != 0 %}
+      <div
+        class="
+          banner-with-popup__gallery banner-with-popup__gallery--{{ section.settings.aspect_ratio }}
+          {% if section.settings.enable_animation %} observe-me{% endif %}
+        "
+        data-speed="{{ section.settings.slideshow_speed }}"
+        data-id="{{ section.id }}"
+      >
+        {% assign index_count = count %}
+        {%- for block in section.blocks -%}
+          {% if block.type == 'image' %}
+            {% assign index_count = index_count | minus: 1 %}
+            {% assign placeholder_num = index_count | modulo: 3 %}
+            {% assign placeholder_num = placeholder_num | plus: 1 %}
+            {% assign image_placeholder = 'hero-apparel-' | append: placeholder_num %}
+            <div class="banner-with-popup__gallery--image-wrapper" style="z-index: {{ index_count }}">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: block.settings.image.width
+                  | image_tag:
+                    class: 'banner-with-popup__image',
+                    loading: 'lazy',
+                    sizes: '100vw',
+                    widths: '550, 750, 1100, 1500, 1780, 2000, 3000, 3840, 4200, 5000'
+                }}
+              {% else %}
+                {{ image_placeholder | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+        {% if section.settings.enable_animation %}
+          <div class="banner-with-popup__animated-overlay" style="z-index: {{ count }}"></div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="banner-with-popup__info">
+      <div class="banner-with-popup__info--wrapper">
+        <div class="banner-with-popup__content">
+          {%- if section.settings.heading != blank -%}
+            <div class="banner-with-popup__top">
+              {%- if section.settings.heading != blank -%}
+                <h2 class="banner-with-popup__heading {{ section.settings.heading_size }}">
+                  {{ section.settings.heading }}
+                </h2>
+              {%- endif -%}
+            </div>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <div class="banner-with-popup__description">
+              {{ section.settings.description }}
+            </div>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_function == 'link' %}
+            <a
+              {% if section.settings.button_link != blank %}
+                href="{{ section.settings.button_link }}"
+              {% else %}
+                aria-disabled="true"
+              {% endif %}
+              class="banner-with-popup__button button button--{{ section.settings.button_style }}{% if section.settings.button_style == 'simple' %} button--arrow {% endif %} focus-inset"
+            >
+              <span>{{ section.settings.button_label }}</span>
+            </a>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_function == 'popup' %}
+            <div class="banner-popup">
+              <modal-opener
+                class="no-js-hidden"
+                data-modal="#PopupModal-{{ section.id }}"
+                {{ section.shopify_attributes }}
+              >
+                <button
+                  id="ModalPopup-{{ section.id }}"
+                  class="banner-with-popup__button button button--{{ section.settings.button_style }}{% if section.settings.button_style == 'simple' %} button--arrow {% endif %} focus-inset"
+                  type="button"
+                  aria-haspopup="dialog"
+                >
+                  <span>{{ section.settings.button_label }}</span>
+                </button>
+              </modal-opener>
+              <div class="banner-popup-modal__content-info no-js">
+                <div class="banner-popup-modal__heading">
+                  {% if section.settings.popup_heading != blank %}
+                    <h3 class="banner-popup-modal__title">
+                      {{ section.settings.popup_heading }}
+                    </h3>
+                  {% endif %}
+                  <button
+                    id="ModalClose-{{ section.id }}"
+                    type="button"
+                    class="banner-popup-modal__close modal-close-button focus-inset"
+                    aria-label="{{ 'accessibility.close' | t }}"
+                  >
+                    {% render 'icon-close' %}
+                  </button>
+                </div>
+                {% if section.settings.popup_image != blank %}
+                  <div
+                    class="banner-with-popup__popup-image--wrapper banner-with-popup__popup-image--wrapper--{{ section.settings.popup_image_size }}"
+                    style="z-index: {{ index_count }}"
+                  >
+                    {{
+                      section.settings.popup_image
+                      | image_url: width: 1000
+                      | image_tag:
+                        class: 'banner-with-popup__popup-image',
+                        loading: 'lazy',
+                        sizes: '30vw,(min-width: 392px) 20vw',
+                        widths: '300, 392, 600, 700, 1000, 1300, 1500'
+                    }}
+                  </div>
+                {% endif %}
+
+                {% if section.settings.popup_content_heading != blank or section.settings.popup_content != blank %}
+                  <div class="banner-popup-modal__text">
+                    {% if section.settings.popup_content_heading != blank %}
+                      <h3 class="banner-popup-modal__content-heading">
+                        {{ section.settings.popup_content_heading }}
+                      </h3>
+                    {% endif %}
+                    {%- if section.settings.popup_content != blank -%}
+                      <div class="banner-popup-modal--popup-content">
+                        {{ section.settings.popup_content }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                {% if section.settings.popup_button_label != blank %}
+                  <a
+                    {% if section.settings.popup_button_link != blank %}
+                      href="{{ section.settings.popup_button_link }}"
+                    {% else %}
+                      aria-disabled="true"
+                    {% endif %}
+                    class="banner-with-popup__button popup-button button button--{{ section.settings.popup_button_style }}{% if section.settings.popup_button_style == 'simple' %} button--arrow {% endif %} focus-inset"
+                  >
+                    <span>{{ section.settings.popup_button_label }}</span>
+                  </a>
+                {% endif %}
+              </div>
+
+              <modal-dialog id="PopupModal-{{ section.id }}" class="banner-popup-modal">
+                <div
+                  role="dialog"
+                  aria-label="{{ section.settings.label }}"
+                  aria-modal="true"
+                  class="banner-popup-modal__content"
+                  tabindex="-1"
+                >
+                  <div class="banner-popup-modal__content-info">
+                    <div class="banner-popup-modal__heading">
+                      {% if section.settings.popup_heading != blank %}
+                        <h3 class="banner-popup-modal__title">
+                          {{ section.settings.popup_heading }}
+                        </h3>
+                      {% endif %}
+                      <button
+                        id="ModalClose-{{ section.id }}"
+                        type="button"
+                        class="banner-popup-modal__close modal-close-button focus-inset"
+                        aria-label="{{ 'accessibility.close' | t }}"
+                      >
+                        {% render 'icon-close' %}
+                      </button>
+                    </div>
+                    {% if section.settings.popup_image != blank %}
+                      <div
+                        class="banner-with-popup__popup-image--wrapper banner-with-popup__popup-image--wrapper--{{ section.settings.popup_image_size }}"
+                        style="z-index: {{ index_count }}"
+                      >
+                        {{
+                          section.settings.popup_image
+                          | image_url: width: 1000
+                          | image_tag:
+                            class: 'banner-with-popup__popup-image',
+                            loading: 'lazy',
+                            sizes: '30vw,(min-width: 392px) 20vw',
+                            widths: '300, 392, 600, 700, 1000, 1300, 1500'
+                        }}
+                      </div>
+                    {% endif %}
+
+                    {% if section.settings.popup_content_heading != blank or section.settings.popup_content != blank %}
+                      <div class="banner-popup-modal__text">
+                        {% if section.settings.popup_content_heading != blank %}
+                          <h3 class="banner-popup-modal__content-heading">
+                            {{ section.settings.popup_content_heading }}
+                          </h3>
+                        {% endif %}
+                        {%- if section.settings.popup_content != blank -%}
+                          <div class="banner-popup-modal--popup-content">
+                            {{ section.settings.popup_content }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+
+                    {% if section.settings.popup_button_label != blank %}
+                      <a
+                        {% if section.settings.popup_button_link != blank %}
+                          href="{{ section.settings.popup_button_link }}"
+                        {% else %}
+                          aria-disabled="true"
+                        {% endif %}
+                        class="banner-with-popup__button popup-button button button--{{ section.settings.popup_button_style }}{% if section.settings.popup_button_style == 'simple' %} button--arrow {% endif %} focus-inset"
+                      >
+                        <span>{{ section.settings.popup_button_label }}</span>
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </modal-dialog>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.banner-with-popup.name",
+  "tag": "section",
+  "class": "banner-with-popup-section spaced-section",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.banner-with-popup.blocks.image.name",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "t:sections.image-with-text.settings.aspect_ratio.label",
+      "default": "full",
+      "options": [
+        {
+          "value": "full",
+          "label": "t:sections.image-with-text.settings.aspect_ratio.options__1.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.image-with-text.settings.aspect_ratio.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.image-with-text.settings.aspect_ratio.options__3.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "full_screen_image_mode",
+      "default": false,
+      "label": "t:sections.banner-with-popup.settings.full_screen_image_mode.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Heading",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "default": "<p>Description</p>",
+      "label": "t:sections.all.description.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.button.header_button.content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Some label",
+      "label": "t:sections.all.button.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.all.button.button_link.label"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.all.button.button_style.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.all.button.button_style.options__2.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:sections.all.button.button_style.options__3.label"
+        },
+        {
+          "value": "simple",
+          "label": "t:sections.all.button.button_style.options__4.label"
+        }
+      ],
+      "default": "simple",
+      "label": "t:sections.all.button.button_style.label"
+    },
+    {
+      "type": "select",
+      "id": "button_function",
+      "options": [
+        {
+          "value": "link",
+          "label": "t:sections.banner-with-popup.settings.button_function.option__1.label"
+        },
+        {
+          "value": "popup",
+          "label": "t:sections.banner-with-popup.settings.button_function.option__2.label"
+        }
+      ],
+      "default": "popup",
+      "label": "t:sections.banner-with-popup.settings.button_function.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.animate_on_scroll.header"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "t:sections.all.animate_on_scroll.label_2",
+      "default": true,
+      "info": "t:sections.all.animate_on_scroll.label"
+    },
+    {
+      "type": "range",
+      "id": "slideshow_speed",
+      "min": 1,
+      "max": 6,
+      "step": 0.1,
+      "default": 2,
+      "unit": "s",
+      "label": "t:sections.all.slider_options.speed.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.banner-with-popup.settings.popup_options.label"
+    },
+    {
+      "type": "text",
+      "id": "popup_heading",
+      "default": "Popup heading",
+      "label": "t:sections.banner-with-popup.settings.popup_heading.label"
+    },
+    {
+      "type": "text",
+      "id": "popup_content_heading",
+      "default": "Content heading",
+      "label": "t:sections.banner-with-popup.settings.popup_content_heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "popup_content",
+      "default": "<p>Popup content</p>",
+      "label": "t:sections.banner-with-popup.settings.popup_content.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "popup_image",
+      "label": "t:sections.all.image.label"
+    },
+    {
+      "type": "select",
+      "id": "popup_image_size",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio.options__3.label"
+        }
+      ],
+      "default": "portrait",
+      "label": "t:sections.all.card.image_ratio.label"
+    },
+    {
+      "type": "text",
+      "id": "popup_button_label",
+      "default": "Some label",
+      "label": "t:sections.all.button.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "popup_button_link",
+      "label": "t:sections.all.button.button_link.label"
+    },
+    {
+      "type": "select",
+      "id": "popup_button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.all.button.button_style.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.all.button.button_style.options__2.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:sections.all.button.button_style.options__3.label"
+        },
+        {
+          "value": "simple",
+          "label": "t:sections.all.button.button_style.options__4.label"
+        }
+      ],
+      "default": "tertiary",
+      "label": "t:sections.all.button.button_style.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner-with-popup.name",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

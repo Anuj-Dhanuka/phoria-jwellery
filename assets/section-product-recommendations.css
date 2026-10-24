@@ -1,0 +1,90 @@
+.product-recommendations__wrapper {
+  display: grid;
+  gap: 2rem 2.4rem;
+  grid-column: span 2;
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations__wrapper {
+    gap: 3.6rem 2.4rem;
+  }
+  .product-recommendations__wrapper--2, .product-recommendations__wrapper--3, .product-recommendations__wrapper--4, .product-recommendations__wrapper--5, .product-recommendations__wrapper--6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations__wrapper--3, .product-recommendations__wrapper--4, .product-recommendations__wrapper--5, .product-recommendations__wrapper--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .product-recommendations__wrapper--4, .product-recommendations__wrapper--5, .product-recommendations__wrapper--6 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1360px) {
+  .product-recommendations__wrapper--5, .product-recommendations__wrapper--6 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .product-recommendations__wrapper--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations--2-mobile:not(.product-recommendations__wrapper--1) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations--2-mobile .collection-product-card .rating {
+    margin-bottom: 0;
+  }
+  .product-recommendations--2-mobile .collection-product-card .rating__stars {
+    margin: 0 0.3rem 0 0;
+  }
+  .product-recommendations--2-mobile .collection-product-card .rating-star::before {
+    font-size: 1.5rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .rating-text {
+    font-size: 1.2rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .rating-count {
+    font-size: 1rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .card__title {
+    font-size: calc(var(--font-heading-card-scale) * 0.9rem);
+  }
+  .product-recommendations--2-mobile .collection-product-card .card__description {
+    font-size: 1rem;
+    margin-top: 0.4rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .card-wrapper .product-parameters {
+    margin-top: 0.4rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .card-information__top {
+    gap: 0.2rem 1.2rem;
+    flex-wrap: wrap;
+  }
+  .product-recommendations--2-mobile .collection-product-card .badge {
+    font-size: 1.1rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .card__subtitle,
+  .product-recommendations--2-mobile .collection-product-card .card__vendor::after {
+    font-size: 0.8rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .card-information {
+    padding: 0.6rem 0;
+  }
+  .product-recommendations--2-mobile .collection-product-card .price {
+    font-size: calc(var(--font-heading-card-scale) * 0.9rem);
+  }
+  .product-recommendations--2-mobile .collection-product-card .price--on-sale .price__sale {
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: 0.4rem;
+  }
+  .product-recommendations--2-mobile .collection-product-card .price--on-sale .price__sale dt {
+    order: 1;
+  }
+}

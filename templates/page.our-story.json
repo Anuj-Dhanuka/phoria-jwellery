@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_image_text_kGMdFD": {
+      "type": "ph-image-text",
+      "blocks": {
+        "heading_cwEM49": {
+          "type": "heading",
+          "settings": {
+            "heading": "Designer // Charlotte"
+          }
+        },
+        "richtext_KRkyiU": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Designer + Founder Charlotte is based in her studio in London.</p>"
+          }
+        },
+        "richtext_8rFEt6": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Charlotte received her formal training at the prestigious Central Saint Martins College of Art and Design, graduating with a BA in Jewellery Design in 2015.</p>"
+          }
+        },
+        "richtext_NFTrUb": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Charlotte has gained accolades recognising her work as a designer. Featuring in magazines such as Harper’s Bazaar, British Vogue and the Sunday Telegraph as well as exhibiting at the V&A.</p>"
+          }
+        },
+        "richtext_FRTcK6": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>After graduating she moved to New York, working for Tiffany & Co. creating jewellery collections within the luxury corporate fashion world. After eight years in the industry as a designer, Charlotte launched Phoria with the vision to create a quality line of jewellery revolving around creativity, not trends.</p>"
+          }
+        },
+        "richtext_JTiJFa": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>All phoria pieces are fully designed by Charlotte in her studio, and handmade ethically by craftsman in thailand using sustainable materials.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cwEM49",
+        "richtext_KRkyiU",
+        "richtext_8rFEt6",
+        "richtext_NFTrUb",
+        "richtext_FRTcK6",
+        "richtext_JTiJFa"
+      ],
+      "custom_css": [],
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "right",
+        "media_type": "image",
+        "media_padding_left": false,
+        "media_padding_right": false,
+        "image": "shopify://shop_images/HEADSHOT-concrete-1.webp",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_image_text_kGMdFD"
+  ]
+}

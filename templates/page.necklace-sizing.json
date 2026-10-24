@@ -1,0 +1,123 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_necklace_header_6UHfUA": {
+      "type": "ph-necklace-header",
+      "settings": {
+        "heading": "HOW TO MAKE A NECKLACE USING OUR MODULAR CHAIN BRACELETS",
+        "subheading": "<p>ALL PHORIA BRACELETS ARE <strong>MODULAR</strong> - OUR CARABINER CLASPS CAN BE CONNECTED WITH ANY OTHER PHORIA BRACELET TO CREATE ANY STYLE OF <strong>NECKLACE</strong> YOU CHOOSE.</p>",
+        "guide_image": "shopify://shop_images/phoria-jewellery-illustration-of-how-to-open-and-make-necklace-0.3c.webp",
+        "step1": "SIMPLY OPEN OUR CARABINER CLASP BY PULLING THE CLASP APART ON ONE OF YOUR BRACELETS",
+        "step2": "USE THIS TO LINK THROUGH THE CHAIN LINK ON YOUR SECOND NECKLACE",
+        "step3": "SHUT THE CLASP SHUT",
+        "step4": "DO THE SAME FOR THE SECOND BRACELET TO LINK TO YOUR OTHER ONE"
+      }
+    },
+    "ph_necklace_richtext_QPUCNG": {
+      "type": "ph-necklace-richtext",
+      "settings": {
+        "heading": "SIZE COMBINATIONS",
+        "description": "<p>PLEASE BE AWARE OF OUR CHAIN SIZES WHEN CREATING YOUR DESIRED NECKLACE. DIFFERENT CHAINS WILL SIT DIFFERENTLY ON YOUR NECK DEPENDING ON THE THICKNESS OF THE CHAIN. THE THICKER THE CHAIN THE LONGER IT NEEDS TO BE TO SIT NICELY ON THE NECK.</p><p>PLEASE TAKE THIS INTO ACCOUNT WHEN BUYING MORE THAN ONE BRACELET FOR A MODULAR NECKLACE.</p><p>WE RECOMMEND REFERRING TO THE SIZE CHART BELOW FOR MINIMUM TOTAL LENGTHS:</p>",
+        "additional_text": ""
+      }
+    },
+    "ph_necklace_table_d46rk6": {
+      "type": "ph-necklace-table",
+      "blocks": {
+        "combination_NTXgk8": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 SCREW + X2 SCREW DOUBLED UP"
+          }
+        },
+        "combination_FNF7Ym": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X2 SCREW DOUBLED UP + X1 BOND"
+          }
+        },
+        "combination_AGirhM": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 BOND"
+          }
+        },
+        "combination_PXdXxT": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 BOND + X1 BOND + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        },
+        "combination_UPRT3g": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE"
+          }
+        },
+        "combination_JtiYa6": {
+          "type": "combination",
+          "settings": {
+            "combination_text": "X1 HYPE + X1 HYPE + X1 SCREW ATTACHED FROM THE SIDE"
+          }
+        }
+      },
+      "block_order": [
+        "combination_NTXgk8",
+        "combination_FNF7Ym",
+        "combination_AGirhM",
+        "combination_PXdXxT",
+        "combination_UPRT3g",
+        "combination_JtiYa6"
+      ],
+      "settings": {
+        "heading": "FIND YOUR MODULAR NECKLACE CHAIN LENGTH",
+        "description": "BELOW ARE A FEW EXAMPLES AND SUGGESTIONS OF BRACELET COMBINATIONS THAT WORK REALLY NICELY AS MODULAR NECKLACES:",
+        "table_header": "OUR RECOMMENDATIONS: MODULAR COMBINATIONS"
+      }
+    },
+    "ph_necklace_guide_7a4UPm": {
+      "type": "ph-necklace-guide",
+      "settings": {
+        "heading": "WHERE YOUR NECKLACE WILL SIT",
+        "description": "<p>PLEASE REFER TO THE SKETCH BELOW FOR A ROUGH ESTIMATION FOR WHERE YOUR NECKLACE WILL SIT. PLEASE REMEMBER TO COMBINE THE TOTAL LENGTHS OF THE BRACELETS OF YOUR CHOICE TO GET YOUR TOTAL LENGTH IN INCHES.</p>",
+        "left_image": "shopify://shop_images/phoria-jewellery-illustration-necklace-length_edit_sq.webp",
+        "right_image": "shopify://shop_images/phoria-jewellery-illustration-necklace-length-runaway_edit_sq.webp",
+        "note_text": ""
+      }
+    },
+    "ph_necklace_cta_brqGKP": {
+      "type": "ph-necklace-cta",
+      "settings": {
+        "heading": "STYLING OR SIZING QUESTION?",
+        "button_text": "CONTACT US",
+        "button_link": "shopify://pages/contact",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_necklace_header_6UHfUA",
+    "ph_necklace_richtext_QPUCNG",
+    "ph_necklace_table_d46rk6",
+    "ph_necklace_guide_7a4UPm",
+    "ph_necklace_cta_brqGKP"
+  ]
+}

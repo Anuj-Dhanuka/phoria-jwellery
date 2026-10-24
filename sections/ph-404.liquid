@@ -1,0 +1,132 @@
+<style>
+  .ph-404__container{
+    width: 100%;
+  }
+  .ph-404{
+    max-width: 540px;
+    height: 80vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h1.ph-404__title{
+    font-size: 2.266vw;
+    font-family: "PhoriaBold";
+    text-align: center;
+    margin: 0;
+  }
+  .ph-404__subtitle{
+    font-size: 10px;
+    font-family: "PhoriaRegular";
+    text-align: center;
+    margin-top: 36px;
+    line-height: 2.3;
+  }
+  .ph-404__ctas{
+    display: flex;
+    gap: 45px;
+    margin-top: 36px;
+  }
+  .ph-404__cta{
+    font-size: 10px;
+    font-family: "PhoriaBold";
+  }
+  footer{
+    display: none;
+  }
+@media screen and (max-width: 989px){
+  h1.ph-404__title{
+    font-size: 18px;
+  }
+}
+</style>
+<div class="ph-404__container">
+  <div class="ph-404">
+    <h1 class="ph-404__title">{{ section.settings.title }}</h1>
+    <div class="ph-404__subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+    <div class="ph-404__ctas">
+      {% if section.settings.cta1_link !=blank %}
+        <a href="{{ section.settings.cta1_link }}" class="ph-404__cta">{{ section.settings.cta1_text }}</a>
+      {% endif %}
+      {% if section.settings.cta2_link !=blank %}
+        <a href="{{ section.settings.cta2_link }}" class="ph-404__cta">{{ section.settings.cta2_text }}</a>
+      {% endif %}
+      {% if section.settings.cta3_link !=blank %}
+        <a href="{{ section.settings.cta3_link }}" class="ph-404__cta">{{ section.settings.cta3_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Ph 404",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Page Not Found"
+      },
+      {
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "<p>Something has broken.</p>"
+      },
+      {
+        "type": "header",
+        "content": "CTA 1"
+      },
+      {
+        "type": "text",
+        "id": "cta1_text",
+        "label": "Text",
+        "default": "Link"
+      },
+      {
+        "type": "url",
+        "id": "cta1_link",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "CTA 2"
+      },
+      {
+        "type": "text",
+        "id": "cta2_text",
+        "label": "Text",
+        "default": "Link"
+      },
+      {
+        "type": "url",
+        "id": "cta2_link",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "CTA 3"
+      },
+      {
+        "type": "text",
+        "id": "cta3_text",
+        "label": "Text",
+        "default": "Link"
+      },
+      {
+        "type": "url",
+        "id": "cta3_link",
+        "label": "Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Ph 404"
+      }
+    ]
+  }
+{% endschema %}

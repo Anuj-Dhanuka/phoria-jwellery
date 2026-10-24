@@ -1,0 +1,310 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "np_image_text_ERykEP": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_K4GXqm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Phoria."
+          }
+        },
+        "richtext_Jh7iFU": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>The range is made up of the ultimate staples – designed to be redesigned, with a simple yet powerful aesthetic, and an urban-industrial edge.</p>"
+          }
+        },
+        "richtext_KXW7Q9": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our pieces are sustainable in more ways than one. It’s not just down to the materials we use, but they’re transformable, meaning there’s never just one way to wear them. Their modular and versatile nature allows you to reimagine them over and over, encouraging you to adapt and redefine.</p>"
+          }
+        },
+        "richtext_YaR3T6": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>With quality at the core, our pieces have been handcrafted with the highest attention to detail. Transformed seamlessly, they’re more than just one piece of jewellery, but multiple pieces in one. Made to be entirely your own, again and again and again and again.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_K4GXqm",
+        "richtext_Jh7iFU",
+        "richtext_KXW7Q9",
+        "richtext_YaR3T6"
+      ],
+      "custom_css": [
+        ".np-redesignable-feature {padding-top: 85px;}",
+        ".np-redesignable-feature__heading {font-size: 2.266vw !important; margin-left: -3px;}",
+        ".np-redesignable-feature__content {width: 68%; padding: 0 72px 36px;}",
+        "@media screen and (max-width: 1020px) {.np-redesignable-feature {padding-top: 0px; margin-top: -100px; } .np-redesignable-feature__heading {font-size: 22px !important; margin-left: -3px;} .np-redesignable-feature__content {width: 100%; padding: 0 72px 36px; }}"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/2023_05_17_SM_PHORIA_SHOT_08_030_FINAL_1X1_300DPI.webp",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_3djQjf": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_k4HhxW": {
+          "type": "heading",
+          "settings": {
+            "heading": "Twist + Play"
+          }
+        },
+        "richtext_FBWyz8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our rings reimagine the traditional ring as an interchangeable, transformable piece, designed with an industrial edge.</p>"
+          }
+        },
+        "richtext_wWMJN8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Simply twist and play with the bands to reveal all gold, all silver or a two toned look.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_k4HhxW",
+        "richtext_FBWyz8",
+        "richtext_wWMJN8"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "video",
+        "video": "shopify://files/videos/hookup-chain-ring-gr1-g-rxgwt.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_hAtNca": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_TQTcRy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hang // Stack"
+          }
+        },
+        "richtext_4HHbmk": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our rings can be worn with the bands stacked on one finger or spread across several with the chain hanging.</p>"
+          }
+        },
+        "richtext_L837yd": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>With moveable semi-precious stone annulets and customisable wearing options our 2-in-1 or 3-in-1 rings offer almost endless creative versatility.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TQTcRy",
+        "richtext_4HHbmk",
+        "richtext_L837yd"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "video",
+        "video": "shopify://files/videos/hookup-chain-ring-ii-gr2-g-rxrwt.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_krD9mL": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_HUnWB9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Reversible + Two-Toned"
+          }
+        },
+        "richtext_dWMfnV": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Our reversible two-toned hoops allow you to switch effortlessly between silver and gold, embellished or plain, encouraging individuality through versatility.</p>"
+          }
+        },
+        "richtext_cynkKK": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Lightweight with a hollowed construction, our earrings are handcrafted for all-day, everyday comfort whilst keeping that bold look and feel.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HUnWB9",
+        "richtext_dWMfnV",
+        "richtext_cynkKK"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "video",
+        "video": "shopify://files/videos/2-Powerplay-Hoop-Earrings-360-PE2-GMSRWT-XX.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_LYnTtm": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_4rVKfn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Interchangeable + Transformable"
+          }
+        },
+        "richtext_TdmfN9": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>More than just a pair of earrings, their transformative and interchangeable design means you can reimagine the ways you wear them again and again and again and again.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4rVKfn",
+        "richtext_TdmfN9"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "video",
+        "video": "shopify://files/videos/2-Sugar-Rush-Huggie-Chain-Earrings-PE1-GMSRWT-XX.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_WJjVbh": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_DkBzmn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Modular Bracelets"
+          }
+        },
+        "richtext_XcEaHq": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>All Phoria bracelets are modular, which means they can be combined and rearranged to create different looks and styles.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DkBzmn",
+        "richtext_XcEaHq"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "left",
+        "media_type": "video",
+        "video": "shopify://files/videos/hype-chain-bracelets-modular-necklace-gold-and-silver.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    },
+    "np_image_text_XPLDhA": {
+      "type": "np-image-text",
+      "blocks": {
+        "heading_rBbcmX": {
+          "type": "heading",
+          "settings": {
+            "heading": "Personalised Styling, Versatility + Creativity"
+          }
+        },
+        "richtext_frKqLg": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Designed to encourage personalised styling, versatility and creativity, our chains can be worn simply on their own or attached together and reimagined again and again and again.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rBbcmX",
+        "richtext_frKqLg"
+      ],
+      "name": "Np-Image-text",
+      "settings": {
+        "media_position": "right",
+        "text_alignment": "right",
+        "media_type": "video",
+        "video": "shopify://files/videos/anim-9-gold-silver-1.mp4",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#FFFFFF",
+        "text_color": "#000000"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "np_image_text_ERykEP",
+    "np_image_text_3djQjf",
+    "np_image_text_hAtNca",
+    "np_image_text_krD9mL",
+    "np_image_text_LYnTtm",
+    "np_image_text_WJjVbh",
+    "np_image_text_XPLDhA"
+  ]
+}

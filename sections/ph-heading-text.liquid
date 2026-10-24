@@ -1,0 +1,216 @@
+{% comment %}Phoria Heading Text Section{% endcomment %}
+<style>
+.ph-heading-text-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 72px 36px 0px;
+}
+.ph-heading-text-section__content {
+  max-width: 66vw;
+  text-align: left;
+}
+.ph-heading-text-section__text ul{
+  padding-left: 19px;
+  margin: 18px 0 0 0;
+}
+.ph-heading-text-section__title {
+  font-size: 2.266vw;
+  font-weight: bold;
+  margin: 0 0 0 -3px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.ph-heading-text-section__text {
+  font-size: 10px;
+  line-height: 2.3;
+  text-transform: uppercase;
+}
+.ph-heading-text-section__text p {
+  margin: 18px 0 0 0;
+}
+@media screen and (max-width: 960px) {
+    .ph-heading-text-section__content {
+       max-width: none;
+       text-align: left;
+     }
+  
+      .ph-heading-text-section__title {
+        font-size: 22px;
+      }
+      .ph-heading-text-section {
+      width: 100%;
+      max-width: 100%;
+      padding: 72px 18px 0px 18px;
+      }
+    .ph-heading-text-section__content {
+      text-align: left;
+      padding: 0px;
+    }
+  .ph-heading-text-section__text {
+    font-size: 10px;
+  }
+}
+
+.pt-72 {
+  padding-top: 72px;
+}
+</style>
+{% assign section_id = section.id %}
+<div id="ph-heading-text-section-{{ section_id }}" class="ph-heading-text-section" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+  <div class="ph-heading-text-section__content">
+    <h1 class="ph-heading-text-section__title ph-title-{{ section_id }}">{{ section.settings.title }}</h1>
+    
+    <div class="ph-heading-text-section__text ph-text-{{ section_id }}">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'heading' %}
+            {% if block.settings.heading_text != blank %}
+
+            <h2 class="ph-heading-text-section__title pt-72">
+              {{ block.settings.heading_text }}
+            </h2>
+          {% endif %}
+
+          {% when 'richtext' %}
+            {% if block.settings.content != blank %}
+              {{ block.settings.content }}
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    (function(sectionId) {
+      if (typeof Motion === 'undefined') {
+        console.warn('Motion library not found');
+        return;
+      }
+      
+      const { animate, inView } = Motion;
+      
+      // Check if animations are enabled in settings
+      const enableAnimations = {{ section.settings.enable_animations | default: true }};
+      
+      if (enableAnimations) {
+        // Use unique selectors with section ID to ensure we target only this specific section instance
+        const headingElem = document.querySelector(".ph-title-" + sectionId);
+        const richTextElem = document.querySelector(".ph-text-" + sectionId);
+        
+        if (headingElem) {
+          // Set initial state via JavaScript
+          headingElem.style.opacity = "0";
+          headingElem.style.transform = "translateY(60px)";
+          
+          // Animate the heading when it comes into view
+          inView(headingElem, (elem) => {
+            animate(elem, 
+              { opacity: [0, 1], y: ["60px", 0] }, 
+              { duration: 0.7, easing: "ease-out" }
+            );
+          }, { once: true, amount: 0.1 });
+        }
+        
+        if (richTextElem) {
+          // Set initial state via JavaScript
+          richTextElem.style.opacity = "0";
+          richTextElem.style.transform = "translateY(60px)";
+          
+          // Animate the rich text
+          inView(richTextElem, (elem) => {
+            animate(elem, 
+              { opacity: [0, 1], y: ["60px", 0] }, 
+              { duration: 0.6, delay: 0.2, easing: "ease-out" }
+            );
+          }, { once: true, amount: 0.1 });
+        }
+      }
+    })("{{ section_id }}");
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph-Heading-Text-Section",
+  "tag": "section",
+  "class": "ph-heading-text-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "HEADING TEXT SECTION"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Animation Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when section comes into view"
+    }
+  ],
+  "blocks": [
+    {
+  "type": "heading",
+  "name": "Heading",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Section Heading"
+    }
+  ]
+}
+,
+    {
+      "type": "richtext",
+      "name": "Rich Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Rich Text Content",
+          "default": "<p>SAMPLE RICH TEXT PARAGRAPH GOES HERE. YOU CAN EASILY MODIFY THIS IN THE SECTION SETTINGS.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph-Heading-Text-Section",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>SAMPLE RICH TEXT PARAGRAPH GOES HERE. YOU CAN EASILY MODIFY THIS IN THE SECTION SETTINGS.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

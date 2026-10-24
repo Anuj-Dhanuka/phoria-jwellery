@@ -1,0 +1,89 @@
+.section-{{ section.id }}-padding {
+{% if section.settings.padding_top == 'no-indent' %}
+  padding-top: 0;
+{% elsif section.settings.padding_top == 'xl' %}
+  padding-top: 10rem;
+{% elsif section.settings.padding_top == 'l' %}
+  padding-top: 6.4rem;
+{% elsif section.settings.padding_top == 'm' %}
+  padding-top: 4.8rem;
+{% elsif section.settings.padding_top == 's' %}
+  padding-top: 3.2rem;
+{% else %}
+  padding-top: 2.4rem;
+{% endif %}
+
+{% if section.settings.padding_bottom == 'no-indent' %}
+  padding-bottom: 0;
+{% elsif section.settings.padding_bottom == 'xl' %}
+  padding-bottom: 10rem;
+{% elsif section.settings.padding_bottom == 'l' %}
+  padding-bottom: 6.4rem;
+{% elsif section.settings.padding_bottom == 'm' %}
+  padding-bottom: 4.8rem;
+{% elsif section.settings.padding_bottom == 's' %}
+  padding-bottom: 3.2rem;
+{% else %}
+  padding-bottom: 2.4rem;
+{% endif %}
+}
+
+@media screen and (min-width: 750px) { .section-{{ section.id }}-padding {
+{% if section.settings.padding_top == 'no-indent' %}
+  padding-top: 0;
+{% elsif section.settings.padding_top == 'xl' %}
+  padding-top: 13.6rem;
+{% elsif section.settings.padding_top == 'l' %}
+  padding-top: 8rem;
+{% elsif section.settings.padding_top == 'm' %}
+  padding-top: 6.4rem;
+{% elsif section.settings.padding_top == 's' %}
+  padding-top: 3.2rem;
+{% else %}
+  padding-top: 2.4rem;
+{% endif %}
+
+{% if section.settings.padding_bottom == 'no-indent' %}
+  padding-bottom: 0;
+{% elsif section.settings.padding_bottom == 'xl' %}
+  padding-bottom: 13.6rem;
+{% elsif section.settings.padding_bottom == 'l' %}
+  padding-bottom: 8rem;
+{% elsif section.settings.padding_bottom == 'm' %}
+  padding-bottom: 6.4rem;
+{% elsif section.settings.padding_bottom == 's' %}
+  padding-bottom: 3.2rem;
+{% else %}
+  padding-bottom: 2.4rem;
+{% endif %}
+} }
+
+@media screen and (min-width: 1360px) { .section-{{ section.id }}-padding {
+{% if section.settings.padding_top == 'no-indent' %}
+  padding-top: 0;
+{% elsif section.settings.padding_top == 'xl' %}
+  padding-top: 15.2rem;
+{% elsif section.settings.padding_top == 'l' %}
+  padding-top: 12rem;
+{% elsif section.settings.padding_top == 'm' %}
+  padding-top: 8.8rem;
+{% elsif section.settings.padding_top == 's' %}
+  padding-top: 4.8rem;
+{% else %}
+  padding-top: 2.4rem;
+{% endif %}
+
+{% if section.settings.padding_bottom == 'no-indent' %}
+  padding-bottom: 0;
+{% elsif section.settings.padding_bottom == 'xl' %}
+  padding-bottom: 15.2rem;
+{% elsif section.settings.padding_bottom == 'l' %}
+  padding-bottom: 12rem;
+{% elsif section.settings.padding_bottom == 'm' %}
+  padding-bottom: 8.8rem;
+{% elsif section.settings.padding_bottom == 's' %}
+  padding-bottom: 4.8rem;
+{% else %}
+  padding-bottom: 2.4rem;
+{% endif %}
+} }

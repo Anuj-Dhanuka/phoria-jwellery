@@ -1,0 +1,300 @@
+<style>
+  .{{ section.id }}-ph-product__row{
+    width: 100%;
+    padding: 0 36px;
+    padding-top: {{section.settings.padding_desktop_top}}px;
+    padding-bottom: {{section.settings.padding_desktop_bottom}}px;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    margin: 0 36px !important;
+    width: 100%;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__grid--item{
+    text-align: center;
+    cursor: pointer;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__row--item{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__row--info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__title, .{{ section.id }}-ph-product__row .ph-product__price{
+    font-size: 12px;
+    font-family: 'PhoriaBold';
+    text-align: center;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__finish{
+    font-size: 10px;
+    font-family: 'PhoriaRegular'; 
+    text-align: center;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__grid--item:hover .ph-product__image {
+    transform: scale(1.05);
+  }
+  .{{ section.id }}-ph-product__row .ph-media__wrapper{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  .{{ section.id }}-ph-product__row .ph-product__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 959px){
+    .{{ section.id }}-ph-product__row .ph-media__wrapper{
+      max-width: 650px;
+    }
+    .{{ section.id }}-ph-product__row{
+      padding: 0 18px;
+      padding-top: {{section.settings.padding_mobile_top}}px;
+      padding-bottom: {{section.settings.padding_mobile_bottom}}px;
+    }
+    .{{ section.id }}-ph-product__row .ph-product__grid{
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .{{ section.id }}-ph-product__row .ph-product__title, .{{ section.id }}-ph-product__row .ph-product__price{
+      font-size: 10px;
+    }
+  }
+</style>
+<section class="{{ section.id }}-ph-product__row">
+  <a href="/products/{{ section.settings.product.handle }}" class="ph-product__row--item">
+    <div class="ph-product__grid">
+      <div class="ph-product__grid--item">
+        <div class="ph-media__wrapper">
+          {% if section.settings.left_img != blank and section.settings.left_video == blank %}
+            <img src="{{ section.settings.left_img | image_url: width: 700 }}" alt="" width="350" height="350" class="ph-product__image">
+          {% else %}
+            {{ section.settings.left_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-product__video" }}
+          {% endif %}
+        </div>
+      </div>
+      <div class="ph-product__grid--item">
+        <div class="ph-media__wrapper">
+          {% assign first_media = section.settings.product.media | first %}
+          
+          {% if section.settings.custom_thumbnail == true %}
+            {% if section.settings.custom_product_video != blank %}
+              {{ section.settings.custom_product_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-product__video" }}
+            {% elsif section.settings.custom_product_image != blank %}
+              <img src="{{ section.settings.custom_product_image | image_url: width: 700 }}" alt="{{ product.title }}" class="ph-product__image" loading="lazy" width="350" height="350">
+            {% else %}
+              {% if first_media.media_type == 'image' %}
+                 <img src="{{ first_media | image_url: width: 700 }}" alt="{{ product.title }}" class="ph-product__image" loading="lazy" width="350" height="350">
+              {% elsif first_media.media_type == 'video' %}
+                {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-product__video" }}
+              {% endif %}
+            {% endif %}
+          {% else %}
+            {% if first_media.media_type == 'image' %}
+              <img src="{{ first_media | image_url: width: 700 }}" alt="{{ product.title }}" class="ph-product__image" loading="lazy" width="350" height="350">
+            {% elsif first_media.media_type == 'video' %}
+              {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-product__video" }}
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="ph-product__grid--item">
+        <div class="ph-media__wrapper">
+          {% if section.settings.right_img != blank and section.settings.right_video == blank %}
+            <img src="{{ section.settings.right_img | image_url: width: 700 }}" alt="" width="350" height="350" class="ph-product__image">
+          {% else %}
+            {{ section.settings.right_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-product__video" }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="ph-product__row--info">
+      <span class="ph-product__title">{{ section.settings.product.title }}</span>
+      {% if section.settings.product.metafields.custom.finish and section.settings.custom_finish == blank %}
+        <span class="ph-product__finish">{{ section.settings.product.metafields.custom.finish.value }}</span>
+      {% else %}
+        <span class="ph-product__finish">{{ section.settings.custom_finish }}</span>
+      {% endif %}
+      <span class="ph-pdp-product-compare-price">{% render 'ph-round-money', amount: section.settings.product.price %}</span>
+      <span class="ph-product__price">{% render 'ph-round-money', amount: section.settings.product.price %}</span>
+
+    </div>
+  </a>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if Motion library is available
+    if (typeof Motion !== 'undefined') {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate each grid item individually when it comes into view
+      const gridItems = document.querySelectorAll('.{{ section.id }}-ph-product__row .ph-product__grid--item');
+      
+      gridItems.forEach((elem, index) => {
+        inView(elem, (el) => {
+          // Apply staggered animation based on item position
+          const delay = index * 0.2; // Stagger delay between items
+          
+          // Left and right items slide in from their respective sides
+          // Center item slides up
+          let animationProps;
+          if (index === 0) {
+            // Left item - slide from left
+            animationProps = { opacity: [0, 1], y: ['100px', 0] };
+          } else if (index === 2) {
+            // Right item - slide from right
+            animationProps = { opacity: [0, 1], y: ['100px', 0] };
+          } else {
+            // Center item - slide up
+            animationProps = { opacity: [0, 1], y: ['100px', 0] };
+          }
+          
+          animate(el, 
+            animationProps, 
+            { duration: 0.6, delay: delay, easing: "ease-out" }
+          );
+        }, { once: true });
+      });
+      
+      // Animate the product info section
+      const productInfo = document.querySelector('.{{ section.id }}-ph-product__row .ph-product__row--info');
+      if (productInfo) {
+        inView(productInfo, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.5, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Ph Product Row",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "left_img",
+        "label": "Featured Image 1",
+      },
+      {
+        "type": "video",
+        "id": "left_video",
+        "label": "Featured Video 1",
+        "info": "select a video to show instead of image"
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_thumbnail",
+        "label": "Show custom thumbnail",
+        "default": false
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product",
+      },
+      {
+        "type": "text",
+        "id": "custom_finish",
+        "label": "Finish"
+      },
+      {
+        "type": "image_picker",
+        "id": "custom_product_image",
+        "label": "Product Image",
+      },
+      {
+        "type": "video",
+        "id": "custom_product_video",
+        "label": "Product Video",
+        "info": "select a video to show instead of image"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_img",
+        "label": "Featured Image 2",
+      },
+       {
+        "type": "video",
+        "id": "right_video",
+        "label": "Featured Video 2",
+        "info": "select a video to show instead of image"
+      },
+      {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when product items come into view"
+    }
+    ],
+    "presets": [
+      {
+        "name": "Ph Product Row"
+      }
+    ]
+  }
+{% endschema %}

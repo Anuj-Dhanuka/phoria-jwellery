@@ -1,0 +1,185 @@
+<style>
+  .{{ section.id }}-product-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--products-per-row, 4), 1fr);
+    gap: 36px;
+    margin: 36px !important;
+    margin: auto;
+    padding-top: {{section.settings.padding_desktop_top}}px;
+    padding-bottom: {{section.settings.padding_desktop_bottom}}px;
+  }
+
+  .{{ section.id }}-product-grid .product-item {
+    text-align: center;
+    cursor: pointer;
+
+  }
+
+  .{{ section.id }}-product-grid .media-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  @supports not (aspect-ratio: 1 / 1) {
+    .{{ section.id }}-product-grid .media-wrapper {
+      height: 0;
+      padding-top: 100%;
+    }
+
+    .{{ section.id }}-product-grid .media-wrapper > * {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .{{ section.id }}-product-grid .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .{{ section.id }}-product-grid .product-item:hover .product-image {
+    transform: scale(1.05);
+  }
+
+  .{{ section.id }}-product-grid .product-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .{{ section.id }}-product-grid .product-title {
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: 'PhoriaBold';
+    text-transform: uppercase;
+  }
+
+  .{{ section.id }}-product-grid .product-finish {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    font-family: 'Phoriaregular';
+  }
+  .{{ section.id }}-product-grid .product-price {
+    font-size: 12px;
+    font-family: 'PhoriaBold';
+    color: #333;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 959px) {
+    .{{ section.id }}-product-grid {
+      gap: 18px;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+      padding-top: {{section.settings.padding_mobile_top}}px;
+    padding-bottom: {{section.settings.padding_mobile_bottom}}px;
+    }
+  }
+</style>
+
+{% if section.settings.products %}
+  <div class="{{ section.id }}-product-grid" style="--products-per-row: {{ section.settings.products_per_row }}">
+    {% for product in section.settings.products limit: section.settings.products_to_show %}
+      <a href="/products/{{ product.handle }}" data-product-id="{{ product.id }}"><div class="product-item">
+        <div class="media-wrapper">
+          {% assign first_media = product.media | first %}
+          {% if first_media.media_type == 'image' %}
+            <img src="{{ first_media | image_url: width: 700 }}" alt="{{ product.title }}" class="product-image" loading="lazy" width="350" height="350">
+          {% elsif first_media.media_type == 'video' %}
+            {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "product-video" }}
+          {% endif %}
+        </div>
+        <h3 class="product-title">{{ product.title }}</h3>
+        {% if product.metafields.custom.finish %}
+          <p class="product-finish">{{ product.metafields.custom.finish.value }}</p>
+        {% endif %}
+        <p class="product-price">{% render 'ph-round-money', amount: product.price %}</p>
+      </div></a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p style="text-align: center;">Please Products in the settings.</p>
+{% endif %}
+{% schema %}
+{
+  "name": "Ph Product Grid",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Select Products"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Products Per Row",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Total Products to Show",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+  ],
+  "presets": [
+    {
+      "name": "Ph Product Grid"
+    }
+  ]
+}
+{% endschema %}

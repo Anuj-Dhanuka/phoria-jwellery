@@ -1,0 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "show_cart_note": true,
+        "margin_top": "m",
+        "margin_bottom": "m",
+        "acc_title1": "Free U.K. shipping",
+        "acc_content1": "<p>Delivery within the UK is free.<br/><br/>Your order will be dispatched <strong>within 24 hours</strong> of your order being processed (on business days). Once dispatched, orders will arrive the <strong>next working day </strong>in the UK via Royal Mail’s Special Delivery fully tracked service.<br/><br/>For more info please visit the ‘<a href=\"/pages/delivery-returns\" title=\"Delivery + Returns\">delivery and returns</a>’ section of our site.</p>",
+        "acc_title2": "International Shipping",
+        "acc_content2": "<p>Phoria ships worldwide.<br/><br/>PHORIA SHIPS WITH DHL EXPRESS AND FEDEX INTERNATIONAL. THE DELIVERY TIME WILL DEPEND ON YOUR LOCATION AND IS CALCULATED AT CHECKOUT. THIS RANGES FROM 1 - 5 DAYS DEPENDING ON YOUR CHOSEN METHOD.<br/><br/>If you are ordering from outside of the UK your order will likely be subject to customs or import duties which will not be covered by Phoria.<br/><br/>For more info please visit the <a href=\"/pages/delivery-returns\" title=\"Delivery + Returns\">delivery and returns </a>section of our site.<br/><br/></p>",
+        "acc_title3": "Complimentary gift wrapping and jewellery storage box",
+        "acc_content3": "<p>All Phoria Jewellery comes gift wrapped complimentary in a 100% recyclable gift bag.<br/><br/>We don’t agree with the ‘throw away’ culture of todays packaging. Every piece arrives in your very own storage box to keep your jewellery in when it’s not being worn.<br/></p><p>A care card on how to look after your jewellery along with a polishing cloth is also provided.<br/><br/>If your purchase is a gift you have the option to include a blank card for a hand written style note at checkout.<br/></p><p>For more info on our packaging and sustainability efforts please visit the <a href=\"/pages/our-values\" title=\"Our Values\">our values</a> section of our site.</p>",
+        "acc_title4": "Questions ?",
+        "acc_content4": "<p>Please email: <a href=\"mailto:info@phoriajewellery.com\"><strong>info@phoriajewellery.com</strong> </a>and we will get back to you within 24 hours.</p>",
+        "acc_image3": "shopify://shop_images/homepage-footer-packaging2.webp",
+        "acc_image3_link": "shopify://pages/our-values",
+        "acc_title5": "",
+        "acc_content5": ""
+      }
+    }
+  },
+  "order": [
+    "cart-items"
+  ]
+}

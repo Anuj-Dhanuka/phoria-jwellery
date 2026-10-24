@@ -1,0 +1,166 @@
+<style>
+  .ph-styling-cta-container {
+    width: 100%;
+    max-width: 80vw;
+    margin: auto;
+  }
+  
+  .ph-styling-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .ph-styling-cta-heading {
+    font-size: 1.25vw;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-styling-cta-button-wrapper {
+    margin-top: 36px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-styling-cta-button {
+    display: inline-block;
+    min-width: 200px;
+    padding: 13px 31px;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'PhoriaBold';
+  }
+  
+  .ph-styling-cta-button:hover {
+    opacity: 0.8;
+  }
+  
+  @media screen and (max-width: 1020px) {
+    .ph-styling-cta-container {
+     width: 100%;
+     max-width: 100%;
+     margin: auto;
+    }
+  
+    .ph-styling-cta-heading {
+      font-size: 18px;
+    }
+    
+    .ph-styling-cta-button {
+      min-width: 180px;
+    }
+  }
+</style>
+<div class="ph-styling-cta-container">
+  <div class="ph-styling-cta-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-styling-cta-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+      <div class="ph-styling-cta-button-wrapper">
+        <a href="{{ section.settings.button_link }}" class="ph-styling-cta-button">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-styling-cta-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate button
+      const buttonWrapper = document.querySelector('.ph-styling-cta-button-wrapper');
+      if (buttonWrapper) {
+        inView(buttonWrapper, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Nacklace CTA",
+  "tag": "section",
+  "class": "ph-styling-cta-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "STYLING OR SIZING QUESTION?"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "CONTACT US"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Nacklace CTA"
+    }
+  ]
+}
+{% endschema %}

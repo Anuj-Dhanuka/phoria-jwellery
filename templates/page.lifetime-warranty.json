@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_image_text_JypgTz": {
+      "type": "ph-image-text",
+      "blocks": {
+        "heading_HtpthF": {
+          "type": "heading",
+          "settings": {
+            "heading": "LIFETIME WARRANTY"
+          }
+        },
+        "richtext_JWzpFD": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>AT PHORIA, WE BELIEVE YOUR JEWELLERY SHOULD LAST A LIFETIME. NOT JUST IN STYLE, BUT IN QUALITY. THAT’S WHY WE PROUDLY OFFER A LIFETIME WARRANTY ON EVERY SINGLE PIECE.</p><p>EACH PHORIA CREATION IS CAREFULLY HAND-CRAFTED WITH PRECISION AND CARE. BUT IN THE RARE CASE THAT SOMETHING ISN’T QUITE PERFECT, WE’LL MAKE IT RIGHT. OUR WARRANTY COVERS ANY MANUFACTURING IMPERFECTIONS, BREAKAGES, OR UNEXPECTED TARNISHING THAT MAY OCCUR OVER TIME. </p><p>IF YOU EVER RECEIVE A PIECE THAT DOESN’T MEET OUR STANDARDS OR IF SOMETHING GOES WRONG DOWN THE LINE - WE’LL EXCHANGE YOUR ITEM FOR A BRAND-NEW PIECE AT NO ADDITIONAL COST. IT’S OUR WAY OF ENSURING YOUR JEWELLERY ALWAYS LOOKS AND FEELS AS GOOD AS THE DAY YOU GOT IT.</p><p>FOR MORE INFORMATION, OR IF YOU HAVE ANY QUESTIONS ABOUT OUR LIFETIME WARRANTY, FEEL FREE TO REACH OUT TO US ANYTIME AT HELLO@PHORIAJEWELLERY.COM - OUR TEAM IS ALWAYS HAPPY TO HELP.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HtpthF",
+        "richtext_JWzpFD"
+      ],
+      "custom_css": [
+        "h2 {font-size: 22px;}",
+        "a {font-size: 16px;}",
+        "@media (max-width: 768px) {a {font-size: 16px; }}"
+      ],
+      "name": "Ph-Image-text",
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "right",
+        "media_type": "image",
+        "media_padding_left": false,
+        "media_padding_right": false,
+        "image": "shopify://shop_images/WarrantyPageImage.jpg",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_image_text_JypgTz"
+  ]
+}

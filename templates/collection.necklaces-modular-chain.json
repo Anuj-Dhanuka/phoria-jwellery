@@ -1,0 +1,703 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_title": false,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "",
+        "short_text": "<p></p>",
+        "full_text": "<p></p>",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 100,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "cover",
+        "image_filter_columns": 5,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_collection_description_FVMnFP": {
+      "type": "ph-collection-description",
+      "custom_css": [
+        ".expandable-text {max-width: 1360px !important; margin: 0 auto;}",
+        ".expandable-text-template--26403829154058__ph_collection_description_FVMnFP {margin-bottom: 24px !important;}"
+      ],
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "",
+        "short_text": "<p>Our necklaces are inspired by hardware aesthetics, handcrafted and assembled link by link from solid 100% recycled. 925 sterling silver and 18ct Gold Vermeil for a quality weighted feel achieving a bold and unique yet subtle statement.</p>",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 80,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "ph_product_grid_v2_iiwQcX": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_ABtt4H": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/1P THE P LETTER PENDANT SILVER 360_9eb1285c-d145-46cb-9f4f-7ebc96b30dea.mov",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-silver?variant=52864720535818&ph_letter=P",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "THE LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_QnpeBB": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-silver?variant=52864718995722",
+            "custom_variant_id": "52864718995722",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1A_THE_A_LETTER_PENDANT_FRONT_WITH_CHAIN_SILVER.jpg",
+            "override_title": "THE I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_mpE8eQ": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-silver?variant=52864719880458",
+            "custom_variant_id": "52864719880458",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/4J_LETTER_PENDANT_ON_CHAIN-20.jpg",
+            "override_title": "THE I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_RRHNAE": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-silver?ph_letter=n",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1N_THE_N_Letter_Pendant_Modular_Screw_Chain_Necklace_Silver.jpg",
+            "override_title": "THE I.D. MODULAR NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_xz8e3p": {
+          "type": "product",
+          "settings": {
+            "product_item": "runaway-graduated-choker-necklace-925-sterling-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "RUNAWAY GRADUATED CHOKER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_8MEJxg": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-silver?ph_letter=no%20letter",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_THE_I.D._MODULAR_NECKLACE_SILVER.jpg",
+            "override_title": "THE I.D. MODULAR NECKLACE",
+            "custom_price_text": "470"
+          }
+        }
+      },
+      "block_order": [
+        "product_ABtt4H",
+        "product_QnpeBB",
+        "product_mpE8eQ",
+        "product_RRHNAE",
+        "product_xz8e3p",
+        "product_8MEJxg"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; } .media-wrapper {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 54,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 18,
+        "padding_mobile_bottom": 0,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_F7BGPT": {
+      "type": "ph-collection-banner",
+      "name": "Ph Collection Banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/1ST_IMAGE.jpg",
+        "url": "shopify://products/runaway-graduated-choker-necklace-18ct-gold-vermeil",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 54,
+        "padding_desktop_bottom": 2,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 2,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_description_DnJhib": {
+      "type": "ph-collection-description",
+      "disabled": true,
+      "name": "Ph Collection Description",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "Modular Chains //",
+        "short_text": "<p>DESIGNED TO ENCOURAGE PERSONALISED STYLING, VERSATILITY AND CREATIVITY, OUR THREE BRACELET CHAINS CAN BE COMBINED AND REARRANGED TO CREATE DIFFERENT NECKLACE LOOKS AND STYLES.</p>",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 70,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 100,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "ph_product_grid_v2_ffKBKT": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_thumbnail_JGfQTY": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "75500",
+            "thumbnail_image": "shopify://shop_images/10-phoria-14.jpg",
+            "thumbnail_title": "Modular Hype Chain Bracelets + Screw Chain Bracelet",
+            "thumbail_product": "extended-hype-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_9cLRPy": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "46500",
+            "thumbnail_image": "shopify://shop_images/Modular-Chain-Necklace-7.jpg",
+            "thumbnail_title": "Modular Screw Chain Bracelets",
+            "thumbail_product": "screw-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_B86Kzn": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": true,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "60000",
+            "thumbnail_video": "shopify://files/videos/hype-chain-bracelets-modular-necklace-gold-and-silver.mp4",
+            "thumbnail_title": "Modular Hype Chain Bracelets",
+            "thumbail_product": "screw-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_j7eXED": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": false,
+            "custom_price": "54000",
+            "thumbnail_image": "shopify://shop_images/Modular-Chain-Necklace-4_2ec4814a-7156-415f-90ba-bd259185502b.jpg",
+            "thumbnail_title": "Modular Screw Chain Bracelets + Bond Chain Bracelet",
+            "thumbail_product": "screw-chain-bracelet-925-sterling-silver",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_WnAwUe": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": true,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "68500",
+            "thumbnail_video": "shopify://files/videos/6-12Anim9-1.mp4",
+            "thumbnail_title": "Modular Screw + Hype + Bond Chain Bracelets",
+            "thumbail_product": "extended-hype-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_hbEtX7": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "53000",
+            "thumbnail_image": "shopify://shop_images/11-modular-chain-necklace-6-1.jpg",
+            "thumbnail_title": "Modular Hype Chain Bracelet + Bond Chain Bracelet",
+            "thumbail_product": "extended-hype-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_thumbnail_JGfQTY",
+        "product_thumbnail_9cLRPy",
+        "product_thumbnail_B86Kzn",
+        "product_thumbnail_j7eXED",
+        "product_thumbnail_WnAwUe",
+        "product_thumbnail_hbEtX7"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; } .media-wrapper {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 54,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 18,
+        "padding_mobile_bottom": 0,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_F6D76n": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_GJpX47": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "product_thumbnail_video": "shopify://files/videos/1H THE H LETTER PENDANT GOLD 360_314503ec-9a9f-46cd-9e1f-3de63a51ed44.mov",
+            "custom_product_url": "https://www.phoriajewellery.com/products/screw-chain-bracelet-18ct-gold-vermeil?ph_letter=H",
+            "custom_variant_id": "52860074033418",
+            "show_from_prefix": false,
+            "override_title": "“THE LETTER PENDANT”",
+            "custom_price_text": ""
+          }
+        },
+        "product_Vribqg": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18 CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-gold?variant=52719355461898",
+            "custom_variant_id": "52719355461898",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1G_THE_G_LETTER_PENDANT_FRONT_WITH_CHAIN_GOLD.jpg",
+            "override_title": "THE I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_pmaD79": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18 CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-gold?variant=52719355560202",
+            "custom_variant_id": "52719355560202",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/4J_LETTER_PENDANT_ON_CHAIN-19.jpg",
+            "override_title": "THE I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_A7R7LK": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18 CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?ph_letter=R",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1R_ID_MODULAR_NECKLACE_GOLD-18_1.jpg",
+            "override_title": "THE I.D. MODULAR NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_BMAQwC": {
+          "type": "product",
+          "settings": {
+            "product_item": "runaway-graduated-choker-necklace-18ct-gold-vermeil",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18 CT GOLD VERMEIL",
+            "product_thumbnail_video": "shopify://files/videos/RunawayGoldAnim.mp4",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "RUNAWAY GRADUATED CHOKER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_J7YYVm": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18 CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?ph_letter=no%20letter",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_ID_MODULAR_NECKLACE_GOLD.jpg",
+            "override_title": "THE I.D. MODULAR NECKLACE",
+            "custom_price_text": "570"
+          }
+        }
+      },
+      "block_order": [
+        "product_GJpX47",
+        "product_Vribqg",
+        "product_pmaD79",
+        "product_A7R7LK",
+        "product_BMAQwC",
+        "product_J7YYVm"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; } .media-wrapper {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 54,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 18,
+        "padding_mobile_bottom": 0,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_BTGAMM": {
+      "type": "ph-collection-banner",
+      "custom_css": [
+        "@media screen and (min-width: 989px) {.ph-collection__banner-video-container {padding: 0 144px; }}"
+      ],
+      "name": "Ph Collection Banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/2ND_IMAGE.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "video",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 20,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_description_McPUbi": {
+      "type": "ph-collection-description",
+      "disabled": true,
+      "name": "Ph Collection Description",
+      "settings": {
+        "show_title": false,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "",
+        "short_text": "<p>Example of how to connect our modular chain bracelets together to create a necklace.<br/><br/>This can be done with any of our bracelet chains to create any combination of necklace you like.<br/><br/>Please read our <a href=\"https://www.phoriajewellery.com/size-style-guides/necklace-sizing/\"><strong>size + style guide </strong></a>for more info on sizing and suggested combinations.<br/><br/>Please note that all bracelets are sold separately.<br/><br/></p>",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 35,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 20,
+        "padding_mobile_bottom": 0,
+        "para_width_desktop": 100,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "ph_product_grid_v2_PMPeCT": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_thumbnail_z8YUdk": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": false,
+            "custom_price": "54000",
+            "thumbnail_image": "shopify://shop_images/Modular-Chain-Necklace-3.jpg",
+            "thumbnail_title": "Modular Screw Chain Bracelets",
+            "thumbail_product": "screw-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_thB3H8": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": false,
+            "custom_price": "61500",
+            "thumbnail_image": "shopify://shop_images/7-modular-chain-necklace.jpg",
+            "thumbnail_title": "Modular Bond Chain Bracelets + Screw Chain Bracelet",
+            "thumbail_product": "bond-chain-bracelet-925-sterling-silver",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_6Xxjia": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "54000",
+            "thumbnail_image": "shopify://shop_images/Modular-Chain-Necklace-5.jpg",
+            "thumbnail_title": "Modular Screw Chain Bracelets + Bond Chain Bracelet",
+            "thumbail_product": "bond-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_rUUQWP": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "31000",
+            "thumbnail_image": "shopify://shop_images/Modular-Chain-Necklace-1.jpg",
+            "thumbnail_title": "Modular Screw Chain Bracelets",
+            "thumbail_product": "screw-chain-bracelet-925-sterling-silver",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_h3nn74": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "60000",
+            "thumbnail_image": "shopify://shop_images/11-modular-chain-necklace-10-1.jpg",
+            "thumbnail_title": "Modular Hype Chain Bracelets",
+            "thumbail_product": "extended-hype-chain-bracelet-925-sterling-silver",
+            "thumbnail_subtitle": ""
+          }
+        },
+        "product_thumbnail_zfeKwT": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": true,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": true,
+            "show_from_label": true,
+            "custom_price": "60000",
+            "thumbnail_video": "shopify://files/videos/9-MODULAR-HYPE-CHAIN-BRACELETS.mp4",
+            "thumbnail_title": "Modular Hype Chain Bracelets",
+            "thumbail_product": "extended-hype-chain-bracelet-18ct-gold-vermeil",
+            "thumbnail_subtitle": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_thumbnail_z8YUdk",
+        "product_thumbnail_thB3H8",
+        "product_thumbnail_6Xxjia",
+        "product_thumbnail_rUUQWP",
+        "product_thumbnail_h3nn74",
+        "product_thumbnail_zfeKwT"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: 1fr; } .media-wrapper {max-width: ; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 54,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 18,
+        "padding_mobile_bottom": 0,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "ph_collection_description_FVMnFP",
+    "ph_product_grid_v2_iiwQcX",
+    "ph_collection_banner_F7BGPT",
+    "ph_collection_description_DnJhib",
+    "ph_product_grid_v2_ffKBKT",
+    "ph_product_grid_v2_F6D76n",
+    "ph_collection_banner_BTGAMM",
+    "ph_collection_description_McPUbi",
+    "ph_product_grid_v2_PMPeCT"
+  ]
+}

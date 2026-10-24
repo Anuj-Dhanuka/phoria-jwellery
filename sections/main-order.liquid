@@ -1,0 +1,516 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div class="customer account order section-{{ section.id }}">
+  <div class="container">
+    <div class="account__wrapper">
+      <div class="account__left">
+        <div class="account__order-info">
+          <div class="account__subtitle h3">{{ 'customer.order.title' | t: name: order.name }}</div>
+          <span class="secondary_text">
+            {{ order.financial_status_label }}
+          </span>
+
+          {%- if order.cancelled -%}
+            {%- assign cancelled_at = order.cancelled_at | time_tag: format: 'date_at_time' -%}
+            <span>
+              {{- 'customer.order.cancelled_html' | t: date: cancelled_at }}
+              {{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label -}}
+            </span>
+          {%- endif -%}
+        </div>
+        <div role="table" class="order-table order-table--details">
+          <div class="visually-hidden">{{ 'customer.order.title' | t: name: order.name }}</div>
+          <div class="row thead subtitle">
+            <div id="ColumnProduct">{{ 'customer.order.product' | t }}</div>
+            <div id="ColumnSku">{{ 'customer.order.sku' | t }}</div>
+            <div id="ColumnPrice">{{ 'customer.order.price' | t }}</div>
+            <div id="ColumnQuantity">{{ 'customer.order.quantity' | t }}</div>
+            <div id="ColumnTotal">{{ 'customer.order.total' | t }}</div>
+          </div>
+
+          {%- for line_item in order.line_items -%}
+            <div class="row tbody">
+              <div id="Row{{ line_item.key }}" data-label="{{ 'customer.order.product' | t }}">
+                <div class="product-name">
+                  {%- if line_item.product.url != blank -%}
+                    <a href="{{ line_item.product.url }}" class="customer__product-name">
+                      {{- line_item.product.title -}}
+                    </a>
+                  {%- else -%}
+                    <p>{{ line_item.product.title }}</p>
+                  {%- endif -%}
+
+                  {%- assign property_size = line_item.properties | size -%}
+                  <div class="properties">
+                    {%- unless line_item.product.has_only_default_variant -%}
+                      {%- for option in line_item.options_with_values -%}
+                        <span>
+                          {{- option.value }}
+                        </span>
+                      {%- endfor -%}
+                    {%- endunless -%}
+                    {%- unless line_item.selling_plan_allocation == null -%}
+                      <span>
+                        {{ line_item.selling_plan_allocation.selling_plan.name }}
+                      </span>
+                    {%- endunless -%}
+                  </div>
+
+                  {%- if line_item.line_level_discount_allocations != blank -%}
+                    <ul
+                      role="list"
+                      aria-label="{{ 'customer.order.discount' | t }}"
+                      class="list-unstyled discounts"
+                    >
+                      {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                        <li class="discounts__item">
+                          {% render 'icon-discount' %}
+                          {{- discount_allocation.discount_application.title }} (-
+                          {% render 'ph-round-money', amount: discount_allocation.amount %}
+                          )
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+              </div>
+              <div data-label="{{ 'customer.order.sku' | t }}" class="secondary_text">
+                {%- if line_item.sku != blank -%}
+                  {{ line_item.sku }}
+                {%- else -%}
+                  –
+                {%- endif -%}
+              </div>
+              <div data-label="{{ 'customer.order.price' | t }}" class="secondary_text">
+                {%- if line_item.original_price != line_item.final_price or line_item.unit_price_measurement -%}
+                  <div>
+                    {%- if line_item.original_price != line_item.final_price -%}
+                      <div>
+                        <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                      </div>
+                      <div>
+                        <s>
+                          {% if settings.currency_code_enabled %}
+                            {% render 'ph-round-money', amount: line_item.original_price, with_currency: true %}
+                          {% else %}
+                            {% render 'ph-round-money', amount: line_item.original_price %}
+                          {% endif %}
+                        </s>
+                      </div>
+                      <div>
+                        <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                      </div>
+                      <div>
+                        <span>
+                          {% if settings.currency_code_enabled %}
+                            {% render 'ph-round-money', amount: line_item.final_price, with_currency: true %}
+                          {% else %}
+                            {% render 'ph-round-money', amount: line_item.final_price %}
+                          {% endif %}
+                        </span>
+                      </div>
+                    {%- else -%}
+                      <div>
+                        <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                      </div>
+                      <div>
+                        {% if settings.currency_code_enabled %}
+                          {% render 'ph-round-money', amount: line_item.original_price, with_currency: true %}
+                        {% else %}
+                          {% render 'ph-round-money', amount: line_item.original_price %}
+                        {% endif %}
+                      </div>
+                    {%- endif -%}
+                    {%- if line_item.unit_price_measurement -%}
+                      <div>
+                        <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                      </div>
+                      <div>
+                        <span>
+                          {%- capture unit_price_separator -%}
+														<span aria-hidden="true">/</span>
+														<span class="visually-hidden">{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+													{%- endcapture -%}
+                          {%- capture unit_price_base_unit -%}
+														{%- if line_item.unit_price_measurement.reference_value != 1 -%}
+															{{- line_item.unit_price_measurement.reference_value -}}
+														{%- endif -%}
+														{{ line_item.unit_price_measurement.reference_unit }}
+													{%- endcapture -%}
+                          <span
+                            data-unit-price
+                          >
+                            {% if settings.currency_code_enabled %}
+                              {% render 'ph-round-money', amount: line_item.unit_price, with_currency: true %}
+                            {% else %}
+                              {% render 'ph-round-money', amount: line_item.unit_price %}
+                            {% endif %}
+                          </span>
+                          {{- unit_price_separator -}}
+                          {{- unit_price_base_unit -}}
+                        </span>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- else -%}
+                  <span>
+                    {% if settings.currency_code_enabled %}
+                      {% render 'ph-round-money', amount: line_item.final_price, with_currency: true %}
+                    {% else %}
+                      {% render 'ph-round-money', amount: line_item.final_price %}
+                    {% endif %}
+                  </span>
+                {%- endif -%}
+              </div>
+              <div data-label="{{ 'customer.order.quantity' | t }}" class="secondary_text">
+                {{ line_item.quantity }}
+              </div>
+              <div data-label="{{ 'customer.order.total' | t }}" class="secondary_text">
+                {%- if line_item.original_line_price != line_item.final_line_price -%}
+                  <div>
+                    <div>
+                      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                    </div>
+                    <div>
+                      <s>
+                        {% if settings.currency_code_enabled %}
+                          {% render 'ph-round-money', amount: line_item.original_line_price, with_currency: true %}
+                        {% else %}
+                          {% render 'ph-round-money', amount: line_item.original_line_price %}
+                        {% endif %}
+                      </s>
+                    </div>
+                    <div>
+                      <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                    </div>
+                    <div>
+                      <span>
+                        {% if settings.currency_code_enabled %}
+                          {% render 'ph-round-money', amount: line_item.final_line_price, with_currency: true %}
+                        {% else %}
+                          {% render 'ph-round-money', amount: line_item.final_line_price %}
+                        {% endif %}
+                      </span>
+                    </div>
+                  </div>
+                {%- else -%}
+                  {% if settings.currency_code_enabled %}
+                    {% render 'ph-round-money', amount: line_item.original_line_price, with_currency: true %}
+                  {% else %}
+                    {% render 'ph-round-money', amount: line_item.original_line_price %}
+                  {% endif %}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div role="table" class="order-table order-table--total">
+          <div class="row tbody bold">
+            <span class="subtitle">{{ 'customer.order.subtotal' | t }}</span>
+            <span class="secondary_text">
+              {% if settings.currency_code_enabled %}
+                {% render 'ph-round-money', amount: order.line_items_subtotal_price, with_currency: true %}
+              {% else %}
+                {% render 'ph-round-money', amount: order.line_items_subtotal_price %}
+              {% endif %}
+            </span>
+          </div>
+          {%- for shipping_method in order.shipping_methods -%}
+            <div class="row tbody bold">
+              <span id="RowShipping" class="subtitle">
+                {{- 'customer.order.shipping' | t }} ({{ shipping_method.title }})
+              </span>
+              <span
+                data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})"
+                class="secondary_text"
+              >
+                {% if settings.currency_code_enabled %}
+                  {% render 'ph-round-money', amount: shipping_method.price, with_currency: true %}
+                {% else %}
+                  {% render 'ph-round-money', amount: shipping_method.price %}
+                {% endif %}
+              </span>
+            </div>
+          {%- endfor -%}
+          {%- if order.cart_level_discount_applications != blank -%}
+            <div class="row tbody bold">
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <span class="subtitle">
+                  {{ 'customer.order.discount' | t }}
+                  <span class="cart-discount secondary_text">
+                    {% render 'icon-discount' %}
+                    {{- discount_application.title -}}
+                  </span>
+                </span>
+                <span
+                  >-
+                  {% if settings.currency_code_enabled %}
+                    {% render 'ph-round-money', amount: discount_application.total_allocated_amount, with_currency: true %}
+                  {% else %}
+                    {% render 'ph-round-money', amount: discount_application.total_allocated_amount %}
+                  {% endif %}
+                </span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          <div class="row tbody bold">
+            <span id="RowTotal" class="subtitle">{{ 'customer.order.total' | t }}</span>
+            <span data-label="{{ 'customer.order.total' | t }}" class="secondary_text">
+              {% render 'ph-round-money', amount: order.total_net_amount, with_currency: true %}
+            </span>
+          </div>
+          {%- if order.billing_address != null -%}
+            <div class="row tbody">
+              <span class="subtitle">{{ 'customer.order.billing_address' | t }}</span>
+              <span class="secondary_text">
+                {{ order.billing_address | format_address }}
+              </span>
+            </div>
+          {%- endif -%}
+          <div class="row tbody">
+            {%- assign order_date = order.created_at | date: '%D' -%}
+            {%- assign order_time = order.created_at | date: '%R %p' -%}
+            <span class="subtitle">{{ 'customer.orders.date' | t }}</span>
+            <span class="secondary_text">{{ 'customer.order.date_html' | t: date: order_date, time: order_time }}</span>
+          </div>
+          {%- if order.shipping_address != null -%}
+            <div class="row tbody">
+              <span class="subtitle">{{ 'customer.order.shipping_address' | t }}</span>
+              <span class="secondary_text">
+                {{ order.shipping_address | format_address }}
+              </span>
+            </div>
+          {%- endif -%}
+          {%- for tax_line in order.tax_lines -%}
+            <div class="row tbody">
+              <span id="RowTax" class="subtitle">
+                {{- 'customer.order.tax' | t }} ({{ tax_line.title }}
+                {{ tax_line.rate | times: 100 }}%)
+              </span>
+              <span
+                data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)"
+                class="secondary_text"
+              >
+                {% if settings.currency_code_enabled %}
+                  {% render 'ph-round-money', amount: tax_line.price, with_currency: true %}
+                {% else %}
+                  {% render 'ph-round-money', amount: tax_line.price %}
+                {% endif %}
+              </span>
+            </div>
+          {%- endfor -%}
+          {%- if order.shipping_price > 0 -%}
+            <div class="row tbody">
+              <span id="RowShipping" class="subtitle">{{ 'customer.order.shipping' | t }}</span>
+              <span data-label="{{ 'customer.order.shipping' | t }}" class="secondary_text">
+                {% render 'ph-round-money', amount: order.shipping_price %}
+              </span>
+            </div>
+          {%- else -%}
+            <div class="row tbody">
+              <span id="RowShipping" class="subtitle">{{ 'customer.order.shipping' | t }}</span>
+              <span data-label="{{ 'customer.order.shipping' | t }}" class="secondary_text">
+                {{ 'customer.orders.shipping_free' | t }}
+              </span>
+            </div>
+          {% endif %}
+          {%- if order.total_duties -%}
+            <div class="row tbody">
+              <span id="RowDuties" class="subtitle">{{ 'customer.orders.total_duties' | t }}</span>
+              <span data-label="{{ 'customer.orders.total_duties' | t }}" class="secondary_text">
+                {% render 'ph-round-money', amount: order.total_duties %}
+              </span>
+            </div>
+          {%- endif -%}
+          {%- if order.total_refunded_amount > 0 -%}
+            <div class="row tbody">
+              <span id="RowTotalRefund" class="subtitle">
+                {{ 'customer.orders.total_refunded' | t }}
+              </span>
+              <span data-label="{{ 'customer.orders.total_refunded' | t }}" class="secondary_text">
+                {% render 'ph-round-money', amount: order.total_refunded_amount, with_currency: true %}
+              </span>
+            </div>
+          {%- endif -%}
+          <div class="row tbody">
+            <span class="subtitle">{{ 'customer.order.status' | t }}</span>
+            <span class="secondary_text">
+              {{ order.financial_status_label }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="account__right">
+        {%- if customer.addresses_count > 0 -%}
+          <h2 class="account__subtitle h3">{{ 'customer.account.details' | t }}</h2>
+          <div class="account-address">
+            <ul class="account-address__list account-address__default list-unstyled">
+              {%- if customer.default_address.name != blank -%}
+                <li class="account-address__item account-address__item-name h3">{{ customer.default_address.name }}</li>
+              {%- endif -%}
+
+              {%- if customer.default_address != blank -%}
+                <li>
+                  {%- if customer.default_address.street != blank -%}
+                    <span class="account-address__item">{{ customer.default_address.street }}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.company != blank -%}
+                    <span class="account-address__item">{{ customer.default_address.company }}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.city != blank -%}
+                    <span class="account-address__item">{{ customer.default_address.city }}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.zip != blank -%}
+                    <span class="account-address__item">{{ customer.default_address.zip }}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.phone != blank -%}
+                    <span class="account-address__item">{{ customer.default_address.phone }}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.country != blank -%}
+                    <span class="account-address__item account-address__item-address">
+                      {{- customer.default_address.country -}}
+                    </span>
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            </ul>
+            <a
+              class="button button--tertiary account-address__link focus-inset"
+              href="{{ routes.account_addresses_url }}"
+            >
+              <span>
+                {{ 'customer.account.view_addresses' | t }}
+                ({{ customer.addresses_count }})
+              </span>
+            </a>
+          </div>
+        {%- else -%}
+          <div class="account-none">
+            <div class="account-none__wrapper account__no-order-block">
+              <h2 class="account__subtitle h3">{{ 'customer.account.details' | t }}</h2>
+              {% comment %}{% render 'icon-account-address-none' %}{% endcomment %}
+              <div class="account-none__content">
+                {%- if section.settings.heading_addresses != blank -%}
+                  <h3>{{ section.settings.heading_addresses }}</h3>
+                {%- endif -%}
+                {%- if section.settings.text_addresses != blank -%}
+                  <div class="account-none__text secondary_text">
+                    {{ section.settings.text_addresses | escape }}
+                  </div>
+                {%- endif -%}
+              </div>
+              <a
+                href="{{ routes.account_addresses_url }}"
+                class="button button--tertiary account-none__button focus-inset"
+              >
+                <span> {{ 'customer.addresses.add_new' | t }} </span>
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-order.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-account.settings.header_2.content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_addresses",
+      "default": "Some heading for empty address placeholder",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text_addresses",
+      "default": "Some text for empty address placeholder",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "s",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

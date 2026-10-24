@@ -1,0 +1,310 @@
+@media screen and (max-width: 767px) {
+  body.template-product.has-sticky-add {
+    padding-bottom: calc(118px + env(safe-area-inset-bottom)) !important;
+  }
+
+  body.template-product .ph-sticky-bar {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom)) !important;
+    align-items: stretch !important;
+    flex-direction: column !important;
+    background: #fff !important;
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.08) !important;
+    color: #121b21 !important;
+  }
+
+  body.template-product .ph-sticky-bar-inner-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    row-gap: 12px !important;
+    column-gap: 0 !important;
+  }
+
+  body.template-product .ph-sticky-title-wrapper {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    width: 100% !important;
+    align-items: start !important;
+    column-gap: 12px !important;
+    padding: 0 0 0px !important;
+    color: #121b21 !important;
+  }
+
+  body.template-product .ph-sticky-title-copy {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  /* body.template-product .ph-sticky-pdp-product-title {
+    color: #000 !important;
+    display: block !important;
+    font-family: 'PhoriaBold', sans-serif !important;
+    font-size: clamp(11px, 3.2vw, 12px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: clamp(0.65px, 0.28vw, 1px) !important;
+    margin: 0 0 10px !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  } */
+
+      body.template-product .ph-sticky-pdp-product-title {
+        color: #000 !important;
+        display: block !important;
+        font-family: PhoriaBold, sans-serif !important;
+        font-size: clamp(10px, 2.5vw, 12px) !important;
+        line-height: 1.25 !important;
+        letter-spacing: clamp(.65px, .28vw, 1px) !important;
+        margin: 0 0 5px !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: clip !important;
+    }
+
+  /* body.template-product .ph-sticky-pdp-product-subtitle {
+    color: #999 !important;
+    font-family: 'PhoriaRegular', sans-serif !important;
+    font-size: clamp(9px, 2.8vw, 12px) !important;
+    line-height: 21px !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  } */
+
+      body.template-product .ph-sticky-pdp-product-subtitle {
+        color: #999 !important;
+        font-family: PhoriaRegular, sans-serif !important;
+        font-size: clamp(7px, .5vw, 12px) !important;
+        line-height: 21px !important;
+        letter-spacing: 0 !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        /* overflow: hidden !important; */
+        text-overflow: clip !important;
+    }
+
+  /* body.template-product .ph-sticky-summary-price {
+    display: block !important;
+    color: #000 !important;
+    flex: 0 0 auto !important;
+    font-family: 'PhoriaBold', sans-serif !important;
+    font-size: clamp(11px, 3.2vw, 12px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: clamp(0.65px, 0.28vw, 1px) !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  } */
+
+      body.template-product .ph-sticky-summary-price {
+        display: block !important;
+        color: #000 !important;
+        flex: 0 0 auto !important;
+        font-family: PhoriaBold, sans-serif !important;
+        font-size: clamp(10px, 2.5vw, 12px) !important;
+        line-height: 1.25 !important;
+        letter-spacing: clamp(.65px, .28vw, 1px) !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+    }
+
+  body.template-product .ph-sticky-bar-content-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    column-gap: 6px !important;
+    justify-content: space-between !important;
+    padding-bottom: 0 !important;
+  }
+
+  body.template-product .ph-sticky-select-wrap:not(.ph-sticky-select-wrap--letter) {
+    order: 2 !important;
+    flex: 0 0 90px !important;
+    min-width: 90px !important;
+  }
+
+  body.template-product .ph-sticky-select-wrap:not(.ph-sticky-select-wrap--letter) .ph-sticky-size-select {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 36px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    color: #121b21 !important;
+    border: 0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+    font-family: 'PhoriaRegular', sans-serif !important;
+    font-size: 8px !important;
+    letter-spacing: 0.1em !important;
+    padding: 10px 18px 10px 6px !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-product #phStickyBar .ph-sticky-size-custom {
+    display: flex !important;
+    height: 36px !important;
+    width: 100% !important;
+  }
+
+  body.template-product #phStickyBar .ph-sticky-size-custom__trigger {
+    align-items: center !important;
+    background: #fff !important;
+    border: 2px solid #fff !important;
+    border-radius: 0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+    color: #121b21 !important;
+    display: flex !important;
+    font: 8px/1 'PhoriaRegular', sans-serif !important;
+    height: 36px !important;
+    justify-content: flex-start !important;
+    letter-spacing: 0.1em !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    padding: 10px 18px 10px 6px !important;
+    text-align: left !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+  }
+
+  body.template-product #phStickyBar .ph-sticky-size-custom__trigger::after {
+    border-left-width: 5px !important;
+    border-right-width: 5px !important;
+    border-top-width: 5px !important;
+    right: 5px !important;
+  }
+
+  body.template-product .ph-sticky-custom-btn-2-container {
+    order: 3 !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  body.template-product .ph-sticky-add-btn {
+    min-width: 0 !important;
+    height: 36px !important;
+    background: #121b21 !important;
+    color: #fff !important;
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+    padding: 0 10px !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body.template-product .ph-sticky-bar {
+    background: rgba(0, 0, 0, 0.85) !important;
+    color: #fff !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    padding-left: 72px !important;
+    padding-right: 2% !important;
+    width: 100% !important;
+  }
+
+  body.template-product .ph-sticky-bar-inner-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    column-gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.template-product .ph-sticky-title-wrapper {
+    display: block !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    color: #fff !important;
+  }
+
+  body.template-product .ph-sticky-title-copy {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  body.template-product .ph-sticky-pdp-product-title {
+    color: #fff !important;
+    display: block !important;
+    font-family: 'PhoriaBold', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 0 6px !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-product .ph-sticky-pdp-product-subtitle {
+    color: #fff !important;
+    display: block !important;
+    font-family: 'PhoriaRegular', sans-serif !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+    letter-spacing: normal !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+  }
+
+  body.template-product .ph-sticky-summary-price {
+    display: none !important;
+  }
+
+  body.template-product .ph-sticky-bar-content-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    column-gap: 12px !important;
+    width: 50% !important;
+    margin-left: 0 !important;
+  }
+
+  body.template-product .ph-sticky-select-wrap:not(.ph-sticky-select-wrap--letter) {
+    flex: 0 0 auto !important;
+    min-width: 112px !important;
+  }
+
+  body.template-product .ph-sticky-select-wrap:not(.ph-sticky-select-wrap--letter) .ph-sticky-size-select {
+    width: 112px !important;
+    height: 38px !important;
+    background: #fff !important;
+    color: #121b21 !important;
+    border: 0 !important;
+    font-family: 'PhoriaRegular', sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  body.template-product .ph-sticky-custom-btn-2-container {
+    flex: 0 0 50% !important;
+    min-width: 0 !important;
+    width: 50% !important;
+  }
+
+  body.template-product .ph-sticky-add-btn {
+    width: 100% !important;
+    height: 38px !important;
+    background: #fff !important;
+    color: #000 !important;
+    border: 0 !important;
+    font-family: 'PhoriaBold', sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: normal !important;
+  }
+}

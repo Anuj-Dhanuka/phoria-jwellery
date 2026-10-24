@@ -1,0 +1,93 @@
+<style>
+  .ph-waist-guide {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 120px 20px 80px;
+    color: #111;
+  }
+  .ph-waist-guide h1 {
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .ph-waist-guide h2 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 28px 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .ph-waist-guide p {
+    font-size: 18px;
+    line-height: 1.55;
+    margin: 0 0 18px;
+  }
+  .ph-waist-guide__image {
+    margin: 26px 0 34px;
+    text-align: center;
+  }
+  .ph-waist-guide__image img {
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+  }
+  .ph-waist-guide__cta {
+    margin-top: 30px;
+    padding: 28px 24px;
+    border: 1px solid #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .ph-waist-guide__cta-title {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .ph-waist-guide__cta-link {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+  }
+
+  @media (max-width: 749px) {
+    .ph-waist-guide { padding-top: 92px; }
+    .ph-waist-guide h1 { font-size: 26px; }
+    .ph-waist-guide h2 { font-size: 22px; }
+    .ph-waist-guide p { font-size: 16px; }
+    .ph-waist-guide__cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<section class="ph-waist-guide">
+  <h1>Style + Size Guide Link</h1>
+
+  <h2>How To Style The I.D. Waist Chain</h2>
+  <p>Designed for an adjustable fit, they can be styled high on the waist or worn lower on the hips over your favourite fit.</p>
+  <p>Designed to pair seamlessly with our I.D. letter pendants, add your letter onto the end of the chain and slide across to your desired position.</p>
+
+  <div class="ph-waist-guide__image">
+    <img src="{{ 'Waist_Chain_BG_Remove.png' | file_url }}" alt="Waist chain styling and placement guide" loading="lazy">
+  </div>
+
+  <div class="ph-waist-guide__cta">
+    <p class="ph-waist-guide__cta-title">Styling or sizing question?</p>
+    <a class="ph-waist-guide__cta-link" href="/pages/contact">Contact Us</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ph Waist Chain Guide",
+  "settings": []
+}
+{% endschema %}

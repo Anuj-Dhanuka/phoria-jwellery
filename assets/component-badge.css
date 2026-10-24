@@ -1,0 +1,12 @@
+.badge {
+  display: inline-block;
+  padding: 0em 0.8rem;
+  min-height: 2rem;
+  word-break: break-word;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  margin-bottom: 0;
+}
+.badge--sale span {
+  margin-top: 0.4rem;
+}

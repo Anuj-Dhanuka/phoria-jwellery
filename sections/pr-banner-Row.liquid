@@ -1,0 +1,353 @@
+{% comment %}
+  Section: Ph Banner & Row Section
+  Two block types:
+    1. collection__banner
+    2. product__row
+{% endcomment %}
+
+{% for block in section.blocks %}
+  {% if block.type == 'collection__banner' %}
+    <style>
+      .ph-collection__banner--{{ block.id }} {
+        width: 100%;
+        margin: 0 auto;
+        display: flex !important;
+        justify-content: center;
+        gap: 20px;
+        padding-top: {{ block.settings.padding_desktop_top }}px !important;
+        padding-bottom: {{ block.settings.padding_desktop_bottom }}px !important;
+        padding: 0 108px;
+        {% if block.settings.banner_2_enable %}
+          display: grid !important;
+          padding: 0 108px;
+          grid-template-columns: 1fr 1fr;
+          gap: 108px;
+        {% else %}
+          display: grid !important;
+          padding: 0 144px;
+          grid-template-columns: 1fr;
+        {% endif %}
+      }
+      .ph-collection__banner--{{ block.id }} a {
+        width: 100%;
+        justify-self: center;
+        align-self: center;
+      }
+      .ph-collection__banner--{{ block.id }} img {
+        max-width: 1000px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;
+      }
+      .ph-collection__banner-video-container {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .ph-collection__banner-video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      @media screen and (max-width: 959px) {
+        .ph-collection__banner--{{ block.id }} {
+          padding: 0 108px;
+          padding-top: {{ block.settings.padding_mobile_top }}px;
+          padding-bottom: {{ block.settings.padding_mobile_bottom }}px;
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .ph-collection__banner--{{ block.id }} a {
+          width: 100%;
+        }
+      }
+      @media screen and (max-width: 560px) {
+        .ph-collection__banner--{{ block.id }} {
+          padding: 0 18px;
+        }
+      }
+    </style>
+
+    <div class="ph-collection__banner--{{ block.id }}">
+      <!-- First Banner -->
+      <a href="{{ block.settings.url }}" id="{{ block.id }}" class="ph-collection__banner-item">
+        {% if block.settings.media_type == 'image' %}
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt | escape }}">
+          {% endif %}
+        {% else %}
+          {% if block.settings.video != blank %}
+            <div class="ph-collection__banner-video-container">
+              {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-collection__banner-video" }}
+            </div>
+          {% endif %}
+        {% endif %}
+      </a>
+
+      <!-- Second Banner (Optional) -->
+      {% if block.settings.banner_2_enable %}
+        <a href="{{ block.settings.url_2 }}" class="ph-collection__banner-item">
+          {% if block.settings.media_type_2 == 'image' %}
+            {% if block.settings.image_2 != blank %}
+              <img src="{{ block.settings.image_2 | image_url }}" alt="{{ block.settings.image_2.alt | escape }}">
+            {% endif %}
+          {% else %}
+            {% if block.settings.video_2 != blank %}
+              <div class="ph-collection__banner-video-container">
+                {{ block.settings.video_2 | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-collection__banner-video" }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </a>
+      {% endif %}
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof Motion !== 'undefined') {
+          const { animate, inView } = Motion;
+          const items = document.querySelectorAll('.ph-collection__banner--{{ block.id }} .ph-collection__banner-item');
+          items.forEach((el, i) => {
+            inView(el, () => {
+              animate(el, { opacity: [0, 1], y: ['100px', 0] }, { duration: 0.7, delay: i * 0.2, easing: 'ease-out' });
+            }, { once: true, amount: 0.1 });
+          });
+        }
+      });
+    </script>
+
+  {% elsif block.type == 'product__row' %}
+    <style>
+      .{{ block.id }}-ph-product__row {
+        width: 100%;
+        padding: 0 36px;
+        padding-top: {{ block.settings.padding_desktop_top }}px;
+        padding-bottom: {{ block.settings.padding_desktop_bottom }}px;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px;
+        margin: 0 36px !important;
+        width: 100%;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__grid--item {
+        text-align: center;
+        cursor: pointer;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__row--item {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__row--info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        text-transform: uppercase;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__title,
+      .{{ block.id }}-ph-product__row .ph-product__price {
+        font-size: 12px;
+        font-family: 'PhoriaBold';
+        text-align: center;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__finish {
+        font-size: 10px;
+        font-family: 'PhoriaRegular';
+        text-align: center;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__grid--item:hover .ph-product__image {
+        transform: scale(1.05);
+      }
+      .{{ block.id }}-ph-product__row .ph-media__wrapper {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        aspect-ratio: 1 / 1;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+      }
+      .{{ block.id }}-ph-product__row .ph-product__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin: 0 auto;
+      }
+      @media screen and (max-width: 959px) {
+        .{{ block.id }}-ph-product__row .ph-media__wrapper {
+          max-width: 650px;
+        }
+        .{{ block.id }}-ph-product__row {
+          padding: 0 18px;
+          padding-top: {{ block.settings.padding_mobile_top }}px;
+          padding-bottom: {{ block.settings.padding_mobile_bottom }}px;
+        }
+        .{{ block.id }}-ph-product__row .ph-product__grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .{{ block.id }}-ph-product__row .ph-product__title,
+        .{{ block.id }}-ph-product__row .ph-product__price {
+          font-size: 10px;
+        }
+      }
+      .ph-pdp-product-compare-price {
+        text-decoration: line-through;
+        color: #888;
+        font-size: 0.9em;
+      }
+    </style>
+
+    <section class="{{ block.id }}-ph-product__row">
+      <a href="/products/{{ block.settings.product.handle }}" class="ph-product__row--item">
+        <div class="ph-product__grid">
+          <div class="ph-product__grid--item">
+            <div class="ph-media__wrapper">
+              {% if block.settings.left_img != blank and block.settings.left_video == blank %}
+                <img src="{{ block.settings.left_img | image_url: width: 700 }}" alt="{{ block.settings.left_img.alt | default: '' }}" class="ph-product__image" loading="lazy" width="350" height="350">
+              {% else %}
+                {{ block.settings.left_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-product__video" }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="ph-product__grid--item">
+            <div class="ph-media__wrapper">
+              {% assign first_media = block.settings.product.media | first %}
+              {% if block.settings.custom_thumbnail %}
+                {% if block.settings.custom_product_video != blank %}
+                  {{ block.settings.custom_product_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-product__video" }}
+                {% elsif block.settings.custom_product_image != blank %}
+                  <img src="{{ block.settings.custom_product_image | image_url }}" alt="{{ block.settings.product.title }}" class="ph-product__image" loading="lazy">
+                {% else %}
+                  {% if first_media.media_type == 'image' %}
+                    <img src="{{ first_media | image_url }}" alt="{{ block.settings.product.title }}" class="ph-product__image" loading="lazy">
+                  {% else %}
+                    {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-product__video" }}
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                {% if first_media.media_type == 'image' %}
+                  <img src="{{ first_media | image_url }}" alt="{{ block.settings.product.title }}" class="ph-product__image" loading="lazy">
+                {% else %}
+                  {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-product__video" }}
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="ph-product__grid--item">
+            <div class="ph-media__wrapper">
+              {% if block.settings.right_img != blank and block.settings.right_video == blank %}
+                <img src="{{ block.settings.right_img | image_url: width: 700 }}" alt="{{ block.settings.right_img.alt | default: '' }}" class="ph-product__image" loading="lazy" width="350" height="350">
+              {% else %}
+                {{ block.settings.right_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "ph-product__video" }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="ph-product__row--info">
+          <span class="ph-product__title">{{ block.settings.product.title }}</span>
+          {% if block.settings.product.metafields.custom.finish and block.settings.custom_finish == blank %}
+            <span class="ph-product__finish">{{ block.settings.product.metafields.custom.finish.value }}</span>
+          {% else %}
+            <span class="ph-product__finish">{{ block.settings.custom_finish }}</span>
+          {% endif %}
+          <span class="ph-pdp-product-compare-price">{% render 'ph-round-money', amount: block.settings.product.price %}</span>
+          <span class="ph-product__price">{% render 'ph-round-money', amount: block.settings.product.price %}</span>
+
+        </div>
+      </a>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof Motion !== 'undefined') {
+          const { animate, inView } = Motion;
+          const items = document.querySelectorAll('.{{ block.id }}-ph-product__row .ph-product__grid--item');
+          items.forEach((el, i) => {
+            inView(el, () => {
+              animate(el, { opacity: [0, 1], y: ['100px', 0] }, { duration: 0.6, delay: i * 0.2, easing: 'ease-out' });
+            }, { once: true });
+          });
+          const info = document.querySelector('.{{ block.id }}-ph-product__row .ph-product__row--info');
+          if (info) {
+            inView(info, () => {
+              animate(info, { opacity: [0, 1], y: [20, 0] }, { duration: 0.5, delay: 0.6, easing: 'ease-out' });
+            }, { once: true });
+          }
+        }
+      });
+    </script>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Ph Banner & Row Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection__banner",
+      "name": "Ph Collection Banner",
+      "settings": [
+        { "type": "header", "content": "First Banner" },
+        { "type": "select", "id": "media_type", "label": "Media Type", "options": [{ "value": "image", "label": "Image" }, { "value": "video", "label": "Video" }], "default": "image" },
+        { "type": "image_picker", "id": "image", "label": "Banner Image", "info": "Used when Media Type is set to Image" },
+        { "type": "video", "id": "video", "label": "Banner Video", "info": "Used when Media Type is set to Video" },
+        { "type": "image_picker", "id": "cover_image", "label": "Video Cover Image (Optional)", "info": "Shown while video is loading" },
+        { "type": "url", "id": "url", "label": "Banner URL" },
+        { "type": "header", "content": "Second Banner (Optional)" },
+        { "type": "checkbox", "id": "banner_2_enable", "label": "Enable Second Banner", "default": false },
+        { "type": "select", "id": "media_type_2", "label": "Media Type", "options": [{ "value": "image", "label": "Image" }, { "value": "video", "label": "Video" }], "default": "image" },
+        { "type": "image_picker", "id": "image_2", "label": "Second Banner Image", "info": "Used when Media Type is set to Image" },
+        { "type": "video", "id": "video_2", "label": "Second Banner Video", "info": "Used when Media Type is set to Video" },
+        { "type": "image_picker", "id": "cover_image_2", "label": "Second Video Cover Image (Optional)", "info": "Shown while video is loading" },
+        { "type": "url", "id": "url_2", "label": "Second Banner URL" },
+        { "type": "header", "content": "Video Settings" },
+        { "type": "checkbox", "id": "show_controls", "label": "Show Video Controls", "default": false },
+        { "type": "header", "content": "Spacing" },
+        { "type": "range", "id": "padding_desktop_top", "label": "Padding Top (Desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 20 },
+        { "type": "range", "id": "padding_desktop_bottom", "label": "Padding Bottom (Desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 20 },
+        { "type": "range", "id": "padding_mobile_top", "label": "Padding Top (Mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 10 },
+        { "type": "range", "id": "padding_mobile_bottom", "label": "Padding Bottom (Mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 10 },
+        { "type": "checkbox", "id": "enable_animations", "label": "Enable animations", "default": true, "info": "Enable fade-in animations when banners come into view" }
+      ]
+    },
+    {
+      "type": "product__row",
+      "name": "Ph Product Row",
+      "settings": [
+        { "type": "image_picker", "id": "left_img", "label": "Featured Image 1" },
+        { "type": "video", "id": "left_video", "label": "Featured Video 1", "info": "select a video to show instead of image" },
+        { "type": "checkbox", "id": "custom_thumbnail", "label": "Show custom thumbnail", "default": false },
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "custom_finish", "label": "Finish" },
+        { "type": "image_picker", "id": "custom_product_image", "label": "Product Image" },
+        { "type": "video", "id": "custom_product_video", "label": "Product Video", "info": "select a video to show instead of image" },
+        { "type": "image_picker", "id": "right_img", "label": "Featured Image 2" },
+        { "type": "video", "id": "right_video", "label": "Featured Video 2", "info": "select a video to show instead of image" },
+        { "type": "range", "id": "padding_desktop_top", "label": "Padding Top (Desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 20 },
+        { "type": "range", "id": "padding_desktop_bottom", "label": "Padding Bottom (Desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 20 },
+        { "type": "range", "id": "padding_mobile_top", "label": "Padding Top (Mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 10 },
+        { "type": "range", "id": "padding_mobile_bottom", "label": "Padding Bottom (Mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 10 },
+        { "type": "checkbox", "id": "enable_animations", "label": "Enable animations", "default": true, "info": "Enable fade-in animations when product items come into view" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Collection & Product Section", "category": "Custom" }
+  ]
+}
+{% endschema %}

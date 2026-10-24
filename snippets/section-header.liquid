@@ -1,0 +1,55 @@
+{%- if section.settings.subheading != blank
+	or section.settings.heading != blank
+	or section.settings.description != blank
+	or section.settings.button_label != blank
+-%}
+	<div class="section-heading {% if section.settings.subheading == blank and  section.settings.description == blank %} section-heading__only_heading {% endif %}">
+		<div class="section-heading__left">
+			{%- if section.settings.subheading != blank -%}
+				<span class="section-heading__subtitle subtitle">
+					{{- section.settings.subheading -}}
+				</span>
+			{%- endif -%}
+			{%- if section.settings.heading != blank -%}
+				<h2 class="section-heading__heading {{ section.settings.heading_size }}">
+					{{ section.settings.heading }}
+				</h2>
+			{%- endif -%}
+			{%- if section.settings.description != blank -%}
+				<p class="section-heading__description">
+					{{ section.settings.description }}
+				</p>
+			{%- endif -%}
+		</div>
+		{%- if section.settings.button_label != blank -%}
+			<a
+				{% if section.settings.button_link != blank %}
+					href="{{ section.settings.button_link }}"
+				{% endif %}
+				class="section-heading__button button button--{{ section.settings.button_style }} focus-inset"
+				{% if section.settings.button_link == blank %}
+					aria-disabled="true"
+				{% endif %}
+			>
+				<span>
+					{{- section.settings.button_label | escape -}}
+				</span>
+			</a>
+		{%- endif -%}
+		{%- if section.settings.blog_button_label != blank -%}
+			<a
+				{% if section.settings.blog.url != blank %}
+					href="{{ section.settings.blog.url }}"
+				{% endif %}
+				class="section-heading__button button button--{{ section.settings.button_style }} focus-inset"
+				{% if section.settings.blog.url == blank %}
+					aria-disabled="true"
+				{% endif %}
+			>
+				<span>
+					{{- section.settings.blog_button_label | escape -}}
+				</span>
+			</a>
+		{%- endif -%}
+	</div>
+{% endif %}

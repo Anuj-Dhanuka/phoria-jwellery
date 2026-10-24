@@ -1,0 +1,208 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #{{ section.id }}.ph-cart-accordion {
+        padding: {{section.settings.padding_desktop_top}}px 36px {{section.settings.padding_desktop_bottom}}px 36px;
+    }
+
+    #{{ section.id }} .ph-cart-accordion__title {
+        font-size: 2.266vw;
+        margin-bottom: 36px;
+        opacity: 0; /* Start invisible for animation */
+    }
+
+    #{{ section.id }} .ph-cart-accordion__item {
+        border-top: 1px solid #f1f2ee;
+        opacity: 0; /* Start invisible for animation */
+    }
+    #{{ section.id }} .ph-cart-accordion__item:last-child {
+        border-bottom: 1px solid #f1f2ee;
+    }
+
+    #{{ section.id }} .ph-cart-accordion__item--title {
+        position: relative;
+    }
+
+    #{{ section.id }} .ph-cart-accordion__item--title h2 {
+        font-size: 16px;
+        padding: 18px 27px;
+        text-transform: uppercase;
+        font-family: 'PhoriaBold';
+    }
+
+    #{{ section.id }} .ph-cart-accordion__item--title svg {
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%) rotate(-45deg);
+        transition: all 0.5s ease-in-out;
+    }
+    #{{ section.id }} svg.rotate{
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    #{{ section.id }} .ph-cart-accordion__item--content {
+        font-size: 10px;
+        line-height: 2.3;
+        font-weight: 400;
+        font-family: 'PhoriaRegular';
+        text-transform: uppercase;
+        max-height: 0;
+        padding: 0;
+        overflow: hidden;
+        padding-left: 27px;
+        transition: all .5s ease-in-out;
+    }
+    #{{ section.id }} .ph-cart-accordion__item--content.expended{
+        max-height: 500px;
+        padding-bottom: 36px;
+    }
+    @media screen and (max-width: 959px){
+      #{{ section.id }}.ph-cart-accordion {
+        padding: {{section.settings.padding_mobile_top}}px 20px {{section.settings.padding_mobile_bottom}}px 20px;
+      }
+      #{{ section.id }} .ph-cart-accordion__title {
+          font-size: 22px;
+          margin-bottom: 18px;
+      }
+      #{{ section.id }} .ph-cart-accordion__item--title h2{
+        font-size: 12px;
+      }
+      #{{ section.id }} .ph-cart-accordion__item--title svg {
+        width: 10px;
+        height: 10px;
+      }
+    }
+</style>
+
+<div id="{{ section.id }}" class="ph-cart-accordion">
+  <h1 class="ph-cart-accordion__title">{{ section.settings.title }}</h1>
+  {% for block in section.blocks %}
+    <div class="ph-cart-accordion__item">
+      <div class="ph-cart-accordion__item--title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+          <h2>{{ block.settings.cart-accordion__title }}</h2>
+      </div>
+      <div class="ph-cart-accordion__item--content">{{ block.settings.accordion__content }}</div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Accordion functionality
+    const accordionElements = {
+      title: document.querySelectorAll('#{{ section.id }} .ph-cart-accordion__item--title'),
+      content: document.querySelectorAll('#{{ section.id }} .ph-cart-accordion__item--content'),
+    }
+    
+    accordionElements.title.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        accordionElements.content[index].classList.toggle('expended');
+        item.querySelector('svg').classList.toggle('rotate');
+        accordionElements.content.forEach((content, i) => {
+          if (i !== index) {
+            content.classList.remove('expended');
+            accordionElements.title[i].querySelector('svg').classList.remove('rotate');
+          }
+        });
+      });
+    });
+  });
+</script>
+{% schema %}
+  {
+    "name": "Ph Accordion",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "range",
+        "id": "padding_desktop_top",
+        "label": "Padding Top (Desktop)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_desktop_bottom",
+        "label": "Padding Bottom (Desktop)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_mobile_top",
+        "label": "Padding Top (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "padding_mobile_bottom",
+        "label": "Padding Bottom (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_animations",
+        "label": "Enable animations",
+        "default": true,
+        "info": "Enable fade-in animations when content comes into view"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "Accordion",
+        "name": "Accordion Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "accordion__title",
+            "label": "Title",
+            "default": "Title Text"
+          },
+          {
+            "type": "richtext",
+            "id": "accordion__content",
+            "label": "Content",
+            "default": "<p>Content</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Ph Accordion",
+        "blocks": [{
+          "type": "Accordion"
+        }]
+      }
+    ]
+  }
+{% endschema %}

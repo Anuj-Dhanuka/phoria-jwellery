@@ -1,0 +1,422 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "BODY JEWELLERY",
+        "short_text": "<p>Designed to contour, drape and move with the body, this drop brings a new kind of statement jewellery to your everyday styling. From personalised letter waist chains to delicate hand chains each piece is designed to accentuate the body and bring a cool edge to every fit in an effortless, undone way. Made to be worn your way. </p>",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 80,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "cover",
+        "image_filter_columns": 5,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "rich_text_jUgM7K": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_TVFTFB": {
+          "type": "heading",
+          "settings": {
+            "heading": "NEW IN:",
+            "heading_size": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TVFTFB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "small",
+        "margin_top": "xs",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_FiyFgj": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_a7qyMC": {
+          "type": "product",
+          "settings": {
+            "product_item": "hand-chain-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/HAND_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-3_442cc7d8-436b-4307-b76f-3909af4d495f.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_cEJUyH": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_WAIST_CHAINS_2_-_WEBSITE_PRODUCT_IMAGERY-9.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_WkGHEa": {
+          "type": "product",
+          "settings": {
+            "product_item": "stellar-hand-chain-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_a7qyMC",
+        "product_cEJUyH",
+        "product_WkGHEa"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(1, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_VTp3ri": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_1_e34e137d-de4f-496e-bc1a-73fa3041b4aa.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_8HnKrf": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_XeEWXK": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-silver?ph_letter=H",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1H_WAIST_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-34.jpg",
+            "override_title": "“THE H” I.D. WAIST CHAIN",
+            "custom_price_text": ""
+          }
+        },
+        "product_ayNqmV": {
+          "type": "product",
+          "settings": {
+            "product_item": "hand-chain-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/HAND_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-1_6c4fdbc7-f845-4c89-8d96-64b3d26184b1.jpg",
+            "override_title": "NOVA HAND CHAIN",
+            "custom_price_text": ""
+          }
+        },
+        "product_pmNEhr": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_WAIST_CHAINS_2_-_WEBSITE_PRODUCT_IMAGERY-11.jpg",
+            "override_title": "THE I.D. WAIST CHAIN",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_XeEWXK",
+        "product_ayNqmV",
+        "product_pmNEhr"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(1, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_E9Rgzr": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_2_d0ceafd4-811e-4609-84bd-1c4b369b7595.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "rich_text_HnENdT": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_kCibre": {
+          "type": "heading",
+          "settings": {
+            "heading": "PLACEHOLDER COPY SECTION",
+            "heading_size": "h3"
+          }
+        },
+        "text_VFxYQQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kCibre",
+        "text_VFxYQQ"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_V93tXq": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_mKMtif": {
+          "type": "product",
+          "settings": {
+            "product_item": "stellar-hand-chain-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_jabCPN": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-gold?ph_letter=A",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1A_WAIST_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-4.jpg",
+            "override_title": "“THE A” I.D. WAIST CHAIN",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_mKMtif",
+        "product_jabCPN"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(1, 1fr); } .media-wrapper {max-width: 650px; } .product-video {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_yneUA7": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_3_4c986803-d871-4715-9b62-729bee0101b4.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "rich_text_nQjGdC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_nCjiHc": {
+          "type": "heading",
+          "settings": {
+            "heading": "PLACEHOLDER COPY SECTION",
+            "heading_size": "h3"
+          }
+        },
+        "text_YfLEgn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nCjiHc",
+        "text_YfLEgn"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "rich_text_jUgM7K",
+    "ph_product_grid_v2_FiyFgj",
+    "ph_collection_banner_VTp3ri",
+    "ph_product_grid_v2_8HnKrf",
+    "ph_collection_banner_E9Rgzr",
+    "rich_text_HnENdT",
+    "ph_product_grid_v2_V93tXq",
+    "ph_collection_banner_yneUA7",
+    "rich_text_nQjGdC"
+  ]
+}

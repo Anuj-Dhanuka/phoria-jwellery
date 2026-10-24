@@ -1,0 +1,171 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_earring_header_dVG9q8": {
+      "type": "ph-earring-header",
+      "blocks": {
+        "video_d7Dk3B": {
+          "type": "video",
+          "settings": {
+            "style_video": "shopify://files/videos/phoria-jewellery-illustration-earring-sugar-rush-huggie-left.mp4",
+            "video_aspect_ratio": "1:1",
+            "video_title": ""
+          }
+        },
+        "video_YdVLND": {
+          "type": "video",
+          "settings": {
+            "style_video": "shopify://files/videos/phoria-jewellery-illustration-earring-sugar-rush-huggie-right.mp4",
+            "video_aspect_ratio": "1:1",
+            "video_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_d7Dk3B",
+        "video_YdVLND"
+      ],
+      "settings": {
+        "heading": "HOW TO STYLE // HUGGIE CHAIN HOOPS",
+        "description": "TRULY VERSATILE. OUR CHAIN HUGGIES ARE FULLY ADAPTABLE WITH ALMOST ENDLESS STYLING OPTIONS.",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "ph_earring_styles_8RMfBp": {
+      "type": "ph-earring-styles",
+      "blocks": {
+        "earring_style_NWLKnJ": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-001-768x871.webp",
+            "style_title": "AS SINGULAR PIERCINGS",
+            "style_subtitle": "W/O THE CHAIN"
+          }
+        },
+        "earring_style_dRUtfq": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-002-768x871.webp",
+            "style_title": "AS A SINGULAR PIERCING",
+            "style_subtitle": "WITH THE CHAIN ON ONE HOOP"
+          }
+        },
+        "earring_style_dKRr6t": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-003-768x871.webp",
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "W/O THE CHAIN"
+          }
+        },
+        "earring_style_eN8Wmg": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-004-768x871.webp",
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ON ONE HOOP"
+          }
+        },
+        "earring_style_m4pMDL": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-005-768x871.webp",
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ATTACHED TO BOTH"
+          }
+        },
+        "earring_style_ihfV6n": {
+          "type": "earring_style",
+          "settings": {
+            "style_image": "shopify://shop_images/phoria-jewellery-illustration-earring-huggies-006.01-768x871.webp",
+            "style_title": "AS A DOUBLE PIERCING",
+            "style_subtitle": "WITH THE CHAIN ATTACHED TO BOTH STYLES HIGHER"
+          }
+        }
+      },
+      "block_order": [
+        "earring_style_NWLKnJ",
+        "earring_style_dRUtfq",
+        "earring_style_dKRr6t",
+        "earring_style_eN8Wmg",
+        "earring_style_m4pMDL",
+        "earring_style_ihfV6n"
+      ],
+      "settings": {
+        "heading": "INTERCHANGEABLE + TRANSFORMABLE",
+        "subheading": "MORE THAN JUST A PAIR OF EARRINGS. THEIR TRANSFORMATIVE AND INTERCHANGEABLE DESIGN MEANS YOU CAN REIMAGINE THE WAYS YOU WEAR THEM AGAIN AND AGAIN AND AGAIN AND AGAIN.",
+        "footer_text": "IN ADDITION TO THE STYLING OPTIONS ABOVE, OUR HOODIES ARE FULLY REMOVABLE SO YOU CAN HOOK OFF THEIR LOOKS LIKE FOR BOTH MIX AND MATCH OR JUST TAKE THEM BOTH AROUND TO THEIR HAIL KICK KEEPING THINGS SIMPLE.",
+        "enable_animations": true
+      }
+    },
+    "ph_earring_how_to_P3V6ka": {
+      "type": "ph-earring-how-to",
+      "blocks": {
+        "video_YHprkR": {
+          "type": "video",
+          "settings": {
+            "style_video": "shopify://files/videos/phoria-jewellery-illustration-earring-powerplay-left.mp4",
+            "video_aspect_ratio": "1:1"
+          }
+        },
+        "video_U6TtHR": {
+          "type": "video",
+          "settings": {
+            "style_video": "shopify://files/videos/phoria-jewellery-illustration-earring-vice-carabiner-right.mp4",
+            "video_aspect_ratio": "1:1"
+          }
+        }
+      },
+      "block_order": [
+        "video_YHprkR",
+        "video_U6TtHR"
+      ],
+      "settings": {
+        "heading_line1": "HOW TO STYLE // REVERSIBLE",
+        "heading_line2": "+ TWO TONED HOOPS",
+        "description_top": "<p>OUR REVERSIBLE TWO-TONED HOOPS ALLOW YOU TO SWITCH EFFORTLESSLY BETWEEN SILVER AND GOLD. EMBELLISHED OR PLAIN. ENCOURAGING INDIVIDUALITY THROUGH VERSATILITY.</p>",
+        "description_bottom": "<p>LIGHTWEIGHT WITH A HOLLOWED CONSTRUCTION. OUR EARRINGS ARE HANDCRAFTED FOR ALL-DAY, EVERYDAY COMFORT WHILST KEEPING THAT BOLD LOOK AND FEEL.</p>",
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "enable_animations": true
+      }
+    },
+    "ph_necklace_cta_fgBeix": {
+      "type": "ph-necklace-cta",
+      "name": "Ph Nacklace CTA",
+      "settings": {
+        "heading": "STYLING OR SIZING QUESTION?",
+        "button_text": "CONTACT US",
+        "button_link": "shopify://pages/contact",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_earring_header_dVG9q8",
+    "ph_earring_styles_8RMfBp",
+    "ph_earring_how_to_P3V6ka",
+    "ph_necklace_cta_fgBeix"
+  ]
+}

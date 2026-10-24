@@ -1,0 +1,103 @@
+{% liquid
+  for block in blocks
+    if block.type == 'mega_menu_blocks'
+      assign overlay = block.settings.overlay_opacity
+      assign text_color = block.settings.color_scheme_1
+    endif
+  endfor
+%}
+<div
+  class="mega-menu__wrapper mega-menu__wrapper--blocks"
+>
+  <ul class="mega-menu__list list-unstyled focus-inset">
+    {% for block in blocks %}
+      {% assign mega_menu_blocks_trigger = block.settings.mega_menu_blocks_trigger | handle | strip %}
+      {% if link.handle == mega_menu_blocks_trigger %}
+        {% for item in block.settings.select_collections %}
+          <li class="mega-menu__card mega-menu__card--{{ block.settings.height }} color-{{ text_color }}">
+            <span
+              class="mega-menu__overlay"
+              style="
+                --opacity-slide: {{ overlay }};
+                --opacity-slide-hover: {{ overlay | plus: 0.1 }}
+              "
+            ></span>
+
+            {% liquid
+              if item.id != collection_individual_id
+                case block.settings.image
+                  when 'product_hover'
+                    assign image_first = item.products[0].images[1]
+                    assign image_second = item.products[0].images[0]
+                    assign image_third = item.featured_image
+                  when 'product'
+                    assign image_first = item.products[0].images[0]
+                    assign image_second = item.featured_image
+                    assign image_third = item.products[0].images[1]
+                  when 'collection'
+                    assign image_first = item.featured_image
+                    assign image_second = item.products[0].images[1]
+                    assign image_third = item.products[0].images[0]
+                endcase
+              endif
+            %}
+
+            {% if item.id != collection_individual_id %}
+              {% if image_first != blank %}
+                {% assign collection_product_image = image_first %}
+              {% elsif image_second != blank %}
+                {% assign collection_product_image = image_second %}
+              {% else %}
+                {% assign collection_product_image = image_third %}
+              {% endif %}
+            {% else %}
+              {% assign collection_product_image = item.featured_image %}
+            {% endif %}
+
+            {%- if collection_product_image != blank -%}
+              <img
+                srcset="
+                  {%- if collection_product_image.width >= 165 -%}{{ collection_product_image | image_url: width: '165x' }} 165w,{%- endif -%}
+                  {%- if collection_product_image.width >= 360 -%}{{ collection_product_image | image_url: width: '360x' }} 360w,{%- endif -%}
+                  {%- if collection_product_image.width >= 533 -%}{{ collection_product_image | image_url: width: '533x' }} 533w,{%- endif -%}
+                  {%- if collection_product_image.width >= 720 -%}{{ collection_product_image | image_url: width: '720x' }} 720w,{%- endif -%}
+                  {%- if collection_product_image.width >= 940 -%}{{ collection_product_image | image_url: width: '940x' }} 940w,{%- endif -%}
+                  {%- if collection_product_image.width >= 1066 -%}{{ collection_product_image | image_url: width: '1066x' }} 1066w{%- endif -%},
+                  {%- if collection_product_image.width >= 1100 -%}{{ collection_product_image | image_url: width: '1100x' }} 1100w,{%- endif -%}
+                  {%- if collection_product_image.width >= 1290 -%}{{ collection_product_image | image_url: width: '1290x' }} 1290w,{%- endif -%}
+                  {%- if collection_product_image.width >= 1440 -%}{{ collection_product_image | image_url: width: '1440x' }} 1440w,{%- endif -%}
+                  {%- if collection_product_image.width >= 1600 -%}{{ collection_product_image | image_url: width: '1600x' }} 1600w,{%- endif -%}
+                  {%- if collection_product_image.width >= 1920 -%}{{ collection_product_image | image_url: width: '1920x' }} 1920w{%- endif -%}
+                "
+                src="{{ collection_product_image | image_url: width: '533x' }}"
+                sizes="(min-width: 1100px) 1290px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                alt="{{ collection_product_image.alt | escape }}"
+                loading="lazy"
+                class="mega-menu__image motion-reduce img-scale"
+                width="{{ collection_product_image.width }}"
+                height="{{ collection_product_image.height }}"
+              >
+            {% endif %}
+            <h3 class="mega-menu__title h4">
+              <a
+                href="{{ item.url | default: '#' }}"
+                class="mega-menu__link list-menu__item focus-inset caption-large"
+              >
+                {{- item.title -}}
+              </a>
+            </h3>
+            {% if block.settings.show_button and block.settings.button_label != blank %}
+              <a
+                href="{{ item.url }}"
+                class="mega-menu__button button button--{{ block.settings.button_style }} focus-inset"
+              >
+                <span> {{ block.settings.button_label }} </span>
+              </a>
+            {% endif %}
+            <a href="{{ item.url | default: '#' }}" class="mega-menu__card-link" aria-label="{{ item.title }}"></a>
+          </li>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

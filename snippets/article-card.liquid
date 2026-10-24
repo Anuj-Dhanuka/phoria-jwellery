@@ -1,0 +1,115 @@
+{% comment %} 
+  Renders an article card for a given blog with settings to either show the image or not.
+ 
+  Accepts: 
+  - blog: {Object} Blog object 
+  - article: {Object} Article object 
+  - show_image: {String} The setting either show the article image or not. If it's not included it will show the image by default 
+  - show_date: {String} The setting either show the article date or not. If it's not included it will not show the image by default 
+  - show_author: {String} The setting either show the article author or not. If it's not included it will not show the author by default 
+  - image_ratio: {String} The setting for image ratio. If it's not included it will set to portrait by default.
+	- animate_on_scroll: {Boolean} Whether to animate on the scroll or not. If it's not included it will be set to false by default
+ 
+  Usage:
+  {% render 'article-card' blog: blog, article: article, show_image: section.settings.show_image %} 
+{% endcomment %}
+
+{% assign have_tags = false %}
+{% if show_tags and article.tags != blank %}
+  {% assign have_tags = true %}
+{% endif %}
+
+{% assign not_empty_tags = false %}
+{% if have_tags or show_date or show_author %}
+  {% assign not_empty_tags = true %}
+{% endif %}
+
+<article class="article-card article-card--meta-{{ tags_position }}{% if hover_effect %} article-card--hover-effect{% endif %}" aria-labelledby="Article-{{ article.id }}">
+  {%- if show_image == true and article.image != blank -%}
+    <div class="article-card__image-wrapper{% if animate_on_scroll %} observe-me{% endif %}">
+      <div class="article-card__image media {% if image_ratio %}article-card__image--{{ image_ratio }}{% endif %}">
+        {% capture sizes %}
+					(min-width: 990px) 940px, (min-width: 750px) calc((100vw - 40px) / 2), calc((100vw - 40px))
+				{% endcapture %}
+        {{ article.image | image_url: width: 1066 | image_tag:
+					loading: 'lazy',
+					sizes: sizes,
+					widths: '165, 360, 535, 720, 940, 1066'
+        }}
+				{%- if button_label != blank -%}
+					<a href="{{ article.url }}" class="article-card__overlay-link"></a>
+				{%- endif -%}
+      </div>
+      {%- if button_label != blank -%}
+        {% if tags_position == "top" or not_empty_tags == false %}
+          <a href="{{ article.url }}" class="button blog__button button--{{ button_style }} focus-inset blog__button--{{ button_color_scheme }}">
+            <span>
+              {{ button_label | escape }}
+            </span>
+          </a>
+        {% endif %}
+      {%- endif -%}
+      {% if hover_effect and tags_position == "top" %}
+        <div class="article-card__overlay" style="opacity: {{ overlay_opacity }}"></div>
+      {% endif %}
+    </div>
+  {%- endif -%}
+  <div class="article-content motion-reduce">
+    <div class="article-card__info">
+      <header class="article-card__header">
+        <h2 class="article-card__title article-card__title--second {% if heading_size %}{{ heading_size }}{% else %}h3{% endif %}" id="Article-{{ article.id }}">
+          <a href="{{ article.url }}">
+            {{ article.title | escape }}
+          </a>
+        </h2>
+        <div class="article-card__title article-card--meta-line {% if button_label != blank and tags_position == "bottom" and hover_effect %} article-card--meta-line--hover-effect{% endif %}">
+          {%- if show_tags and article.tags != blank -%}
+            <ul class="article-card__tags">
+              {% for tag in article.tags %}
+                <li class="article-card__tag secondary_text">
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                    <span title="{{ tag }}">{{ tag }}{%- if forloop.last == false -%}
+                        ,
+                      {%- endif -%}
+                    </span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {%- endif -%}
+          {%- if show_date -%}
+            <span class="article-card__date secondary_text">
+              {{ article.published_at | date: "%d/%m/%Y" }}
+            </span>
+          {%- endif -%}
+          {%- if show_author -%}
+            <span class="article-card__author secondary_text">
+              <span>{{- article.author -}}</span>
+            </span>
+          {%- endif -%}
+          {%- if button_label != blank and tags_position == "bottom" and not_empty_tags and hover_effect -%}
+            <a href="{{ article.url }}" class="button blog__button button--{{ button_style }} focus-inset">
+              <span>
+                {{ button_label | escape }}
+              </span>
+            </a>
+          {%- endif -%}
+        </div>
+        {%- if show_excerpt and article.excerpt_or_content.size > 0 -%}
+          <p class="article-card__excerpt {% if template == 'search' %} article-card__excerpt_small {% endif %}">
+            {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+          </p>
+        {%- endif -%}
+        {%- if article.comments_count > 0 and blog.comments_enabled? -%}
+          <div class="article-card__title subtitle article-card__title secondary_text_bottom">
+            <span class="article-card__comments card__subtitle secondary-text">{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
+          </div>
+        {%- endif -%}
+      </header>
+    </div>
+  </div>
+  <a
+    class="article-card-link"
+    href="{{ article.url }}"
+    aria-label="{{ 'accessibility.article_link' | t }}"></a>
+</article>

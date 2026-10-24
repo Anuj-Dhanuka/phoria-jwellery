@@ -1,0 +1,205 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="section-{{ section.id }}">
+	<div class="customer login color-{{ section.settings.color_scheme }}">
+		<div class="login__wrapper">
+			{% if section.settings.image != blank %}
+				{%- capture style -%}
+					object-position: {{ section.settings.image.presentation.focal_point }};
+				{%- endcapture -%}
+				{{
+				section.settings.image.preview_image | image_url: width: 1946 | image_tag: 
+				loading: 'lazy',
+				widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+				style: style,
+				class: "preview_image"
+				}}
+			{%- else -%}
+				{{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg preview_image' }}
+			{% endif %}
+			<div class="container">
+				<a href="{{ routes.root_url }}" class="button focus-inset login--button-home">
+					{% render 'icon-button-arrow' %}
+					<span>{{ 'customer.login_page.btn_home' | t }}</span>
+				</a>
+				
+				<div class="login__reset" id="recover">
+					<div class="page-header">
+						<div class="page-header__inner">
+							<h2 class="title--page login__title" tabindex="-1">
+								{{ 'customer.recover_password.title' | t }}
+							</h2>
+						</div>
+					</div>
+					<div>
+						<p class="login__reset--subtext">
+							{{ 'customer.recover_password.subtext' | t }}
+						</p>
+
+						{%- form 'recover_customer_password' -%}
+							{% assign recover_success = form.posted_successfully? %}
+							<div class="field">
+								<input type="email"
+												class="field__input"
+												value=""
+												name="email"
+												id="RecoverEmail"
+												autocorrect="off"
+												autocapitalize="off"
+												autocomplete="email"
+									{% if form.errors %}
+										aria-invalid="true"
+										aria-describedby="RecoverEmail-email-error"
+										autofocus
+									{% endif %}
+									placeholder="{{ 'customer.login_page.email' | t }}*"
+								>
+									<label for="RecoverEmail" placeholder="{{ 'customer.login_page.email' | t }}*"></label>
+							</div>
+
+							<div class="login__reset--buttons">
+								<button class="button button--tertiary login__sign-in focus-inset">
+									<span> {{ 'customer.login_page.submit' | t }} </span>
+								</button>
+								<a class="button button--tertiary login__sign-in anchor focus-inset" href="#login">
+									<span> {{ 'customer.login_page.cancel' | t }} </span>
+								</a>
+							</div>
+						{%- endform -%}
+					</div>
+				</div>
+
+				<div class="login__form" id="login">
+					<div class="page-header">
+						<div class="page-header__inner">
+							<h1 class="title--page login__title h2" tabindex="-1">
+								{{ 'customer.login_page.welcome' | t }}
+							</h1>
+						</div>
+					</div>
+					{%- if recover_success == true -%}
+						<h3 class="form__message" tabindex="-1" autofocus>
+							{{ 'customer.recover_password.success' | t }}
+						</h3>
+					{%- endif -%}
+					{%- form 'customer_login', novalidate: 'novalidate' -%}
+						<div class="field login__field login__field--email">
+							<input
+								type="email"
+								name="customer[email]"
+								class="field__input"
+								id="CustomerEmail"
+								autocomplete="email"
+								autocorrect="off"
+								autocapitalize="off"
+								required
+								{% if form.errors contains 'form' %}
+									aria-invalid="true"
+									aria-describedby = "LoginForm-email-error"
+								{% endif %}
+								placeholder="{{ 'customer.login_page.email' | t }}*"
+							>
+								<label for="CustomerEmail" placeholder="{{ 'customer.login_page.email' | t }}*"></label>
+						</div>
+						{% unless template.name == 'register' %}
+							{{ form.errors | default_errors }}
+						{% endunless %}
+
+						{%- if form.password_needed -%}
+							<div class="field field--pass login__field">
+								<div class="button-pass-visibility">
+									<span class="pass-hide button">{{ 'customer.login_page.show' | t }}</span>
+									<span class="pass-show button" style="display: none;">{{ 'customer.login_page.hide' | t }}</span>
+								</div>
+								<input
+									type="password"
+									value=""
+									name="customer[password]"
+									class="field__input"
+									id="CustomerPassword"
+									autocomplete="current-password"
+									{% if form.errors contains 'form' %}
+										aria-invalid="true"
+									{% endif %}
+									placeholder="{{ 'customer.login_page.password' | t }}*" 
+									required
+								>
+									<label for="CustomerPassword" placeholder="{{ 'customer.login_page.password' | t }}*"></label>
+							</div>
+							{% unless template.name == 'register' %}
+								{{ form.errors | default_errors }}
+							{% endunless %}
+						{%- endif -%}
+
+						<div class="login__buttons login__buttons--space-between">
+							<div class="login--btns-wrapper">
+								<button class="button button--tertiary focus-inset login__sign-in">
+									<span> {{ 'customer.login_page.title' | t }} </span>
+								</button>
+								<a href="#recover" class="anchor button button--simple login__forgot-password focus-inset">
+									<span>{{ 'customer.login_page.forgot_password' | t }}</span>
+								</a>
+							</div>
+
+							<div class="login__create-acc">
+								<span class="login__text h3">{{ 'customer.login_page.new_customer' | t }}</span>
+								<a href="{{ routes.account_register_url }}" class="button button--tertiary focus-inset">
+									<span>{{ 'customer.login_page.create_account' | t }}</span>
+								</a>
+							</div>
+						</div>
+					{%- endform -%}
+				</div>
+			</div>
+
+			{%- if shop.checkout.guest_login -%}
+				<div class="login__guest">
+					<div class="login__title">{{ 'customer.login_page.guest_title' | t }}</div>
+
+					{%- form 'guest_login' -%}
+						<button class="button button--primary button--primary-size focus-inset">
+							<span> {{ 'customer.login_page.guest_continue' | t }} </span>
+						</button>
+					{%- endform -%}
+				</div>
+			{%- endif -%}
+			<div class="customer__overlay" style="opacity: {{ section.settings.overlay_opacity }}"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+  window.onload = () => {
+    typeof PasswordViewer !== 'undefined' && new PasswordViewer();
+  };
+</script>
+
+{% schema %}
+{
+	"name": "t:sections.main-login.name",
+	"tag": "section",
+	"class": "spaced-section login-section",
+	"settings": [
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"default": "background-2",
+			"label": "t:sections.all.color_scheme.label"
+		},
+		{
+			"type": "range",
+			"id": "overlay_opacity",
+			"default": 0.2,
+			"min": 0,
+			"max": 1,
+			"step": 0.1,
+			"label": "t:sections.all.overlay_opacity.label"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "t:sections.all.image.label"
+		}
+	]
+}
+{% endschema %}

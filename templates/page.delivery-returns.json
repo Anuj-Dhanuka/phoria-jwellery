@@ -1,0 +1,208 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_accordion_zwUwJ9": {
+      "type": "ph-accordion",
+      "blocks": {
+        "accordion_jqMxxU": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "How long does dispatch and delivery take?",
+            "accordion__content": "<p>YOUR ORDER WILL BE DISPATCHED WITHIN 24 HOURS OF YOUR ORDER BEING PROCESSED (ON BUSINESS DAYS).<br/><br/>FOR UK ORDERS ONCE DISPATCHED, ORDERS WILL ARRIVE:<br/><br/>UK: THE NEXT WORKING DAY</p><p>FOR INTERNATIONAL ORDERS ONCE DISPATCHED, ORDERS WILL ARRIVE:<br/><br/>PHORIA SHIPS WITH DHL EXPRESS AND FEDEX INTERNATIONAL. THE DELIVERY TIME WILL DEPEND ON YOUR LOCATION AND IS CALCULATED AT CHECKOUT. THIS RANGES FROM 1 - 5 DAYS DEPENDING ON YOUR CHOSEN METHOD.</p><p>PLEASE BE AWARE THAT UK PUBLIC HOLIDAYS WILL AFFECT YOUR EXPECTED DELIVERY DATE.</p>"
+          }
+        },
+        "accordion_wpmC4z": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Where does Phoria ship to and how much does it cost?",
+            "accordion__content": "<p>PHORIA SHIPS WORLDWIDE. DELIVERY WITHIN THE UK IS FREE VIA ROYAL MAIL.</p><p>FOR EVERYWHERE ELSE YOU CAN CHOOSE BETWEEN:</p><p>FEDEX INTERNATIONAL - £20</p><p>DHL EXPRESS - £30</p>"
+          }
+        },
+        "accordion_PPyQmH": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "When will my Pre-Order be dispatched?",
+            "accordion__content": "<p>We will try to get your purchase sent out to you as soon as possible. Please check your confirmation email for all details including your estimated dispatch date. If you have any questions or want an update on your order please send an email to <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> and we will get back to you within 24 hours.</p>"
+          }
+        },
+        "accordion_6HPKQd": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "How do I track my order?",
+            "accordion__content": "<p>YOU CAN TRACK YOUR ORDER BY LOGGING INTO YOUR <a href=\"https://www.phoriajewellery.com/account/\" target=\"_blank\">ACCOUNT</a> OR REFERRING TO YOUR ORDER DISPATCH EMAIL. TRACKING DETAILS WILL BE EMAILED TO YOU AND ARE AVAILABLE FROM THE MOMENT YOUR ORDER IS DISPATCHED FROM US TO WHEN IT IS SIGNED FOR AT ITS FINAL DESTINATION.</p><p>REMEMBER TO CHECK YOUR JUNK/SPAM/PROMOTIONAL INBOX AS SOMETIMES TRACKING EMAILS MAY END UP IN THERE.</p><p>UK: ALL ORDERS ARE SHIPPED FULLY TRACKED VIA <a href=\"https://www.royalmail.com/sending/uk/special-delivery-guaranteed-1pm\" target=\"_blank\">ROYAL MAIL’S SPECIAL DELIVERY</a> SERVICE.</p><p>INTERNATIONAL: ALL ORDERS ARE SHIPPED FULLY TRACKED USING  FEDEX INTERNATIONAL AND EXPRESS SHIPPING VIA <strong>DHL EXPRESS WORLDWIDE.</strong></p><p>PLEASE NOTE THAT ALL PHORIA ORDERS REQUIRE A SIGNATURE ON DELIVERY WHETHER ORDERED FROM WITHIN THE UK OR INTERNATIONALLY.</p>"
+          }
+        },
+        "accordion_TDyU6j": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "What happens if I refuse my shipment?",
+            "accordion__content": "<p>If you refuse your Phoria shipment, you are responsible for the shipping charges, any import fees and the cost of returning the parcel. In this instance, once the parcel has been received back, you will be refunded your total paid minus these costs.</p>"
+          }
+        },
+        "accordion_wjx7zt": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "What happens if my order hasn't arrived?",
+            "accordion__content": "<p>The first thing is to check the tracking in the email sent to you when your order was dispatched to check the status of your parcel. If you are still worried about the whereabouts of your parcel after doing this, please get in touch at <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> and we will be happy to help.</p>"
+          }
+        },
+        "accordion_BmELHi": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Duties + Taxes on orders outside of the UK?",
+            "accordion__content": "<p>If you are ordering from outside of the UK your order will likely be subject to customs or import duties which will not be covered by Phoria. For more accurate information, we’d suggest getting in touch with your local customs office so you’re not surprised if there are any unexpected delivery charges at your end.</p>"
+          }
+        },
+        "accordion_wDbmiU": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "What happens if I refuse to pay customs?",
+            "accordion__content": "<p>If you choose to refuse the customs fee and the parcel is returned back to Phoria, the shipping and handling fee will be deducted from your refund.</p>"
+          }
+        },
+        "accordion_MgVBF8": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Any other questions?",
+            "accordion__content": "<p>If you have any other questions we are always happy to help, please email us at <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> or for general enquiries <a href=\"mailto:studio@phoriajewellery.com\"><strong>studio@phoriajewellery.com</strong></a><strong>.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_jqMxxU",
+        "accordion_wpmC4z",
+        "accordion_PPyQmH",
+        "accordion_6HPKQd",
+        "accordion_TDyU6j",
+        "accordion_wjx7zt",
+        "accordion_BmELHi",
+        "accordion_wDbmiU",
+        "accordion_MgVBF8"
+      ],
+      "settings": {
+        "title": "DELIVERY",
+        "padding_desktop_top": 75,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 75,
+        "padding_mobile_bottom": 10,
+        "enable_animations": true
+      }
+    },
+    "ph_accordion_fjU9TR": {
+      "type": "ph-accordion",
+      "blocks": {
+        "accordion_G37ncM": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "DOES PHORIA OFFER RETURNS?",
+            "accordion__content": "<p>WE REALLY HOPE YOU LOVE YOUR PHORIA PURCHASE! HOWEVER IF YOU DO WISH TO RETURN AN ITEM YOU CAN DO THIS BY GETTING IN TOUCH AT <a href=\"mailto:HELLO@PHORIAJEWELLERY.COM\" target=\"_blank\"><strong>HELLO@PHORIAJEWELLERY.COM </strong></a>WITHIN 14 DAYS OF RECEIVING YOUR GOODS. THEY THEN MUST BE RECEIVED BACK WITHIN 28 DAYS OF PURCHASE, UNUSED AND IN THEIR ORIGINAL CONDITION AND PACKAGING. PHORIA PROVIDES A RETURN SHIPPING LABEL FOR EASE BUT DOES NOT COVER THE COST OF RETURNS POSTAGE AND DOES NOT ACCEPT RETURNS ON EARRINGS (DUE TO HYGIENE REASONS). THANK YOU FOR YOUR UNDERSTANDING!<br/><br/></p>"
+          }
+        },
+        "accordion_DwWwNc": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Does Phoria offer exchanges?",
+            "accordion__content": "<p>IF YOU WISH TO EXCHANGE AN ITEM YOU CAN DO THIS BY GETTING IN TOUCH AT <a href=\"mailto:HELLO@PHORIAJEWELLERY.COM\" target=\"_blank\"><strong>HELLO@PHORIAJEWELLERY.COM </strong></a>WITHIN 14 DAYS OF RECEIVING YOUR GOODS. THEY THEN MUST BE RECEIVED BACK WITHIN 28 DAYS OF PURCHASE, UNUSED AND IN THEIR ORIGINAL CONDITION AND PACKAGING. PHORIA PROVIDES A RETURN SHIPPING LABEL FOR EASE BUT DOES NOT COVER THE COST OF EXCHANGE POSTAGE AND DOES NOT ACCEPT EXCHANGES ON EARRINGS (DUE TO HYGIENE REASONS). THANK YOU FOR YOUR UNDERSTANDING!</p>"
+          }
+        },
+        "accordion_XNJUiB": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "How do I return or exchange my order?",
+            "accordion__content": "<p>RETURNING OR EXCHANGING YOUR ORDER IS SUPER EASY. </p><ol><li>EMAIL US AT <a href=\"mailto:HELLO@PHORIAJEWELLERY.COM\" target=\"_blank\"><strong>HELLO@PHORIAJEWELLERY.COM </strong></a>AND TELL US WHY YOU WANT TO RETURN OR EXCHANGE YOUR ORDER. IF YOUR RETURN IS APPROVED WE WILL SEND YOU A PRE-PAID SHIPPING LABEL FOR YOU TO RETURN THE GOODS HOWEVER WE WILL DEDUCT THE SHIPPING FEE OFF OF YOUR REFUND OR WILL CHARGE FOR IT IF IT IS AN EXCHANGE.</li><li>RE-PACKAGE YOUR ITEM(S) CAREFULLY IN THEIR ORIGINAL PACKAGING ALONG WITH A NOTE STATING YOUR ORDER NUMBER, NAME AND REASON FOR RETURN.</li><li>STICK THE RETURN LABEL ONTO YOUR PACKAGE.</li><li>TAKE IT TO YOUR LOCAL FEDEX INTERNATIONAL OR DHL EXPRESS (IF INTERNATIONAL) OR ROYAL MAIL (IF UK) DROP OFF AND MAKE SURE YOU KEEP YOUR PROOF OF POSTAGE.</li><li>ONCE SHIPPED, RETURNS TAKE UP TO 3 DAYS TO BE RECEIVED BACK. ONCE RECEIVED WE WILL PROCESS THE RETURN OR EXCHANGE RIGHT AWAY.</li><li>IF IT IS AN EXCHANGE, WE WILL SEND THE EXCHANGE BACK TO YOU FREE OF CHARGE. YOU WILL RECEIVE UPDATED TRACKING ONCE SENT.</li></ol>"
+          }
+        },
+        "accordion_9YMkiK": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Can I cancel or amend my order?",
+            "accordion__content": "<p>Unfortunately, we are unable to cancel or amend orders once they have been placed. However, you can of course return your order once you have received it. Please get in touch at <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> and we will be happy to help.</p>"
+          }
+        },
+        "accordion_TNhn7q": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Can I cancel or amend my pre-order?",
+            "accordion__content": "<p>You can cancel at any time by emailing <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> and we will get back to you within 24 hours. You will receive an email confirming the refund and should see the money back in the account you paid with within 5 working days depending on your bank.</p>"
+          }
+        },
+        "accordion_gdgbP7": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Can I change my email or shipping address on my Pre-order?",
+            "accordion__content": "<p>Yes! Send us an email to <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> with your updated details and we will get back to you within 24 hours to confirm it has been updated. You will then receive an updated pre-order confirmation email.</p>"
+          }
+        },
+        "accordion_YHHbXz": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Faulty Items",
+            "accordion__content": "<p>In the unlikely event that you receive a faulty item, or your item develops a fault, please do get in touch at<strong> </strong><a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> as we are always happy to resolve any issues.</p><p>Please also do so if your piece needs to be professionally re-plated, polished or repaired and we will share more info on our reconditioning service.</p>"
+          }
+        },
+        "accordion_dJKkzx": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "LIFETIME WARRANTY",
+            "accordion__content": "<p>PHORIA OFFERS A LIFETIME WARRANTY ON ALL OUR PIECES. IN THE RARE CASE WHERE A PIECE MAY BE DEFECTIVE FROM PRODUCTION OUR WARRANTY COVERS ANY IMPERFECTIONS, BREAKAGES OR TARNISHING.</p><p>IF YOU ARE UNHAPPY WITH THE CONDITION OF YOUR PIECE, WE WILL EXCHANGE YOUR ITEM FOR A BRAND NEW PIECE AT NO ADDITIONAL COST. </p><p>CONTACT US AT <a href=\"mailto:HELLO@PHORIAJEWELLERY.COM\" title=\"HELLO@PHORIAJEWELLERY.COM\">HELLO@PHORIAJEWELLERY.COM</a> FOR MORE INFORMATION OR ANY QUESTIONS YOU MAY HAVE ABOUT OUR LIFETIME WARRANTY.</p>"
+          }
+        },
+        "accordion_EtPGcW": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "When will I receive my refund?",
+            "accordion__content": "<p>Upon receipt of items, the credit or debit card originally used for the purchase will be credited with the cost of the goods, minus the delivery charges. We will process your refund within 5 working days of receipt. Your credit card company may take 4-7 working days to credit your account.</p>"
+          }
+        },
+        "accordion_iCDgc6": {
+          "type": "Accordion",
+          "settings": {
+            "accordion__title": "Any other questions?",
+            "accordion__content": "<p>If you have any other questions we are always happy to help, please email us at <a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a> or for general enquiries<strong> </strong><a href=\"mailto:studio@phoriajewellery.com\"><strong>studio@phoriajewellery.com</strong></a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_G37ncM",
+        "accordion_DwWwNc",
+        "accordion_XNJUiB",
+        "accordion_9YMkiK",
+        "accordion_TNhn7q",
+        "accordion_gdgbP7",
+        "accordion_YHHbXz",
+        "accordion_dJKkzx",
+        "accordion_EtPGcW",
+        "accordion_iCDgc6"
+      ],
+      "settings": {
+        "title": "RETURNS + EXCHANGES",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 70,
+        "padding_mobile_bottom": 10,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_accordion_zwUwJ9",
+    "ph_accordion_fjU9TR"
+  ]
+}

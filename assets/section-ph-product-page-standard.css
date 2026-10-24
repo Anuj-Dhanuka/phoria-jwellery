@@ -1,0 +1,102 @@
+.ph-pdp-standard {
+  background: #fff;
+  border-bottom: 1px solid #f1f1f1;
+  display: none;
+  margin: 0;
+  padding: 3.55rem 2.2rem 2.95rem;
+  text-align: center;
+  width: 100%;
+}
+
+.ph-pdp-standard__title {
+  color: #050505;
+  font-family: 'PhoriaBold', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0 0 3.2rem;
+  text-transform: uppercase;
+}
+
+.ph-pdp-standard__items {
+  align-items: start;
+  display: grid;
+  row-gap: 3.2rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ph-pdp-standard__icon {
+  display: block;
+  height: 28px;
+  margin: 0 auto 2rem;
+  object-fit: contain;
+  opacity: 1;
+  width: 28px;
+}
+
+.ph-pdp-standard__item:nth-child(3) .ph-pdp-standard__icon {
+  height: 19px;
+  width: 19px;
+}
+
+.ph-pdp-standard__text {
+  color: #050505;
+  font-family: 'PhoriaRegular', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0;
+  line-height: 22px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.ph-pdp-standard__text span {
+  display: block;
+}
+
+.ph-pdp-standard__text span + span {
+  color: #a5a5a5;
+}
+
+@media (max-width: 767px) {
+  .ph-pdp-standard {
+    display: block;
+    margin-top: 0;
+    padding: 3.55rem 1.2rem 2.95rem;
+  }
+
+  .ph-pdp-standard__title {
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 3.2rem;
+  }
+
+  .ph-pdp-standard__items {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 3.2rem;
+  }
+
+  .ph-pdp-standard__icon {
+    height: 28px;
+    margin-bottom: 2rem;
+    width: 28px;
+  }
+
+  .ph-pdp-standard__item:nth-child(3) .ph-pdp-standard__icon {
+    height: 19px;
+    width: 19px;
+  }
+
+  .ph-pdp-standard__text {
+    font-size: 9px;
+    letter-spacing: 0;
+    line-height: 22px;
+  }
+}
+
+/* Hide Shop Pay button on PDPs; keep Apple Pay / PayPal / other wallets visible */
+shop-pay-button,
+[data-shopify-buttoncontainer] shop-pay-button,
+.shopify-payment-button shop-pay-button {
+  display: none !important;
+}

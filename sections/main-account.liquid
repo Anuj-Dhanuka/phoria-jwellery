@@ -1,0 +1,321 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div class="customer account main-account section-{{ section.id }}{% if customer.orders.size == 0 %} no-orders{% endif %}{% if customer.addresses_count == 0 %} no-address{% endif %}">
+  <div class="container">
+		<div class="account__wrapper {% if customer.orders.size > 0 %}account__wrapper--with-orders {% else %}account__wrapper--no-orders {% endif %}">
+			<div class="account__wrapper--inner">
+				<div class="account__left">
+					{% paginate customer.orders by 20 %}
+						{%- if customer.orders.size > 0 -%}
+							<div class="order-table">
+								<div class="account__subtitle h3">{{ 'customer.account.order_history' | t }}</div>
+								<div class="visually-hidden">{{ 'customer.orders.title' | t }}</div>
+								<div class="row thead subtitle">
+									<div id="ColumnOrder">{{ 'customer.orders.order_number' | t }}</div>
+									<div id="ColumnDate">{{ 'customer.orders.date' | t }}</div>
+									<div id="ColumnPayment">{{ 'customer.orders.payment_status' | t }}</div>
+									<div id="ColumnFulfillment">{{ 'customer.orders.fulfillment_status' | t }}</div>
+									<div id="ColumnTotal">{{ 'customer.orders.total' | t }}</div>
+								</div>
+								{%- for order in customer.orders -%}
+									<a
+										class="row tbody secondary_text"
+										href="{{ order.customer_url }}"
+										aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+									>
+										<span id="RowOrder" data-label="{{ 'customer.orders.order_number' | t }}">
+											{{ order.name }}
+										</span>
+										<span data-label="{{ 'customer.orders.date' | t }}">
+											{{ order.created_at | time_tag: format: 'date' }}
+										</span>
+										<span data-label="{{ 'customer.orders.payment_status' | t }}">
+											{{ order.financial_status_label }}
+										</span>
+										<span data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+											{{ order.fulfillment_status_label }}
+										</span>
+										<span data-label="{{ 'customer.orders.total' | t }}">
+											{% render 'ph-round-money', amount: order.total_price, with_currency: true %}
+										</span>
+									</a>
+								{%- endfor -%}
+							</div>
+						{%- else -%}
+							<div class="account-none">
+								<div class="account-none__wrapper account__no-order-block">
+									<div class="account-none__content">
+										<p class="account__subtitle h3">{{ 'customer.orders.title' | t }}</p>
+										{%- if section.settings.heading_orders != blank -%}
+											<div class="h3">{{ section.settings.heading_orders }}</div>
+										{%- endif -%}
+										{%- if section.settings.text_orders != blank -%}
+											<div class="account-none__text secondary_text">
+												{{ section.settings.text_orders | escape }}
+											</div>
+										{%- endif -%}
+									</div>
+									<a
+										href="{{ routes.collections_url | sort_by: 'best-selling' }}"
+										class="button button--tertiary focus-inset account-none__button"
+									>
+										<span> {{ 'customer.account.account_button_shop' | t }} </span>
+									</a>
+								</div>
+							</div>
+						{%- endif -%}
+
+						{%- if paginate.pages > 1 -%}
+							{%- if paginate.parts.size > 0 -%}
+								<nav
+									class="pagination customer__pagination"
+									role="navigation"
+									aria-label="{{ 'general.pagination.label' | t }}"
+								>
+									<ul class="pagination__list list-unstyled" role="list">
+										{%- if paginate.previous -%}
+											<li>
+												<a
+													href="{{ paginate.previous.url }}"
+													class="pagination__item--prev pagination__item-arrow link motion-reduce"
+													aria-label="{{ 'general.pagination.previous' | t }}"
+												>
+													{%- render 'icon-caret-pagination' -%}
+												</a>
+											</li>
+										{%- endif -%}
+
+										{%- for part in paginate.parts -%}
+											<li>
+												{%- if part.is_link -%}
+													<a
+														href="{{ part.url }}"
+														class="pagination__item link"
+														aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+													>
+														{{- part.title -}}
+													</a>
+												{%- else -%}
+													{%- if part.title == paginate.current_page -%}
+														<span
+															aria-current="page"
+															class="pagination__item pagination__item--current"
+															aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+														>
+															{{- part.title -}}
+														</span>
+													{%- else -%}
+														<span class="pagination__item">{{ part.title }}</span>
+													{%- endif -%}
+												{%- endif -%}
+											</li>
+										{%- endfor -%}
+
+										{%- if paginate.next -%}
+											<li>
+												<a
+													href="{{ paginate.next.url }}"
+													class="pagination__item--next pagination__item-arrow link motion-reduce"
+													aria-label="{{ 'general.pagination.next' | t }}"
+												>
+													{%- render 'icon-caret-pagination' -%}
+												</a>
+											</li>
+										{%- endif -%}
+									</ul>
+								</nav>
+							{%- endif -%}
+						{%- endif -%}
+					{% endpaginate %}
+				</div>
+				<div class="account__right">
+					{%- if customer.addresses_count > 0 -%}
+						<div class="account-address account__no-order-block">
+							<p class="account__subtitle h3">{{ 'customer.account.details' | t }}</p>
+							<ul class="account-address__list account-address__default list-unstyled">
+								{%- if customer.default_address.name != blank -%}
+									<li class="account-address__item account-address__item-name h3">{{ customer.default_address.name }}</li>
+								{%- endif -%}
+
+								{%- if customer.default_address != blank -%}
+									<li>
+										{%- if customer.default_address.street != blank -%}
+											<span class="account-address__item">{{ customer.default_address.street }}</span>
+										{%- endif -%}
+
+										{%- if customer.default_address.company != blank -%}
+											<span class="account-address__item">{{ customer.default_address.company }}</span>
+										{%- endif -%}
+
+										{%- if customer.default_address.city != blank -%}
+											<span class="account-address__item">{{ customer.default_address.city }}</span>
+										{%- endif -%}
+
+										{%- if customer.default_address.zip != blank -%}
+											<span class="account-address__item">{{ customer.default_address.zip }}</span>
+										{%- endif -%}
+
+										{%- if customer.default_address.phone != blank -%}
+											<span class="account-address__item">{{ customer.default_address.phone }}</span>
+										{%- endif -%}
+
+										{%- if customer.default_address.country != blank -%}
+											<span class="account-address__item account-address__item-address">
+												{{- customer.default_address.country -}}
+											</span>
+										{%- endif -%}
+									</li>
+								{%- endif -%}
+							</ul>
+							<a
+								class="button button--tertiary focus-inset account-address__link"
+								href="{{ routes.account_addresses_url }}"
+							>
+								<span> 
+									{{ 'customer.account.view_addresses' | t }}
+									({{ customer.addresses_count }}) 
+								</span>
+							</a>
+						</div>
+					{%- else -%}
+						<div class="account-none">
+							<div class="account-none__wrapper account__no-order-block">
+								{% comment %}{% render 'icon-account-address-none' %}{% endcomment %}
+								<div class="account-none__content">
+									<p class="account__subtitle h3">{{ 'customer.account.details' | t }}</p>
+									{%- if section.settings.heading_addresses != blank -%}
+										<div class="h3">{{ section.settings.heading_addresses }}</div>
+									{%- endif -%}
+									{%- if section.settings.text_addresses != blank -%}
+										<div class="account-none__text secondary_text">
+											{{ section.settings.text_addresses | escape }}
+										</div>
+									{%- endif -%}
+								</div>
+								<a
+									href="{{ routes.account_addresses_url }}"
+									class="button button--tertiary account-none__button account-none__button--address"
+								>
+								<span>  {{ 'customer.addresses.add_new' | t }} </span>
+								</a>
+							</div>
+						</div>
+					{%- endif -%}
+				</div>
+			</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-account.settings.header_1.content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_orders",
+      "default": "Some heading for empty order history placeholder",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text_orders",
+      "default": "Some text for empty order history placeholder",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-account.settings.header_2.content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_addresses",
+      "default": "Some heading for empty address placeholder",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "text_addresses",
+      "default": "Some text for empty address placeholder",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "s",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

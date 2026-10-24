@@ -1,0 +1,55 @@
+/*
+ * PDP desktop revert.
+ * Restores the pre-mobile-overhaul desktop look while leaving mobile untouched.
+ * Mobile keeps the new carousel; desktop shows the old Layer Up (same section
+ * type the homepage uses).
+ */
+
+@media (min-width: 768px) {
+  /* Hide the full-width product story on desktop (mobile keeps it). */
+  [id^="shopify-section"][id*="ph_product_story"] {
+    display: none !important;
+  }
+
+  /* Hide the "As Seen In" marquee instance that lives below PDPs on desktop. */
+  [id^="shopify-section"][id*="as_seen_in_marquee"] {
+    display: none !important;
+  }
+
+  /* Hide the new mobile-redesign Layer Up carousel on desktop. */
+  [id^="shopify-section"][id*="ph_product_carousel_DMejqR"] {
+    display: none !important;
+  }
+
+  /* Old Layer Up on PDP uses 4:5 product imagery — override homepage 1:1 crop. */
+  [id^="shopify-section"][id$="ph_layerup_old"] .ph-car__media {
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  /* Ring IN/MM size-conversion toggle — revert to baseline look on desktop. */
+  .ph-pdp-size-conversion-toggle {
+    letter-spacing: 5px;
+    gap: 0;
+    min-width: 18px;
+    transform: none;
+  }
+  .ph-pdp-size-conversion-toggle span {
+    display: inline;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Hide the old (homepage-style) Layer Up carousel on mobile — mobile keeps the new one. */
+  [id^="shopify-section"][id*="ph_layerup_old"] {
+    display: none !important;
+  }
+
+  /* Hide the "By popular demand" opening paragraph only on mobile — desktop keeps it. */
+  .ph-pdp-product-description--hide-first-mobile > p:first-child {
+    display: none;
+  }
+  .ph-pdp-product-description--hide-first-mobile {
+    margin-bottom: 2.25rem;
+  }
+}

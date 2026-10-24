@@ -1,0 +1,80 @@
+.rich-text {
+  margin: auto;
+  text-align: center;
+  max-width: initial;
+  width: 100%;
+}
+.rich-text.rich-text-medium-width .rich-text__text {
+  max-width: 80vw;
+  width: 100%;
+}
+.rich-text--align-left {
+  text-align: left;
+}
+.rich-text--align-left .rich-text__heading,
+.rich-text--align-left .rich-text__text {
+  margin-right: auto;
+}
+.rich-text--align-left .rich-text__blocks {
+  margin-left: 0;
+}
+.rich-text--align-left .rich-text__blocks .button {
+  margin-left: 0;
+}
+.rich-text--align-right {
+  text-align: right;
+}
+.rich-text--align-right .rich-text__heading,
+.rich-text--align-right .rich-text__text {
+  margin-left: auto;
+}
+.rich-text--align-right .rich-text__blocks {
+  margin-right: 0;
+}
+.rich-text--align-right .rich-text__blocks .button {
+  margin-right: 0;
+}
+.rich-text--align-center {
+  text-align: center;
+}
+.rich-text--align-center .rich-text__heading,
+.rich-text--align-center .rich-text__text {
+  margin-inline: auto;
+}
+.rich-text__heading {
+  max-width: 100rem;
+}
+.rich-text__heading:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+.rich-text__text {
+  max-width: 43rem;
+}
+.rich-text__text p {
+  margin: 0;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.rich-text__text p strong{
+  font-family: 'PhoriaBold';
+}
+.rich-text__text h1, .rich-text__text h2, .rich-text__text h3, .rich-text__text h4, .rich-text__text h5, .rich-text__text h6 {
+  margin-block: 1.6rem;
+}
+.rich-text__blocks {
+  margin: auto;
+  max-width: 80vw;
+  width: 100%;
+}
+.rich-text__blocks * {
+  overflow-wrap: break-word;
+}
+.rich-text__blocks .button {
+  margin-top: 0.6rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rich-text__blocks .rich-text__subheading + .button {
+  margin-top: 0;
+}

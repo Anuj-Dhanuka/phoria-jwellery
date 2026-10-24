@@ -1,0 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "custom_css": [
+        ".button--tertiary {text-transform: uppercase;}"
+      ],
+      "settings": {
+        "enable_search": false,
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_404_hTLjbe": {
+      "type": "ph-404",
+      "name": "Ph 404",
+      "settings": {
+        "title": "Page Not Found",
+        "subtitle": "<p>Something has broken.<br/>Try one of the links below instead.<br/></p>",
+        "cta1_text": "Home",
+        "cta1_link": "/",
+        "cta2_text": "Shop All",
+        "cta2_link": "shopify://collections/shop-all",
+        "cta3_text": "Contact us",
+        "cta3_link": "shopify://pages/contact"
+      }
+    },
+    "media-banner": {
+      "type": "media-banner",
+      "blocks": {
+        "media_slide": {
+          "type": "media_slide",
+          "settings": {
+            "color_scheme": "",
+            "overlay_opacity": 0,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "",
+            "description_video": "",
+            "subheading": "",
+            "heading": "Some heading",
+            "heading_size": "h1",
+            "description": "",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
+          }
+        },
+        "media_slide1": {
+          "type": "media_slide",
+          "settings": {
+            "color_scheme": "",
+            "overlay_opacity": 0,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "",
+            "description_video": "",
+            "subheading": "",
+            "heading": "Some heading",
+            "heading_size": "h1",
+            "description": "",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
+          }
+        }
+      },
+      "block_order": [
+        "media_slide",
+        "media_slide1"
+      ],
+      "disabled": true,
+      "settings": {
+        "header_overlay": false,
+        "sticky": "sticky-none",
+        "layout": "overlay",
+        "gap": false,
+        "aspect_ratio": "full",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ph_404_hTLjbe",
+    "media-banner"
+  ]
+}

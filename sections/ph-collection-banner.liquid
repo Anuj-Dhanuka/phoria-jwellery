@@ -1,0 +1,290 @@
+<style>
+  .ph-collection__banner--{{ section.id }} {
+    width: 100%;
+    margin: 0 auto;
+    display: flex !important;
+    justify-content: center;
+    gap: 20px;
+    padding-top: {{ section.settings.padding_desktop_top }}px !important;
+    padding-bottom: {{ section.settings.padding_desktop_bottom }}px !important;
+    padding: 0 108px;
+    {% if section.settings.banner_2_enable %}
+    display: grid !important;
+    padding: 0 108px;
+    grid-template-columns: 1fr 1fr;
+    gap: 108px;
+    {% else %}
+    display: grid !important;
+    padding: 0 144px;
+    grid-template-columns: 1fr;
+    {% endif %}
+  }
+  
+  .ph-collection__banner--{{ section.id }} a {
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .ph-collection__banner--{{ section.id }} img {
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .ph-collection__banner-video-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .ph-collection__banner-video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  @media screen and (max-width: 959px) {
+    .ph-collection__banner--{{ section.id }} {
+      padding: 0 108px;
+      padding-top: {{ section.settings.padding_mobile_top }}px;
+      padding-bottom: {{ section.settings.padding_mobile_bottom }}px;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .ph-collection__banner--{{ section.id }} a {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 560px) {
+    .ph-collection__banner--{{ section.id }} {
+      padding: 0 18px;
+    }
+  }
+</style>
+
+<div class="ph-collection__banner--{{ section.id }}">
+  <!-- First Banner -->
+  <a href="{{ section.settings.url }}" id="{{ section.id }}" class="ph-collection__banner-item">
+    {% if section.settings.media_type == 'image' %}
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="1200">
+      {% endif %}
+    {% else %}
+      {% if section.settings.video != blank %}
+        <div class="ph-collection__banner-video-container">
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-collection__banner-video" }}
+        </div>
+      {% endif %}
+    {% endif %}
+  </a>
+  
+  <!-- Second Banner (Optional) -->
+  {% if section.settings.banner_2_enable %}
+    <a href="{{ section.settings.url_2 }}" class="ph-collection__banner-item">
+      {% if section.settings.media_type_2 == 'image' %}
+        {% if section.settings.image_2 != blank %}
+          <img src="{{ section.settings.image_2 | image_url: width: 1200 }}" alt="{{ section.settings.image_2.alt | escape }}" loading="lazy" width="1200">
+        {% endif %}
+      {% else %}
+        {% if section.settings.video_2 != blank %}
+          <div class="ph-collection__banner-video-container">
+            {{ section.settings.video_2 | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-collection__banner-video" }}
+          </div>
+        {% endif %}
+      {% endif %}
+    </a>
+  {% endif %}
+</div>
+
+{% if section.settings.enable_animations %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined') {
+      const { animate, inView } = Motion;
+      const bannerItems = document.querySelectorAll('.ph-collection__banner--{{ section.id }} .ph-collection__banner-item');
+      bannerItems.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el,
+            { opacity: [0, 1], y: ['100px', 0] },
+            { duration: 0.7, delay: index * 0.2, easing: "ease-out" }
+          );
+        }, { once: true, amount: 0.1 });
+      });
+    }
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ph Collection Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "First Banner"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image",
+      "info": "Used when Media Type is set to Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Banner Video",
+      "info": "Used when Media Type is set to Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Video Cover Image (Optional)",
+      "info": "Shown while video is loading"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Banner URL"
+    },
+    {
+      "type": "header",
+      "content": "Second Banner (Optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "banner_2_enable",
+      "label": "Enable Second Banner",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "media_type_2",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second Banner Image",
+      "info": "Used when Media Type is set to Image"
+    },
+    {
+      "type": "video",
+      "id": "video_2",
+      "label": "Second Banner Video",
+      "info": "Used when Media Type is set to Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_2",
+      "label": "Second Video Cover Image (Optional)",
+      "info": "Shown while video is loading"
+    },
+    {
+      "type": "url",
+      "id": "url_2",
+      "label": "Second Banner URL"
+    },
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show Video Controls",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when banners come into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Collection Banner"
+    }
+  ]
+}
+{% endschema %}

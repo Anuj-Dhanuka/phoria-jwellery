@@ -1,0 +1,153 @@
+.blog {
+  overflow: hidden;
+}
+.blog__top {
+  align-self: center;
+}
+.blog__subtitle {
+  margin-bottom: 0;
+}
+.blog__subtitle + .blog__content {
+  margin-top: 1rem;
+}
+.blog .section-heading__heading:first-child:last-child {
+  margin-bottom: 0;
+}
+.blog__title {
+  margin: 0;
+}
+.blog__title.h2 {
+  max-width: 45.7rem;
+}
+.blog__button-wrapper {
+  grid-row: 2;
+  align-self: center;
+}
+@media screen and (min-width: 576px) {
+  .blog__button-wrapper {
+    grid-row: unset;
+    grid-column: 2;
+    margin-left: auto;
+  }
+}
+.blog__button-wrapper .button {
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .blog__button-wrapper .button {
+    width: auto;
+  }
+}
+.blog__button-wrapper_desktop {
+  display: none;
+}
+@media screen and (min-width: 576px) {
+  .blog__button-wrapper_desktop {
+    display: block;
+  }
+}
+.blog__button-wrapper_mobile {
+  display: block;
+}
+@media screen and (min-width: 576px) {
+  .blog__button-wrapper_mobile {
+    display: none;
+  }
+}
+@media screen and (max-width: 575px) {
+  .blog__top + .blog__button-wrapper {
+    grid-row: 3;
+  }
+}
+.blog__posts {
+  padding: 0;
+  margin: 0;
+  gap: 4rem 2.4rem;
+  display: grid;
+}
+@media screen and (min-width: 576px) {
+  .blog__posts--2, .blog__posts--3, .blog__posts--4, .blog__posts--5, .blog__posts--6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 990px) {
+  .blog__posts--3, .blog__posts--4, .blog__posts--5, .blog__posts--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .blog__posts--4, .blog__posts--5, .blog__posts--6 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1360px) {
+  .blog__posts--5, .blog__posts--6 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .blog__posts--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.blog__posts--column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem 2.4rem;
+}
+@media screen and (min-width: 576px) {
+  .blog__posts--column.blog__posts--2, .blog__posts--column.blog__posts--3, .blog__posts--column.blog__posts--4, .blog__posts--column.blog__posts--5, .blog__posts--column.blog__posts--6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 990px) {
+  .blog__posts--column.blog__posts--3, .blog__posts--column.blog__posts--4, .blog__posts--column.blog__posts--5, .blog__posts--column.blog__posts--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .blog__posts--column.blog__posts--4, .blog__posts--column.blog__posts--5, .blog__posts--column.blog__posts--6 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1360px) {
+  .blog__posts--column.blog__posts--5, .blog__posts--column.blog__posts--6 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .blog__posts--column.blog__posts--6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.blog__posts--grid {
+  display: grid;
+  gap: 4rem 2.4rem;
+}
+@media screen and (min-width: 990px) {
+  .blog__posts--grid.blog__posts--2, .blog__posts--grid.blog__posts--3, .blog__posts--grid.blog__posts--4, .blog__posts--grid.blog__posts--5, .blog__posts--grid.blog__posts--6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .blog__posts--grid.blog__posts--3, .blog__posts--grid.blog__posts--4, .blog__posts--grid.blog__posts--5, .blog__posts--grid.blog__posts--6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1600px) {
+  .blog__posts--grid.blog__posts--5, .blog__posts--grid.blog__posts--6 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .blog__posts--grid.blog__posts--5 {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+  .blog__posts--grid.blog__posts--6 {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+}
+
+.no-js .blog__slider .swiper-wrapper {
+  overflow-x: auto;
+}

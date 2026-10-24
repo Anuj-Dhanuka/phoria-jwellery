@@ -1,0 +1,39 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-account",
+      "disabled": true,
+      "settings": {
+        "heading_orders": "Some heading for empty order history placeholder",
+        "text_orders": "Some text for empty order history placeholder",
+        "heading_addresses": "Some heading for empty address placeholder",
+        "text_addresses": "Some text for empty address placeholder",
+        "margin_top": "s",
+        "margin_bottom": "m"
+      }
+    },
+    "customer_account_pxpchN": {
+      "type": "customer-account",
+      "name": "Customer Account Tabs",
+      "settings": {
+        "show_orders": true,
+        "show_addresses": true,
+        "show_gift_cards": true,
+        "show_account_details": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "customer_account_pxpchN"
+  ]
+}

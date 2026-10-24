@@ -1,0 +1,265 @@
+<style>
+  .ph-necklace-length-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0px 36px 90px;
+  }
+  
+  .ph-necklace-length-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .ph-necklace-length-heading {
+    font-size: 1.25vw;
+    line-height: 1.2;
+    margin: 0px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-necklace-length-description {
+    font-size: 10px;
+    margin: auto;
+    margin-top: 27px;
+    text-transform: uppercase;
+    max-width: 900px;
+    opacity: 0; /* Start invisible for animation */
+  }
+
+  .ph-necklace-length-description p{
+    margin: 0;
+    line-height: 2.3;
+  }
+  
+  .ph-necklace-length-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 36px;
+    width: 100%;
+    padding: 54px 0 0 0;
+  }
+  
+  .ph-necklace-length-image-wrapper {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-necklace-length-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .ph-placeholder-image {
+    height: 400px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px dashed #ccc;
+  }
+  
+  .ph-necklace-length-note {
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    max-width: 800px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  @media screen and (max-width: 1020px) {
+    .ph-necklace-length-container {
+      max-width: 100%;
+      padding: 0 18px 54px;
+    }
+    
+    .ph-necklace-length-heading {
+      font-size: 18px;
+    }
+    
+    .ph-necklace-length-images {
+      padding-top: 36px;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .ph-necklace-length-image-wrapper {
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .ph-placeholder-image {
+      height: 300px;
+    }
+  }
+</style>
+
+<div class="ph-necklace-length-container">
+  <div class="ph-necklace-length-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-necklace-length-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="ph-necklace-length-description">{{ section.settings.description }}</div>
+    {% endif %}
+    
+    <div class="ph-necklace-length-images">
+      <div class="ph-necklace-length-image-wrapper">
+        {% if section.settings.left_image != blank %}
+          <img 
+            src="{{ section.settings.left_image | image_url: width: 1200 }}"
+            alt="Necklace length guide" 
+            class="ph-necklace-length-image"
+            loading="lazy"
+            width="{{ section.settings.left_image.width }}"
+            height="{{ section.settings.left_image.height }}"
+          >
+        {% else %}
+          <div class="ph-placeholder-image">
+            <span>Please upload left image</span>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="ph-necklace-length-image-wrapper">
+        {% if section.settings.right_image != blank %}
+          <img 
+            src="{{ section.settings.right_image | image_url: width: 1200 }}"
+            alt="Necklace length guide with special designs" 
+            class="ph-necklace-length-image"
+            loading="lazy"
+            width="{{ section.settings.right_image.width }}"
+            height="{{ section.settings.right_image.height }}"
+          >
+        {% else %}
+          <div class="ph-placeholder-image">
+            <span>Please upload right image</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    
+    {% if section.settings.note_text != blank %}
+      <div class="ph-necklace-length-note">{{ section.settings.note_text }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView, transform } = Motion;
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-necklace-length-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate description
+      const description = document.querySelector('.ph-necklace-length-description');
+      if (description) {
+        inView(description, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate images
+      const images = document.querySelectorAll('.ph-necklace-length-image-wrapper');
+      images.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.3 + (index * 0.15), easing: "ease-out" }
+          );
+        }, { once: true });
+      });
+      
+      // Animate note
+      const note = document.querySelector('.ph-necklace-length-note');
+      if (note) {
+        inView(note, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Necklace Guide",
+  "tag": "section",
+  "class": "ph-necklace-length-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WHERE YOUR NECKLACE WILL SIT"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>PLEASE REFER TO THE SKETCH BELOW FOR A ROUGH ESTIMATION FOR WHERE YOUR NECKLACE WILL SIT. PLEASE REMEMBER TO COMBINE THE TOTAL LENGTHS OF THE BRACELETS OF YOUR CHOICE TO GET YOUR TOTAL LENGTH IN INCHES.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Guide Image"
+    },
+    {
+      "type": "header",
+      "content": "Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Guide Image"
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Additional Note Text (Optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Necklace Guide"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,356 @@
+
+{% style %}
+  
+
+  .expandable-text-{{ section.id }} {
+    text-align: center;
+    width: 100%;
+    /* text-transform: uppercase; */
+    padding-top: {{section.settings.padding_desktop_top}}px;
+    padding-bottom: {{section.settings.padding_desktop_bottom}}px;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+  .expandable-text-{{ section.id }} .ph-collection__title {
+    font-size: 1.25vw;
+    font-family: "PhoriaBold";
+    margin: 0 0 36px 0;
+    text-transform: uppercase !important;
+    line-height: 1.2;
+  }
+  .expandable-text-{{ section.id }} p{
+    margin-top: 18px;
+    line-height: 2.3;
+    font-size: 10px;
+    font-family: 'PhoriaRegular';
+    text-transform: uppercase;
+    margin-bottom: 0px;
+  }
+
+  .expandable-text-{{ section.id }} p strong{
+    font-family: "PhoriaBold";
+  }
+
+  .expandable-text-{{ section.id }} #extra-text {
+    line-height: 2.3;
+    font-size: 10px;
+    font-family: 'PhoriaRegular';
+    text-transform: uppercase;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin-top: 18px;
+    margin-bottom: 0px;
+    max-width: 100%;
+  }
+  #extra-text:empty{
+    display: none;
+  }
+
+  .expandable-text-{{ section.id }} #extra-text.show {
+    max-height: 500px; /* Adjust based on content length */
+    opacity: 1;
+  }
+
+  .expandable-text-{{ section.id }} #toggle-text {
+    background: none;
+    outline: none;
+    border: none;
+    font-family: 'PhoriaBold';
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 18px;
+    margin-bottom: 9px;
+    font-size: 10px;
+    color: #1D1D1D !important;
+  }
+
+  
+
+  @media only screen and (max-width: 959px){
+    .expandable-text-{{ section.id }} {
+      padding-top: {{section.settings.padding_mobile_top}}px;
+      padding-bottom: {{section.settings.padding_mobile_bottom}}px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .expandable-text-{{ section.id }} .ph-collection__title{
+      font-size: 18px;
+      margin-bottom: 27px;
+    }
+  }
+
+  {% comment %} custom code for width percentage  {% endcomment %}
+
+    {% comment %} .expandable-text-{{ section.id }} p,
+.expandable-text-{{ section.id }} #extra-text {
+  max-width: {{ section.settings.para_width_desktop }}%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 959px) {
+  .expandable-text-{{ section.id }} p,
+  .expandable-text-{{ section.id }} #extra-text {
+    max-width: {{ section.settings.para_width_mobile }}%;
+  }
+} {% endcomment %}
+
+
+/* Normal paragraph */
+.expandable-text-{{ section.id }} p {
+  max-width: {{ section.settings.para_width_desktop }}%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Extra text */
+.expandable-text-{{ section.id }} #extra-text {
+  max-width: {{ section.settings.extra_width_desktop }}%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.phoria-logo-custom {
+  display: inline-block;
+  width: 260px;
+  height: auto;
+  max-width: 100%;
+  margin: 16px 0 20px;
+} 
+
+@media only screen and (max-width: 959px) {
+  /* Normal paragraph */
+  .expandable-text-{{ section.id }} p {
+    max-width: {{ section.settings.para_width_mobile }}%;
+  }
+
+  /* Extra text */
+  .expandable-text-{{ section.id }} #extra-text {
+    max-width: {{ section.settings.extra_width_mobile }}%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .phoria-logo-custom { width: 220px; }
+}
+
+
+
+
+  {% comment %} custom code for width percentage  {% endcomment %}
+{% endstyle %}
+
+<div class="expandable-text expandable-text-{{ section.id }}">
+   {% if section.settings.logo_image != blank %}
+    <img
+      class="phoria-logo-custom"
+      src="{{ section.settings.logo_image | image_url: width: 1200 }}"
+      srcset="
+        {{ section.settings.logo_image | image_url: width: 240  }} 240w,
+        {{ section.settings.logo_image | image_url: width: 360  }} 360w,
+        {{ section.settings.logo_image | image_url: width: 480  }} 480w,
+        {{ section.settings.logo_image | image_url: width: 720  }} 720w,
+        {{ section.settings.logo_image | image_url: width: 960  }} 960w,
+        {{ section.settings.logo_image | image_url: width: 1200 }} 1200w"
+      sizes="(max-width: 768px) var(--logo-w-m), var(--logo-w)"
+      alt="{{ section.settings.logo_alt | escape }}"
+      loading="lazy"
+      width="{{ section.settings.logo_width }}"
+      height="auto">
+  {% endif %}
+  {% if section.settings.show_title %}
+    <h1 class="ph-collection__title">
+      {% if section.settings.title == blank %}{{ collection.title }}{% else %}{{ section.settings.title }}{% endif %}
+    </h1>
+  {% endif %}
+  <p>{{ section.settings.short_text }}</p>
+  <div id="extra-text"></div>
+  {% if section.settings.full_text != blank -%}
+    <button id="toggle-text">{{ section.settings.show_more_text }}</button>
+  {%- endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const toggleButton = document.getElementById("toggle-text");
+      const extraText = document.getElementById("extra-text");
+      let isExpanded = false;
+
+      toggleButton?.addEventListener("click", function () {
+        if (!isExpanded) {
+          extraText.innerHTML = {{ section.settings.full_text | strip_newlines | json }};
+
+          requestAnimationFrame(() => {
+            const scrollHeight = extraText.scrollHeight;
+            extraText.style.maxHeight = scrollHeight + 'px';
+            extraText.style.opacity = '1';
+          });
+
+          toggleButton.textContent = "{{ section.settings.show_less_text }}";
+        } else {
+          extraText.style.maxHeight = '0';
+          extraText.style.opacity = '0';
+
+          toggleButton.textContent = "{{ section.settings.show_more_text }}";
+        }
+
+        isExpanded = !isExpanded;
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", () =>{
+      if (typeof Motion !== 'undefined') {
+        const { animate, inView, transform } = Motion;
+        const descItems = [...document.querySelector('.expandable-text-{{ section.id }}').children];
+        descItems.forEach((elem, index) => {
+          console.log("elem", elem.id !== 'extra-text')
+          if(elem.id !== 'extra-text'){
+            inView(elem, (el) => {
+            const delay = index * 0.05;
+            animate(el,
+              { opacity: [0, 1], y: ['100px', 0] },
+              { duration: 0.7, delay: delay, easing: "ease-out" }
+            );
+          }, { once: true, amount: 0.1 });
+          }
+        });
+      }
+    })
+</script>
+
+{% schema %}
+{
+  "name": "Ph Collection Banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+     { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
+{ "type": "text", "id": "logo_alt", "label": "Logo alt text", "default": "Phoria Fine" },
+{ "type": "range", "id": "logo_width", "label": "Logo width (px)", "min": 80, "max": 600, "step": 10, "default": 260 },
+{ "type": "range", "id": "logo_width_mobile", "label": "Logo width mobile (px)", "min": 80, "max": 480, "step": 10, "default": 220 },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "info": "This will override collection title"
+    },
+    {
+      "type": "richtext",
+      "id": "short_text",
+      "label": "Short Text (Initially Visible)",
+      "default": "<p></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "full_text",
+      "label": "Full Text (Appended on Click)",
+      "default": "<p></p>"
+    },
+    {
+      "type": "text",
+      "id": "show_more_text",
+      "label": "Show More Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "show_less_text",
+      "label": "Show Less Button Text",
+      "default": "Read Less"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+  "type": "range",
+  "id": "para_width_desktop",
+  "label": "Paragraph Width (Desktop, %)",
+  "min": 30,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "para_width_mobile",
+  "label": "Paragraph Width (Mobile, %)",
+  "min": 50,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "extra_width_desktop",
+  "label": "Extra Text Width (Desktop)",
+  "min": 20,
+  "max": 100,
+  "step": 1,
+  "default": 100,
+  "unit": "%"
+},
+{
+  "type": "range",
+  "id": "extra_width_mobile",
+  "label": "Extra Text Width (Mobile)",
+  "min": 20,
+  "max": 100,
+  "step": 1,
+  "default": 100,
+  "unit": "%"
+}
+
+  ],
+  "presets": [
+    {
+      "name": "Ph Collection Banner"
+    }
+  ]
+}
+{% endschema %}

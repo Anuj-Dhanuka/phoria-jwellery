@@ -1,0 +1,1593 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ph_collection_description_8eUgxG": {
+      "type": "ph-collection-description",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "ALL JEWELLERY",
+        "short_text": "<p>WE FOCUS ON MINIMAL DROPS WHICH MEANS CONSIDERED COLLECTIONS, TAKING THE TIME TO CRAFT AND INNOVATE. EVERY PIECE IS SUSTAINABLE IN MORE WAYS THAN ONE, NOT JUST FROM THE MATERIALS WE USE BUT BEING ROOTED IN SLOW FASHION.</p><p>WE MAKE PIECES THAT LAST. NOT JUST IN QUALITY BUT VERSATILE DESIGN. MADE TO BE WORN AND STYLED IN MULTIPLE WAYS FOR YOU TO GET CREATIVE AND KEEP YOUR LOOKS FRESH.</p>",
+        "full_text": "",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 80,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_title": false,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "",
+        "short_text": "<p></p>",
+        "full_text": "<p></p>",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 10,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 100,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "cover",
+        "image_filter_columns": 5,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "ph_product_grid_v2_aaNTGh": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_nYiN7G": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // White Topaz",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_RGHPTg": {
+          "type": "product",
+          "settings": {
+            "product_item": "pear-drop-ring-18ct-gold-vermeil-pear-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_4zbdPh": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1A_THE_A_LETTER_PENDANT_FRONT_WITH_CHAIN_GOLD_1.jpg",
+            "override_title": "“THE A” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_qPiKhd": {
+          "type": "product",
+          "settings": {
+            "product_item": "extended-hype-chain-bracelet-925-sterling-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_3JQRPh": {
+          "type": "product",
+          "settings": {
+            "product_item": "belly-bear-earrings-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // White Topaz",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_RXDpMQ": {
+          "type": "product",
+          "settings": {
+            "product_item": "vice-carabiner-hoop-earrings-sterling-silver-18ct-gold-vermeil",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1-vice-carabiner-hoop-earrings-1-pe3-rmsgwt-xx_bbbd95d0-2a70-4053-8bf5-020d7732c311.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_JPCqWH": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": false,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/(4)THEBLETTERPENDANTSILVER360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719159562",
+            "show_from_prefix": false,
+            "override_title": "“THE B” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_EFDnfC": {
+          "type": "product",
+          "settings": {
+            "product_item": "stellar-hand-chain-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_jCUiW9": {
+          "type": "product",
+          "settings": {
+            "product_item": "powerplay-hoop-earrings-18ct-gold-vermeil-sterling-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_cC96HD": {
+          "type": "product",
+          "settings": {
+            "product_item": "pierced-drop-ring-18ct-gold-vermeil-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // MARQUISE WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_7xdYx7": {
+          "type": "product",
+          "settings": {
+            "product_item": "runaway-graduated-choker-necklace-925-sterling-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_TbV8VY": {
+          "type": "product",
+          "settings": {
+            "product_item": "sugar-rush-huggie-earrings-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Silver // White Topaz",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/8-sugar-rush-huggie-chain-earrings-4-pe1-rmsgwt-xx_e1c6991f-a626-4cf5-9e6d-c1ce616bc8fd.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_3YHYbk": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet-1",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet-1?ph_letter=J",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1J_THE_J_LETTER_PENDANT_SCREW_CHAIN_BRACELET_GOLD_2.jpg",
+            "override_title": "“THE J” I.D. CHARM BRACELET",
+            "custom_price_text": ""
+          }
+        },
+        "product_thumbnail_43wPPK": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": true,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": false,
+            "show_from_label": false,
+            "custom_price": "",
+            "thumbnail_video": "shopify://files/videos/3-Hookup-Chain-Ring-Silver-_-White-Topaz.mp4",
+            "thumbnail_title": "Hookup Chain Ring",
+            "thumbail_product": "hookup-chain-ring-sterling-silver-chain-white-topaz",
+            "thumbnail_subtitle": "SILVER // White Topaz"
+          }
+        },
+        "product_gCccjH": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_item": "the-i-d-waist-chain-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-gold?ph_letter=N",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1NWAIST_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-56_6f3814da-c3dd-48a4-b149-319197071b93.jpg",
+            "override_title": "\"THE N\" I.D. WAIST CHAIN",
+            "custom_price_text": ""
+          }
+        },
+        "product_fRaaXw": {
+          "type": "product",
+          "settings": {
+            "product_item": "emerald-drop-ring-18ct-gold-vermeil-emerald-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_rVkqRK": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-silver?ph_letter=G",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1G_THE_G_Letter_Pendant_Modular_Screw_Chain_Necklace_Silver_1.jpg",
+            "override_title": "“THE G” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_dcj8Xg": {
+          "type": "product",
+          "settings": {
+            "product_item": "sugar-rush-huggie-earrings-18ct-gold-vermeil-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_mfadmw": {
+          "type": "product",
+          "settings": {
+            "product_item": "mini-pierced-drop-ring-925-sterling-silver-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // MARQUISE WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_CChcF6": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_item": "hand-chain-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/3_VICE_CARABINER_HOOP_EARRINGS_18K_GOLD_VERMEIL_GREEN_CITRINE_CZ.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_NKpVmG": {
+          "type": "product",
+          "settings": {
+            "product_item": "vice-carabiner-hoop-earrings-green-citrine",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // GREEN CITRINE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/3_VICE_CARABINER_HOOP_EARRINGS_18K_GOLD_VERMEIL_GREEN_CITRINE_CZ.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_rmbBDM": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": false,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "product_thumbnail_video": "shopify://files/videos/(4) THE H LETTER PENDANT GOLD 360(1).mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52860074033418",
+            "show_from_prefix": false,
+            "override_title": "“THE H” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_Waea3m": {
+          "type": "product",
+          "settings": {
+            "product_item": "marquise-drop-ring-925-sterling-silver-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER //  WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_nTdxrT": {
+          "type": "product",
+          "settings": {
+            "product_item": "vice-carabiner-hoop-earrings-18ct-gold-vermeil-sterling-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_PC3JMF": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_nYiN7G",
+        "product_RGHPTg",
+        "product_4zbdPh",
+        "product_qPiKhd",
+        "product_3JQRPh",
+        "product_RXDpMQ",
+        "product_JPCqWH",
+        "product_EFDnfC",
+        "product_jCUiW9",
+        "product_cC96HD",
+        "product_7xdYx7",
+        "product_TbV8VY",
+        "product_3YHYbk",
+        "product_thumbnail_43wPPK",
+        "product_gCccjH",
+        "product_fRaaXw",
+        "product_rVkqRK",
+        "product_dcj8Xg",
+        "product_mfadmw",
+        "product_CChcF6",
+        "product_NKpVmG",
+        "product_rmbBDM",
+        "product_Waea3m",
+        "product_nTdxrT",
+        "product_PC3JMF"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_yRVzpd": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/1_SHOP_ALL_IMAGE_FIXED.jpg",
+        "url": "shopify://products/pierced-drop-ring-18ct-gold-vermeil-marquise-white-topaz",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_en9TRd": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_4APJbn": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?ph_letter=n",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1N_ID_MODULAR_NECKLACE_GOLD-14.jpg",
+            "override_title": "“THE N” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_W4PGxh": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/8-Hookup-Chain-Ring-II-Silver-_-White-Topaz_97d476a7-5b3a-420e-b973-ab3074a52ad5.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_VrVQLR": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER ",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719487242",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1F_THE_F_LETTER_PENDANT_FRONT_WITH_CHAIN_SILVER_5d2be2a7-4e78-441e-96e8-0edbedac8505.jpg",
+            "override_title": "“THE F” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_E7WdNK": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // Green Citrine",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/22-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_rx9EHJ": {
+          "type": "product",
+          "settings": {
+            "product_item": "stellar-hand-chain-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_iTrU6G": {
+          "type": "product",
+          "settings": {
+            "product_item": "extended-hype-chain-bracelet-18ct-gold-vermeil",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_MCaHqm": {
+          "type": "product",
+          "settings": {
+            "product_item": "powerplay-hoop-earrings-sterling-silver-18ct-gold-vermeil",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_4DcMCi": {
+          "type": "product",
+          "settings": {
+            "product_item": "pear-drop-ring-925-sterling-silver-pear-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_BKMKNx": {
+          "type": "product",
+          "settings": {
+            "product_item": "mini-pierced-drop-ring-925-sterling-silver-pear-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // PEAR WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_4dhAn3": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product_item": "the-i-d-waist-chain-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-silver?ph_letter=G",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1GWAIST_CHAINS_-_WEBSITE_PRODUCT_IMAGERY-30.jpg",
+            "override_title": "\"THE G\" I.D. WAIST CHAIN",
+            "custom_price_text": ""
+          }
+        },
+        "product_cPraj4": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-sterling-silver-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Silver // Pink Tourmaline",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/Untitled-31-1.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_canxkD": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "product_thumbnail_video": "shopify://files/videos/(4) THE N LETTER PENDANT GOLD 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355691274",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/Untitled-31-1.jpg",
+            "override_title": "“THE N” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_thumbnail_F4HBqV": {
+          "type": "product_thumbnail",
+          "settings": {
+            "is_video_thumbnail": false,
+            "scale_media": false,
+            "scale_value": 1,
+            "hide_info": false,
+            "hide_subtitle": false,
+            "show_from_label": false,
+            "custom_price": "",
+            "thumbnail_image": "shopify://shop_images/1-runaway-graduated-choker-necklace-1-gn1-gxxxwt-17.jpg",
+            "thumbnail_title": "Runaway Graduated Choker Necklace",
+            "thumbail_product": "runaway-graduated-choker-necklace-18ct-gold-vermeil",
+            "thumbnail_subtitle": "18CT GOLD VERMEIL"
+          }
+        },
+        "product_Ck3iqR": {
+          "type": "product",
+          "settings": {
+            "product_item": "mini-pierced-drop-ring-18ct-gold-vermeil-pear-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // PEAR WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_AY9WmP": {
+          "type": "product",
+          "settings": {
+            "product_item": "sugar-rush-huggie-earrings-18ct-gold-vermeil-chain-chrome-diopside",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // CHROME DIOPSIDE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_4FYAGB": {
+          "type": "product",
+          "settings": {
+            "product_item": "hand-chain-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER / WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "52830502420746",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_fGqceL": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-18ct-gold-vermeil-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // PINK TOURMALINE",
+            "product_thumbnail_video": "shopify://files/videos/2-BLAZE-SQUARE-HOOP-EARRINGS-3.mp4",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_4APJbn",
+        "product_W4PGxh",
+        "product_VrVQLR",
+        "product_E7WdNK",
+        "product_rx9EHJ",
+        "product_iTrU6G",
+        "product_MCaHqm",
+        "product_4DcMCi",
+        "product_BKMKNx",
+        "product_4dhAn3",
+        "product_cPraj4",
+        "product_canxkD",
+        "product_thumbnail_F4HBqV",
+        "product_Ck3iqR",
+        "product_AY9WmP",
+        "product_4FYAGB",
+        "product_fGqceL"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_fmEJRc": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/2_SHOP_ALL_1.jpg",
+        "url": "shopify://products/sugar-rush-huggie-earrings-18ct-gold-vermeil-chain-chrome-diopside",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_cCK8Hr": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_7Dqr9W": {
+          "type": "product",
+          "settings": {
+            "product_item": "emerald-drop-ring-925-sterling-silver-emerald-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_JmzWcn": {
+          "type": "product",
+          "settings": {
+            "product_item": "sugar-rush-huggie-earrings-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_B3thki": {
+          "type": "product",
+          "settings": {
+            "product_item": "belly-bear-earrings-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_eCJdcT": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet-1",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet-1?ph_letter=p",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1P_THE_P_LETTER_PENDANT_SCREW_CHAIN_BRACELET_GOLD.jpg",
+            "override_title": "“THE P” I.D. CHARM BRACELET ",
+            "custom_price_text": ""
+          }
+        },
+        "product_GpbWLB": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // White Topaz",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_BXYnqi": {
+          "type": "product",
+          "settings": {
+            "product_item": "pierced-drop-ring-18ct-gold-vermeil-pear-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // PEAR WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_RERjqp": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // Pink Tourmaline",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/Untitled-27-1.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_nT6bjV": {
+          "type": "product",
+          "settings": {
+            "product_item": "vice-carabiner-hoop-earrings-18ct-gold-vermeil-pink-tourmaline-cz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // PINK TOURMALINE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_Gwj7Ge": {
+          "type": "product",
+          "settings": {
+            "product_item": "marquise-drop-ring-18ct-gold-vermeil-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_TtWECa": {
+          "type": "product",
+          "settings": {
+            "product_item": "pierced-drop-ring-925-sterling-silver-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // MARQUISE WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_rJ3XQ7": {
+          "type": "product",
+          "settings": {
+            "product_item": "sugar-rush-huggie-earrings-sterling-silver-chain-chrome-diopside",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // CHROME DIOPSIDE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/4-sugar-rush-huggie-chain-earrings-2-pe1-rmsgcd-xx.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_JP6RBx": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL // WHITE TOPAZ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-gold?ph_letter=no%20letter",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_phXGgp": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-18ct-gold-vermeil-chain-green-citrine",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // Green Citrine",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_HaGwPB": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Silver // White Topaz",
+            "product_thumbnail_video": "shopify://files/videos/9-Hookup-Chain-Ring-II-Silver-_-White-Topaz.mp4",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_WRmCP3": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-18ct-gold-vermeil-green-citrine",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // GREEN CITRINE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_847yt6": {
+          "type": "product",
+          "settings": {
+            "product_item": "barbell-ring-925-sterling-silver-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_YWVkX4": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1-Hookup-Chain-Ring-Silver-_-White-Topaz.jpg",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_bjCrr9": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-sterling-silver-chain-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER ",
+            "product_thumbnail_video": "shopify://files/videos/(4) THE B LETTER PENDANT SILVER 360_388eaba8-8dc9-40c3-8798-b3ce64785db7.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1-Hookup-Chain-Ring-Silver-_-White-Topaz.jpg",
+            "override_title": "“THE B” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_qb6kzt": {
+          "type": "product",
+          "settings": {
+            "product_item": "mini-pierced-drop-ring-18ct-gold-vermeil-marquise-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // MARQUISE WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_7Dqr9W",
+        "product_JmzWcn",
+        "product_B3thki",
+        "product_eCJdcT",
+        "product_GpbWLB",
+        "product_BXYnqi",
+        "product_RERjqp",
+        "product_nT6bjV",
+        "product_Gwj7Ge",
+        "product_TtWECa",
+        "product_rJ3XQ7",
+        "product_JP6RBx",
+        "product_phXGgp",
+        "product_HaGwPB",
+        "product_WRmCP3",
+        "product_847yt6",
+        "product_YWVkX4",
+        "product_bjCrr9",
+        "product_qb6kzt"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_TEiDnx": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/3_SHOP_ALL_IMAGE_1.jpg",
+        "url": "shopify://products/pear-drop-ring-18ct-gold-vermeil-pear-white-topaz",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_miTJTG": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_HeHVrh": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355330826",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1C_THE_C_LETTER_PENDANT_FRONT_WITH_CHAIN_GOLD.jpg",
+            "override_title": "“THE C” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_hEknQD": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-chrome-diopside",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // Chrome Diopside",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_mgpP9e": {
+          "type": "product",
+          "settings": {
+            "product_item": "mini-belly-bear-earrings-18ct-gold-vermeil-white-topaz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "GOLD // WHITE TOPAZ",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_R9YPfg": {
+          "type": "product",
+          "settings": {
+            "product_item": "vice-carabiner-hoop-earrings-925-sterling-silver-pink-tourmaline-czzz",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // PINK TOURMALINE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_M7rkXP": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Gold // Pink Tourmaline",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_6FLX37": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?ph_letter=m",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1M_ID_MODULAR_NECKLACE_GOLD-13.jpg",
+            "override_title": "“THE M” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_tYxBEA": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-925-sterling-silver-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // PINK TOURMALINE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_4xJR43": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL ",
+            "product_thumbnail_video": "shopify://files/videos/(4) THE G LETTER PENDANT GOLD 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355461898",
+            "show_from_prefix": false,
+            "override_title": "“THE G” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_A97id7": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "Silver // Pink Tourmaline",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_cFYxEQ": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-waist-chain-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER // WHITE TOPAZ",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-waist-chain-silver?ph_letter=no%20letter",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_8JYEQC": {
+          "type": "product",
+          "settings": {
+            "product_item": "hookup-chain-ring-ii-sterling-silver-chain-chrome-diopside",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "SILVER // CHROME DIOPSIDE",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/19-Hookup-Chain-Ring-II-Silver-_-Chrome-Diopside-768x768.webp",
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_7Xfbmf": {
+          "type": "product",
+          "settings": {
+            "product_item": "blaze-square-hoop-earrings-925-sterling-silver-18ct-gold-vermeil",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": false,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": false,
+            "custom_finish_Text": "",
+            "custom_product_url": "",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "override_title": "",
+            "custom_price_text": ""
+          }
+        },
+        "product_8QqFwT": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER ",
+            "custom_product_url": "",
+            "custom_variant_id": "52864721060106",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1V_THE_V_LETTER_PENDANT_FRONT_WITH_CHAIN_SILVER.jpg",
+            "override_title": "“THE V” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_HeHVrh",
+        "product_hEknQD",
+        "product_mgpP9e",
+        "product_R9YPfg",
+        "product_M7rkXP",
+        "product_6FLX37",
+        "product_tYxBEA",
+        "product_4xJR43",
+        "product_A97id7",
+        "product_cFYxEQ",
+        "product_8JYEQC",
+        "product_7Xfbmf",
+        "product_8QqFwT"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "ph_collection_description_8eUgxG",
+    "banner",
+    "product-grid",
+    "ph_product_grid_v2_aaNTGh",
+    "ph_collection_banner_yRVzpd",
+    "ph_product_grid_v2_en9TRd",
+    "ph_collection_banner_fmEJRc",
+    "ph_product_grid_v2_cCK8Hr",
+    "ph_collection_banner_TEiDnx",
+    "ph_product_grid_v2_miTJTG"
+  ]
+}

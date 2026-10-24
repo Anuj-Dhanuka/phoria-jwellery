@@ -1,0 +1,39 @@
+const isDoubleBaseSelectorProductLocal = [10498030633226,10498031583498].includes(currentProductId);
+function bundleSourceGate(sv) {
+  if (isAnywearSelectorProductLocal || isDoubleBaseSelectorProductLocal) {
+    const a = window.bundleBaseAvailable;
+    return a == null ? null : (a ? 'in-stock' : 'out-of-stock');
+  }
+  if (isChainSourceSelectorProductLocal) {
+    const m = window.bundleSourceAvailBySize;
+    if (!m) return null;
+    const opts = [sv?.option1, sv?.option2, sv?.option3].filter(Boolean).map((o) => String(o).trim().toUpperCase());
+    const k = ['SMALL','MEDIUM','LARGE','ONE SIZE ONLY'].find((s) => opts.includes(s)) || '';
+    const sourceAvailability = m[k];
+    if (sourceAvailability == null) return null;
+    if (typeof sourceAvailability === 'object') {
+      const qty = Number(sourceAvailability.inventory_quantity);
+      if (Number.isFinite(qty)) return qty > 0 ? 'in-stock' : 'out-of-stock';
+      return sourceAvailability.available ? 'in-stock' : 'out-of-stock';
+    }
+    return sourceAvailability ? 'in-stock' : 'out-of-stock';
+  }
+  return null;
+}
+function bundleSourceButtonGate(selectedVariant, isNoLetterSelection, selectedLetterValue, shouldUseAddToBasketLabel, addToCartButton, notifyButton, dynamicPreOrderText) {
+  if (!(isAnywearSelectorProductLocal || isDoubleBaseSelectorProductLocal || isChainSourceSelectorProductLocal)) return false;
+  const g = bundleSourceGate(selectedVariant);
+  if (g === 'out-of-stock') {
+    dynamicPreOrderText.innerText = ""; addToCartButton.innerText = "Out of Stock"; addToCartButton.disabled = true;
+    if (notifyButton) notifyButton.classList.remove('hidden');
+    return true;
+  }
+  const lpm = window.letterPendantAvailability;
+  const la = isNoLetterSelection ? true : !!(lpm && lpm[selectedLetterValue] === true);
+  if (g === 'in-stock' && la) {
+    dynamicPreOrderText.innerText = ""; addToCartButton.innerText = "Add to Basket"; addToCartButton.disabled = false;
+    if (notifyButton) notifyButton.classList.add('hidden');
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,417 @@
+<style>
+  .ph-ring-size-chart-container {
+    width: 100%;
+  }
+  
+  .ph-ring-size-chart-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .ph-ring-size-chart-heading {
+    font-size: 1.23vw;
+    letter-spacing: 0.2em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-size-chart-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 40px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-size-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }  
+  .ph-ring-size-chart-header {
+    background-color: #D5D5D5;
+    color: #000;
+    padding: 18px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid #f1f2ee;
+    font-family: 'PhoriaBold';
+  }
+  
+  /* .ph-ring-size-chart-row:nth-child(odd) {
+    background-color: #f8f8f8;
+  } */
+  
+  .ph-ring-size-chart-cell {
+    padding: 18px;
+    text-align: center;
+    font-size: 10px;
+    border-bottom: 1px solid #f1f2ee;
+  }
+  
+  .ph-ring-size-chart-footer {
+    font-size: 10px;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    max-width: 800px;
+    margin-top: 10px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-size-chart-footer a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+  }
+  
+  .ph-ring-size-chart-footer strong {
+    font-family: 'PhoriaBold';
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ph-ring-size-chart-container {
+      padding: 40px 15px;
+    }
+    
+    .ph-ring-size-chart-heading {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    
+    .ph-ring-size-chart-header,
+    .ph-ring-size-chart-cell {
+      padding: 9px 5px;
+    }
+    .ph-ring-size-chart-table .small{
+      width: 16.6px;
+    }
+    .ph-ring-size-chart-table .wide{
+      width: 50px;
+    }
+  }
+</style>
+
+<div class="ph-ring-size-chart-container" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="ph-ring-size-chart-inner" style="max-width: {{ section.settings.max_width }}px;">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-ring-size-chart-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="ph-ring-size-chart-table-wrapper">
+      <table class="ph-ring-size-chart-table">
+        <thead>
+          <tr>
+            {% if section.settings.col_heading_1 != blank %}
+              <th class="ph-ring-size-chart-header small">{{ section.settings.col_heading_1 }}</th>
+            {% endif %}
+            
+            {% if section.settings.col_heading_2 != blank %}
+              <th class="ph-ring-size-chart-header small">{{ section.settings.col_heading_2 }}</th>
+            {% endif %}
+            
+            {% if section.settings.col_heading_3 != blank %}
+              <th class="ph-ring-size-chart-header small">{{ section.settings.col_heading_3 }}</th>
+            {% endif %}
+            
+            {% if section.settings.col_heading_4 != blank %}
+              <th class="ph-ring-size-chart-header wide">{{ section.settings.col_heading_4 }}</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for block in section.blocks %}
+            {% if block.type == 'size_row' %}
+              <tr class="ph-ring-size-chart-row" {{ block.shopify_attributes }}>
+                <td class="ph-ring-size-chart-cell small">{{ block.settings.uk_size }}</td>
+                <td class="ph-ring-size-chart-cell small">{{ block.settings.us_size }}</td>
+                <td class="ph-ring-size-chart-cell small">{{ block.settings.eu_size }}</td>
+                <td class="ph-ring-size-chart-cell wide">{{ block.settings.diameter }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    {% if section.settings.footer_text != blank %}
+      <div class="ph-ring-size-chart-footer">{{ section.settings.footer_text }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-ring-size-chart-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate table
+      const tableWrapper = document.querySelector('.ph-ring-size-chart-table-wrapper');
+      if (tableWrapper) {
+        inView(tableWrapper, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate footer
+      const footer = document.querySelector('.ph-ring-size-chart-footer');
+      if (footer) {
+        inView(footer, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Ring Chart",
+  "tag": "section",
+  "class": "ph-ring-size-chart-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "RING SIZE CONVERSION CHART"
+    },
+    {
+      "type": "text",
+      "id": "col_heading_1",
+      "label": "Column 1 Heading",
+      "default": "UK"
+    },
+    {
+      "type": "text",
+      "id": "col_heading_2",
+      "label": "Column 2 Heading",
+      "default": "US"
+    },
+    {
+      "type": "text",
+      "id": "col_heading_3",
+      "label": "Column 3 Heading",
+      "default": "EU"
+    },
+    {
+      "type": "text",
+      "id": "col_heading_4",
+      "label": "Column 4 Heading",
+      "default": "INNER DIAMETER (MM)"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "<p>IF YOU ARE STILL UNSURE OF YOUR SIZE WE WOULD BE HAPPY TO SEND YOU A <strong>FREE RING SIZER</strong>. PLEASE SEND US AN EMAIL TO <a href=\"mailto:STUDIO@PHORIAJEWELLERY.COM\">STUDIO@PHORIAJEWELLERY.COM</a> AND WE'LL TAKE CARE OF THE REST!</p>"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "default": 800,
+      "unit": "px",
+      "label": "Maximum Width"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "size_row",
+      "name": "Size Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "uk_size",
+          "label": "UK Size"
+        },
+        {
+          "type": "text",
+          "id": "us_size",
+          "label": "US Size"
+        },
+        {
+          "type": "text",
+          "id": "eu_size",
+          "label": "EU Size"
+        },
+        {
+          "type": "text",
+          "id": "diameter",
+          "label": "Inner Diameter (mm)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Ring Chart",
+      "blocks": [
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "I",
+            "us_size": "4.5",
+            "eu_size": "47",
+            "diameter": "15.10mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "J",
+            "us_size": "5",
+            "eu_size": "49.5",
+            "diameter": "15.60mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "K",
+            "us_size": "5.5",
+            "eu_size": "50",
+            "diameter": "15.80mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "L",
+            "us_size": "6",
+            "eu_size": "51",
+            "diameter": "16.10mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "M",
+            "us_size": "6.5",
+            "eu_size": "52",
+            "diameter": "16.71mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "N",
+            "us_size": "7",
+            "eu_size": "53",
+            "diameter": "17.06mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "O",
+            "us_size": "7.5",
+            "eu_size": "54",
+            "diameter": "17.35mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "P",
+            "us_size": "8",
+            "eu_size": "55",
+            "diameter": "18.06mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "Q",
+            "us_size": "8.5",
+            "eu_size": "56.5",
+            "diameter": "18.29mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "R",
+            "us_size": "9",
+            "eu_size": "57.5",
+            "diameter": "18.69mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "S",
+            "us_size": "9.5",
+            "eu_size": "59",
+            "diameter": "19.23mm"
+          }
+        },
+        {
+          "type": "size_row",
+          "settings": {
+            "uk_size": "T",
+            "us_size": "10",
+            "eu_size": "60.5",
+            "diameter": "19.51mm"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

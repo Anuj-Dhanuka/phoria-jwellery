@@ -1,0 +1,497 @@
+{% comment %}
+  Customer Account Section with Tabs for Shopify
+  File: sections/customer-account.liquid
+{% endcomment %}
+
+<style>
+.ph-page-width{
+   padding: 108px 36px 0px 36px;
+}
+  
+.ph-customer-account-container {
+   max-width: 1248px;
+   margin: auto;
+   min-height: 83vh;
+}
+
+.ph-account-title {
+  font-size: 2.226vw;
+  font-weight: 700;
+  margin: 0px 0px 36px 0px;
+}
+
+.ph-account-content {
+  display: flex;
+  gap: 36px;
+}
+
+.ph-account-sidebar {
+  width: 33.33333333333333%;
+  flex-shrink: 0;
+}
+
+.ph-account-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ph-account-menu-item {
+  margin: 6px 0;
+}
+.ph-account-menu-item:first-child {
+  margin-top: 0;
+}
+
+.ph-account-menu-item:last-child {
+  padding-top: 54px;
+  margin: 0;
+}
+
+.ph-account-menu-item a {
+  text-decoration: none;
+  color: #1d1d1d;
+  font-family: "PhoriaBold";
+  font-size: 10px;
+  line-height: 2.3;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ph-account-menu-item.ph-active a {
+  font-weight: 800;
+}
+
+.ph-account-main {
+  flex-grow: 1;
+}
+
+/* Tab Content Styles */
+.ph-tab-content {
+  display: none;
+}
+
+.ph-tab-content.ph-active {
+  display: block;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 926px) {
+  .ph-page-width {
+    padding: 36px 18px 0;
+  }
+  
+  .ph-account-title {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  
+  .ph-desktop-view {
+    display: none;
+  }
+  
+
+  .ph-mobile-view {
+    display: block;
+    margin-top: 36px;
+  }
+  
+  
+  .ph-mobile-menu-item{
+    background: none;
+    line-height: 2.3;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f2ee;
+    text-align: left;
+    font-family: "PhoriaBold";
+    font-size: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .ph-mobile-menu-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  
+  [data-mobile-view] {
+    background: none !important;
+    border: none !important;
+    border-bottom: 1px solid #f1f2ee !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  .ph-mobile-content {
+    padding: 0;
+  }
+  
+  .ph-mobile-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 36px;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    font-family: "PhoriaBold";
+    font-size: 10px;
+    color: #1d1d1d;
+  }
+  
+  .ph-mobile-back-btn svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+  
+  .ph-mobile-back-text {
+    text-transform: uppercase;
+  }
+  
+  .ph-mobile-btn {
+    font-weight: 700;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .ph-mobile-btn-black {
+    background-color: #000;
+    color: #fff;
+    padding: 16px 32px;
+    letter-spacing: 0.15em;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+}
+
+@media screen and (min-width: 926px) {
+  .ph-mobile-view {
+    display: none;
+  }
+  
+  .ph-desktop-view {
+    display: flex;
+  }
+}
+</style>
+
+<div class="ph-page-width">
+  <div class="ph-customer-account-container">
+    <h1 class="ph-account-title">ACCOUNT</h1>
+    
+    <!-- Desktop View - Original Layout -->
+    <div class="ph-account-content ph-desktop-view">
+      <div class="ph-account-sidebar">
+        <ul class="ph-account-menu">
+          <li class="ph-account-menu-item ph-tab-trigger" data-tab="dashboard">
+            <a href="#">DASHBOARD</a>
+          </li>
+          <li class="ph-account-menu-item ph-tab-trigger" data-tab="orders">
+            <a href="#">ORDERS</a>
+          </li>
+          <li class="ph-account-menu-item ph-tab-trigger" data-tab="addresses">
+            <a href="#">ADDRESSES</a>
+          </li>
+          <li class="ph-account-menu-item ph-tab-trigger" data-tab="gift-cards">
+            <a href="#">GIFT CARDS</a>
+          </li>
+          <li class="ph-account-menu-item ph-tab-trigger" data-tab="account-details">
+            <a href="#">ACCOUNT DETAILS</a>
+          </li>
+          <li class="ph-account-menu-item">
+            <a href="{{ routes.account_logout_url }}">LOG OUT</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="ph-account-main">
+        <!-- Dashboard Tab Content -->
+        <div class="ph-tab-content" id="dashboard-content">
+          {% render 'ph-dashboard-snippet' %}
+        </div>
+        
+        <!-- Orders Tab Content -->
+        <div class="ph-tab-content" id="orders-content">
+          {% render 'ph-orders-snippet' %}
+        </div>
+        
+        <!-- Addresses Tab Content -->
+        <div class="ph-tab-content" id="addresses-content">
+          {% render 'ph-addresses-snippet' %}
+        </div>
+        
+        <!-- Gift Cards Tab Content -->
+        <div class="ph-tab-content" id="gift-cards-content">
+          {% render 'ph-gift-cards-snippet' %}
+        </div>
+        
+        <!-- Account Details Tab Content -->
+        <div class="ph-tab-content" id="account-details-content">
+          {% render 'ph-account-details-snippet' %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile View - Updated to use snippets -->
+    <div class="ph-mobile-view">
+      <!-- Main Menu - Only shown when no views are active -->
+      <div id="mobile-main-menu">
+        <div class="ph-mobile-menu">
+          <nav class="ph-mobile-menu-nav">
+            {% comment %}
+            <button class="ph-mobile-menu-item" data-mobile-view="dashboard">DASHBOARD</button>
+            {% endcomment %}
+            <button class="ph-mobile-menu-item" data-mobile-view="orders">ORDERS</button>
+            <button class="ph-mobile-menu-item" data-mobile-view="addresses">ADDRESSES</button>
+            <button class="ph-mobile-menu-item" data-mobile-view="gift-cards">GIFT CARDS</button>
+            <button class="ph-mobile-menu-item" data-mobile-view="account-details">ACCOUNT DETAILS</button>
+            <a href="{{ routes.account_logout_url }}" class="ph-mobile-menu-item">LOG OUT</a>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Dashboard View -->
+      {% comment %}
+      <div id="mobile-dashboard-view" class="ph-mobile-content" style="display: none;">
+        <div>
+          <button class="ph-mobile-back-btn" data-return-to="main">
+            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path></svg>
+            <span class="ph-mobile-back-text">BACK TO MY ACCOUNT</span>
+          </button>
+          
+          {% render 'ph-dashboard-snippet' %}
+        </div>
+      </div>
+         {% endcomment %}
+      
+      <!-- Orders View -->
+      <div id="mobile-orders-view" class="ph-mobile-content" style="display: none;">
+        <div>
+          <button class="ph-mobile-back-btn" data-return-to="main">
+           <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path></svg>
+            <span class="ph-mobile-back-text">BACK TO MY ACCOUNT</span>
+          </button>
+          
+          {% render 'ph-orders-snippet' %}
+        </div>
+      </div>
+      
+      <!-- Addresses View -->
+      <div id="mobile-addresses-view" class="ph-mobile-content" style="display: none;">
+        <div>
+          <button class="ph-mobile-back-btn" data-return-to="main">
+            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path></svg>
+            <span class="ph-mobile-back-text">BACK TO MY ACCOUNT</span>
+          </button>
+          
+          {% render 'ph-addresses-snippet' %}
+        </div>
+      </div>
+      
+      <!-- Gift Cards View -->
+      <div id="mobile-gift-cards-view" class="ph-mobile-content" style="display: none;">
+        <div>
+          <button class="ph-mobile-back-btn" data-return-to="main">
+            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path></svg>
+            <span class="ph-mobile-back-text">BACK TO MY ACCOUNT</span>
+          </button>
+          
+          {% render 'ph-gift-cards-snippet' %}
+        </div>
+      </div>
+      
+      <!-- Account Details View -->
+      <div id="mobile-account-details-view" class="ph-mobile-content" style="display: none;">
+        <div>
+          <button class="ph-mobile-back-btn" data-return-to="main">
+            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.90765 12.9145L0.675406 6.49998L6.90765 0.0855103V12.9145Z" fill="#1D1D1D"></path></svg>
+            <span class="ph-mobile-back-text">BACK TO MY ACCOUNT</span>
+          </button>
+          
+          {% render 'ph-account-details-snippet' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Track device type
+  const isMobile = window.innerWidth <= 926;
+  
+  // Set active tab for desktop
+  function setDesktopActiveTab(tabId) {
+    // Remove active class from all tabs
+    document.querySelectorAll('.ph-tab-trigger').forEach(tab => {
+      tab.classList.remove('ph-active');
+    });
+    
+    document.querySelectorAll('.ph-tab-content').forEach(content => {
+      content.classList.remove('ph-active');
+    });
+    
+    // Add active class to selected tab
+    const selectedTab = document.querySelector(`.ph-tab-trigger[data-tab="${tabId}"]`);
+    const selectedContent = document.getElementById(`${tabId}-content`);
+    
+    if (selectedTab && selectedContent) {
+      selectedTab.classList.add('ph-active');
+      selectedContent.classList.add('ph-active');
+    }
+  }
+  
+  // Show mobile view
+  function showMobileView(viewId) {
+    // Hide all mobile views first
+    document.querySelectorAll('.ph-mobile-content').forEach(view => {
+      view.style.display = 'none';
+    });
+    
+    // Hide main menu
+    document.getElementById('mobile-main-menu').style.display = 'none';
+    
+    // Show selected view
+    const selectedView = document.getElementById(`mobile-${viewId}-view`);
+    if (selectedView) {
+      selectedView.style.display = 'block';
+    }
+  }
+  
+  // Show mobile main menu
+  function showMobileMainMenu() {
+    // Hide all content views
+    document.querySelectorAll('.ph-mobile-content').forEach(view => {
+      view.style.display = 'none';
+    });
+    
+    // Show main menu
+    document.getElementById('mobile-main-menu').style.display = 'block';
+  }
+  
+  // Initialize based on screen size
+  function init() {
+    if (isMobile) {
+      // Default to showing main menu on mobile
+      showMobileMainMenu();
+    } else {
+      // Default to dashboard tab on desktop
+      setDesktopActiveTab('dashboard');
+    }
+    
+    // Check URL hash for both views
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      if (isMobile) {
+        showMobileView(hash);
+      } else {
+        setDesktopActiveTab(hash);
+      }
+    }
+  }
+  
+  // Set up desktop tab click handlers
+  document.querySelectorAll('.ph-tab-trigger').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      if (!isMobile) {
+        const tabId = this.getAttribute('data-tab');
+        setDesktopActiveTab(tabId);
+        window.history.replaceState(null, null, `#${tabId}`);
+      }
+    });
+  });
+  
+  // Set up mobile menu click handlers
+  document.querySelectorAll('[data-mobile-view]').forEach(item => {
+    item.addEventListener('click', function() {
+      if (isMobile) {
+        const viewId = this.getAttribute('data-mobile-view');
+        showMobileView(viewId);
+        window.history.replaceState(null, null, `#${viewId}`);
+      }
+    });
+  });
+  
+  // Set up mobile back button handlers
+  document.querySelectorAll('[data-return-to="main"]').forEach(button => {
+    button.addEventListener('click', function() {
+      if (isMobile) {
+        showMobileMainMenu();
+        window.history.replaceState(null, null, ' ');
+      }
+    });
+  });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    const wasMobile = isMobile;
+    const nowMobile = window.innerWidth <= 768;
+    
+    // Only do something if the device type changed
+    if (wasMobile !== nowMobile) {
+      isMobile = nowMobile;
+      init();
+    }
+  });
+  
+  // Initialize on page load
+  init();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Customer Account Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Customer Account Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_orders",
+      "label": "Show orders tab",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_addresses",
+      "label": "Show addresses tab",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift_cards",
+      "label": "Show gift cards tab",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_details",
+      "label": "Show account details tab",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Account Tabs",
+      "category": "Customer"
+    }
+  ]
+}
+{% endschema %}

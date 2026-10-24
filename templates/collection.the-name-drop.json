@@ -1,0 +1,839 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_title": true,
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "title": "IDENTITY",
+        "short_text": "<p>You don’t choose your name. But you can choose how you wear it. IDENTITY is a collection of modular letter pendants, chains, and detachable charms - made to be worn your way.</p>",
+        "full_text": "<p>Wear your letter on a necklace, attach it to a bracelet, or detach the clasp and wear it as a shoe or bag charm. Every piece is interchangeable, designed to move across the collection. Start with one, add more. Clip it on, take it off. Build it up, break it down. No fixed look, no right way to wear. <br/><br/>More than just a letter, worn anywhere. Wear what’s yours. Wear your identity.</p>",
+        "show_more_text": "Read More",
+        "show_less_text": "Read Less",
+        "padding_desktop_top": 70,
+        "padding_desktop_bottom": 20,
+        "padding_mobile_top": 80,
+        "padding_mobile_bottom": 10,
+        "para_width_desktop": 80,
+        "para_width_mobile": 100,
+        "extra_width_desktop": 100,
+        "extra_width_mobile": 100
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 32,
+        "enable_per_row_button": true,
+        "default_per_row": "small",
+        "enable_filtering": true,
+        "enable_tag": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "cover",
+        "image_filter_columns": 5,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_collection": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_desc": false,
+        "columns_mobile": "1",
+        "show_collection_description": true,
+        "description_products": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "rich_text_jUgM7K": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_TVFTFB": {
+          "type": "heading",
+          "settings": {
+            "heading": "NEW IN:",
+            "heading_size": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TVFTFB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "small",
+        "margin_top": "xs",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_FiyFgj": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_a7qyMC": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "product_thumbnail_video": "shopify://files/videos/THE A LETTER PENDANT GOLD 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52860073574666",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/GoldA1.jpg",
+            "override_title": "“THE A” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_cEJUyH": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719094026",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_B_LETTER_PENDANT_FRONT_WITH_CHAIN_SILVER.jpg",
+            "override_title": "“THE B” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_WkGHEa": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet-1",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet-1?ph_letter=c",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1C_THE_C_LETTER_PENDANT_SCREW_CHAIN_BRACELET_GOLD.jpg",
+            "override_title": "“THE C” I.D. CHARM BRACELET",
+            "custom_price_text": ""
+          }
+        },
+        "product_D9tkb9": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719290634",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/LETTER_PENDANT_ON_CHAIN-8.jpg",
+            "override_title": "“THE D” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_VX7Kng": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?ph_letter=E",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1E_ID_MODULAR_NECKLACE_GOLD-5.jpg",
+            "override_title": "“THE E” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_ntnnCg": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/THE F LETTER PENDANT SILVER 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719552778",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/SilverA5.jpg",
+            "override_title": "“THE F” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_a7qyMC",
+        "product_cEJUyH",
+        "product_WkGHEa",
+        "product_D9tkb9",
+        "product_VX7Kng",
+        "product_ntnnCg"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_VTp3ri": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_1_e597954e-76e8-4cca-ac32-fe25f11e7209.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "rich_text_HnENdT": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_kCibre": {
+          "type": "heading",
+          "settings": {
+            "heading": "PLACEHOLDER COPY SECTION",
+            "heading_size": "h3"
+          }
+        },
+        "text_VFxYQQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_kCibre",
+        "text_VFxYQQ"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_V93tXq": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_mKMtif": {
+          "type": "product",
+          "settings": {
+            "product_item": "anywear-letter-charm-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/anywear-letter-charm-gold?variant=52962878062858&ph_letter=G",
+            "custom_variant_id": "52962878062858",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_THE_G_LETTER_ANYWEAR_CHARMS_PERSPECTIVE_VIEW_GOLD.jpg",
+            "override_title": "“THE G” ANYWEAR CHARM",
+            "custom_price_text": ""
+          }
+        },
+        "product_jabCPN": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/THE H LETTER PENDANT SILVER 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52864719749386",
+            "show_from_prefix": false,
+            "override_title": "“THE H” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_E4BVfz": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355527434",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/LETTER_PENDANT_ON_CHAIN-17.jpg",
+            "override_title": "“THE I” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_g6e68e": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet?ph_letter=j",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1J_THE_J_LETTER_PENDANT_SCREW_CHAIN_BRACELET_SILVER.jpg",
+            "override_title": "“THE J” I.D. CHARM LETTER BRACELET",
+            "custom_price_text": ""
+          }
+        },
+        "product_7PcNM4": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355592970",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_K_LETTER_PENDANT_FRONT_WITH_CHAIN_GOLD.jpg",
+            "override_title": "“THE K” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_yj9zfL": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-silver?variant=52999458816266&ph_letter=L",
+            "custom_variant_id": "52999458816266",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_L_Letter_Pendant_Modular_Screw_Chain_Necklace_Silver.jpg",
+            "override_title": "“THE L” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_mKMtif",
+        "product_jabCPN",
+        "product_E4BVfz",
+        "product_g6e68e",
+        "product_7PcNM4",
+        "product_yj9zfL"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); } .media-wrapper {max-width: 650px; } .product-video {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_yneUA7": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_2_53d00776-2fda-4fa8-8b31-5cb230a38915.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "rich_text_nQjGdC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_nCjiHc": {
+          "type": "heading",
+          "settings": {
+            "heading": "PLACEHOLDER COPY SECTION",
+            "heading_size": "h3"
+          }
+        },
+        "text_YfLEgn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nCjiHc",
+        "text_YfLEgn"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_xUA8ej": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_agdaBt": {
+          "type": "product",
+          "settings": {
+            "product_item": "anywear-letter-charm-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/anywear-letter-charm-gold?variant=52962878652682&ph_letter=M",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_THE_M_LETTER_ANYWEAR_CHARMS_PERSPECTIVE_VIEW_GOLD.jpg",
+            "override_title": "“THE M” ANYWEAR CHARM",
+            "custom_price_text": ""
+          }
+        },
+        "product_Qh9z4H": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/THE N LETTER PENDANT SILVER 360.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52864720339210",
+            "show_from_prefix": false,
+            "override_title": "“THE N” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_VqVbpD": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet-1",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet-1?ph_letter=o",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1O_THE_O_LETTER_PENDANT_SCREW_CHAIN_BRACELET_GOLD.jpg",
+            "override_title": "“THE O” I.D. CHARM LETTER BRACELET",
+            "custom_price_text": ""
+          }
+        },
+        "product_Y8QBH7": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "52864720470282",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/LETTER_PENDANT_ON_CHAIN-32.jpg",
+            "override_title": "“THE P” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_VKFexm": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355789578",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_Q_LETTER_PENDANT_FRONT_WITH_CHAIN_GOLD.jpg",
+            "override_title": "“THE Q” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_K6AenM": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-silver?variant=52999459012874&ph_letter=R",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_R_Letter_Pendant_Modular_Screw_Chain_Necklace_Silver.jpg",
+            "override_title": "“THE R” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_agdaBt",
+        "product_Qh9z4H",
+        "product_VqVbpD",
+        "product_Y8QBH7",
+        "product_VKFexm",
+        "product_K6AenM"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); } .media-wrapper {max-width: 650px; } .product-video {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_yQ64Rf": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_3.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    },
+    "rich_text_Nmwanz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_H48TUr": {
+          "type": "heading",
+          "settings": {
+            "heading": "PLACEHOLDER COPY SECTION",
+            "heading_size": "h3"
+          }
+        },
+        "text_r4DXza": {
+          "type": "text",
+          "settings": {
+            "text": "<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<br/>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_H48TUr",
+        "text_r4DXza"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "no-indent",
+        "enable_animations": true
+      }
+    },
+    "ph_product_grid_v2_nyBPbk": {
+      "type": "ph-product-grid-v2",
+      "blocks": {
+        "product_XBwKWn": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "52719355855114",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/LETTER_PENDANT_ON_CHAIN-37.jpg",
+            "override_title": "“THE S” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_y9VBya": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": true,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "product_thumbnail_video": "shopify://files/videos/THE T LETTER PENDANT 360 SILVER.mov",
+            "custom_product_url": "",
+            "custom_variant_id": "52864720929034",
+            "show_from_prefix": false,
+            "override_title": "“THE T” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_hQDRYh": {
+          "type": "product",
+          "settings": {
+            "product_item": "anywear-letter-charm-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/anywear-letter-charm-gold?variant=52962879439114&ph_letter=U",
+            "custom_variant_id": "52962879439114",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1_THE_U_LETTER_ANYWEAR_CHARMS_PERSPECTIVE_VIEW_GOLD.jpg",
+            "override_title": "“THE U” ANYWEAR CHARM",
+            "custom_price_text": ""
+          }
+        },
+        "product_fBTraG": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "",
+            "custom_variant_id": "52864721060106",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_V_LETTER_PENDANT_FRONT_WITH_CHAIN_SILVER.jpg",
+            "override_title": "“THE V” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_En6nwF": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-modular-charm-necklace-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-modular-charm-necklace-gold?variant=52999505215754&ph_letter=W",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/ID_MODULAR_NECKLACE_GOLD-23.jpg",
+            "override_title": "“THE W” I.D. MODULAR CHARM NECKLACE",
+            "custom_price_text": ""
+          }
+        },
+        "product_q9Ehdw": {
+          "type": "product",
+          "settings": {
+            "product_item": "the-i-d-charm-bracelet",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/the-i-d-charm-bracelet?ph_letter=X",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/1X_THE_X_LETTER_PENDANT_SCREW_CHAIN_BRACELET_SILVER.jpg",
+            "override_title": "“THE X” I.D. CHARM LETTER BRACELET",
+            "custom_price_text": ""
+          }
+        },
+        "product_yQQ8C6": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-gold",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "18CT GOLD VERMEIL",
+            "custom_product_url": "",
+            "custom_variant_id": "52860075147530",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/THE_Y_LETTER_PENDANT_PERSPECTIVE_GOLD.jpg",
+            "override_title": "“THE Y” I.D. LETTER PENDANT",
+            "custom_price_text": ""
+          }
+        },
+        "product_WpLUFr": {
+          "type": "product",
+          "settings": {
+            "product_item": "letter-pendant-silver",
+            "scale_media": false,
+            "scale_value": 1,
+            "show_custom_thumbnail": true,
+            "is_video_product_thumbnail": false,
+            "show_custom_finish": true,
+            "custom_finish_Text": "925 STERLING SILVER",
+            "custom_product_url": "https://www.phoriajewellery.com/products/letter-pendant-silver?variant=52864721453322&ph_letter=z",
+            "custom_variant_id": "",
+            "show_from_prefix": false,
+            "product_thumbnail_image": "shopify://shop_images/LETTER_PENDANT_ON_CHAIN-52.jpg",
+            "override_title": "“THE Z” I.D. LETTER NECKLACE",
+            "custom_price_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_XBwKWn",
+        "product_y9VBya",
+        "product_hQDRYh",
+        "product_fBTraG",
+        "product_En6nwF",
+        "product_q9Ehdw",
+        "product_yQQ8C6",
+        "product_WpLUFr"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 989px) {.prod__grid--v2 {grid-template-columns: repeat(2, 1fr); } .media-wrapper {max-width: 650px; } .product-video {max-width: 650px; }}"
+      ],
+      "name": "Ph Product Grid V2",
+      "settings": {
+        "products_per_row": 3,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 54,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 18,
+        "add_margin": true,
+        "enable_animations": true
+      }
+    },
+    "ph_collection_banner_93frNz": {
+      "type": "ph-collection-banner",
+      "settings": {
+        "media_type": "image",
+        "image": "shopify://shop_images/IMAGE_4.jpg",
+        "url": "",
+        "banner_2_enable": false,
+        "media_type_2": "image",
+        "url_2": "",
+        "show_controls": false,
+        "padding_desktop_top": 0,
+        "padding_desktop_bottom": 0,
+        "padding_mobile_top": 0,
+        "padding_mobile_bottom": 0,
+        "enable_animations": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "rich_text_jUgM7K",
+    "ph_product_grid_v2_FiyFgj",
+    "ph_collection_banner_VTp3ri",
+    "rich_text_HnENdT",
+    "ph_product_grid_v2_V93tXq",
+    "ph_collection_banner_yneUA7",
+    "rich_text_nQjGdC",
+    "ph_product_grid_v2_xUA8ej",
+    "ph_collection_banner_yQ64Rf",
+    "rich_text_Nmwanz",
+    "ph_product_grid_v2_nyBPbk",
+    "ph_collection_banner_93frNz"
+  ]
+}

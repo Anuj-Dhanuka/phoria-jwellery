@@ -1,0 +1,80 @@
+<account-modal class="header__account" id="account-modal">
+	<div class="account__content color-background-1">
+		<div class="account__header">
+      {%- if customer -%}
+		  	<h3>{{ customer.name }}</h3>
+			{%- else -%}
+		  	<h3>{{ 'sections.header.account' | t }}</h3>
+      {%- endif -%}
+
+			<button
+				type="button"
+				class="account-modal__close-button account__close modal__close-button link link--text focus-inset modal-close-button"
+				aria-label="{{ 'accessibility.close' | t }}"
+				id="account-modal-close"
+			>
+				{% render 'icon-close' %}
+			</button>
+		</div>
+		<div class="account__main">
+			{%- if customer -%}
+				<div class="header__account__account">
+					<ul class="header__account__body">
+						<li class="header__account__link">
+							<a href="{{ routes.account_url }}" class="link button button--simple">
+								<span>{{ 'customer.account_fallback' | t }}</span>
+							</a>
+						</li>
+						<li class="header__account__address">
+							<a href="{{ routes.account_addresses_url }}" class="link button button--simple">
+                <span>{{- 'customer.addresses.book' | t -}}</span>
+              </a>
+						</li>
+					</ul>
+					<a
+						class="header__account__logout button button--tertiary focus-inset"
+						href="{{ routes.account_logout_url }}"
+					>
+						<span> {{ 'customer.log_out' | t }} </span>
+					</a>
+				</div>
+			{%- else -%}
+				<div class="account__info">
+					{% if settings.account_heading %}
+						<h3>{{ settings.account_heading }}</h3>
+					{% endif %}
+          {% if settings.account_description %}
+						<p class="secondary_text">{{ settings.account_description }}</p>
+					{% endif %}
+				</div>
+				<a
+					href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+					class="button button--tertiary header__account__login link  focus-inset"
+				>
+					<span>
+						{%- liquid
+							if customer
+								echo 'customer.account_fallback' | t
+							else
+								echo 'customer.log_in' | t
+							endif
+						-%}
+					</span>
+				</a>
+
+				{% if settings.enable_create_account %}
+					<a
+						class="header__account__register link button button--simple"
+						href="{{ routes.account_register_url }}"
+					>
+						<span>{{ 'customer.login_page.create_account' | t }}</span>
+					</a>
+				{% endif %}
+			{%- endif -%}
+		</div>
+	</div>
+	<div
+		id="accountModal-Overlay"
+		class="burger-menu__overlay account-modal__overlay"
+	></div>
+</account-modal>

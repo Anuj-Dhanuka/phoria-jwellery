@@ -1,0 +1,92 @@
+<div class="header__localization header__localization--language">
+  <noscript>
+    {%- form 'localization', id: 'HeaderLanguageFormNoScript', class: 'localization-form' -%}
+      <input type="hidden" name="return_to" value="{{ request.path }}">
+      <div class="localization-form__select">
+        <select
+          class="localization-selector link"
+          name="locale_code"
+          aria-labelledby="HeaderLanguageLabelNoScript"
+        >
+          {%- for language in localization.available_languages -%}
+            <option
+              value="{{ language.iso_code }}"
+              lang="{{ language.iso_code }}"
+              {%- if language.iso_code == localization.language.iso_code %}
+                selected
+              {% endif %}
+            >
+              {{ language.endonym_name | capitalize }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+      <button class="button button--primary">
+        <span>
+          {{ 'localization.update_language' | t }}
+        </span>
+      </button>
+    {%- endform -%}
+  </noscript>
+  <localization-form>
+    {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+      <input type="hidden" name="return_to" value="{{ request.path }}">
+      <div class="no-js-hidden">
+        <div class="disclosure">
+          <button
+            type="button"
+            class="secondary_text header__localization-lang-button disclosure__button disclosure__button-modal localization-form__select localization-selector link link--text focus-inset"
+            aria-expanded="false"
+            aria-controls="HeaderLanguageList"
+            aria-describedby="HeaderLanguageLabel"
+            data-value-save=""
+          >
+            <span class="value{% if settings.region_language_type == "dropdown" %} link-hover-line{% endif %}">
+              {{- localization.language.endonym_name | capitalize }}
+            </span>
+            {% render 'icon-caret' -%}
+          </button>
+          <ul
+            id="HeaderLanguageList"
+            role="list"
+            class="disclosure__list list-unstyled color-background-1"
+            hidden
+          >
+            {%- for language in localization.available_languages -%}
+              <li class="disclosure__item" tabindex="-1">
+                <a
+                  class="secondary_text link link--text disclosure__link caption-large{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %} focus-inset"
+                  href="#"
+                  hreflang="{{ language.iso_code }}"
+                  lang="{{ language.iso_code }}"
+                  {% if language.iso_code == localization.language.iso_code %}
+                    aria-current="true"
+                  {% endif %}
+                  data-value="{{ language.iso_code }}"
+                  data-valuesave="{{ forloop.index }}"
+                >
+                  <span>
+                    {{ language.endonym_name | capitalize }}
+                  </span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+          {% if settings.region_language_type == "popup" %}
+            <button
+              type="button"
+              class="button-save button button button--tertiary"
+            >
+              <span> {{ 'localization.save' | t }} </span>
+            </button>
+        {% endif %}
+        </div>
+        <input
+          type="hidden"
+          name="locale_code"
+          value="{{ localization.language.iso_code }}"
+        >
+      </div>
+    {%- endform -%}
+  </localization-form>
+</div>

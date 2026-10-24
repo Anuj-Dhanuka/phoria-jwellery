@@ -1,0 +1,394 @@
+<style>
+  .ph-huggie-style-container {
+    width: 100%;
+    max-width: 80vw;
+    margin: auto;
+    padding: 65px 0 0 0;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-huggie-style-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .ph-huggie-style-heading {
+    font-size: 1.25vw;
+    word-spacing: 2px;
+    line-height: 1.2;
+    margin: 0px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-huggie-style-description {
+    font-size: 10px;
+    line-height: 2.3;
+    margin: auto;
+    margin-top: 27px;
+    text-transform: uppercase;
+    max-width: 900px;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-huggie-videos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-huggie-video-wrapper {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+  
+  .ph-huggie-video {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .ph-video-aspect-ratio {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .ph-video-aspect-ratio[style*="--aspect-ratio: 16:9"] {
+    padding-bottom: 56.25%;
+  }
+  
+  .ph-video-aspect-ratio[style*="--aspect-ratio: 1:1"] {
+    padding-bottom: 100%;
+  }
+  
+  .ph-video-aspect-ratio[style*="--aspect-ratio: 4:5"] {
+    padding-bottom: 125%;
+  }
+  
+  .ph-video-aspect-ratio[style*="--aspect-ratio: 9:16"] {
+    padding-bottom: 177.78%;
+  }
+  
+  .ph-video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .ph-video-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  .ph-video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .ph-video-play-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .ph-placeholder-video {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    border: 1px dashed #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .ph-huggie-video-title {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 1020px) {
+    .ph-huggie-style-container {
+      max-width: 100%;
+      padding: 65px 18px 0;
+    }
+    .ph-huggie-style-heading {
+      font-size: 18px;
+    }
+    
+    .ph-huggie-video-wrapper {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="ph-huggie-style-container">
+  <div class="ph-huggie-style-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-huggie-style-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.description != blank %}
+      <div class="ph-huggie-style-description">{{ section.settings.description }}</div>
+    {% endif %}
+    
+    <div class="ph-huggie-videos-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'video' %}
+          <div class="ph-huggie-video-wrapper" {{ block.shopify_attributes }}>
+            {% if block.settings.style_video != blank %}
+              <div class="ph-huggie-video">
+                {% assign video_aspect_ratio = block.settings.video_aspect_ratio | default: '1:1' %}
+                <div class="ph-video-aspect-ratio" style="--aspect-ratio: {{ video_aspect_ratio }};">
+                  {% if block.settings.cover_image != blank %}
+                    <img
+                      src="{{ block.settings.cover_image | image_url: width: 800 }}"
+                      alt="{% if block.settings.video_title != blank %}{{ block.settings.video_title }}{% else %}Huggie chain hoops styling video{% endif %}"
+                      class="ph-video-cover"
+                      loading="lazy"
+                      width="800"
+                    >
+                  {% endif %}
+                  
+                  {{ block.settings.style_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, preload: 'none', class: "ph-video-element" }}
+                </div>
+              </div>
+            {% else %}
+              <div class="ph-placeholder-video">
+                <span>Upload video</span>
+              </div>
+            {% endif %}
+            
+            {% if block.settings.video_title != blank %}
+              <div class="ph-huggie-video-title">{{ block.settings.video_title }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate container
+      const container = document.querySelector('.ph-huggie-style-container');
+      if (container) {
+        inView(container, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-huggie-style-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate description
+      const description = document.querySelector('.ph-huggie-style-description');
+      if (description) {
+        inView(description, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate videos grid
+      const videosGrid = document.querySelector('.ph-huggie-videos-grid');
+      if (videosGrid) {
+        inView(videosGrid, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+
+  // Original video interaction script
+  (function() {
+    var videoWrappers = document.querySelectorAll('.ph-huggie-video');
+    
+    videoWrappers.forEach(function(wrapper) {
+      var video = wrapper.querySelector('.ph-video-element');
+      var cover = wrapper.querySelector('.ph-video-cover');
+      var playButton = wrapper.querySelector('.ph-video-play-button');
+      
+      if (video && playButton) {
+        playButton.addEventListener('click', function() {
+          if (cover) {
+            cover.style.display = 'none';
+          }
+          playButton.style.display = 'none';
+          video.play();
+          video.setAttribute('controls', 'true');
+        });
+        
+        video.addEventListener('click', function() {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ph Earring How",
+  "tag": "section",
+  "class": "ph-huggie-style-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "HOW TO STYLE // HUGGIE CHAIN HOOPS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "TRULY VERSATILE. OUR CHAIN HUGGIES ARE FULLY ADAPTABLE WITH ALMOST ENDLESS STYLING OPTIONS."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable Animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Style Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "style_video",
+          "label": "Video"
+        },
+        {
+          "type": "select",
+          "id": "video_aspect_ratio",
+          "label": "Aspect ratio",
+          "options": [
+            {
+              "value": "16:9",
+              "label": "16:9"
+            },
+            {
+              "value": "1:1",
+              "label": "1:1 (Square)"
+            },
+            {
+              "value": "4:5",
+              "label": "4:5"
+            },
+            {
+              "value": "9:16",
+              "label": "9:16 (Portrait)"
+            }
+          ],
+          "default": "1:1"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "video_title",
+          "label": "Video Title (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Earring How",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

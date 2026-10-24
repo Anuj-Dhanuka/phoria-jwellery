@@ -1,0 +1,321 @@
+{% schema %}
+{
+  "name": "Logo Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen In"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom Margin (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll Speed (seconds, lower = faster)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 25
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "logo_svg_snippet",
+          "label": "SVG Snippet Name",
+          "info": "Create a snippet in snippets/ folder (without .liquid). Example: my-logo → snippets/my-logo.liquid"
+        },
+        {
+          "type": "url",
+          "id": "logo_svg_file",
+          "label": "SVG File Upload (use .svg)"
+        },
+
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Fallback Image Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo Width (px)",
+          "min": 20,
+          "max": 400,
+          "step": 5,
+          "default": 120
+        }
+      ]
+    }
+  ],
+  "max_blocks": 15,
+  "presets": [
+    {
+      "name": "Logo Marquee",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="logo-marquee logo-marquee-mbl-custom"
+  style="
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  {% if section.settings.heading != blank %}
+    <h2 class="logo-marquee__heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="logo-marquee__strip">
+    <div class="marquee">
+      <div class="marquee__inner" style="--scroll-speed: {{ section.settings.scroll_speed }}s;">
+        {% for block in section.blocks %}
+          <div class="marquee__item">
+            {% if block.settings.logo_svg_snippet != blank %}
+              {% render block %}
+            {% elsif block.settings.logo_svg_file != blank %}
+              <img
+                src="{{ block.settings.logo_svg_file }}"
+                alt="Partner Logo"
+                class="logo-svg-img"
+                style="width: {{ block.settings.logo_width }}px; height: auto;"
+                loading="lazy"
+              >
+            {% elsif block.settings.logo_image != blank %}
+              <img
+                src="{{ block.settings.logo_image | image_url: width: 600 }}"
+                alt="Partner Logo"
+                class="logo-fallback-img"
+                width="{{ block.settings.logo_width }}"
+                style="width: {{ block.settings.logo_width }}px; height: auto;"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endfor %}
+
+          {% for block in section.blocks %}
+            <div class="marquee__item mobile-duplicate">
+              {% if block.settings.logo_svg_snippet != blank %}
+                {% render block %}
+              {% elsif block.settings.logo_svg_file != blank %}
+                <img
+                  src="{{ block.settings.logo_svg_file }}"
+                  alt="Partner Logo"
+                  class="logo-svg-img"
+                  style="width: {{ block.settings.logo_width }}px; height: auto;"
+                  loading="lazy"
+                >
+              {% elsif block.settings.logo_image != blank %}
+                <img
+                  src="{{ block.settings.logo_image | image_url: width: 1000 }}"
+                  alt="Partner Logo"
+                  class="logo-fallback-img"
+                  style="width: {{ block.settings.logo_width }}px; height: auto;"
+
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    /* Section background white */
+    .logo-marquee {
+      text-align: center;
+      background: #fff;
+    }
+
+    /* Heading in white area */
+    .logo-marquee__heading {
+      color: #000;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* Black strip only for logos */
+    .logo-marquee__strip {
+      background: #000;
+      padding: 0px 0;
+      overflow: hidden;
+    }
+
+    /* Marquee styling */
+    .marquee {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .marquee__inner {
+      display: flex;
+      flex-wrap: nowrap;
+        width: max-content;
+      animation: marquee var(--scroll-speed, 100s) linear infinite;
+      gap: 36px;
+    }
+
+    .marquee__item {
+      flex: 0 0 auto;
+      max-height: 50px;
+      min-width: auto;
+      padding: 0 0px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee__item svg {
+      width: auto;
+      filter: brightness(0) invert(1); /* makes logos white */
+    }
+
+    .marquee__item img.logo-fallback-img {
+  }
+
+    /* Animation keyframes */
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }   /* two identical halves -> perfect loop */
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .marquee__item {
+        padding: 0 15px;
+
+      }
+      .logo-marquee__heading {
+        font-size: 12px;
+        margin-bottom: 30px;
+      }
+
+      body.template-product-phoria-default .logo-marquee__heading {
+        margin-bottom: 24px;
+      }
+
+      body.template-product-phoria-default .logo-marquee {
+        margin-bottom: 0 !important;
+      }
+
+      /* show duplicate only on mobile for seamless loop */
+      .mobile-duplicate {
+        display: flex;
+      }
+
+    }
+
+    /* Desktop adjustments: static logos */
+    /* Desktop adjustments: static logos */
+
+    @media (max-width: 1199px) {
+      .marquee__inner {
+        max-height: 50px;
+        animation: marquee var(--scroll-speed, 10s) linear infinite;
+    }
+
+    .mobile-duplicate {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 1200px) {
+
+        .marquee {
+                display: flex;
+        justify-content: center;
+        }
+
+      .marquee__inner {
+        width: 100%;
+        animation: none !important; /* disable scrolling */
+        flex-wrap: wrap; /* allow multiple rows */
+        justify-content: space-between; /* center logos */
+        align-items: center; /* vertically center logos */
+        padding: 0px 30px;
+        gap: 30px;
+      }
+
+      .marquee__item {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* horizontally center logos */
+      }
+
+      .marquee__item img {
+        width: auto; /* keep original aspect ratio */
+        object-fit: contain; /* ensure full image is visible */
+        display: block;
+      }
+
+      /* hide duplicated logos on desktop */
+      .mobile-duplicate {
+        display: none;
+      }
+
+    }
+</style>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render block.settings.logo_svg_snippet %}"
+  to: "{% render block %}"
+  position: 2846..2864
+- from: "{% render block.settings.logo_svg_snippet %}"
+  to: "{% render block %}"
+  position: 3887..3905
+{% endcomment %}

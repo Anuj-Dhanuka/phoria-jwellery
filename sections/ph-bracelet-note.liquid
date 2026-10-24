@@ -1,0 +1,129 @@
+<style>
+  .ph-bracelet-fit-note-container {
+    width: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+    margin-top: 27px;
+    padding: 0 36px;
+    padding-bottom: 90px;
+  }
+  
+  .ph-bracelet-fit-note-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .ph-bracelet-fit-note-text {
+    font-size: 10px;
+    line-height: 2.3;
+    /* margin-bottom: 25px; */
+    text-transform: uppercase;
+    max-width: 100%;
+  }
+  
+  .ph-bracelet-fit-note-text:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ph-bracelet-fit-note-inner {
+      padding: 0;
+    }
+    
+    .ph-bracelet-fit-note-container {
+      padding: 0 18px;
+      padding-bottom: 90px;
+      max-width: none;
+    }
+  }
+</style>
+
+<div class="ph-bracelet-fit-note-container">
+  <div class="ph-bracelet-fit-note-inner">
+    {% if section.settings.note_text_1 != blank %}
+      <div class="ph-bracelet-fit-note-text">{{ section.settings.note_text_1 }}</div>
+    {% endif %}
+    
+    {% if section.settings.note_text_2 != blank %}
+      <div class="ph-bracelet-fit-note-text">{{ section.settings.note_text_2 }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate container
+      const container = document.querySelector('.ph-bracelet-fit-note-container');
+      if (container) {
+        inView(container, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate first text paragraph
+      const firstText = document.querySelector('.ph-bracelet-fit-note-text:first-child');
+      if (firstText) {
+        inView(firstText, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate second text paragraph
+      const secondText = document.querySelector('.ph-bracelet-fit-note-text:last-child');
+      if (secondText) {
+        inView(secondText, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.4, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Bracelet Note",
+  "tag": "section",
+  "class": "ph-bracelet-fit-note-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "note_text_1",
+      "label": "First Paragraph",
+      "default": "PLEASE NOTE THAT THE FIT OF A BRACELET IS INFLUENCED BY BOTH ITS LENGTH AND THE THICKNESS OF THE CHAIN. THAT'S WHY THE MEASUREMENTS OF OUR BRACELETS VARY DEPENDING ON THE STYLE/THICKNESS OF THE CHAIN."
+    },
+    {
+      "type": "textarea",
+      "id": "note_text_2",
+      "label": "Second Paragraph",
+      "default": "FOR EXAMPLE, A THIN CHAIN LIKE THE SCREW CHAIN WITH A LENGTH OF 17.5CM WILL FEEL LOOSER ON THE WRIST THAN A 17.5CM THICKER BOND CHAIN. PLEASE TAKE THIS INTO ACCOUNT WHEN MEASURING YOUR WRIST SIZE."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable Animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Bracelet Note"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+.list-menu--right {
+  right: 0;
+}
+
+.list-menu--disclosure {
+  position: absolute;
+  left: 1.5rem;
+  min-width: 100%;
+  background-color: rgb(var(--color-background));
+}
+
+.list-menu--disclosure .list-menu--disclosure {
+  left: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: min-content;
+  padding: 0 1.7rem;
+}
+.list-menu--disclosure .list-menu--disclosure .header__menu-item {
+  padding: 0 0.7rem;
+}
+.list-menu--disclosure .list-menu--disclosure .header__menu-item span {
+  padding: 0.7rem 0;
+}
+
+.list-menu--disclosure .list-menu--disclosure:before {
+  content: none;
+}
+
+.list-menu--disclosure:focus {
+  outline: none;
+}
+
+.footer .list-menu__item {
+  transition: color var(--duration-default), text-decoration var(--duration-default);
+}
+
+.list-menu--disclosure.localization-selector {
+  max-height: 18rem;
+  overflow: auto;
+  width: 10rem;
+  padding: 0.5rem;
+}

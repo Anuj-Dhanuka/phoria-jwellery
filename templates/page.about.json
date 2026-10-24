@@ -1,0 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+	"sections": {
+		"main": {
+			"type": "rich-text",
+			"settings": {
+				"alignment": "left",
+				"margin_top": "xs",
+				"margin_bottom": "xs"
+			},
+			"blocks": {
+				"heading": {
+					"type": "heading",
+					"settings": {
+						"heading": "Our Story",
+						"heading_size": "h2"
+					}
+				}
+			},
+			"block_order": ["heading"]
+		},
+		"banner": {
+			"type": "image-banner",
+			"settings": {
+				"heading": "",
+				"text_information": "",
+				"additional_text": "",
+				"button_label": "",
+				"button_label2": "",
+				"margin_bottom": "m"
+			}
+		},
+		"steps": {
+			"type": "steps",
+			"settings": {},
+			"blocks": {
+				"steps-item": {
+					"type": "steps-item",
+					"settings": {}
+				},
+				"steps-item1": {
+					"type": "steps-item",
+					"settings": {}
+				},
+				"steps-item2": {
+					"type": "steps-item",
+					"settings": {}
+				},
+				"steps-item3": {
+					"type": "steps-item",
+					"settings": {}
+				}
+			},
+			"block_order": ["steps-item", "steps-item1", "steps-item2", "steps-item3"]
+		}
+	},
+	"order": ["main", "banner", "steps"]
+}

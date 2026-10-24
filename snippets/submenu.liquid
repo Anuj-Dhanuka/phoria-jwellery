@@ -1,0 +1,55 @@
+<ul
+	class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce color-background-1"
+	role="list"
+>
+	<div class="container">
+		{%- for childlink in link.links -%}
+			<li>
+				{%- if childlink.links == blank -%}
+					<a
+						href="{{ childlink.url }}"
+						class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} header__menu-item--active{% endif %}"
+						{% if childlink.current %}
+							aria-current="page"
+						{% endif %}
+					>
+						<span class="link-hover-line">
+							{{ childlink.title | escape }}
+						</span>
+					</a>
+				{%- else -%}
+					<a
+						href="{{ childlink.url }}"
+						class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} header__menu-item--active{% endif %}"
+						{% if childlink.current %}
+							aria-current="page"
+						{% endif %}
+					>
+						<span class="link-hover-line">
+							{{ childlink.title | escape }}
+						</span>
+					</a>
+					<ul
+						class="header__submenu list-menu--disclosure list-menu motion-reduce color-background-1"
+					>
+						{%- for grandchildlink in childlink.links -%}
+							<li>
+								<a
+									href="{{ grandchildlink.url }}"
+									class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} header__menu-item--active{% endif %}"
+									{% if grandchildlink.current %}
+										aria-current="page"
+									{% endif %}
+								>
+									<span class="link-hover-line">
+										{{ grandchildlink.title | escape }}
+									</span>
+								</a>
+							</li>
+						{%- endfor -%}
+					</ul>
+				{%- endif -%}
+			</li>
+		{%- endfor -%}
+	</div>
+</ul>

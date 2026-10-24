@@ -1,0 +1,181 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+	"sections": {
+		"main": {
+			"type": "rich-text",
+			"settings": {
+				"alignment": "left",
+				"margin_top": "xs",
+				"margin_bottom": "xs"
+			},
+			"blocks": {
+				"heading": {
+					"type": "heading",
+					"settings": {
+						"heading": "Lookbook",
+						"heading_size": "h1"
+					}
+				},
+				"button": {
+					"type": "button",
+					"settings": {}
+				}
+			},
+			"block_order": ["heading", "button"]
+		},
+		"product-popup": {
+			"type": "product-popup",
+			"blocks": {
+				"item": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				}
+			},
+			"block_order": ["item"],
+			"settings": {}
+		},
+		"popular-products": {
+			"type": "popular-products",
+			"settings": {
+				"heading": "",
+				"button_label": ""
+			}
+		},
+		"product-popup-1": {
+			"type": "product-popup",
+			"blocks": {
+				"item": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				},
+				"item2": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				}
+			},
+			"block_order": ["item", "item2"],
+			"settings": {
+				"margin_bottom": "no-indent"
+			}
+		},
+		"product-popup-2": {
+			"type": "product-popup",
+			"blocks": {
+				"item": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				}
+			},
+			"block_order": ["item"],
+			"settings": {
+				"margin_bottom": "m"
+			}
+		},
+		"popular-products-2": {
+			"type": "popular-products",
+			"settings": {
+				"heading": "",
+				"button_label": ""
+			}
+		},
+		"product-popup-3": {
+			"type": "product-popup",
+			"blocks": {
+				"item": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				}
+			},
+			"block_order": ["item"],
+			"settings": {
+				"margin_bottom": "m"
+			}
+		},
+		"popular-products-3": {
+			"type": "popular-products",
+			"settings": {
+				"heading": "",
+				"button_label": ""
+			}
+		},
+		"product-popup-4": {
+			"type": "product-popup",
+			"blocks": {
+				"item": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				},
+				"item2": {
+					"type": "item",
+					"settings": {
+						"heading": "",
+						"description": ""
+					}
+				}
+			},
+			"block_order": ["item", "item2"],
+			"settings": {
+				"margin_bottom": "m"
+			}
+		},
+		"rich-text": {
+			"type": "rich-text",
+			"settings": {
+				"margin_top": "no-indent",
+				"margin_bottom": "m"
+			},
+			"blocks": {
+				"heading": {
+					"type": "heading",
+					"settings": {
+						"heading": "Some heading",
+						"heading_size": "h3"
+					}
+				},
+				"button": {
+					"type": "button",
+					"settings": {}
+				}
+			},
+			"block_order": ["heading", "button"]
+		}
+	},
+	"order": [
+		"main",
+		"product-popup",
+		"popular-products",
+		"product-popup-1",
+		"product-popup-2",
+		"popular-products-2",
+		"product-popup-3",
+		"popular-products-3",
+		"product-popup-4",
+		"rich-text"
+	]
+}

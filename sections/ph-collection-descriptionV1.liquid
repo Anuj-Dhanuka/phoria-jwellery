@@ -1,0 +1,260 @@
+<style>
+  .expandable-text-{{ section.id }} {
+    text-align: center;
+    width: 100%;
+    padding-top: {{ section.settings.padding_desktop_top }}px;
+    padding-bottom: {{ section.settings.padding_desktop_bottom }}px;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+  .expandable-text-{{ section.id }} .ph-collection__title {
+    font-size: 1.25vw;
+    font-family: "PhoriaBold";
+    margin: 0 0 36px 0;
+    text-transform: uppercase !important;
+    line-height: 1.2;
+  }
+  .expandable-text-{{ section.id }} p {
+    margin-top: 18px;
+    line-height: 2.3;
+    font-size: 10px;
+    font-family: 'PhoriaRegular';
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+  .expandable-text-{{ section.id }} p strong {
+    font-family: "PhoriaBold";
+  }
+  .expandable-text-{{ section.id }} #extra-text-{{ section.id }} {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    line-height: 2.3;
+    font-size: 10px;
+    font-family: 'PhoriaRegular';
+    text-transform: uppercase;
+    margin: 18px 0 0 0;
+  }
+  .expandable-text-{{ section.id }} #extra-text-{{ section.id }}.show {
+    max-height: 500px; /* adjust if needed */
+    opacity: 1;
+  }
+  .expandable-text-{{ section.id }} #toggle-text-{{ section.id }} {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'PhoriaBold';
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 18px 0 9px 0;
+    font-size: 10px;
+    color: #1D1D1D !important;
+  }
+
+  @media only screen and (max-width: 959px) {
+    .expandable-text-{{ section.id }} {
+      padding-top: {{ section.settings.padding_mobile_top }}px;
+      padding-bottom: {{ section.settings.padding_mobile_bottom }}px;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .expandable-text-{{ section.id }} .ph-collection__title {
+      font-size: 18px;
+      margin-bottom: 27px;
+    }
+  }
+
+  
+  {% comment %} custom code for width percentage  {% endcomment %}
+
+    .expandable-text-{{ section.id }} p,
+.expandable-text-{{ section.id }} #extra-text {
+  max-width: {{ section.settings.para_width_desktop }}%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 959px) {
+  .expandable-text-{{ section.id }} p,
+  .expandable-text-{{ section.id }} #extra-text {
+    max-width: {{ section.settings.para_width_mobile }}%;
+  }
+}
+
+
+  {% comment %} custom code for width percentage  {% endcomment %}
+</style>
+
+<div id="expandable-text-{{ section.id }}" class="expandable-text expandable-text-{{ section.id }}">
+  {% if section.settings.show_title %}
+    <h1 class="ph-collection__title">
+      {% if section.settings.title == blank %}
+        {{ collection.title }}
+      {% else %}
+        {{ section.settings.title }}
+      {% endif %}
+    </h1>
+  {% endif %}
+
+  <p>{{ section.settings.short_text }}</p>
+  <div id="extra-text-{{ section.id }}"></div>
+
+  {% if section.settings.full_text != blank %}
+    <button id="toggle-text-{{ section.id }}">
+      {{ section.settings.show_more_text }}
+    </button>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sid       = "{{ section.id }}";
+    const container = document.getElementById(`expandable-text-${sid}`);
+    const toggleBtn = document.getElementById(`toggle-text-${sid}`);
+    const extraDiv  = document.getElementById(`extra-text-${sid}`);
+    let   isOpen    = false;
+
+    if (toggleBtn && extraDiv) {
+      toggleBtn.addEventListener("click", () => {
+        if (!isOpen) {
+          extraDiv.innerHTML = {{ section.settings.full_text | strip_newlines | json }};
+          requestAnimationFrame(() => {
+            extraDiv.style.maxHeight = extraDiv.scrollHeight + 'px';
+            extraDiv.style.opacity   = '1';
+          });
+          toggleBtn.textContent = "{{ section.settings.show_less_text }}";
+        } else {
+          extraDiv.style.maxHeight = '0';
+          extraDiv.style.opacity   = '0';
+          toggleBtn.textContent    = "{{ section.settings.show_more_text }}";
+        }
+        isOpen = !isOpen;
+      });
+    }
+
+    // Motion.js animations (if loaded)
+    if (typeof Motion !== 'undefined' && container) {
+      const items = [...container.children].filter(el => el.id !== `extra-text-${sid}`);
+      items.forEach((el, idx) => {
+        Motion.inView(el, () => {
+          Motion.animate(
+            el,
+            { opacity: [0, 1], y: ['100px', 0] },
+            { duration: 0.7, delay: idx * 0.05, easing: 'ease-out' }
+          );
+        }, { once: true, amount: 0.1 });
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Collection Description",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "info": "This will override collection title"
+    },
+    {
+      "type": "richtext",
+      "id": "short_text",
+      "label": "Short Text (Initially Visible)",
+      "default": "<p></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "full_text",
+      "label": "Full Text (Appended on Click)",
+      "default": "<p></p>"
+    },
+    {
+      "type": "text",
+      "id": "show_more_text",
+      "label": "Show More Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "show_less_text",
+      "label": "Show Less Button Text",
+      "default": "Read Less"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_top",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop_bottom",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_top",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile_bottom",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+  "type": "range",
+  "id": "para_width_desktop",
+  "label": "Paragraph Width (Desktop, %)",
+  "min": 30,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "para_width_mobile",
+  "label": "Paragraph Width (Mobile, %)",
+  "min": 50,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "default": 100
+}
+
+  ],
+  "presets": [
+    {
+      "name": "Ph Collection Description"
+    }
+  ]
+}
+{% endschema %}

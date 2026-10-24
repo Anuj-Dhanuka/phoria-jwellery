@@ -1,0 +1,259 @@
+{% style %}
+  {% for scheme in settings.color_schemes -%}
+  {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+  [data-scheme=dark] .color-{{ scheme.id }} {
+  	--color-background: 31, 31, 31;
+  	--color-overlay: 0, 0, 0;
+  	--gradient-background: rgb(31, 31, 31);
+  	--color-foreground: 255, 255, 255;
+  	--color-foreground-secondary: 169, 169, 169;
+  	--color-foreground-title: 255, 255, 255;
+  	--color-border-input: 53, 53, 53;
+  	--color-border-input-hover: 80, 80, 80;
+  	--color-background-input: 31, 31, 31;
+  	--color-border: 90, 90, 90;
+  	--color-announcement-bar: 0, 0, 0;
+  	--color-announcement-bar-background-1: 0, 0, 0;
+  	--color-link: 255, 255, 255;
+  	--alpha-link: 0.5;
+  	--color-button: 53, 53, 53;
+  	--color-button-hover: 0, 0, 0;
+  	--color-button-text: 255, 255, 255;
+  	--color-button-text-hover: 255, 255, 255;
+  	--color-button-secondary: 53, 53, 53;
+  	--color-button-secondary-hover: 0, 0, 0;
+  	--color-button-secondary-text: 255, 255, 255;
+  	--color-button-secondary-text-hover: 255, 255, 255;
+  	--color-button-tertiary: 255, 255, 255;
+  	--color-button-tertiary-hover: 255, 255, 255;
+  	--color-button-tertiary-text: 255, 255, 255;
+  	--color-button-tertiary-text-hover: 0, 0, 0;
+  	--alpha-button-background: 1;
+  	--alpha-button-border: 1;
+  	--color-social: 255, 255, 255;
+  	--color-placeholder-input: 255, 255, 255;
+  	--color-card-price-new: 255, 255, 255;
+  	--color-card-price-old: 169, 169, 169;
+  	--color-error-background: 0, 0, 0;
+  	--color-title-text: 255, 255, 255;
+
+		.product-popup-modal__content, 
+		.drawer__inner, 
+		.drawer .cart-item .quantity,
+		#search-modal .search__content,
+		#search-modal .search__input,
+		#account-modal .account__content,
+		.burger-menu__wrapper,
+		.burger-menu__header,
+		.burger-menu__submenu-inner,
+		.banner-popup-modal__content,
+		.quick-add-modal__content,
+		.quick-add-modal .product__outer,
+		.product__badge .badge
+		{
+			background: #2a2a2a;
+		}
+
+		.product-form__controls-group label.variant-swatch:hover,
+		.product-form__controls-group input:checked:not(.disabled)+label.variant-swatch{
+			border-color: #626262;
+		}
+  }
+  @media (prefers-color-scheme: dark) {
+  	[data-scheme=auto] .color-{{ scheme.id }} {
+  		--color-background: 31, 31, 31;
+  		--gradient-background: rgb(31, 31, 31);
+  		--color-overlay: 0, 0, 0;
+  		--color-foreground: 255, 255, 255;
+  		--color-foreground-secondary: 169, 169, 169;
+  		--color-foreground-title: 255, 255, 255;
+  		--color-border-input: 53, 53, 53;
+  		--color-border-input-hover: 10, 10, 10;
+  		--color-background-input: 31, 31, 31;
+  		--color-border: 90, 90, 90;
+  		--color-announcement-bar: 0, 0, 0;
+  		--color-announcement-bar-background-1: 0, 0, 0;
+  		--color-link: 255, 255, 255;
+  		--alpha-link: 0.5;
+  		--color-button: 53, 53, 53;
+  		--color-button-hover: 0, 0, 0;
+  		--color-button-text: 255, 255, 255;
+  		--color-button-text-hover: 255, 255, 255;
+  		--color-button-secondary: 53, 53, 53;
+  		--color-button-secondary-hover: 0, 0, 0;
+  		--color-button-secondary-text: 255, 255, 255;
+  		--color-button-secondary-text-hover: 255, 255, 255;
+  		--color-button-tertiary: 255, 255, 255;
+  		--color-button-tertiary-hover: 255, 255, 255;
+  		--color-button-tertiary-text: 255, 255, 255;
+  		--color-button-tertiary-text-hover: 0, 0, 0;
+  		--alpha-button-background: 1;
+  		--alpha-button-border: 1;
+  		--color-social: 255, 255, 255;
+  		--color-placeholder-input: 255, 255, 255;
+  		--color-card-price-new: 255, 255, 255;
+  		--color-card-price-old: 169, 169, 169;
+  		--color-error-background: 0, 0, 0;
+  		--color-title-text: 255, 255, 255;
+
+			.product-popup-modal__content, 
+			.drawer__inner, 
+			.drawer .cart-item .quantity,
+			#search-modal .search__content,
+			#search-modal .search__input,
+			#account-modal .account__content,
+			.burger-menu__wrapper,
+			.burger-menu__header,
+			.burger-menu__submenu-inner,
+			.banner-popup-modal__content,
+			.quick-add-modal__content,
+			.quick-add-modal .product__outer,
+			.product__badge .badge
+			{
+				background: #2a2a2a;
+			}
+
+			.product-form__controls-group label.variant-swatch:hover,
+			.product-form__controls-group input:checked:not(.disabled)+label.variant-swatch{
+				border-color: #626262;
+			}
+  	}
+  }
+  {% endfor %}
+  [data-scheme=dark] {
+  	--color-background: 31, 31, 31;
+  	--color-background-secondary: 40, 40, 40;
+  	--gradient-background: rgb(31, 31, 31);
+  	--color-overlay: 0, 0, 0;
+  	--color-foreground: 255, 255, 255;
+  	--color-foreground-secondary: 169, 169, 169;
+  	--color-foreground-title: 255, 255, 255;
+  	--color-border-input: 53, 53, 53;
+		--color-border-input-hover: 80, 80, 80;
+		--color-background-input: 31, 31, 31;
+  	--color-border: 90, 90, 90;
+  	--color-announcement-bar: 0, 0, 0;
+  	--color-announcement-bar-background-1: 0, 0, 0;
+  	--color-link: 255, 255, 255;
+  	--alpha-link: 0.5;
+  	--color-button: 53, 53, 53;
+  	--color-button-hover: 0, 0, 0;
+  	--color-button-text: 255, 255, 255;
+  	--color-button-text-hover: 255, 255, 255;
+  	--color-button-secondary: 53, 53, 53;
+  	--color-button-secondary-hover: 0, 0, 0;
+  	--color-button-secondary-text: 255, 255, 255;
+  	--color-button-secondary-text-hover: 255, 255, 255;
+  	--color-button-tertiary: 255, 255, 255;
+  	--color-button-tertiary-hover: 255, 255, 255;
+  	--color-button-tertiary-text: 255, 255, 255;
+  	--color-button-tertiary-text-hover: 0, 0, 0;
+  	--alpha-button-background: 1;
+  	--alpha-button-border: 1;
+  	--color-social: 255, 255, 255;
+  	--color-placeholder-input: 255, 255, 255;
+  	--color-card-price-new: 255, 255, 255;
+  	--color-card-price-old: 169, 169, 169;
+  	--color-error-background: 0, 0, 0;
+  	--color-title-text: 255, 255, 255;
+
+  	.color-background-1 {
+  		--color-background: 31, 31, 31;
+   	}
+  	.color-background-2 {
+  		--color-background: 40, 40, 40;
+  		--gradient-background: rgb(40, 40, 40);
+  	}
+
+		.product-popup-modal__content, 
+		.drawer__inner, 
+		.drawer .cart-item .quantity,
+		#search-modal .search__content,
+		#search-modal .search__input,
+		#account-modal .account__content,
+		.burger-menu__wrapper,
+		.burger-menu__header,
+		.burger-menu__submenu-inner,
+		.banner-popup-modal__content,
+		.quick-add-modal__content,
+		.quick-add-modal .product__outer,
+		.product__badge .badge
+		{
+			background: #2a2a2a;
+		}
+
+		.product-form__controls-group label.variant-swatch:hover,
+		.product-form__controls-group input:checked:not(.disabled)+label.variant-swatch{
+			border-color: #626262;
+		}
+  }
+  @media (prefers-color-scheme: dark) {
+  	[data-scheme=auto] {
+  		--color-background: 31, 31, 31;
+  		--color-background-secondary: 40, 40, 40;
+  		--gradient-background: rgb(31, 31, 31);
+  		--color-overlay: 0, 0, 0;
+  		--color-foreground: 255, 255, 255;
+  		--color-foreground-secondary: 169, 169, 169;
+  		--color-foreground-title: 255, 255, 255;
+  		--color-border-input: 53, 53, 53;
+  		--color-border-input-hover: 10, 10, 10;
+  		--color-background-input: 31, 31, 31;
+  		--color-border: 90, 90, 90;
+  		--color-announcement-bar: 0, 0, 0;
+  		--color-announcement-bar-background-1: 0, 0, 0;
+  		--color-link: 255, 255, 255;
+  		--alpha-link: 0.5;
+  		--color-button: 53, 53, 53;
+  		--color-button-hover: 0, 0, 0;
+  		--color-button-text: 255, 255, 255;
+  		--color-button-text-hover: 255, 255, 255;
+  		--color-button-secondary: 53, 53, 53;
+  		--color-button-secondary-hover: 0, 0, 0;
+  		--color-button-secondary-text: 255, 255, 255;
+  		--color-button-secondary-text-hover: 255, 255, 255;
+  		--color-button-tertiary: 255, 255, 255;
+  		--color-button-tertiary-hover: 255, 255, 255;
+  		--color-button-tertiary-text: 255, 255, 255;
+  		--color-button-tertiary-text-hover: 0, 0, 0;
+  		--alpha-button-background: 1;
+  		--alpha-button-border: 1;
+  		--color-social: 255, 255, 255;
+  		--color-placeholder-input: 255, 255, 255;
+  		--color-card-price-new: 255, 255, 255;
+  		--color-card-price-old: 169, 169, 169;
+  		--color-error-background: 0, 0, 0;
+  		--color-title-text: 255, 255, 255;
+
+  		.color-background-1 {
+  			--color-background: 31, 31, 31;
+  		}
+  		.color-background-2 {
+  			--color-background: 40, 40, 40;
+  			--gradient-background: rgb(40, 40, 40);
+  		}
+
+			.product-popup-modal__content, 
+			.drawer__inner, 
+			.drawer .cart-item .quantity,
+			#search-modal .search__content,
+			#search-modal .search__input,
+			#account-modal .account__content,
+			.burger-menu__wrapper,
+			.burger-menu__header,
+			.burger-menu__submenu-inner,
+			.banner-popup-modal__content,
+			.quick-add-modal__content,
+			.quick-add-modal .product__outer,
+			.product__badge .badge
+			{
+				background: #2a2a2a;
+			}
+
+			.product-form__controls-group label.variant-swatch:hover,
+			.product-form__controls-group input:checked:not(.disabled)+label.variant-swatch{
+				border-color: #626262;
+			}
+  	}
+  }
+{% endstyle %}

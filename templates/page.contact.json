@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ph_image_text_MR6dt6": {
+      "type": "ph-image-text",
+      "blocks": {
+        "heading_yaAR6H": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contact"
+          }
+        },
+        "richtext_qxUJ3M": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Customer services:</p><h3><a href=\"mailto:hello@phoriajewellery.com\"><strong>hello@phoriajewellery.com</strong></a></h3>"
+          }
+        },
+        "richtext_KM9Y6b": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>General Enquiries:</p><h3><a href=\"mailto:info@phoriajewellery.com\"><strong>info@phoriajewellery.com</strong></a></h3>"
+          }
+        },
+        "richtext_3QYhb8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>INFLUENCER/PRESS/PR:</p><h3><a href=\"mailto:Studio@phoriajewellery.com\"><strong>Studio@phoriajewellery.com</strong></a></h3>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_yaAR6H",
+        "richtext_qxUJ3M",
+        "richtext_KM9Y6b",
+        "richtext_3QYhb8"
+      ],
+      "custom_css": [
+        "h2 {font-size: 22px;}",
+        "a {font-size: 16px;}",
+        "@media (max-width: 768px) {a {font-size: 16px; }}"
+      ],
+      "settings": {
+        "media_position": "left",
+        "text_alignment": "right",
+        "media_type": "image",
+        "media_padding_left": false,
+        "media_padding_right": false,
+        "image": "shopify://shop_images/phoria-jewellery-contact.webp",
+        "content_padding_top": 0,
+        "content_padding_right": 36,
+        "content_padding_bottom": 36,
+        "content_padding_left": 36,
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "enable_animations": true
+      }
+    },
+    "page_phoria_contact_8nfazn": {
+      "type": "page-phoria-contact",
+      "disabled": true,
+      "name": "Phoria Contact Page",
+      "settings": {
+        "heading": "PHORIA FINE",
+        "logo_alt": "Phoria Fine",
+        "logo_width": 260,
+        "logo_width_mobile": 220,
+        "copy": "PHORIA FINE IS OUR NEW BESPOKE ...",
+        "max_width": 1000,
+        "top_spacing": 48,
+        "bottom_spacing": 64,
+        "submit_label": "ENQUIRE NOW",
+        "require_lastname": false,
+        "after_form_image_alt": "Phoria after-form image",
+        "after_form_image_link": "",
+        "after_img_width": 1000,
+        "after_img_spacing_top": 32,
+        "after_img_spacing_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "ph_image_text_MR6dt6",
+    "page_phoria_contact_8nfazn"
+  ]
+}

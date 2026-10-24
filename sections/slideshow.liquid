@@ -1,0 +1,782 @@
+{{ 'section-slideshow.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  {% render 'section-margin' %}
+  .section-{{ section.id }} .slideshow__image, .slideshow__overlay {
+  	transition-duration: {{ section.settings.slideshow_speed | plus: section.settings.slideshow_delay }}s !important;
+  }
+
+  /* Animation preparation */
+  .slideshow__tab {
+  	opacity: 0;
+  }
+
+  .slideshow__item-heading,
+  .slideshow__description,
+  .slideshow__button {
+  	opacity: 0;
+  }
+
+  @media screen and (max-width: 767px) {
+  #shopify-section-template--26403829514506__slideshow .slideshow--layout_2 .slideshow__info a {
+	font-size: 16px !important;
+}
+}
+
+  /* Sale text responsive visibility */
+  .desktop-sale-text { display: block; color: #FFFFFF; }
+  .mobile-sale-text { display: none; }
+  @media screen and (max-width: 768px) {
+    .desktop-sale-text { display: none; }
+    .mobile-sale-text { display: block; color: #FFFFFF; }
+  }
+</style>
+
+{% assign layout = section.settings.layout %}
+{% assign index_count = 0 %}
+
+{% liquid
+  assign slideshow_speed = section.settings.slideshow_speed
+  assign autoplay = section.settings.is_autoplay
+  assign stop_autoplay = section.settings.is_hover_stop_autoplay
+  assign slideshow_delay = section.settings.slideshow_delay
+%}
+
+<div
+  class="
+    slideshow  slideshow--{{ section.settings.aspect_ratio }} slideshow--{{ layout }} background color-{{ section.settings.text_color_scheme }} section-{{ section.id }}
+    {%- if section.settings.header_overlay %} section--has-overlay {% endif -%}
+  "
+  data-autoplay="{{ autoplay }}"
+  data-stop-autoplay="{{ stop_autoplay }}"
+  data-speed="{{ slideshow_speed }}"
+  data-delay="{{ slideshow_delay }}"
+  data-effect="{{ section.settings.slide_effects }}"
+>
+  <div class="slideshow__tabs-wrapper swiper container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% if block.settings.tab_subheading != blank or block.settings.tab_heading != blank %}
+          <div
+            class="slideshow__tab swiper-slide"
+            data-anchor="{{ forloop.index }}"
+          >
+            <p class="subtitle">{{ block.settings.tab_subheading }}</p>
+            <p class="{{ section.settings.tabs_size }}">
+              {{ block.settings.tab_heading }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="slideshow__contents-wrapper swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% assign index_count = index_count | minus: 1 %}
+        {% assign placeholder_num = index_count | modulo: 3 %}
+        {% assign placeholder_num = 3 | minus: placeholder_num %}
+        {% assign image_placeholder = 'hero-apparel-' | append: placeholder_num %}
+        {% if forloop.first %}
+          {% assign img_loading = 'eager' %}
+        {% else %}
+          {% assign img_loading = 'lazy' %}
+        {% endif %}
+
+        <div
+          class="slideshow__content swiper-slide"
+          data-tab="{{ forloop.index }}"
+        >
+          {% liquid
+            if block.settings.image != blank and block.settings.mobile_image == blank
+              assign image = block.settings.image
+            elsif block.settings.image == blank and block.settings.mobile_image != blank
+              assign image = block.settings.mobile_image
+            elsif block.settings.image != blank and block.settings.mobile_image != blank
+              assign image = 1
+            else
+              assign image = 0
+            endif
+
+            if block.settings.video != blank and block.settings.mobile_video == blank
+              assign video = block.settings.video
+            elsif block.settings.video == blank and block.settings.mobile_video != blank
+              assign video = block.settings.mobile_video
+            elsif block.settings.video != blank and block.settings.mobile_video != blank
+              assign video = 1
+            else
+              assign video = 0
+            endif
+          %}
+
+          {% if block.settings.show_video == true %}
+            {% if video != 0 or block.settings.video_url != blank %}
+              {% liquid
+                assign muted = true
+                assign autoPlay = true
+                assign playsinline = false
+                assign loop_video = true
+              %}
+              <div class="slideshow__video-wrapper">
+                <div
+                  class="slideshow__video autoplay"
+                  data-video-id="{{ block.settings.video.id }}"
+                >
+                  {% if video != 0 %}
+                    {%- if video and video != 1 -%}
+                      {{
+                        video
+                        | video_tag:
+                          image_size: '1920x',
+                          autoplay: autoPlay,
+                          loop: loop_video,
+                          muted: muted,
+                          playsinline: playsinline
+                      }}
+                    {% elsif video == 1 %}
+                      {{
+                        block.settings.video
+                        | video_tag:
+                          image_size: '1920x',
+                          autoplay: autoPlay,
+                          loop: loop_video,
+                          muted: muted,
+                          playsinline: playsinline,
+                          class: 'desktop_video'
+                      }}
+                      {{
+                        block.settings.mobile_video
+                        | video_tag:
+                          image_size: '1920x',
+                          autoplay: autoPlay,
+                          loop: loop_video,
+                          muted: muted,
+                          playsinline: playsinline,
+                          class: 'mobile_video'
+                      }}
+                    {%- endif -%}
+                  {% else %}
+                    {%- if block.settings.video_url.type == 'youtube' -%}
+                      <iframe
+                        src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?enablejsapi=1&autoplay=1&mute=1&controls=0&playlist={{ block.settings.video_url.id }}&loop=1&rel=0"
+                        class="js-youtube video-muted"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                        title="{{ block.settings.description_video | escape }}"
+                        data-id="{{ block.settings.video_url.id }}"
+                      ></iframe>
+                    {%- else -%}
+                      <iframe
+                        src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay=true&mute=true&controls=false&loop=true"
+                        class="js-vimeo video-muted"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                        title="{{ block.settings.description_video | escape }}"
+                        data-id="{{ block.settings.video_url.id }}"
+                      ></iframe>
+                    {%- endif -%}
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <div class="slideshow__image-wrapper">
+            {% if image != 0 and block.settings.show_video == false %}
+              {%- if image and image != 1 -%}
+                {{
+                  image
+                  | image_url: width: image.width
+                  | image_tag:
+                    class: 'slideshow__image',
+                    loading: img_loading,
+                    sizes: '100vw',
+                    widths: '1100, 1500, 1780, 2000, 3000, 3840, 4200, 5000'
+                }}
+              {% elsif image == 1 %}
+                {{
+                  block.settings.image
+                  | image_url: width: block.settings.image.width
+                  | image_tag:
+                    class: 'slideshow__image desktop_image',
+                    loading: img_loading,
+                    sizes: '100vw',
+                    widths: '1100, 1500, 1780, 2000, 3000, 3840, 4200, 5000'
+                }}
+                {{
+                  block.settings.mobile_image
+                  | image_url: width: block.settings.mobile_image.width
+                  | image_tag:
+                    class: 'slideshow__image mobile_image',
+                    loading: img_loading,
+                    sizes: '100vw',
+                    widths: '1100, 1500, 1780, 2000, 3000, 3840, 4200, 5000'
+                }}
+              {%- endif -%}
+            {% elsif block.settings.show_video == false %}
+              {{ image_placeholder | placeholder_svg_tag: 'placeholder-svg slideshow__image' }}
+            {% endif %}
+          </div>
+          {% if block.settings.tab_subheading != blank or block.settings.tab_heading != blank %}
+            <div class="slideshow__mob-tab-wrapper">
+              <div
+                class="slideshow__tab swiper-slide slideshow__tab--mob"
+                data-anchor="{{ forloop.index }}"
+              >
+                <p class="subtitle">{{ block.settings.tab_subheading }}</p>
+                <p class="{{ section.settings.tabs_size }}">
+                  {{ block.settings.tab_heading }}
+                </p>
+              </div>
+            </div>
+          {% endif %}
+          <div class="container slideshow__info--wrapper">
+            <div class="slideshow__info">
+              {% if block.settings.heading != blank %}
+                <div class="slideshow__item-heading {{ section.settings.heading_size }}">
+                  {{ block.settings.heading }}
+                </div>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <div class="slideshow__description secondary_text">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.sale_text != blank %}
+                <div class="slideshow__sale-text desktop-sale-text">
+                  {{ block.settings.sale_text | newline_to_br }}
+                </div>
+              {% endif %}
+
+				  {% if block.settings.mbl_sale_text != blank %}
+					<div class="slideshow__sale-text mobile-sale-text">
+                  {{ block.settings.mbl_sale_text | newline_to_br }}
+                </div>
+				  {% endif %}	
+
+
+              {% if block.settings.button_label != blank %}
+                <a
+                  {% if block.settings.button_link.url != blank %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  {% if block.settings.button_link.url == blank %}
+                    aria-disabled="true"
+                  {% endif %}
+                  class="button button--{{ block.settings.button_style }} focus-inset slideshow__button"
+                >
+                  <span>{{ block.settings.button_label }}</span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+
+          <div
+            class="slideshow__overlay"
+            style="opacity: {{ block.settings.overlay_opacity }}"
+          >
+            {% if block.settings.enable_fullscreen_link and block.settings.button_link.url != blank %}
+              <a href="{{ block.settings.button_link.url }}" class="slideshow__overlay-link"></a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination slideshow__pagination"></div>
+  </div>
+</div>
+
+{%- if section.settings.header_overlay == true %}
+  {% render 'section-overlay' %}
+{% endif -%}
+
+{% if section.settings.enable_animations %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  	if (typeof Motion !== 'undefined') {
+  		const { animate, inView, transform } = Motion;
+
+  		// Animate slideshow tabs
+  		const tabs = document.querySelectorAll('.slideshow__tab');
+  		tabs.forEach((tab, index) => {
+  			inView(tab, (elem) => {
+  				animate(elem,
+  					{ opacity: [0, 1], y: [20, 0] },
+  					{ duration: 0.6, delay: index * 0.15, easing: "ease-out" }
+  				);
+  			}, { once: true });
+  		});
+
+  		// Animate slideshow content elements on slide change
+  		const animateSlideContent = (slide) => {
+  			const heading = slide.querySelector('.slideshow__item-heading');
+  			const description = slide.querySelector('.slideshow__description');
+  			const button = slide.querySelector('.slideshow__button');
+
+  			if (heading) {
+  				animate(heading,
+  					{ opacity: [0, 1], y: [20, 0] },
+  					{ duration: 0.6, delay: 0.2, easing: "ease-out" }
+  				);
+  			}
+
+  			if (description) {
+  				animate(description,
+  					{ opacity: [0, 1], y: [20, 0] },
+  					{ duration: 0.6, delay: 0.4, easing: "ease-out" }
+  				);
+  			}
+
+  			if (button) {
+  				animate(button,
+  					{ opacity: [0, 1], y: [20, 0] },
+  					{ duration: 0.6, delay: 0.6, easing: "ease-out" }
+  				);
+  			}
+  		};
+
+  		// Animate initial slide
+  		const initialSlide = document.querySelector('.slideshow__content');
+  		if (initialSlide) {
+  			animateSlideContent(initialSlide);
+  		}
+
+  		// Listen for slide changes
+  		const slideshow = document.querySelector('.slideshow__contents-wrapper.swiper');
+  		if (slideshow && slideshow.swiper) {
+  			slideshow.swiper.on('slideChange', function() {
+  				const activeSlide = slideshow.querySelector('.swiper-slide-active');
+  				if (activeSlide) {
+  					animateSlideContent(activeSlide);
+  				}
+  			});
+  		}
+  	}
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+	"name": "t:sections.slideshow.name",
+	"tag": "section",
+	"class": "slideshow-section spaced-section sticky-section",
+	"max_blocks": 10,
+	"enabled_on": {
+		"templates": ["*"]
+	},
+	"settings": [
+		{
+			"type": "checkbox",
+			"id": "header_overlay",
+			"label": "t:sections.all.header_overlay.label",
+			"info": "t:sections.all.header_overlay.info",
+			"default": true
+		},
+		{
+			"type": "color_scheme",
+			"id": "text_color_scheme",
+			"default": "background-2",
+			"label": "t:sections.all.text_color_scheme.label"
+		},
+		{
+			"type": "select",
+			"id": "layout",
+			"label": "t:sections.slideshow.settings.layout.label",
+			"default": "layout_1",
+			"options": [
+				{
+					"value": "layout_1",
+					"label": "t:sections.slideshow.settings.layout.option__1"
+				},
+				{
+					"value": "layout_3",
+					"label": "t:sections.slideshow.settings.layout.option__3"
+				},
+				{
+					"value": "layout_2",
+					"label": "t:sections.slideshow.settings.layout.option__2"
+				},
+				{
+					"value": "layout_4",
+					"label": "t:sections.slideshow.settings.layout.option__4"
+				},
+				{
+					"value": "layout_5",
+					"label": "t:sections.slideshow.settings.layout.option__5"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "aspect_ratio",
+			"label": "t:sections.image-with-text.settings.aspect_ratio.label",
+			"default": "full",
+			"options": [
+				{
+					"value": "full",
+					"label": "t:sections.image-with-text.settings.aspect_ratio.options__1.label"
+				},
+				{
+					"value": "large",
+					"label": "t:sections.image-with-text.settings.aspect_ratio.options__2.label"
+				},
+				{
+					"value": "medium",
+					"label": "t:sections.image-with-text.settings.aspect_ratio.options__3.label"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "heading_size",
+			"options": [
+				{
+					"value": "h1",
+					"label": "t:sections.all.heading_size.options__1.label"
+				},
+				{
+					"value": "h2",
+					"label": "t:sections.all.heading_size.options__2.label"
+				},
+				{
+					"value": "h3",
+					"label": "t:sections.all.heading_size.options__3.label"
+				}
+			],
+			"default": "h1",
+			"label": "t:sections.all.heading_size.label"
+		},
+		{
+			"type": "select",
+			"id": "tabs_size",
+			"default": "h3",
+			"label": "t:sections.slideshow.blocks.slideshow-item.tabs_size.label",
+			"options": [
+				{
+					"value": "h1",
+					"label": "t:sections.all.heading_size.options__1.label"
+				},
+				{
+					"value": "h2",
+					"label": "t:sections.all.heading_size.options__2.label"
+				},
+				{
+					"value": "h3",
+					"label": "t:sections.all.heading_size.options__3.label"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"content": "t:sections.all.slider_options.header.content"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_autoplay",
+			"default": true,
+			"label": "t:sections.all.slider_options.slider_is_autoplay.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_hover_stop_autoplay",
+			"default": false,
+			"label": "t:sections.all.slider_options.slider_hover_autoplay_stop.label"
+		},
+		{
+			"type": "range",
+			"id": "slideshow_speed",
+			"min": 1,
+			"max": 6,
+			"step": 0.1,
+			"default": 1.1,
+			"unit": "s",
+			"label": "t:sections.all.slider_options.speed.label"
+		},
+		{
+			"type": "range",
+			"id": "slideshow_delay",
+			"min": 0,
+			"max": 8,
+			"step": 0.1,
+			"default": 3,
+			"unit": "s",
+			"label": "t:sections.all.slider_options.delay.label"
+		},
+		{
+			"type": "select",
+			"id": "slide_effects",
+			"options": [
+				{
+					"value": "slide",
+					"label": "t:sections.all.slider_options.effects.options.options__1.label"
+				},
+				{
+					"value": "fade",
+					"label": "t:sections.all.slider_options.effects.options.options__2.label"
+				}
+			],
+			"default": "slide",
+			"label": "t:sections.all.slider_options.effects.label"
+		},
+		{
+			"type": "header",
+			"content": "t:sections.all.section-margin.header.content"
+		},
+		{
+			"type": "select",
+			"id": "margin_top",
+			"options": [
+				{
+					"value": "no-indent",
+					"label": "t:sections.all.section-margin.options__1.label"
+				},
+				{
+					"value": "xs",
+					"label": "t:sections.all.section-margin.options__2.label"
+				},
+				{
+					"value": "s",
+					"label": "t:sections.all.section-margin.options__3.label"
+				},
+				{
+					"value": "m",
+					"label": "t:sections.all.section-margin.options__4.label"
+				},
+				{
+					"value": "l",
+					"label": "t:sections.all.section-margin.options__5.label"
+				},
+				{
+					"value": "xl",
+					"label": "t:sections.all.section-margin.options__6.label"
+				}
+			],
+			"default": "no-indent",
+			"label": "t:sections.all.section-margin.margin_top.label"
+		},
+		{
+			"type": "select",
+			"id": "margin_bottom",
+			"options": [
+				{
+					"value": "no-indent",
+					"label": "t:sections.all.section-margin.options__1.label"
+				},
+				{
+					"value": "xs",
+					"label": "t:sections.all.section-margin.options__2.label"
+				},
+				{
+					"value": "s",
+					"label": "t:sections.all.section-margin.options__3.label"
+				},
+				{
+					"value": "m",
+					"label": "t:sections.all.section-margin.options__4.label"
+				},
+				{
+					"value": "l",
+					"label": "t:sections.all.section-margin.options__5.label"
+				},
+				{
+					"value": "xl",
+					"label": "t:sections.all.section-margin.options__6.label"
+				}
+			],
+			"default": "no-indent",
+			"label": "t:sections.all.section-margin.margin_bottom.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "enable_animations",
+			"label": "t:sections.all.animations.enable_animations.label",
+			"default": true,
+			"info": "t:sections.all.animations.enable_animations.info"
+		}
+	],
+	"blocks": [
+		{
+			"type": "slideshow-item",
+			"name": "t:sections.slideshow.blocks.slideshow-item.name",
+			"limit": 10,
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "t:sections.all.image.label"
+				},
+				{
+					"type": "image_picker",
+					"id": "mobile_image",
+					"label": "t:sections.all.image.mobile_image.label"
+				},
+				{
+					"type": "range",
+					"id": "overlay_opacity",
+					"min": 0,
+					"max": 1,
+					"step": 0.1,
+					"default": 0.2,
+					"label": "t:sections.all.overlay_opacity.label"
+				},
+				{
+					"type": "header",
+					"content": "t:sections.slideshow.settings.video.header_video.content"
+				},
+				{
+					"type": "header",
+					"content": "t:sections.slideshow.settings.video.header__1.content"
+				},
+				{
+					"type": "checkbox",
+					"id": "show_video",
+					"label": "t:sections.slideshow.settings.video.show_video.label",
+					"default": false
+				},
+				{
+					"type": "video",
+					"id": "video",
+					"label": "t:sections.slideshow.settings.video.video.label"
+				},
+				{
+					"type": "video",
+					"id": "mobile_video",
+					"label": "t:sections.all.video.mobile_video.label"
+				},
+				{
+					"type": "header",
+					"content": "t:sections.slideshow.settings.video.header__2.content"
+				},
+				{
+					"type": "paragraph",
+					"content": "t:sections.slideshow.settings.video.paragraph.label"
+				},
+				{
+					"type": "video_url",
+					"id": "video_url",
+					"accept": ["youtube", "vimeo"],
+					"default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+					"label": "t:sections.slideshow.settings.video.video_url.label",
+					"info": "t:sections.slideshow.settings.video.video_url.info"
+				},
+				{
+					"type": "text",
+					"id": "description_video",
+					"label": "t:sections.slideshow.settings.video.description_video.label",
+					"info": "t:sections.slideshow.settings.video.description_video.info"
+				},
+				{
+					"type": "header",
+					"content": "t:sections.slideshow.settings.content_info.label"
+				},
+				{
+					"type": "text",
+					"id": "heading",
+					"label": "t:sections.all.heading.label",
+					"default": "Some heading"
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"default": "<p>Description</p>",
+					"label": "t:sections.all.description.label"
+				},
+                          {
+  "type": "textarea",
+  "id": "sale_text",
+  "label": "Sale text",
+  "default": "SUMMER SALE"
+},
+{
+		  "type": "textarea",
+  "id": "mbl_sale_text",
+  "label": "Mbl Sale text",
+  "default": "SUMMER SALE"
+},
+				{
+					"type": "header",
+					"content": "t:sections.slideshow.blocks.slideshow-item.tabs_info.label"
+				},
+				{
+					"type": "text",
+					"id": "tab_subheading",
+					"default": "Subheading",
+					"label": "t:sections.all.subheading.label"
+				},
+				{
+					"type": "text",
+					"id": "tab_heading",
+					"default": "Heading",
+					"label": "t:sections.all.heading.label"
+				},
+				{
+					"type": "header",
+					"content": "t:sections.all.button.header_button.content"
+				},
+				{
+					"type": "text",
+					"id": "button_label",
+					"default": "Button",
+					"label": "t:sections.all.button.button_label.label"
+				},
+				{
+					"type": "url",
+					"id": "button_link",
+					"label": "t:sections.all.button.button_link.label"
+				},
+				{
+					"type": "select",
+					"id": "button_style",
+					"options": [
+						{
+							"value": "primary",
+							"label": "t:sections.all.button.button_style.options__1.label"
+						},
+						{
+							"value": "secondary",
+							"label": "t:sections.all.button.button_style.options__2.label"
+						},
+						{
+							"value": "tertiary",
+							"label": "t:sections.all.button.button_style.options__3.label"
+						},
+						{
+							"value": "simple",
+							"label": "t:sections.all.button.button_style.options__4.label"
+						}
+					],
+					"default": "tertiary",
+					"label": "t:sections.all.button.button_style.label"
+				},
+				{
+					"type": "checkbox",
+					"id": "enable_fullscreen_link",
+					"label": "t:sections.media-banner.blocks.media_slide.settings.full_link.label",
+					"info": "t:sections.media-banner.blocks.media_slide.settings.full_link.info",
+					"default": true
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "t:sections.slideshow.name",
+			"blocks": [
+				{
+					"type": "slideshow-item"
+				},
+				{
+					"type": "slideshow-item"
+				},
+				{
+					"type": "slideshow-item"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

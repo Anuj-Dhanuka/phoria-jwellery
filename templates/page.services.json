@@ -1,0 +1,212 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page-nav",
+      "blocks": {
+        "tab": {
+          "type": "tab",
+          "settings": {
+            "button_label": "Tab name"
+          }
+        },
+        "tab1": {
+          "type": "tab",
+          "settings": {
+            "button_label": "Tab name"
+          }
+        },
+        "tab2": {
+          "type": "tab",
+          "settings": {
+            "button_label": "Tab name"
+          }
+        }
+      },
+      "block_order": [
+        "tab",
+        "tab1",
+        "tab2"
+      ],
+      "settings": {}
+    },
+    "media-banner": {
+      "type": "media-banner",
+      "blocks": {
+        "media_slide": {
+          "type": "media_slide",
+          "settings": {
+            "enable_hover": false,
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_slide"
+      ],
+      "settings": {
+        "header_overlay": false
+      }
+    },
+    "product-carousel": {
+      "type": "product-carousel",
+      "settings": {}
+    },
+    "banner-with-popup": {
+      "type": "banner-with-popup",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image"
+      ],
+      "settings": {
+        "full_screen_image_mode": true,
+        "description": "<p>Some description for this section</p>",
+        "button_function": "popup"
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column": {
+          "type": "column",
+          "settings": {
+            "description": "<p>Some description for this slide</p>",
+            "button_label": ""
+          }
+        },
+        "column1": {
+          "type": "column",
+          "settings": {
+            "description": "<p>Some description for this slide</p>",
+            "button_label": ""
+          }
+        },
+        "column2": {
+          "type": "column",
+          "settings": {
+            "description": "<p>Some description for this slide</p>",
+            "button_label": ""
+          }
+        },
+        "column3": {
+          "type": "column",
+          "settings": {
+            "description": "<p>Some description for this slide</p>",
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "column",
+        "column1",
+        "column2",
+        "column3"
+      ],
+      "settings": {
+        "heading": "",
+        "swiper": true,
+        "layout_type": "overlay",
+        "multicolumn_to_show": 2,
+        "image_ratio": "landscape"
+      }
+    },
+    "collapsible-content": {
+      "type": "collapsible-content",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {}
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {}
+        },
+        "image-2": {
+          "type": "image",
+          "settings": {}
+        },
+        "accordion": {
+          "type": "accordion",
+          "settings": {}
+        },
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {}
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {}
+        },
+        "accordion-3": {
+          "type": "accordion",
+          "settings": {}
+        },
+        "accordion-4": {
+          "type": "accordion",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image",
+        "image-1",
+        "image-2",
+        "accordion",
+        "accordion-1",
+        "accordion-2",
+        "accordion-3",
+        "accordion-4"
+      ],
+      "settings": {
+        "heading": "FAQs",
+        "heading_size": "h2",
+        "button_label": ""
+      }
+    },
+    "media-banner-2": {
+      "type": "media-banner",
+      "blocks": {
+        "media_slide": {
+          "type": "media_slide",
+          "settings": {
+            "button_label": ""
+          }
+        },
+        "media_slide-2": {
+          "type": "media_slide",
+          "settings": {
+            "button_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_slide",
+        "media_slide-2"
+      ],
+      "settings": {
+        "header_overlay": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "media-banner",
+    "product-carousel",
+    "banner-with-popup",
+    "multicolumn",
+    "collapsible-content",
+    "media-banner-2"
+  ]
+}

@@ -1,0 +1,190 @@
+<style>
+  .ph-ring-styling-guide-container {
+    width: 100%;
+    padding: 90px 36px;
+  }
+  
+  .ph-ring-styling-guide-inner {
+    display: flex;
+    max-width: 80vw;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .ph-ring-styling-guide-heading {
+    font-size: 1.25vw;
+    margin: 0 0 27px 0;
+    word-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-styling-guide-descriptions {
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-styling-guide-description {
+    font-size: 10px;
+    line-height: 2.3;
+    color: #1d1d1d;
+    font-weight: 400;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    max-width: 900px;
+  }
+  
+  .ph-ring-styling-guide-description:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 959px) {
+  .ph-ring-styling-guide-container {
+    padding: 90px 18px;
+  }
+    
+   .ph-ring-styling-guide-inner {
+    max-width: none;
+  }
+  
+  .ph-ring-styling-guide-heading {
+    font-size: 18px;
+    margin: 0 0 27px 0;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }    
+  
+  }
+</style>
+<div class="ph-ring-styling-guide-container">
+  <div class="ph-ring-styling-guide-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="ph-ring-styling-guide-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="ph-ring-styling-guide-descriptions">
+      {% if section.settings.description_1 != blank %}
+        <div class="ph-ring-styling-guide-description">{{ section.settings.description_1 }}</div>
+      {% endif %}
+      
+      {% if section.settings.description_2 != blank %}
+        <div class="ph-ring-styling-guide-description">{{ section.settings.description_2 }}</div>
+      {% endif %}
+      
+      {% if section.settings.description_3 != blank %}
+        <div class="ph-ring-styling-guide-description">{{ section.settings.description_3 }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate heading
+      const heading = document.querySelector('.ph-ring-styling-guide-heading');
+      if (heading) {
+        inView(heading, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+      
+      // Animate all descriptions as one group
+      const descriptionsContainer = document.querySelector('.ph-ring-styling-guide-descriptions');
+      if (descriptionsContainer) {
+        inView(descriptionsContainer, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], y: [20, 0] }, 
+            { duration: 0.6, delay: 0.2, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Ring Info",
+  "tag": "section",
+  "class": "ph-ring-styling-guide-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "RING STYLING // CHOOSING THE FINGER TO SIZE"
+    },
+    {
+      "type": "textarea",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "OUR HOOKUP CHAIN RINGS ARE COMPOSED OF EITHER 2 OR 3 INTERCONNECTED BANDS AND OFFER ADAPTABLE STYLING ON ONE, TWO OR THREE FINGERS."
+    },
+    {
+      "type": "textarea",
+      "id": "description_2",
+      "label": "Description 2",
+      "default": "TO FIGURE OUT WHAT SIZE YOU ARE YOU NEED TO FIGURE OUT WHAT FINGER YOU WANT TO WEAR THE RING ON. IF YOU PLAN ON WEARING THE RING ACROSS MULTIPLE FINGERS, PLEASE SPECIFY THE SIZE OF YOUR LARGEST FINGER, TYPICALLY YOUR MIDDLE OR POINTER FINGER."
+    },
+    {
+      "type": "textarea",
+      "id": "description_3",
+      "label": "Description 3",
+      "default": "IT'S IMPORTANT TO NOTE THAT THE RING CAN ONLY BE STACKED ON THE LARGEST FINGER YOU'VE SIZED."
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "default": 900,
+      "unit": "px",
+      "label": "Maximum Width"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Ring Info"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1791 @@
+{%- liquid
+  assign hero_image = section.settings.hero_image
+  assign hero_alt = section.settings.hero_alt | default: collection.title
+  assign hero_slide_count = 0
+  if section.settings.hero_image != blank
+    assign hero_slide_count = hero_slide_count | plus: 1
+  endif
+  if section.settings.hero_image_2 != blank
+    assign hero_slide_count = hero_slide_count | plus: 1
+  endif
+  if section.settings.hero_image_3 != blank
+    assign hero_slide_count = hero_slide_count | plus: 1
+  endif
+  if section.settings.hero_image_4 != blank
+    assign hero_slide_count = hero_slide_count | plus: 1
+  endif
+  if section.settings.hero_image_5 != blank
+    assign hero_slide_count = hero_slide_count | plus: 1
+  endif
+-%}
+
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --ph-rings-copy-spacing: 0px;
+  }
+
+  header.ph-header__container {
+    position: relative !important;
+    top: auto !important;
+    z-index: 1000;
+    background: #fff;
+  }
+
+  .ph-announcement__bar {
+    background: #000;
+  }
+
+  .ph-header {
+    min-height: 46px;
+    padding: 0 18px;
+    background: #fff !important;
+  }
+
+  .ph-menu,
+  .ph-menu__item a {
+    color: #000 !important;
+  }
+
+  .ph-menu.left .ph-menu__icon span {
+    background: #000 !important;
+  }
+
+  .ph-logo {
+    padding: 0;
+  }
+
+  .ph-logo .ph-white__logo {
+    display: none !important;
+  }
+
+  .ph-logo .ph-black__logo {
+    display: block !important;
+  }
+
+  .ph-cart .cart-count-bubble {
+    background: #1d1d1d !important;
+  }
+
+  .ph-cart .cart-count-bubble > span {
+    color: #fff !important;
+  }
+
+  #MainContent {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  @media screen and (min-width: 960px) {
+    .ph-header {
+      min-height: 64px;
+      padding: 0 36px;
+    }
+
+    .ph-logo {
+      padding: 25px 0;
+    }
+  }
+
+  .ph-rings-rebuild-{{ section.id }} {
+    background: #fff;
+    color: #000;
+    font-family: 'PhoriaRegular', var(--font-body-family);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero {
+    display: block;
+    width: 100%;
+    background: #f6f6f6;
+    position: relative;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: {{ section.settings.hero_aspect_ratio }};
+    overflow: hidden;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__swiper,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__swiper .swiper-wrapper,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__swiper {
+    touch-action: pan-y;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__slide {
+    overflow: hidden;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__media img,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.hero_object_position }};
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__progress {
+    bottom: 0;
+    display: none;
+    height: 2px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    width: var(--ph-rings-hero-progress-width, 100%);
+    transform: translateX(var(--ph-rings-hero-progress-x, 0));
+    transition:
+      transform 460ms cubic-bezier(0.23, 1, 0.32, 1),
+      width 460ms cubic-bezier(0.23, 1, 0.32, 1);
+    background: #000;
+    z-index: 2;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero[data-slide-count]:not([data-slide-count="1"]) .ph-rings-hero__progress {
+    display: block;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-hero.is-dragging .ph-rings-hero__progress {
+    transition: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: 46px;
+    padding: 0 18px;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 8px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 1;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__right {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 18px;
+    margin-left: auto;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__left {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__button {
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    padding: 0;
+    text-transform: inherit;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-button {
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-grid,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-square {
+    display: block;
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 6px);
+    grid-template-rows: repeat(2, 6px);
+    gap: 3px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-grid span {
+    border: 1.5px solid #000;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-button.is-active .ph-rings-toolbar__view-grid span {
+    background: #000;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-square {
+    border: 1.5px solid #000;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__view-button.is-active .ph-rings-toolbar__view-square {
+    background: #000;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #A6A6A6;
+    gap: 20px;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 12px 18px 6px;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 8px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status[hidden] {
+    display: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    text-transform: inherit;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear-icon {
+    position: relative;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear-icon::before,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear-icon::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 8px;
+    height: 1.4px;
+    background: #000;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-status__clear-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 34px 18px 28px;
+    text-align: center;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-intro__title {
+    margin: 0;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 12px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 1.75;
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-intro__copy {
+    margin: 18px auto 0;
+    max-width: 520px;
+    font-size: 8px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 2.4;
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-intro__copy p {
+    margin: 0 0 12px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 42px 22px;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 18px 18px 72px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card {
+    min-width: 0;
+    position: relative;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__media img,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__swiper,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__swiper .swiper-wrapper,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__swiper {
+    touch-action: pan-y;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__progress {
+    display: none;
+    bottom: 0;
+    height: 2px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__progress::after {
+    background: #121b21;
+    content: "";
+    display: block;
+    height: 2px;
+    transform: translateX(var(--ph-rings-card-progress-x, 0));
+    transition:
+      transform 460ms cubic-bezier(0.23, 1, 0.32, 1),
+      width 460ms cubic-bezier(0.23, 1, 0.32, 1);
+    width: var(--ph-rings-card-progress-width, 100%);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card.is-dragging .ph-rings-card__progress::after {
+    transition: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card[data-slide-count="1"] .ph-rings-card__progress {
+    display: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__line {
+    width: var(--ph-rings-card-progress-width, 34px);
+    height: 2px;
+    margin: 14px 0 12px;
+    background: #000;
+    transform: translateX(var(--ph-rings-card-progress-x, 0));
+    transition:
+      transform 460ms cubic-bezier(0.23, 1, 0.32, 1),
+      width 460ms cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, width;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card.is-dragging .ph-rings-card__line {
+    transition: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__summary {
+    min-width: 0;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__title,
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__price {
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 9px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 1.8;
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__title {
+    margin: 0;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__finish {
+    margin: 6px 0 0;
+    color: #555;
+    font-size: clamp(5px, 1.25vw, 7px);
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 2;
+    overflow: hidden;
+    text-overflow: clip;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__price {
+    margin-top: 8px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-card__actions {
+    display: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-grid {
+    display: block;
+    max-width: 430px;
+    padding: 18px 18px 72px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card {
+    display: block;
+    margin: 0 0 38px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card[hidden] {
+    display: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__media {
+    aspect-ratio: 1 / 1;
+    margin-bottom: 10px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__line {
+    width: 34px;
+    margin: 0 0 13px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__price {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__finish {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    max-width: 280px;
+    font-size: clamp(6px, 1.55vw, 8px);
+    margin-top: -10px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.75fr);
+    gap: 14px;
+    margin-top: 15px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"][data-results-state="active"] .ph-rings-card__actions {
+    display: none;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__size,
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    font-size: 8px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__size {
+    justify-content: space-between;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    background: #fff;
+    font-family: 'PhoriaRegular', var(--font-body-family);
+    padding: 0 14px;
+    box-shadow: 0 7px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__size::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #000;
+    margin-left: 10px;
+  }
+
+  .ph-rings-rebuild-{{ section.id }}[data-view="single"] .ph-rings-card__basket {
+    background: #151515;
+    color: #fff;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-empty {
+    padding: 36px 18px 72px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: var(--ph-rings-copy-spacing);
+    text-transform: uppercase;
+  }
+
+  .ph-rings-rebuild-{{ section.id }} .ph-rings-empty[hidden] {
+    display: none;
+  }
+
+  .ph-rings-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    display: none;
+    overflow-y: auto;
+    background: #fff;
+    color: #000;
+    font-family: 'PhoriaRegular', var(--font-body-family);
+    letter-spacing: var(--ph-rings-copy-spacing);
+    text-transform: uppercase;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ph-rings-overlay.is-active {
+    display: block;
+  }
+
+  body.ph-rings-overlay-open {
+    overflow: hidden;
+  }
+
+  .ph-rings-overlay__header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 82px;
+    padding: 0 18px;
+    background: #fff;
+  }
+
+  .ph-rings-overlay__close,
+  .ph-rings-overlay__clear,
+  .ph-rings-overlay__choice {
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    text-align: left;
+    text-transform: inherit;
+  }
+
+  .ph-rings-overlay__close {
+    justify-self: start;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .ph-rings-overlay__logo {
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 23px;
+    line-height: 1;
+    letter-spacing: 10px;
+    transform: translateX(5px);
+  }
+
+  .ph-rings-overlay__cart {
+    justify-self: end;
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    background: #1d1d1d;
+    color: #fff;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .ph-rings-overlay__body {
+    padding: 42px 22px 38px;
+  }
+
+  .ph-rings-overlay__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+
+  .ph-rings-overlay__title {
+    margin: 0;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 22px;
+    letter-spacing: 14px;
+    line-height: 1;
+  }
+
+  .ph-rings-overlay__clear {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 2px;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .ph-rings-overlay__clear-icon {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+  }
+
+  .ph-rings-overlay__clear-icon::before,
+  .ph-rings-overlay__clear-icon::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 13px;
+    height: 2px;
+    background: #000;
+  }
+
+  .ph-rings-overlay__clear-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .ph-rings-overlay__clear-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .ph-rings-overlay__group {
+    margin: 0 0 34px;
+  }
+
+  .ph-rings-overlay__group-title {
+    margin: 0 0 22px;
+    color: #a8a8a8;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 12px;
+    letter-spacing: 9px;
+    line-height: 1;
+  }
+
+  .ph-rings-overlay__options {
+    display: grid;
+    gap: 22px;
+  }
+
+  .ph-rings-overlay__options--size {
+    grid-template-columns: repeat(4, minmax(0, auto));
+    justify-content: start;
+    gap: 18px 30px;
+  }
+
+  .ph-rings-overlay__options--stone {
+    gap: 21px;
+  }
+
+  .ph-rings-overlay__choice {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 11px;
+    line-height: 1.15;
+  }
+
+  .ph-rings-overlay__choice.is-active {
+    font-family: 'PhoriaBold', var(--font-heading-family);
+  }
+
+  .ph-rings-overlay__stone {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .ph-rings-overlay__stone--white-topaz {
+    background:
+      radial-gradient(circle at 35% 30%, #fff 0 16%, transparent 17%),
+      radial-gradient(circle at 68% 68%, #d6d6d6 0 18%, transparent 19%),
+      conic-gradient(from 30deg, #f6f6f6, #a7a7a7, #fff, #c7c7c7, #f6f6f6);
+  }
+
+  .ph-rings-overlay__stone--chrome-diopside {
+    background:
+      radial-gradient(circle at 34% 28%, #dfff87 0 14%, transparent 15%),
+      conic-gradient(from 20deg, #4b980e, #d4f060, #178000, #83bd25, #4b980e);
+  }
+
+  .ph-rings-overlay__stone--pink-tourmaline {
+    background:
+      radial-gradient(circle at 34% 28%, #ffd7ef 0 14%, transparent 15%),
+      conic-gradient(from 20deg, #e94194, #ff99cf, #ca237a, #ff64b0, #e94194);
+  }
+
+  .ph-rings-overlay__stone--green-citrine {
+    background:
+      radial-gradient(circle at 34% 28%, #fbff9d 0 14%, transparent 15%),
+      conic-gradient(from 20deg, #bbc700, #f1ef4c, #90a100, #d8e514, #bbc700);
+  }
+
+  .ph-rings-overlay__apply {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 0;
+    background: #1d1d1d;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'PhoriaBold', var(--font-heading-family);
+    font-size: 10px;
+    letter-spacing: 8px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ph-rings-overlay__header {
+      min-height: 96px;
+      padding: 0 36px;
+    }
+
+    .ph-rings-overlay__body {
+      max-width: 700px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .ph-rings-overlay__clear {
+      gap: 4px;
+      letter-spacing: 0;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-hero__media {
+      aspect-ratio: {{ section.settings.hero_aspect_ratio_desktop }};
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar {
+      min-height: 56px;
+      padding: 0 36px;
+      gap: 34px;
+      font-size: 10px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__right {
+      gap: 24px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-toolbar__left {
+      gap: 36px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-intro {
+      padding-top: 52px;
+      padding-bottom: 44px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-intro__title {
+      font-size: 16px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-intro__copy {
+      font-size: 10px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-grid {
+      grid-template-columns: repeat({{ section.settings.products_per_row_desktop }}, minmax(0, 1fr));
+      gap: 58px 36px;
+      padding: 28px 36px 92px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-card__title,
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-card__price {
+      font-size: 11px;
+    }
+
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-card__finish {
+      font-size: 9px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .ph-rings-rebuild-{{ section.id }} .ph-rings-grid {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+</style>
+
+<section class="ph-rings-rebuild-{{ section.id }}" data-section-id="{{ section.id }}" data-view="grid">
+  <div class="ph-rings-hero" data-slide-count="{{ hero_slide_count }}">
+    <div class="ph-rings-hero__media">
+      {%- if hero_slide_count > 0 -%}
+        <div class="ph-rings-hero__swiper" data-ph-rings-hero-swiper>
+          <div class="swiper-wrapper">
+            {%- if section.settings.hero_image != blank -%}
+              <div class="ph-rings-hero__slide swiper-slide">
+                {{
+                  section.settings.hero_image
+                  | image_url: width: section.settings.hero_image.width
+                  | image_tag:
+                    loading: 'eager',
+                    fetchpriority: 'high',
+                    widths: '375, 550, 750, 1100, 1500, 2000, 2600',
+                    sizes: '100vw',
+                    alt: hero_alt
+                }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.hero_image_2 != blank -%}
+              <div class="ph-rings-hero__slide swiper-slide">
+                {{
+                  section.settings.hero_image_2
+                  | image_url: width: section.settings.hero_image_2.width
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375, 550, 750, 1100, 1500, 2000, 2600',
+                    sizes: '100vw',
+                    alt: hero_alt
+                }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.hero_image_3 != blank -%}
+              <div class="ph-rings-hero__slide swiper-slide">
+                {{
+                  section.settings.hero_image_3
+                  | image_url: width: section.settings.hero_image_3.width
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375, 550, 750, 1100, 1500, 2000, 2600',
+                    sizes: '100vw',
+                    alt: hero_alt
+                }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.hero_image_4 != blank -%}
+              <div class="ph-rings-hero__slide swiper-slide">
+                {{
+                  section.settings.hero_image_4
+                  | image_url: width: section.settings.hero_image_4.width
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375, 550, 750, 1100, 1500, 2000, 2600',
+                    sizes: '100vw',
+                    alt: hero_alt
+                }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.hero_image_5 != blank -%}
+              <div class="ph-rings-hero__slide swiper-slide">
+                {{
+                  section.settings.hero_image_5
+                  | image_url: width: section.settings.hero_image_5.width
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375, 550, 750, 1100, 1500, 2000, 2600',
+                    sizes: '100vw',
+                    alt: hero_alt
+                }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- else -%}
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'ph-rings-hero__placeholder' }}
+      {%- endif -%}
+    </div>
+    {%- if hero_slide_count > 1 -%}
+      <span class="ph-rings-hero__progress" aria-hidden="true"></span>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_toolbar -%}
+    <div class="ph-rings-toolbar" aria-label="{{ collection.title | escape }} controls">
+      <span class="ph-rings-toolbar__left">
+        <button class="ph-rings-toolbar__button" type="button" data-ph-rings-open="sort">{{ section.settings.sort_label }}</button>
+        <button class="ph-rings-toolbar__button" type="button" data-ph-rings-open="filter">{{ section.settings.filter_label }}</button>
+      </span>
+      <span class="ph-rings-toolbar__right">
+        <span class="ph-rings-toolbar__view">
+          <span>{{ section.settings.view_label }}</span>
+          <span class="ph-rings-toolbar__view-icons">
+            <button class="ph-rings-toolbar__view-button is-active" type="button" data-view-mode="grid" tabindex="-1">
+              <span class="ph-rings-toolbar__view-grid" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
+            <button class="ph-rings-toolbar__view-button" type="button" data-view-mode="single" tabindex="-1">
+              <span class="ph-rings-toolbar__view-square" aria-hidden="true"></span>
+            </button>
+          </span>
+        </span>
+      </span>
+    </div>
+  {%- endif -%}
+
+  <div class="ph-rings-intro">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="ph-rings-intro__title">{{ section.settings.heading }}</h1>
+    {%- endif -%}
+    {%- if section.settings.copy != blank -%}
+      <div class="ph-rings-intro__copy">{{ section.settings.copy }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="ph-rings-status" data-ph-rings-status hidden>
+    <span data-ph-rings-status-label></span>
+    <button class="ph-rings-status__clear" type="button" data-ph-rings-clear-state>
+      CLEAR
+      <span class="ph-rings-status__clear-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="ph-rings-grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign card_product = block.settings.product
+          assign card_title = block.settings.title | default: card_product.title
+          assign card_finish = block.settings.finish
+          if card_finish == blank and card_product.metafields.custom.finish != blank
+            assign card_finish = card_product.metafields.custom.finish.value
+          endif
+          assign card_image = block.settings.image
+          if card_image == blank and card_product.featured_media != blank
+            assign card_image = card_product.featured_media.preview_image
+          endif
+          assign card_url = block.settings.url
+          if card_url == blank and card_product != blank
+            assign card_url = card_product.url
+          endif
+          assign card_price = card_product.price
+          assign card_images = card_product.media | where: 'media_type', 'image'
+          assign card_slide_count = card_images.size
+          if card_image != blank and card_slide_count == 0
+            assign card_slide_count = 1
+          endif
+          assign max_card_images = 5
+          assign filter_style = 'hookup-chain-ring'
+          if card_title contains 'II'
+            assign filter_style = 'hookup-chain-ring-ii'
+          endif
+          assign finish_downcase = card_finish | downcase
+          assign filter_finish = ''
+          if finish_downcase contains '925 sterling silver'
+            assign filter_finish = filter_finish | append: ' 925-sterling-silver'
+          endif
+          if finish_downcase contains '18ct gold vermeil'
+            assign filter_finish = filter_finish | append: ' 18ct-gold-vermeil'
+          endif
+          if finish_downcase contains 'two tone silver'
+            assign filter_finish = filter_finish | append: ' two-tone-silver-chain'
+          endif
+          if finish_downcase contains 'two tone gold'
+            assign filter_finish = filter_finish | append: ' two-tone-gold-chain'
+          endif
+          assign filter_stone = ''
+          if finish_downcase contains 'white topaz'
+            assign filter_stone = filter_stone | append: ' white-topaz'
+          endif
+          if finish_downcase contains 'chrome diopside'
+            assign filter_stone = filter_stone | append: ' chrome-diopside'
+          endif
+          if finish_downcase contains 'pink tourmaline'
+            assign filter_stone = filter_stone | append: ' pink-tourmaline'
+          endif
+          if finish_downcase contains 'green citrine'
+            assign filter_stone = filter_stone | append: ' green-citrine'
+          endif
+          assign filter_size = ''
+          for option in card_product.options_with_values
+            for value in option.values
+              assign filter_size = filter_size | append: ' ' | append: value | handleize
+            endfor
+          endfor
+        -%}
+        <a
+          class="ph-rings-card"
+          href="{{ card_url | default: '#' }}"
+          data-ph-rings-card
+          data-slide-count="{{ card_slide_count }}"
+          data-price="{{ card_price | default: 0 }}"
+          data-filter-style="{{ filter_style }}"
+          data-filter-finish="{{ filter_finish | strip }}"
+          data-filter-size="{{ filter_size | strip }}"
+          data-filter-stone="{{ filter_stone | strip }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="ph-rings-card__media">
+            <div class="ph-rings-card__swiper" data-ph-rings-card-swiper>
+              <div class="swiper-wrapper">
+                {%- if card_images.size > 0 -%}
+                  {%- for media in card_images limit: max_card_images -%}
+                    {%- assign media_alt = media.alt | default: card_title -%}
+                    <div class="ph-rings-card__slide swiper-slide">
+                      {{
+                        media.preview_image
+                        | image_url: width: 900
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '260, 360, 540, 720, 900',
+                          sizes: '(min-width: 750px) 25vw, 50vw',
+                          alt: media_alt
+                      }}
+                    </div>
+                  {%- endfor -%}
+                {%- elsif block.settings.image != blank -%}
+                  <div class="ph-rings-card__slide swiper-slide">
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '260, 360, 540, 720, 900',
+                        sizes: '(min-width: 750px) 25vw, 50vw',
+                        alt: card_title
+                    }}
+                  </div>
+                {%- elsif card_image != blank -%}
+                  <div class="ph-rings-card__slide swiper-slide">
+                    {{
+                      card_image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '260, 360, 540, 720, 900',
+                        sizes: '(min-width: 750px) 25vw, 50vw',
+                        alt: card_title
+                    }}
+                  </div>
+                {%- else -%}
+                  <div class="ph-rings-card__slide swiper-slide">
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'ph-rings-card__placeholder' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+            <span class="ph-rings-card__progress" aria-hidden="true"></span>
+          </div>
+          <div class="ph-rings-card__line"></div>
+          <div class="ph-rings-card__summary">
+            {%- if card_title != blank -%}
+              <h2 class="ph-rings-card__title">{{ card_title }}</h2>
+            {%- endif -%}
+            {%- if card_finish != blank -%}
+              <p class="ph-rings-card__finish">{{ card_finish }}</p>
+            {%- endif -%}
+            {%- if block.settings.price_text != blank -%}
+              <div class="ph-rings-card__price">{{ block.settings.price_text }}</div>
+            {%- elsif card_product != blank -%}
+              <div class="ph-rings-card__price">{% render 'ph-round-money', amount: card_price %}</div>
+            {%- endif -%}
+          </div>
+          <div class="ph-rings-card__actions" aria-hidden="true">
+            <span class="ph-rings-card__size">UK L/K</span>
+            <span class="ph-rings-card__basket">QUICK ADD TO BASKET</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+    <div class="ph-rings-empty" data-ph-rings-no-results hidden>No products match these filters.</div>
+  {%- else -%}
+    <div class="ph-rings-empty">Add products to this collection concept section.</div>
+  {%- endif -%}
+
+  <div class="ph-rings-overlay" data-ph-rings-overlay="sort" aria-hidden="true">
+    <div class="ph-rings-overlay__header">
+      <button class="ph-rings-overlay__close" type="button" data-ph-rings-close>CLOSE</button>
+      <div class="ph-rings-overlay__logo" aria-label="Phoria">PHORIA</div>
+      <div class="ph-rings-overlay__cart" aria-label="{{ cart.item_count }} items in cart">{{ cart.item_count }}</div>
+    </div>
+    <div class="ph-rings-overlay__body">
+      <div class="ph-rings-overlay__title-row">
+        <h2 class="ph-rings-overlay__title">SORT</h2>
+      </div>
+      <div class="ph-rings-overlay__group">
+        <h3 class="ph-rings-overlay__group-title">PRICE</h3>
+        <div class="ph-rings-overlay__options">
+          <button class="ph-rings-overlay__choice" type="button" data-sort-value="price-asc">LOW TO HIGH</button>
+          <button class="ph-rings-overlay__choice" type="button" data-sort-value="price-desc">HIGH TO LOW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ph-rings-overlay" data-ph-rings-overlay="filter" aria-hidden="true">
+    <div class="ph-rings-overlay__header">
+      <button class="ph-rings-overlay__close" type="button" data-ph-rings-close>CLOSE</button>
+      <div class="ph-rings-overlay__logo" aria-label="Phoria">PHORIA</div>
+      <div class="ph-rings-overlay__cart" aria-label="{{ cart.item_count }} items in cart">{{ cart.item_count }}</div>
+    </div>
+    <div class="ph-rings-overlay__body">
+      <div class="ph-rings-overlay__title-row">
+        <h2 class="ph-rings-overlay__title">FILTER</h2>
+        <button class="ph-rings-overlay__clear" type="button" data-filter-clear>
+          CLEAR
+          <span class="ph-rings-overlay__clear-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="ph-rings-overlay__group">
+        <h3 class="ph-rings-overlay__group-title">STYLE</h3>
+        <div class="ph-rings-overlay__options">
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="style" data-filter-value="hookup-chain-ring">HOOKUP CHAIN RING</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="style" data-filter-value="hookup-chain-ring-ii">HOOKUP CHAIN RING II</button>
+        </div>
+      </div>
+      <div class="ph-rings-overlay__group">
+        <h3 class="ph-rings-overlay__group-title">FINISH</h3>
+        <div class="ph-rings-overlay__options">
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="finish" data-filter-value="925-sterling-silver">925 STERLING SILVER</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="finish" data-filter-value="18ct-gold-vermeil">18CT GOLD VERMEIL</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="finish" data-filter-value="two-tone-silver-chain">TWO TONE (SILVER CHAIN)</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="finish" data-filter-value="two-tone-gold-chain">TWO TONE (GOLD CHAIN)</button>
+        </div>
+      </div>
+      <div class="ph-rings-overlay__group">
+        <h3 class="ph-rings-overlay__group-title">SIZE</h3>
+        <div class="ph-rings-overlay__options ph-rings-overlay__options--size">
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="size" data-filter-value="uk-l-k">UK L/K</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="size" data-filter-value="uk-o-m">UK O/M</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="size" data-filter-value="uk-q-p">UK Q/P</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="size" data-filter-value="uk-s-r">UK S/R</button>
+        </div>
+      </div>
+      <div class="ph-rings-overlay__group">
+        <h3 class="ph-rings-overlay__group-title">STONE</h3>
+        <div class="ph-rings-overlay__options ph-rings-overlay__options--stone">
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="stone" data-filter-value="white-topaz"><span class="ph-rings-overlay__stone ph-rings-overlay__stone--white-topaz" aria-hidden="true"></span>WHITE TOPAZ</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="stone" data-filter-value="chrome-diopside"><span class="ph-rings-overlay__stone ph-rings-overlay__stone--chrome-diopside" aria-hidden="true"></span>CHROME DIOPSIDE</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="stone" data-filter-value="pink-tourmaline"><span class="ph-rings-overlay__stone ph-rings-overlay__stone--pink-tourmaline" aria-hidden="true"></span>PINK TOURMALINE</button>
+          <button class="ph-rings-overlay__choice" type="button" data-filter-group="stone" data-filter-value="green-citrine"><span class="ph-rings-overlay__stone ph-rings-overlay__stone--green-citrine" aria-hidden="true"></span>GREEN CITRINE</button>
+        </div>
+      </div>
+      <button class="ph-rings-overlay__apply" type="button" data-filter-apply>FILTER</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var sectionSelector = '.ph-rings-rebuild-{{ section.id }}';
+    var initialized = false;
+    var heroInitialized = false;
+
+    function initRingsHeroSwiper() {
+      if (heroInitialized || typeof window.Swiper === 'undefined') return;
+      var section = document.querySelector(sectionSelector);
+      if (!section) return;
+      var hero = section.querySelector('.ph-rings-hero');
+      var swiperEl = section.querySelector('[data-ph-rings-hero-swiper]');
+      if (!hero || !swiperEl) return;
+      var slides = swiperEl.querySelectorAll('.swiper-slide');
+      hero.setAttribute('data-slide-count', String(slides.length));
+      heroInitialized = true;
+
+      if (slides.length < 2) return;
+
+      var setHeroProgress = function (swiper) {
+        var slideCount = Math.max(swiper.slides.length, 1);
+        var width = swiperEl.clientWidth || hero.clientWidth || 1;
+        var progressWidth = width / slideCount;
+        var progressX = (width - progressWidth) * Math.min(Math.max(swiper.progress || 0, 0), 1);
+        hero.style.setProperty('--ph-rings-hero-progress-width', progressWidth + 'px');
+        hero.style.setProperty('--ph-rings-hero-progress-x', progressX + 'px');
+      };
+
+      var swiper = new window.Swiper(swiperEl, {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        speed: 460,
+        resistanceRatio: 0.45,
+        threshold: 2,
+        simulateTouch: true,
+        preventClicks: true,
+        preventClicksPropagation: true,
+        touchStartPreventDefault: false,
+        touchMoveStopPropagation: true,
+        watchSlidesProgress: true,
+        freeMode: false,
+        longSwipesRatio: 0.22,
+        longSwipesMs: 180,
+        shortSwipes: true,
+        followFinger: true,
+        nested: true,
+        touchReleaseOnEdges: false,
+        on: {
+          afterInit: setHeroProgress,
+          progress: setHeroProgress,
+          resize: setHeroProgress,
+          slideChangeTransitionStart: setHeroProgress,
+          setTranslate: setHeroProgress,
+          touchStart: function () {
+            hero.classList.add('is-dragging');
+          },
+          touchEnd: function (instance) {
+            hero.classList.remove('is-dragging');
+            setHeroProgress(instance);
+          },
+          transitionEnd: function (instance) {
+            hero.classList.remove('is-dragging');
+            setHeroProgress(instance);
+          }
+        }
+      });
+
+      setHeroProgress(swiper);
+    }
+
+    function initRingsCardSwipers() {
+      if (initialized || typeof window.Swiper === 'undefined') return;
+      var section = document.querySelector(sectionSelector);
+      if (!section) return;
+      initialized = true;
+
+      section.querySelectorAll('[data-ph-rings-card]').forEach(function (card) {
+        var swiperEl = card.querySelector('[data-ph-rings-card-swiper]');
+        if (!swiperEl) return;
+        var slides = swiperEl.querySelectorAll('.swiper-slide');
+        card.setAttribute('data-slide-count', String(slides.length));
+
+        if (slides.length < 2) return;
+
+        var clickedAfterDrag = false;
+        var setProgress = function (swiper) {
+          var slideCount = Math.max(swiper.slides.length, 1);
+          var width = swiperEl.clientWidth || card.clientWidth || 1;
+          var progressWidth = width / slideCount;
+          var progressX = (width - progressWidth) * Math.min(Math.max(swiper.progress || 0, 0), 1);
+          card.style.setProperty('--ph-rings-card-progress-width', progressWidth + 'px');
+          card.style.setProperty('--ph-rings-card-progress-x', progressX + 'px');
+        };
+
+        var swiper = new window.Swiper(swiperEl, {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          spaceBetween: 0,
+          speed: 460,
+          resistanceRatio: 0.45,
+          threshold: 2,
+          simulateTouch: true,
+          preventClicks: true,
+          preventClicksPropagation: true,
+          touchStartPreventDefault: false,
+          touchMoveStopPropagation: true,
+          watchSlidesProgress: true,
+          freeMode: false,
+          longSwipesRatio: 0.22,
+          longSwipesMs: 180,
+          shortSwipes: true,
+          followFinger: true,
+          nested: true,
+          touchReleaseOnEdges: false,
+          on: {
+            afterInit: setProgress,
+            progress: setProgress,
+            resize: setProgress,
+            slideChangeTransitionStart: setProgress,
+            setTranslate: setProgress,
+            touchStart: function () {
+              card.classList.add('is-dragging');
+            },
+            touchMove: function () {
+              clickedAfterDrag = true;
+            },
+            touchEnd: function (instance) {
+              card.classList.remove('is-dragging');
+              setProgress(instance);
+              window.setTimeout(function () {
+                clickedAfterDrag = false;
+              }, 80);
+            },
+            transitionEnd: function (instance) {
+              card.classList.remove('is-dragging');
+              setProgress(instance);
+            }
+          }
+        });
+
+        setProgress(swiper);
+
+        card.addEventListener('click', function (event) {
+          if (!clickedAfterDrag) return;
+          event.preventDefault();
+        });
+      });
+    }
+
+    function initRingsOverlays() {
+      var section = document.querySelector(sectionSelector);
+      if (!section || section.dataset.overlayReady === 'true') return;
+      section.dataset.overlayReady = 'true';
+
+      var activeOverlay = null;
+      var overlays = Array.prototype.slice.call(section.querySelectorAll('[data-ph-rings-overlay]'));
+      var grid = section.querySelector('.ph-rings-grid');
+      var noResults = section.querySelector('[data-ph-rings-no-results]');
+      var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('[data-ph-rings-card]')) : [];
+      var originalCards = cards.slice();
+      var status = section.querySelector('[data-ph-rings-status]');
+      var statusLabel = section.querySelector('[data-ph-rings-status-label]');
+      var currentSort = '';
+      var selectedFilters = {
+        style: [],
+        finish: [],
+        size: [],
+        stone: []
+      };
+
+      function openOverlay(name) {
+        closeOverlay();
+        activeOverlay = overlays.find(function (overlay) {
+          return overlay.getAttribute('data-ph-rings-overlay') === name;
+        });
+        if (!activeOverlay) return;
+        activeOverlay.style.setProperty('--ph-rings-copy-spacing', getComputedStyle(section).getPropertyValue('--ph-rings-copy-spacing'));
+        document.body.appendChild(activeOverlay);
+        activeOverlay.classList.add('is-active');
+        activeOverlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('ph-rings-overlay-open');
+      }
+
+      function closeOverlay() {
+        overlays.forEach(function (overlay) {
+          overlay.classList.remove('is-active');
+          overlay.setAttribute('aria-hidden', 'true');
+        });
+        document.body.classList.remove('ph-rings-overlay-open');
+        activeOverlay = null;
+      }
+
+      function syncFilterButtons() {
+        document.querySelectorAll('[data-filter-group][data-filter-value]').forEach(function (button) {
+          var group = button.getAttribute('data-filter-group');
+          var value = button.getAttribute('data-filter-value');
+          button.classList.toggle('is-active', selectedFilters[group] && selectedFilters[group].indexOf(value) > -1);
+        });
+      }
+
+      function hasActiveFilters() {
+        return Object.keys(selectedFilters).some(function (group) {
+          return selectedFilters[group].length > 0;
+        });
+      }
+
+      function updateStatus() {
+        if (!status || !statusLabel) return;
+        if (hasActiveFilters()) {
+          statusLabel.textContent = 'FILTERED RESULTS';
+          status.hidden = false;
+          section.setAttribute('data-results-state', 'active');
+          return;
+        }
+        if (currentSort === 'price-asc') {
+          statusLabel.textContent = 'SORT: LOW TO HIGH';
+          status.hidden = false;
+          section.setAttribute('data-results-state', 'active');
+          return;
+        }
+        if (currentSort === 'price-desc') {
+          statusLabel.textContent = 'SORT: HIGH TO LOW';
+          status.hidden = false;
+          section.setAttribute('data-results-state', 'active');
+          return;
+        }
+        status.hidden = true;
+        statusLabel.textContent = '';
+        section.removeAttribute('data-results-state');
+      }
+
+      function cardMatchesGroup(card, group, values) {
+        if (!values.length) return true;
+        var haystack = (card.getAttribute('data-filter-' + group) || '').split(/\s+/);
+        return values.some(function (value) {
+          return haystack.indexOf(value) > -1;
+        });
+      }
+
+      function renderCards() {
+        if (!grid) return;
+        cards = originalCards.slice();
+        if (currentSort) {
+          cards.sort(function (a, b) {
+            var aPrice = Number(a.getAttribute('data-price') || 0);
+            var bPrice = Number(b.getAttribute('data-price') || 0);
+            return currentSort === 'price-desc' ? bPrice - aPrice : aPrice - bPrice;
+          });
+        }
+        cards.forEach(function (card) {
+          grid.appendChild(card);
+        });
+
+        var visibleCount = 0;
+        cards.forEach(function (card) {
+          var visible = Object.keys(selectedFilters).every(function (group) {
+            return cardMatchesGroup(card, group, selectedFilters[group]);
+          });
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        if (noResults) noResults.hidden = visibleCount !== 0;
+        updateStatus();
+      }
+
+      function sortCards(direction) {
+        currentSort = direction;
+        renderCards();
+      }
+
+      function clearState() {
+        currentSort = '';
+        Object.keys(selectedFilters).forEach(function (group) {
+          selectedFilters[group] = [];
+        });
+        document.querySelectorAll('[data-sort-value]').forEach(function (sortButton) {
+          sortButton.classList.remove('is-active');
+        });
+        syncFilterButtons();
+        renderCards();
+      }
+
+      function setViewMode(mode) {
+        section.setAttribute('data-view', mode === 'single' ? 'single' : 'grid');
+        section.querySelectorAll('[data-view-mode]').forEach(function (button) {
+          button.classList.toggle('is-active', button.getAttribute('data-view-mode') === mode);
+        });
+      }
+
+      section.querySelectorAll('[data-ph-rings-open]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          openOverlay(button.getAttribute('data-ph-rings-open'));
+        });
+      });
+
+      section.querySelectorAll('[data-ph-rings-close]').forEach(function (button) {
+        button.addEventListener('click', closeOverlay);
+      });
+
+      section.querySelectorAll('[data-sort-value]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          section.querySelectorAll('[data-sort-value]').forEach(function (sortButton) {
+            sortButton.classList.toggle('is-active', sortButton === button);
+          });
+          sortCards(button.getAttribute('data-sort-value'));
+          closeOverlay();
+        });
+      });
+
+      section.querySelectorAll('[data-filter-group][data-filter-value]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var group = button.getAttribute('data-filter-group');
+          var value = button.getAttribute('data-filter-value');
+          var values = selectedFilters[group] || [];
+          var index = values.indexOf(value);
+          if (index > -1) {
+            values.splice(index, 1);
+          } else {
+            values.push(value);
+          }
+          selectedFilters[group] = values;
+          syncFilterButtons();
+        });
+      });
+
+      var clearButton = section.querySelector('[data-filter-clear]');
+      if (clearButton) {
+        clearButton.addEventListener('click', function () {
+          Object.keys(selectedFilters).forEach(function (group) {
+            selectedFilters[group] = [];
+          });
+          syncFilterButtons();
+          renderCards();
+        });
+      }
+
+      var applyButton = section.querySelector('[data-filter-apply]');
+      if (applyButton) {
+        applyButton.addEventListener('click', function () {
+          renderCards();
+          closeOverlay();
+        });
+      }
+
+      section.querySelectorAll('[data-view-mode]').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          setViewMode(button.getAttribute('data-view-mode'));
+        });
+      });
+
+      var clearStateButton = section.querySelector('[data-ph-rings-clear-state]');
+      if (clearStateButton) {
+        clearStateButton.addEventListener('click', clearState);
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && activeOverlay) closeOverlay();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initRingsHeroSwiper);
+    document.addEventListener('DOMContentLoaded', initRingsCardSwipers);
+    document.addEventListener('DOMContentLoaded', initRingsOverlays);
+    window.addEventListener('load', initRingsHeroSwiper);
+    window.addEventListener('load', initRingsCardSwipers);
+    window.addEventListener('load', initRingsOverlays);
+    document.addEventListener('shopify:section:load', function () {
+      heroInitialized = false;
+      initialized = false;
+      initRingsHeroSwiper();
+      initRingsCardSwipers();
+      initRingsOverlays();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ph Rings Rebuild",
+  "tag": "section",
+  "class": "ph-rings-rebuild-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_2",
+      "label": "Hero image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_3",
+      "label": "Hero image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_4",
+      "label": "Hero image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_5",
+      "label": "Hero image 5"
+    },
+    {
+      "type": "text",
+      "id": "hero_alt",
+      "label": "Hero alt text"
+    },
+    {
+      "type": "text",
+      "id": "hero_aspect_ratio",
+      "label": "Hero aspect ratio mobile",
+      "default": "1 / 1"
+    },
+    {
+      "type": "text",
+      "id": "hero_aspect_ratio_desktop",
+      "label": "Hero aspect ratio desktop",
+      "default": "16 / 7"
+    },
+    {
+      "type": "text",
+      "id": "hero_object_position",
+      "label": "Hero image focal point",
+      "default": "center center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toolbar",
+      "label": "Show control row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sort_label",
+      "label": "Sort label",
+      "default": "SORT"
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "Filter label",
+      "default": "FILTER"
+    },
+    {
+      "type": "text",
+      "id": "view_label",
+      "label": "View label",
+      "default": "VIEW"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "HOOKUP CHAIN RINGS"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Intro copy",
+      "default": "<p>OUR BESTSELLER FOR A REASON.</p><p>INTERCHANGEABLE, TRANSFORMABLE RINGS WORN MULTIPLE WAYS ON REPEAT</p>"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "label": "Products per row desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "max_card_images",
+      "label": "Maximum swipe images per product",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Override title"
+        },
+        {
+          "type": "text",
+          "id": "finish",
+          "label": "Finish copy"
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Override price"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Override link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Rings Rebuild"
+    }
+  ]
+}
+{% endschema %}

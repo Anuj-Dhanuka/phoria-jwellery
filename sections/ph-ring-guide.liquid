@@ -1,0 +1,293 @@
+<style>
+  .ph-ring-sizing-methods-container {
+    width: 100%;
+  }
+  
+  .ph-ring-sizing-methods-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 0 36px;
+  }
+  
+  .ph-ring-sizing-method {
+    width: 100%;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-sizing-method-heading {
+    font-size: 1.25vw;
+    line-height: 1.2;
+    word-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .ph-ring-sizing-method-description {
+    font-size: 10px;
+    line-height: 2.3;
+    margin-top: 27px;
+    text-transform: uppercase;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .ph-ring-sizing-button-wrapper {
+    max-width: 620px;
+    margin: 36px auto auto;
+  }
+  
+  .ph-ring-sizing-button {
+    display: inline-block;
+    max-width: 620px;
+    width: 100%;
+    margin: auto;
+    padding: 13px 31px;
+    background-color: #1c1c1c;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 2.3;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-family: 'PhoriaBold';
+  }
+  
+  .ph-ring-sizing-button:hover {
+    background-color: #000;
+  }
+  
+  .ph-ring-sizing-divider {
+    width: 100%;
+    text-align: center;
+    margin: 36px 0;
+    position: relative;
+    opacity: 0; /* Start invisible for animation */
+  }
+  
+  .ph-ring-sizing-divider span {
+    display: inline-block;
+    padding: 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+    font-family: 'PhoriaBold';
+  }
+
+
+   @media screen and (max-width: 959px) {
+  .ph-ring-sizing-methods-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: none;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+   .ph-ring-sizing-method-heading {
+    font-size: 18px;
+    line-height: 1.2;
+    word-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+     
+   }
+  
+  @media screen and (max-width: 756px) {
+    .ph-ring-sizing-methods-container {
+      padding: 0px 18px;
+    }
+    
+    
+    .ph-ring-sizing-button {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<div class="ph-ring-sizing-methods-container">
+  <div class="ph-ring-sizing-methods-inner">
+    <!-- Method 1 -->
+    <div class="ph-ring-sizing-method">
+      {% if section.settings.method1_heading != blank %}
+        <h3 class="ph-ring-sizing-method-heading">{{ section.settings.method1_heading }}</h3>
+      {% endif %}
+      
+      {% if section.settings.method1_description != blank %}
+        <div class="ph-ring-sizing-method-description">{{ section.settings.method1_description }}</div>
+      {% endif %}
+      
+      {% if section.settings.method1_button_text != blank and section.settings.method1_pdf_link != blank %}
+        <div class="ph-ring-sizing-button-wrapper">
+          <a href="{{ section.settings.method1_pdf_link }}" class="ph-ring-sizing-button" target="_blank" download>
+            {{ section.settings.method1_button_text }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    
+    <!-- Divider -->
+    {% if section.settings.divider_text != blank %}
+      <div class="ph-ring-sizing-divider">
+        <span>{{ section.settings.divider_text }}</span>
+      </div>
+    {% endif %}
+    
+    <!-- Method 2 -->
+    <div class="ph-ring-sizing-method">
+      {% if section.settings.method2_heading != blank %}
+        <h3 class="ph-ring-sizing-method-heading">{{ section.settings.method2_heading }}</h3>
+      {% endif %}
+      
+      {% if section.settings.method2_description != blank %}
+        <div class="ph-ring-sizing-method-description">{{ section.settings.method2_description }}</div>
+      {% endif %}
+      
+      {% if section.settings.method2_button_text != blank and section.settings.method2_pdf_link != blank %}
+        <div class="ph-ring-sizing-button-wrapper">
+          <a href="{{ section.settings.method2_pdf_link }}" class="ph-ring-sizing-button" target="_blank" download>
+            {{ section.settings.method2_button_text }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof Motion !== 'undefined' && {{ section.settings.enable_animations | default: true }}) {
+      const { animate, inView } = Motion;
+      
+      // Animate each method block
+      const methods = document.querySelectorAll('.ph-ring-sizing-method');
+      methods.forEach((elem, index) => {
+        inView(elem, (el) => {
+          animate(el, 
+            { opacity: [0, 1], y: [30, 0] }, 
+            { duration: 0.6, delay: 0.2 * index, easing: "ease-out" }
+          );
+        }, { once: true });
+      });
+      
+      // Animate the divider
+      const divider = document.querySelector('.ph-ring-sizing-divider');
+      if (divider) {
+        inView(divider, (elem) => {
+          animate(elem, 
+            { opacity: [0, 1], scale: [0.8, 1] }, 
+            { duration: 0.5, delay: 0.3, easing: "ease-out" }
+          );
+        }, { once: true });
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Ph Ring Methods",
+  "tag": "section",
+  "class": "ph-ring-sizing-methods-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "method1_heading",
+      "label": "Method 1 Heading",
+      "default": "1) CHECK THE SIZE OF YOUR EXISTING RING"
+    },
+    {
+      "type": "textarea",
+      "id": "method1_description",
+      "label": "Method 1 Description",
+      "default": "CLICK ON THE LINK BELOW. FOLLOW THE INSTRUCTIONS AND PRINT IT OUT ONTO A4 PAPER."
+    },
+    {
+      "type": "text",
+      "id": "method1_button_text",
+      "label": "Method 1 Button Text",
+      "default": "EXISTING RING SIZE GUIDE - CLICK FOR .PDF"
+    },
+    {
+      "type": "url",
+      "id": "method1_pdf_link",
+      "label": "Method 1 PDF Link"
+    },
+    {
+      "type": "text",
+      "id": "divider_text",
+      "label": "Divider Text",
+      "default": "OR"
+    },
+    {
+      "type": "text",
+      "id": "method2_heading",
+      "label": "Method 2 Heading",
+      "default": "2) MAKE YOUR OWN PAPER RING SIZER"
+    },
+    {
+      "type": "textarea",
+      "id": "method2_description",
+      "label": "Method 2 Description",
+      "default": "CLICK ON THE LINK BELOW. FOLLOW THE INSTRUCTIONS AND PRINT IT OUT ONTO A4 PAPER."
+    },
+    {
+      "type": "text",
+      "id": "method2_button_text",
+      "label": "Method 2 Button Text",
+      "default": "MAKE YOUR OWN RING SIZER - CLICK FOR .PDF"
+    },
+    {
+      "type": "url",
+      "id": "method2_pdf_link",
+      "label": "Method 2 PDF Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animations",
+      "label": "Enable animations",
+      "default": true,
+      "info": "Enable fade-in animations when content comes into view"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ph Ring Methods"
+    }
+  ]
+}
+{% endschema %}
