@@ -48,7 +48,7 @@
       "type": "ph-header",
       "settings": {
         "is_header_transition": false,
-        "announcement_text": "FOR A <strong>LIMITED TIME</strong> ONLY // ENJOY <strong>10% OFF </strong>YOUR FIRST ORDER WHEN YOU SIGN UP TO EMAILS <a href=\"https://www.phoriajewellery.com/account/register\" target=\"_blank\" title=\"https://www.phoriajewellery.com/account/register\"><strong>HERE</strong></a>. WORLDWIDE SHIPPING IN UP TO 3 DAYS.",
+        "announcement_text": "<strong>FOR A LIMITED TIME</strong> ENJOY <strong>10% OFF</strong> YOUR FIRST ORDER WHEN YOU SIGN UP TO EMAILS <a href=\"https://www.phoriajewellery.com/account/register\" target=\"_blank\" title=\"https://www.phoriajewellery.com/account/register\"><strong>HERE</strong></a>",
         "logo": "shopify://shop_images/phoria-jewellery-logo-white-ready.svg",
         "logo_2": "shopify://shop_images/phoria-jewellery-logo-black-ready.svg",
         "menu_1_title": "Jewellery",
@@ -58,7 +58,11 @@
         "other_links_title": "Something Else",
         "other_links": "something-else",
         "search_suggestions_title": "Suggestions",
-        "search_suggestions": "search-suggestions"
+        "search_suggestions": "search-suggestions",
+        "announcement_text_2": "WORLDWIDE SHIPPING IN <strong>UP TO 3 DAYS</strong>",
+        "announcement_text_3": "<strong>LIFETIME WARRANTY</strong> ON EVERY PIECE",
+        "announcement_autoplay": true,
+        "announcement_interval": 5
       }
     }
   },

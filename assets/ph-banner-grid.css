@@ -148,30 +148,8 @@ body.template-collection-banner-grid .ph-header {
   padding-top: 7px;
 }
 
-.ph-bg-toolbar__button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.ph-bg-toolbar__icon-svg {
-  flex: none;
-  display: block;
-}
-
 .ph-bg-toolbar__button[aria-disabled='true'] {
   cursor: default;
-}
-
-/* Product count on the right: information, so muted next to the black SORT / FILTER buttons */
-.ph-bg-toolbar__count {
-  margin: 0;
-  padding-top: 7px;
-  color: var(--ph-bg-muted);
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  white-space: nowrap;
 }
 
 .ph-bg-toolbar__view {

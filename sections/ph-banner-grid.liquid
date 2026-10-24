@@ -128,7 +128,6 @@
   {%- if section.settings.show_toolbar -%}
     <div class="ph-bg-toolbar">
       <div class="ph-bg-toolbar__group">
-        {%- comment -%} Each label has a small line icon (sort arrows / filter sliders) {%- endcomment -%}
         {%- if use_collection_products -%}
           <button
             class="ph-bg-toolbar__button"
@@ -138,15 +137,11 @@
             aria-controls="BannerGridSort-{{ section.id }}"
             aria-expanded="false"
           >
-            <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M3.5 10.5v-9M1.5 3.5l2-2 2 2M8.5 1.5v9M6.5 8.5l2 2 2-2"/></svg>
             SORT
           </button>
         {%- else -%}
           {%- comment -%} Sorting needs products in the collection (Shopify sort_by) {%- endcomment -%}
-          <button class="ph-bg-toolbar__button" type="button" aria-disabled="true">
-            <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M3.5 10.5v-9M1.5 3.5l2-2 2 2M8.5 1.5v9M6.5 8.5l2 2 2-2"/></svg>
-            SORT
-          </button>
+          <button class="ph-bg-toolbar__button" type="button" aria-disabled="true">SORT</button>
         {%- endif -%}
         <button
           class="ph-bg-toolbar__button"
@@ -156,20 +151,9 @@
           aria-controls="BannerGridFilter-{{ section.id }}"
           aria-expanded="false"
         >
-          <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M.5 3.5h11M.5 8.5h11"/><circle cx="4" cy="3.5" r="1.5" fill="#fff"/><circle cx="8" cy="8.5" r="1.5" fill="#fff"/></svg>
-          <span>FILTER<span data-ph-bg-filter-count></span></span>
+          FILTER<span data-ph-bg-filter-count></span>
         </button>
       </div>
-      {%- liquid
-        if use_collection_products
-          assign product_total = collection.products_count
-        else
-          assign product_total = section.settings.fallback_products.size
-        endif
-      -%}
-      <p class="ph-bg-toolbar__count" data-ph-bg-count data-total="{{ product_total }}" aria-live="polite">
-        {{- product_total }} {% if product_total == 1 %}PRODUCT{% else %}PRODUCTS{% endif -%}
-      </p>
       {%- comment -%}
         VIEW switch is turned off for now (only the 2-per-row grid is used). To bring it back, restore
         the markup below; the styles and assets/ph-banner-grid.js (initViewToggle) still support it.

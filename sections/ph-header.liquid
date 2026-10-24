@@ -775,6 +775,104 @@ body.template-index .ph-black__logo {
 }
 
 
+
+    /*
+      Announcement carousel (2+ messages): one message at a time with ‹ › arrows.
+      46px tall on desktop (same as the single bar, so page spacing is unchanged), 55px on mobile.
+    */
+    .ph-announcement__bar--carousel{
+        position: relative;
+        display: block;
+        height: 46px;
+        padding: 0;
+        overflow: hidden;
+    }
+    .ph-announcement__bar--carousel .ph-announcement__slide{
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0 72px;
+        line-height: 16px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    }
+    .ph-announcement__message{
+        display: block;
+        max-width: 100%;
+        text-align: center;
+    }
+    .ph-announcement__bar--carousel .ph-announcement__slide.is-active{
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease;
+    }
+    .ph-announcement__arrow{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        width: 44px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--ph-announcement-bar-color);
+        cursor: pointer;
+    }
+    .ph-announcement__arrow svg{
+        display: block;
+        width: 6px;
+        height: 10.5px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1;
+    }
+    .ph-announcement__arrow--prev{
+        left: 0;
+        justify-content: flex-start;
+        padding-left: 36px;
+        width: 72px;
+    }
+    .ph-announcement__arrow--next{
+        right: 0;
+        justify-content: flex-end;
+        padding-right: 36px;
+        width: 72px;
+    }
+    .ph-announcement__arrow:focus-visible{
+        outline: 1px solid currentColor;
+        outline-offset: -4px;
+    }
+    @media screen and (max-width: 959px){
+        .ph-announcement__bar--carousel{
+            height: 55px;
+            padding: 0;
+        }
+        .ph-announcement__bar--carousel .ph-announcement__slide{
+            padding: 0 46px;
+            font-size: 9px;
+            line-height: 16.4px;
+        }
+        .ph-announcement__arrow--prev{
+            padding-left: 15.5px;
+            width: 44px;
+        }
+        .ph-announcement__arrow--next{
+            padding-right: 15.5px;
+            width: 44px;
+        }
+    }
+    @media (prefers-reduced-motion: reduce){
+        .ph-announcement__bar--carousel .ph-announcement__slide,
+        .ph-announcement__bar--carousel .ph-announcement__slide.is-active{
+            transition: none;
+        }
+    }
 </style>
 
 <div id="ph-side__nav__overlay"></div>
@@ -895,11 +993,68 @@ body.template-index .ph-black__logo {
     </div>
 </div>
 <header class="ph-header__container">
-    <div class="ph-announcement__bar">
-        <p class="ph-announcement-text">{{ section.settings.announcement_text }}</p>
-        {% comment %} <span class="ph-announcement-timer" id="ph-countdown-timer"></span> {% endcomment %}
-
-    </div>
+    {%- liquid
+      # Announcement messages: 2+ filled in = a carousel with arrows; 1 = the original single message.
+      assign ann_count = 0
+      if section.settings.announcement_text != blank
+        assign ann_count = ann_count | plus: 1
+      endif
+      if section.settings.announcement_text_2 != blank
+        assign ann_count = ann_count | plus: 1
+      endif
+      if section.settings.announcement_text_3 != blank
+        assign ann_count = ann_count | plus: 1
+      endif
+    -%}
+    {%- if ann_count > 1 -%}
+      <div
+        class="ph-announcement__bar ph-announcement__bar--carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Announcements"
+        data-ph-announcement
+        data-autoplay="{{ section.settings.announcement_autoplay }}"
+        data-interval="{{ section.settings.announcement_interval }}"
+      >
+        <button class="ph-announcement__arrow ph-announcement__arrow--prev" type="button" aria-label="Previous announcement" data-ph-announcement-prev>
+          <svg viewBox="0 0 6 10.5" width="6" height="10.5" aria-hidden="true" focusable="false"><path d="M5.5 .3 .8 5.25 5.5 10.2"/></svg>
+        </button>
+        {%- assign ann_index = 0 -%}
+        {%- for text in (1..3) -%}
+          {%- liquid
+            if forloop.index == 1
+              assign ann_text = section.settings.announcement_text
+            elsif forloop.index == 2
+              assign ann_text = section.settings.announcement_text_2
+            else
+              assign ann_text = section.settings.announcement_text_3
+            endif
+          -%}
+          {%- if ann_text != blank -%}
+            {%- assign ann_index = ann_index | plus: 1 -%}
+            <p
+              class="ph-announcement-text ph-announcement__slide{% if ann_index == 1 %} is-active{% endif %}"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="{{ ann_index }} of {{ ann_count }}"
+              {% unless ann_index == 1 %}aria-hidden="true"{% endunless %}
+              data-ph-announcement-slide
+            >
+              {%- comment -%} Inner span keeps the message flowing as one text block inside the centred slide {%- endcomment -%}
+              <span class="ph-announcement__message">{{ ann_text }}</span>
+            </p>
+          {%- endif -%}
+        {%- endfor -%}
+        <button class="ph-announcement__arrow ph-announcement__arrow--next" type="button" aria-label="Next announcement" data-ph-announcement-next>
+          <svg viewBox="0 0 6 10.5" width="6" height="10.5" aria-hidden="true" focusable="false"><path d="M.5 .3 5.2 5.25 .5 10.2"/></svg>
+        </button>
+      </div>
+    {%- else -%}
+      <div class="ph-announcement__bar">
+          <p class="ph-announcement-text">{{ section.settings.announcement_text }}</p>
+          {% comment %} <span class="ph-announcement-timer" id="ph-countdown-timer"></span> {% endcomment %}
+      </div>
+    {%- endif -%}
     <div class="ph-header">
         <div class="ph-menu left">
             <ul class="ph-menu__items">
@@ -1246,6 +1401,84 @@ body.template-index .ph-black__logo {
 
 
 <script>
+  // Announcement carousel: arrows, swipe, optional auto-rotate (paused on hover/focus,
+  // when the tab is hidden, and never for visitors who prefer reduced motion).
+  (function () {
+    function initAnnouncement(bar) {
+      if (!bar || bar.dataset.ready === 'true') return;
+      bar.dataset.ready = 'true';
+      var slides = Array.prototype.slice.call(bar.querySelectorAll('[data-ph-announcement-slide]'));
+      if (slides.length < 2) return;
+      var current = 0;
+      var timer = null;
+      var paused = false;
+      var interval = Math.max(parseInt(bar.dataset.interval, 10) || 5, 2) * 1000;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var autoplay = bar.dataset.autoplay === 'true' && !reduceMotion;
+
+      var show = function (index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, i) {
+          var active = i === current;
+          slide.classList.toggle('is-active', active);
+          if (active) {
+            slide.removeAttribute('aria-hidden');
+          } else {
+            slide.setAttribute('aria-hidden', 'true');
+          }
+        });
+      };
+
+      var stop = function () {
+        window.clearInterval(timer);
+        timer = null;
+      };
+      var start = function () {
+        stop();
+        if (autoplay && !paused && !document.hidden) {
+          timer = window.setInterval(function () { show(current + 1); }, interval);
+        }
+      };
+      // Moving by hand restarts the countdown so the new message gets its full time.
+      var go = function (step) {
+        show(current + step);
+        start();
+      };
+
+      bar.querySelector('[data-ph-announcement-prev]').addEventListener('click', function () { go(-1); });
+      bar.querySelector('[data-ph-announcement-next]').addEventListener('click', function () { go(1); });
+
+      var touchX = null;
+      bar.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+      bar.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) > 30) go(dx < 0 ? 1 : -1);
+      });
+
+      bar.addEventListener('mouseenter', function () { paused = true; stop(); });
+      bar.addEventListener('mouseleave', function () { paused = false; start(); });
+      bar.addEventListener('focusin', function () { paused = true; stop(); });
+      bar.addEventListener('focusout', function () { paused = false; start(); });
+      document.addEventListener('visibilitychange', start);
+
+      start();
+    }
+
+    function initAll() {
+      document.querySelectorAll('[data-ph-announcement]').forEach(initAnnouncement);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+    document.addEventListener('shopify:section:load', initAll);
+  })();
+</script>
+
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const timerElement = document.getElementById("ph-countdown-timer");
   if (!timerElement) return;
@@ -1339,6 +1572,33 @@ document.addEventListener("DOMContentLoaded", () => {
         "id": "announcement_text",
         "label": "Announcement bar text",
         "default": "For a limited time only // enjoy 10% off your first order when you sign up to emails here + free UK shipping"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "announcement_text_2",
+        "label": "Announcement 2",
+        "info": "With 2 or 3 messages filled in, the bar shows one at a time with arrows."
+      },
+      {
+        "type": "inline_richtext",
+        "id": "announcement_text_3",
+        "label": "Announcement 3"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_autoplay",
+        "label": "Rotate announcements automatically",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "announcement_interval",
+        "label": "Time per announcement",
+        "min": 3,
+        "max": 10,
+        "step": 1,
+        "unit": "s",
+        "default": 5
       },
       {
           "type": "image_picker",

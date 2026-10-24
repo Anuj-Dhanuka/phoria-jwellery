@@ -359,15 +359,6 @@
       return total;
     };
 
-    // Toolbar count: the collection total, or how many products are shown while filtered
-    // ("19 PRODUCTS" → "4 PRODUCTS"). The FILTER (1) label shows that a filter is on.
-    var updateProductCount = function (visible, filtered) {
-      var el = root.querySelector('[data-ph-bg-count]');
-      if (!el) return;
-      var n = filtered ? visible : parseInt(el.dataset.total, 10) || 0;
-      el.textContent = n + (n === 1 ? ' PRODUCT' : ' PRODUCTS');
-    };
-
     var applyState = function (state) {
       applied = state;
       var visible = 0;
@@ -385,7 +376,6 @@
       var noResults = root.querySelector('[data-ph-bg-no-results]');
       if (noResults) noResults.hidden = visible > 0;
       if (countEl) countEl.textContent = count ? ' (' + count + ')' : '';
-      updateProductCount(visible, count > 0);
       writeUrl(state);
     };
 
