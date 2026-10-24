@@ -359,6 +359,15 @@
       return total;
     };
 
+    // Toolbar count: the collection total, or how many products are shown while filtered
+    // ("19 PRODUCTS" → "4 PRODUCTS"). The FILTER (1) label shows that a filter is on.
+    var updateProductCount = function (visible, filtered) {
+      var el = root.querySelector('[data-ph-bg-count]');
+      if (!el) return;
+      var n = filtered ? visible : parseInt(el.dataset.total, 10) || 0;
+      el.textContent = n + (n === 1 ? ' PRODUCT' : ' PRODUCTS');
+    };
+
     var applyState = function (state) {
       applied = state;
       var visible = 0;
@@ -376,6 +385,7 @@
       var noResults = root.querySelector('[data-ph-bg-no-results]');
       if (noResults) noResults.hidden = visible > 0;
       if (countEl) countEl.textContent = count ? ' (' + count + ')' : '';
+      updateProductCount(visible, count > 0);
       writeUrl(state);
     };
 
@@ -581,19 +591,16 @@
     });
   }
 
+  // READ MORE reveals the extra paragraphs (already in the HTML, collapsed) and toggles to READ LESS.
   function initReadMore(ctx) {
-    var description = ctx.root.querySelector('[data-ph-bg-description]');
+    var extra = ctx.root.querySelector('[data-ph-bg-more-text]');
     var button = ctx.root.querySelector('[data-ph-bg-more]');
-    if (!description || !button) return;
-
-    // Only offer "Read more" when the text is actually cut off.
-    if (description.scrollHeight <= description.clientHeight + 1) return;
-    button.hidden = false;
+    if (!extra || !button) return;
 
     button.addEventListener('click', function () {
-      var expanded = description.classList.toggle('is-expanded');
-      button.setAttribute('aria-expanded', String(expanded));
-      button.textContent = expanded ? 'READ LESS' : 'READ MORE';
+      var open = extra.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(open));
+      button.textContent = open ? button.dataset.labelLess : button.dataset.labelMore;
     });
   }
 

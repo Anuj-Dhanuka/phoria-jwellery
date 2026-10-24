@@ -116,7 +116,7 @@ body.template-collection-banner-grid .ph-header {
   left: 0;
   z-index: 2;
   width: var(--ph-bg-progress-width, 0);
-  height: 1px;
+  height: 2px; /* same as the product card line */
   background: var(--ph-bg-line);
   transform: translateX(var(--ph-bg-progress-x, 0));
   transition: transform 460ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -148,8 +148,30 @@ body.template-collection-banner-grid .ph-header {
   padding-top: 7px;
 }
 
+.ph-bg-toolbar__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ph-bg-toolbar__icon-svg {
+  flex: none;
+  display: block;
+}
+
 .ph-bg-toolbar__button[aria-disabled='true'] {
   cursor: default;
+}
+
+/* Product count on the right: information, so muted next to the black SORT / FILTER buttons */
+.ph-bg-toolbar__count {
+  margin: 0;
+  padding-top: 7px;
+  color: var(--ph-bg-muted);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .ph-bg-toolbar__view {
@@ -204,34 +226,86 @@ body.template-collection-banner-grid .ph-header {
   text-transform: uppercase;
 }
 
+/*
+  Description + READ MORE: same text styling and spacing as the live Rings page
+  (sections/ph-collection-description.liquid): 10px, line height 2.3, 18px between paragraphs,
+  45px under the heading on mobile and 54px on desktop.
+*/
 .ph-bg-intro__description {
-  max-width: 367px;
-  max-height: calc(var(--ph-bg-description-lines, 8) * 9px);
-  margin: 25px auto 0;
+  max-width: 100%;
+  margin: 27px auto 0;
+  font-family: 'PhoriaRegular', var(--font-body-family);
+  font-size: 10px;
+  line-height: 2.3;
+  text-transform: uppercase;
+}
+
+.ph-bg-intro__description p {
+  margin: 18px 0 0;
+}
+
+.ph-bg-intro__description strong {
+  font-family: 'PhoriaBold', var(--font-heading-family);
+  font-weight: 400;
+}
+
+/* Collapsed until READ MORE; hidden from screen readers while collapsed */
+.ph-bg-intro__extra {
+  max-height: 0;
+  margin-top: 0;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.ph-bg-intro__extra.is-open {
+  max-height: 500px;
+  margin-top: 18px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease;
+}
+
+.ph-bg-intro__more {
+  margin: 18px 0 9px;
+  color: #1d1d1d;
+  font-family: 'PhoriaBold', var(--font-heading-family);
+  font-size: 10px;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-bg-intro__extra,
+  .ph-bg-intro__extra.is-open {
+    transition: none;
+  }
+}
+
+/*
+  Mobile description (Figma): short lines, 8px / 9px line height, no READ MORE.
+  When it is set, the desktop text above is hidden on mobile; on desktop it is the other way round.
+*/
+.ph-bg-intro__mobile-text {
+  max-width: 367px;
+  margin: 10px auto 0;
+  font-family: 'PhoriaRegular', var(--font-body-family);
   font-size: 8px;
   line-height: 9px;
   text-transform: uppercase;
 }
 
-.ph-bg-intro__description.is-expanded {
-  max-height: none;
-}
-
-.ph-bg-intro__description p {
+.ph-bg-intro__mobile-text p {
   margin: 0 0 9px;
 }
 
-.ph-bg-intro__description p:last-child {
+.ph-bg-intro__mobile-text p:last-child {
   margin-bottom: 0;
 }
 
-.ph-bg-intro__more {
-  margin-top: 12px;
-  font-family: 'PhoriaBold', var(--font-heading-family);
-  font-size: 8px;
-  line-height: 1;
-  text-transform: uppercase;
+.ph-bg-intro--mobile-text .ph-bg-intro__desktop-text {
+  display: none;
 }
 
 .ph-bg-intro__more[hidden] {
@@ -319,7 +393,7 @@ body.template-collection-banner-grid .ph-header {
 .ph-bg-card__title {
   margin: 0;
   font-family: 'PhoriaBold', var(--font-heading-family);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0;
@@ -333,9 +407,9 @@ body.template-collection-banner-grid .ph-header {
 }
 
 .ph-bg-card__finish {
-  margin: 0;
+  margin: 4px 0 0; /* slight gap under the product name */
   color: var(--ph-bg-muted);
-  font-size: 7px;
+  font-size: 8px;
   line-height: 14px;
 }
 
@@ -681,9 +755,10 @@ body.ph-bg-filter-open {
   margin-bottom: 17px;
 }
 
+/* Group titles (STYLE, FINISH, SIZE, STONE, PRICE): bold and full black */
 .ph-bg-filter__label {
   margin: 0;
-  color: #a6a6a6;
+  color: #000;
   font-family: 'PhoriaBold', var(--font-heading-family);
   font-size: 10px;
   letter-spacing: 1px;
@@ -773,12 +848,14 @@ body.ph-bg-filter-open {
     --ph-bg-gutter: 36px;
   }
 
-  .ph-bg-banner__frame {
-    padding-bottom: var(--ph-bg-banner-height-desktop, 43.75%);
+  /* Desktop starts with the title: the banner and the sort/filter row are mobile-only for now */
+  .ph-bg-banner,
+  .ph-bg-toolbar {
+    display: none;
   }
 
-  .ph-bg-banner__progress {
-    height: 2px;
+  .ph-bg-banner__frame {
+    padding-bottom: var(--ph-bg-banner-height-desktop, 43.75%);
   }
 
   .ph-bg-toolbar {
@@ -802,9 +879,7 @@ body.ph-bg-filter-open {
   }
 
   .ph-bg-intro {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 52px 18px 44px;
+    padding: 52px var(--ph-bg-gutter) 44px;
   }
 
   .ph-bg-intro__title {
@@ -813,20 +888,20 @@ body.ph-bg-filter-open {
     letter-spacing: 0;
   }
 
+  .ph-bg-intro__mobile-text {
+    display: none;
+  }
+
+  .ph-bg-intro--mobile-text .ph-bg-intro__desktop-text {
+    display: block;
+  }
+
   .ph-bg-intro__description {
-    max-width: 520px;
-    max-height: calc(var(--ph-bg-description-lines, 8) * 24px);
-    margin-top: 18px;
-    font-size: 10px;
-    line-height: 24px;
+    max-width: 80%;
   }
 
-  .ph-bg-intro__description p {
-    margin-bottom: 12px;
-  }
-
-  .ph-bg-intro__more {
-    font-size: 10px;
+  .ph-bg-intro__description:not(.ph-bg-intro__extra) {
+    margin-top: 36px;
   }
 
   /* Product showcase: one product per row */
@@ -890,9 +965,14 @@ body.ph-bg-filter-open {
     line-height: normal;
   }
 
+  .ph-bg-card__title {
+    font-size: 13px;
+  }
+
   .ph-bg-card__finish {
+    margin: 0;
     color: inherit;
-    font-size: 10px;
+    font-size: 11px;
     line-height: normal;
   }
 

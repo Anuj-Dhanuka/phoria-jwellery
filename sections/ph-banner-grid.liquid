@@ -70,7 +70,6 @@
     --ph-bg-banner-height-mobile: {{ section.settings.banner_height_mobile }}%;
     --ph-bg-banner-height-desktop: {{ section.settings.banner_height_desktop }}%;
     --ph-bg-banner-focus: {{ section.settings.banner_focus }};
-    --ph-bg-description-lines: {{ section.settings.description_lines }};
   "
 >
   {%- comment -%} Banner {%- endcomment -%}
@@ -129,7 +128,7 @@
   {%- if section.settings.show_toolbar -%}
     <div class="ph-bg-toolbar">
       <div class="ph-bg-toolbar__group">
-        {%- comment -%} Placeholders until Shopify filters are connected {%- endcomment -%}
+        {%- comment -%} Each label has a small line icon (sort arrows / filter sliders) {%- endcomment -%}
         {%- if use_collection_products -%}
           <button
             class="ph-bg-toolbar__button"
@@ -139,11 +138,15 @@
             aria-controls="BannerGridSort-{{ section.id }}"
             aria-expanded="false"
           >
+            <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M3.5 10.5v-9M1.5 3.5l2-2 2 2M8.5 1.5v9M6.5 8.5l2 2 2-2"/></svg>
             SORT
           </button>
         {%- else -%}
           {%- comment -%} Sorting needs products in the collection (Shopify sort_by) {%- endcomment -%}
-          <button class="ph-bg-toolbar__button" type="button" aria-disabled="true">SORT</button>
+          <button class="ph-bg-toolbar__button" type="button" aria-disabled="true">
+            <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M3.5 10.5v-9M1.5 3.5l2-2 2 2M8.5 1.5v9M6.5 8.5l2 2 2-2"/></svg>
+            SORT
+          </button>
         {%- endif -%}
         <button
           class="ph-bg-toolbar__button"
@@ -153,42 +156,79 @@
           aria-controls="BannerGridFilter-{{ section.id }}"
           aria-expanded="false"
         >
-          FILTER<span data-ph-bg-filter-count></span>
+          <svg class="ph-bg-toolbar__icon-svg" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" focusable="false"><path d="M.5 3.5h11M.5 8.5h11"/><circle cx="4" cy="3.5" r="1.5" fill="#fff"/><circle cx="8" cy="8.5" r="1.5" fill="#fff"/></svg>
+          <span>FILTER<span data-ph-bg-filter-count></span></span>
         </button>
       </div>
-      <div class="ph-bg-toolbar__view" role="group" aria-label="Product view">
-        <span class="ph-bg-toolbar__label" aria-hidden="true">VIEW</span>
-        <button class="ph-bg-toolbar__icon" type="button" data-ph-bg-view="grid" aria-pressed="true" aria-label="Show two products per row">
-          <img src="{{ 'ph-banner-grid-view-grid.png' | asset_url }}" width="14" height="14" alt="">
-        </button>
-        {%- comment -%}
-          Single view (one product per row) is switched off for now; restore this button to bring it back.
+      {%- liquid
+        if use_collection_products
+          assign product_total = collection.products_count
+        else
+          assign product_total = section.settings.fallback_products.size
+        endif
+      -%}
+      <p class="ph-bg-toolbar__count" data-ph-bg-count data-total="{{ product_total }}" aria-live="polite">
+        {{- product_total }} {% if product_total == 1 %}PRODUCT{% else %}PRODUCTS{% endif -%}
+      </p>
+      {%- comment -%}
+        VIEW switch is turned off for now (only the 2-per-row grid is used). To bring it back, restore
+        the markup below; the styles and assets/ph-banner-grid.js (initViewToggle) still support it.
+
+        <div class="ph-bg-toolbar__view" role="group" aria-label="Product view">
+          <span class="ph-bg-toolbar__label" aria-hidden="true">VIEW</span>
+          <button class="ph-bg-toolbar__icon" type="button" data-ph-bg-view="grid" aria-pressed="true" aria-label="Show two products per row">
+            <img src="{{ 'ph-banner-grid-view-grid.png' | asset_url }}" width="14" height="14" alt="">
+          </button>
           <button class="ph-bg-toolbar__icon" type="button" data-ph-bg-view="single" aria-pressed="false" aria-label="Show one product per row">
             <img src="{{ 'ph-banner-grid-view-single.png' | asset_url }}" width="14" height="14" alt="">
           </button>
-        {%- endcomment -%}
-      </div>
+        </div>
+      {%- endcomment -%}
     </div>
   {%- endif -%}
 
   {%- comment -%} Title + description {%- endcomment -%}
-  <div class="ph-bg-intro">
+  {%- liquid
+    assign intro_class = 'ph-bg-intro'
+    if section.settings.mobile_description != blank
+      assign intro_class = 'ph-bg-intro ph-bg-intro--mobile-text'
+    endif
+  -%}
+  <div class="{{ intro_class }}">
     <h1 class="ph-bg-intro__title">{{ page_title | escape }}</h1>
-    {%- if page_description != blank -%}
-      <div class="ph-bg-intro__description" id="BannerGridDescription-{{ section.id }}" data-ph-bg-description>
-        {{ page_description }}
+    {%- comment -%} Mobile: short Figma text. Desktop: the live page's text with READ MORE (below). {%- endcomment -%}
+    {%- if section.settings.mobile_description != blank -%}
+      <div class="ph-bg-intro__mobile-text">
+        {{ section.settings.mobile_description }}
       </div>
-      <button
-        class="ph-bg-intro__more"
-        type="button"
-        data-ph-bg-more
-        aria-expanded="false"
-        aria-controls="BannerGridDescription-{{ section.id }}"
-        hidden
-      >
-        READ MORE
-      </button>
     {%- endif -%}
+    <div class="ph-bg-intro__desktop-text">
+      {%- if page_description != blank -%}
+        <div class="ph-bg-intro__description" data-ph-bg-description>
+          {{ page_description }}
+        </div>
+      {%- endif -%}
+      {%- comment -%}
+        Extra paragraphs revealed by READ MORE. They are in the HTML from the start (just collapsed),
+        so search engines read them too.
+      {%- endcomment -%}
+      {%- if section.settings.more_description != blank -%}
+        <div class="ph-bg-intro__description ph-bg-intro__extra" id="BannerGridMore-{{ section.id }}" data-ph-bg-more-text>
+          {{ section.settings.more_description }}
+        </div>
+        <button
+          class="ph-bg-intro__more"
+          type="button"
+          data-ph-bg-more
+          data-label-more="{{ section.settings.read_more_label | escape }}"
+          data-label-less="{{ section.settings.read_less_label | escape }}"
+          aria-expanded="false"
+          aria-controls="BannerGridMore-{{ section.id }}"
+        >
+          {{- section.settings.read_more_label | escape -}}
+        </button>
+      {%- endif -%}
+    </div>
   </div>
 
   {%- comment -%} Products (swapped in place by assets/ph-banner-grid.js when sorting) {%- endcomment -%}
@@ -378,7 +418,7 @@
       "type": "checkbox",
       "id": "show_toolbar",
       "label": "Show sort, filter and view row",
-      "info": "Sort orders by price (needs products in the collection). Filter options are set with \"Filter option\" blocks. View switches between 2 and 1 products per row on mobile.",
+      "info": "Sort orders by price (needs products in the collection). Filter options are set with \"Filter option\" blocks.",
       "default": true
     },
     {
@@ -395,13 +435,28 @@
       "label": "Text to show when the collection has no description"
     },
     {
-      "type": "range",
-      "id": "description_lines",
-      "label": "Lines of description shown before \"Read more\"",
-      "min": 2,
-      "max": 20,
-      "step": 1,
-      "default": 8
+      "type": "richtext",
+      "id": "mobile_description",
+      "label": "Mobile description",
+      "info": "Short text shown on mobile instead of the description and Read more. Leave empty to use the same text as desktop."
+    },
+    {
+      "type": "richtext",
+      "id": "more_description",
+      "label": "Read more text",
+      "info": "Shown when visitors tap \"Read more\" under the description. Leave empty to hide the button."
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more button",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "read_less_label",
+      "label": "Read less button",
+      "default": "Read Less"
     },
     {
       "type": "header",

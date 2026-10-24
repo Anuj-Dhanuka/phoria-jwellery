@@ -18,70 +18,16 @@
             "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
           }
         },
-        "banner_1": {
+        "image_kEXfBF": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
           }
         },
-        "lifestyle_1": {
-          "type": "lifestyle",
+        "banner_1": {
+          "type": "image",
           "settings": {
-            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_286_FINAL_5X4_300DPI_WHITE_1_2c301051-6873-4ac7-bdb0-e806c7be9cc7.jpg",
-            "after_product": 2
-          }
-        },
-        "lifestyle_2": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/Image_2.jpg",
-            "after_product": 4
-          }
-        },
-        "lifestyle_3": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_07_106_FINAL_5X4_300DPI.webp",
-            "after_product": 6
-          }
-        },
-        "lifestyle_4": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_328_FINAL_5X4_300DPI.webp",
-            "after_product": 8
-          }
-        },
-        "lifestyle_5": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_4_325_FINAL_5X4_300DPI_9308e7b4-fde5-4074-8302-ce7d6c502053.jpg",
-            "after_product": 10,
-            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chrome-diopside"
-          }
-        },
-        "lifestyle_6": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_155_FINAL_5X4_300DPI.webp",
-            "after_product": 12,
-            "url": "shopify://products/hookup-chain-ring-sterling-silver-chain-pink-tourmaline"
-          }
-        },
-        "lifestyle_7": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_5_0218_FINAL_5X4_300DPI_b3a6d5a8-1dde-4b0a-b5d6-04022a1eb84c.jpg",
-            "after_product": 14,
-            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline"
-          }
-        },
-        "lifestyle_8": {
-          "type": "lifestyle",
-          "settings": {
-            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_333_FINAL_5X4_300DPI.webp",
-            "after_product": 16,
-            "url": "shopify://products/hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine"
+            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
           }
         },
         "thumbs_1": {
@@ -216,8 +162,8 @@
           "settings": {
             "product": "hookup-chain-ring-ii-sterling-silver-chain-pink-tourmaline",
             "left_image": "shopify://shop_images/Untitled-29.jpg",
-            "right_image": "shopify://shop_images/Untitled-30.jpg",
             "center_image": "shopify://shop_images/Untitled-31-1.jpg",
+            "right_image": "shopify://shop_images/Untitled-30.jpg",
             "finish": "TWO-TONE SILVER CHAIN // Pink Tourmaline"
           }
         },
@@ -226,8 +172,8 @@
           "settings": {
             "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-pink-tourmaline",
             "left_image": "shopify://shop_images/Untitled-25-1.jpg",
-            "right_image": "shopify://shop_images/Untitled-26-1.jpg",
             "center_image": "shopify://shop_images/Untitled-27-1.jpg",
+            "right_image": "shopify://shop_images/Untitled-26-1.jpg",
             "finish": "TWO-TONE GOLD CHAIN // Pink Tourmaline"
           }
         },
@@ -247,6 +193,70 @@
             "left_image": "shopify://shop_images/22-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
             "right_image": "shopify://shop_images/24-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
             "finish": "TWO-TONE GOLD CHAIN // Green Citrine"
+          }
+        },
+        "lifestyle_1": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_286_FINAL_5X4_300DPI_WHITE_1_2c301051-6873-4ac7-bdb0-e806c7be9cc7.jpg",
+            "url": "",
+            "after_product": 2
+          }
+        },
+        "lifestyle_2": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/Image_2.jpg",
+            "url": "",
+            "after_product": 4
+          }
+        },
+        "lifestyle_3": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_07_106_FINAL_5X4_300DPI.webp",
+            "url": "",
+            "after_product": 6
+          }
+        },
+        "lifestyle_4": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_328_FINAL_5X4_300DPI.webp",
+            "url": "",
+            "after_product": 8
+          }
+        },
+        "lifestyle_5": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_4_325_FINAL_5X4_300DPI_9308e7b4-fde5-4074-8302-ce7d6c502053.jpg",
+            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chrome-diopside",
+            "after_product": 10
+          }
+        },
+        "lifestyle_6": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_155_FINAL_5X4_300DPI.webp",
+            "url": "shopify://products/hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "after_product": 12
+          }
+        },
+        "lifestyle_7": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_5_0218_FINAL_5X4_300DPI_b3a6d5a8-1dde-4b0a-b5d6-04022a1eb84c.jpg",
+            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline",
+            "after_product": 14
+          }
+        },
+        "lifestyle_8": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_333_FINAL_5X4_300DPI.webp",
+            "url": "shopify://products/hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine",
+            "after_product": 16
           }
         },
         "filter_1": {
@@ -324,6 +334,7 @@
       },
       "block_order": [
         "image_p7GUDA",
+        "image_kEXfBF",
         "banner_1",
         "thumbs_1",
         "thumbs_2",
@@ -365,8 +376,7 @@
         "banner_height_desktop": "43.75",
         "banner_focus": "center",
         "show_toolbar": true,
-        "fallback_description": "<p>OUR BESTSELLER FOR A REASON.</p><p>INTERCHANGEABLE, TRANSFORMABLE RINGS</p><p>WORN MULTIPLE WAYS ON REPEAT</p>",
-        "description_lines": 8,
+        "fallback_description": "<p>OUR HOOKUP CHAIN RINGS REIMAGINE THE TRADITIONAL RING AS AN INTERCHANGEABLE, TRANSFORMABLE PIECE, DESIGNED WITH AN INDUSTRIAL EDGE.</p><p>THE CHAIN RINGS COME IN TWO MAIN STYLES: IN A SET OF TWO OR THREE BANDS. WEAR THE BANDS STACKED ON ONE FINGER OR SPREAD ACROSS SEVERAL WITH THE CHAIN HANGING.</p>",
         "fallback_products": [
           "1x-hookup-chain-ring-all-silver",
           "hookup-chain-ring-ii-all-silver",
@@ -389,7 +399,11 @@
         ],
         "products_per_page": 24,
         "images_per_product": 5,
-        "show_finish": true
+        "show_finish": true,
+        "more_description": "<p>WITH OUR TWO TONED OPTIONS - SIMPLY TWIST AND PLAY WITH THE BANDS TO REVEAL ALL GOLD, ALL SILVER OR A TWO TONED LOOK.</p><p>WITH MOVEABLE SEMI-PRECIOUS STONE ANNULETS AND CUSTOMISABLE WEARING OPTIONS THIS 2-IN-1 OR 3-IN-1 RING OFFERS ALMOST ENDLESS CREATIVE VERSATILITY.</p>",
+        "read_more_label": "Read More",
+        "read_less_label": "Read Less",
+        "mobile_description": "<p>OUR BESTSELLER FOR A REASON.</p><p>INTERCHANGEABLE, TRANSFORMABLE RINGS</p><p>WORN MULTIPLE WAYS ON REPEAT</p>"
       }
     }
   },
