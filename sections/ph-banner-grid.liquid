@@ -1,0 +1,590 @@
+{%- comment -%}
+  Banner + product grid collection page (template: collection.banner-grid).
+
+  Content sources, in priority order:
+  - Banner images: collection field custom.hero_images → "Banner image" blocks → collection image
+  - Title / description: collection title / collection description → section fallback text
+  - Products: products in the collection (paginated) → section "fallback_products" list
+  - Desktop thumbnails: "Desktop thumbnails" blocks per product → the product's 2nd and 3rd photos
+  - Lifestyle images (desktop only): "Lifestyle image" blocks, placed after a chosen product number
+  - Filter: STYLE and SIZE come from the products on the page; FINISH and STONE from "Filter option" blocks
+{%- endcomment -%}
+
+{%- liquid
+  assign banner_metafield_images = collection.metafields.custom.hero_images.value
+  assign banner_count = 0
+  assign banner_source = 'none'
+  assign banner_blocks = section.blocks | where: 'type', 'image'
+  assign lifestyle_blocks = section.blocks | where: 'type', 'lifestyle'
+  assign showcase_blocks = section.blocks | where: 'type', 'showcase'
+  assign filter_blocks = section.blocks | where: 'type', 'filter_option'
+  assign filter_styles = ''
+  assign filter_sizes = ''
+
+  if banner_metafield_images != blank and banner_metafield_images.size > 0
+    assign banner_source = 'metafield'
+    assign banner_count = banner_metafield_images.size
+  elsif banner_blocks.size > 0
+    assign banner_source = 'blocks'
+    for block in banner_blocks
+      if block.settings.image != blank
+        assign banner_count = banner_count | plus: 1
+      endif
+    endfor
+  elsif collection.image != blank
+    assign banner_source = 'collection'
+    assign banner_count = 1
+  endif
+
+  assign page_title = collection.title
+  assign page_description = collection.description
+  if page_description == blank
+    assign page_description = section.settings.fallback_description
+  endif
+
+  assign use_collection_products = false
+  if collection.all_products_count > 0
+    assign use_collection_products = true
+  endif
+
+  # Lifestyle images sit next to specific products, so they are left out while sorted by price
+  assign is_sorted = false
+  if collection.sort_by == 'price-ascending' or collection.sort_by == 'price-descending'
+    assign is_sorted = true
+  endif
+
+  assign card_sizes = '50vw'
+  assign ld_items = ''
+-%}
+
+{%- comment -%} Swiper is loaded globally in layout/theme.liquid {%- endcomment -%}
+{{ 'ph-banner-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ph-banner-grid.js' | asset_url }}" defer="defer"></script>
+
+<div
+  class="ph-banner-grid"
+  data-ph-banner-grid
+  data-section-id="{{ section.id }}"
+  data-view="grid"
+  style="
+    --ph-bg-banner-height-mobile: {{ section.settings.banner_height_mobile }}%;
+    --ph-bg-banner-height-desktop: {{ section.settings.banner_height_desktop }}%;
+    --ph-bg-banner-focus: {{ section.settings.banner_focus }};
+    --ph-bg-description-lines: {{ section.settings.description_lines }};
+  "
+>
+  {%- comment -%} Banner {%- endcomment -%}
+  <div
+    class="ph-bg-banner"
+    data-ph-bg-banner
+    data-slide-count="{{ banner_count }}"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="{{ page_title | escape }}"
+  >
+    <div class="ph-bg-banner__frame">
+      {%- if banner_count > 0 -%}
+        <div class="ph-bg-banner__swiper swiper" data-ph-bg-banner-swiper>
+          <div class="swiper-wrapper">
+            {%- case banner_source -%}
+              {%- when 'metafield' -%}
+                {%- for image in banner_metafield_images -%}
+                  {%- render 'ph-banner-grid-slide', image: image, index: forloop.index, fallback_alt: page_title -%}
+                {%- endfor -%}
+              {%- when 'blocks' -%}
+                {%- assign slide_index = 0 -%}
+                {%- for block in banner_blocks -%}
+                  {%- if block.settings.image != blank -%}
+                    {%- assign slide_index = slide_index | plus: 1 -%}
+                    {%- render 'ph-banner-grid-slide',
+                      image: block.settings.image,
+                      index: slide_index,
+                      fallback_alt: page_title,
+                      attributes: block.shopify_attributes
+                    -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- when 'collection' -%}
+                {%- render 'ph-banner-grid-slide', image: collection.image, index: 1, fallback_alt: page_title -%}
+            {%- endcase -%}
+          </div>
+        </div>
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'ph-bg-banner__placeholder' }}
+      {%- endif -%}
+    </div>
+
+    {%- if banner_count > 1 -%}
+      <button class="ph-bg-banner__arrow ph-bg-banner__arrow--prev" type="button" data-ph-bg-banner-prev aria-label="Previous image">
+        <img src="{{ 'ph-banner-grid-arrow-prev.svg' | asset_url }}" width="20" height="14" alt="">
+      </button>
+      <button class="ph-bg-banner__arrow ph-bg-banner__arrow--next" type="button" data-ph-bg-banner-next aria-label="Next image">
+        <img src="{{ 'ph-banner-grid-arrow-next.svg' | asset_url }}" width="20" height="14" alt="">
+      </button>
+      <span class="ph-bg-banner__progress" aria-hidden="true"></span>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Sort / filter / view {%- endcomment -%}
+  {%- if section.settings.show_toolbar -%}
+    <div class="ph-bg-toolbar">
+      <div class="ph-bg-toolbar__group">
+        {%- comment -%} Placeholders until Shopify filters are connected {%- endcomment -%}
+        {%- if use_collection_products -%}
+          <button
+            class="ph-bg-toolbar__button"
+            type="button"
+            data-ph-bg-sort-open
+            aria-haspopup="dialog"
+            aria-controls="BannerGridSort-{{ section.id }}"
+            aria-expanded="false"
+          >
+            SORT
+          </button>
+        {%- else -%}
+          {%- comment -%} Sorting needs products in the collection (Shopify sort_by) {%- endcomment -%}
+          <button class="ph-bg-toolbar__button" type="button" aria-disabled="true">SORT</button>
+        {%- endif -%}
+        <button
+          class="ph-bg-toolbar__button"
+          type="button"
+          data-ph-bg-filter-open
+          aria-haspopup="dialog"
+          aria-controls="BannerGridFilter-{{ section.id }}"
+          aria-expanded="false"
+        >
+          FILTER<span data-ph-bg-filter-count></span>
+        </button>
+      </div>
+      <div class="ph-bg-toolbar__view" role="group" aria-label="Product view">
+        <span class="ph-bg-toolbar__label" aria-hidden="true">VIEW</span>
+        <button class="ph-bg-toolbar__icon" type="button" data-ph-bg-view="grid" aria-pressed="true" aria-label="Show two products per row">
+          <img src="{{ 'ph-banner-grid-view-grid.png' | asset_url }}" width="14" height="14" alt="">
+        </button>
+        {%- comment -%}
+          Single view (one product per row) is switched off for now; restore this button to bring it back.
+          <button class="ph-bg-toolbar__icon" type="button" data-ph-bg-view="single" aria-pressed="false" aria-label="Show one product per row">
+            <img src="{{ 'ph-banner-grid-view-single.png' | asset_url }}" width="14" height="14" alt="">
+          </button>
+        {%- endcomment -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Title + description {%- endcomment -%}
+  <div class="ph-bg-intro">
+    <h1 class="ph-bg-intro__title">{{ page_title | escape }}</h1>
+    {%- if page_description != blank -%}
+      <div class="ph-bg-intro__description" id="BannerGridDescription-{{ section.id }}" data-ph-bg-description>
+        {{ page_description }}
+      </div>
+      <button
+        class="ph-bg-intro__more"
+        type="button"
+        data-ph-bg-more
+        aria-expanded="false"
+        aria-controls="BannerGridDescription-{{ section.id }}"
+        hidden
+      >
+        READ MORE
+      </button>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Products (swapped in place by assets/ph-banner-grid.js when sorting) {%- endcomment -%}
+  <p class="visually-hidden" role="status" data-ph-bg-status></p>
+  <div class="ph-bg-results" data-ph-bg-results>
+    <span class="ph-bg-results__loader" aria-hidden="true"></span>
+    <h2 class="visually-hidden">Products</h2>
+    {%- if use_collection_products -%}
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        <ul class="ph-bg-grid" role="list">
+          {%- for product in collection.products -%}
+            {%- render 'ph-banner-grid-card',
+              product: product,
+              index: forloop.index,
+              section_id: section.id,
+              images_per_product: section.settings.images_per_product,
+              show_finish: section.settings.show_finish,
+              sizes: card_sizes,
+              showcase_blocks: showcase_blocks
+            -%}
+            {%- unless is_sorted -%}
+              {%- render 'ph-banner-grid-lifestyle', blocks: lifestyle_blocks, after: forloop.index -%}
+            {%- endunless -%}
+            {%- liquid
+              assign filter_styles = filter_styles | append: product.title | append: '§'
+              for option in product.options_with_values
+                assign option_name = option.name | downcase
+                if option_name == 'size'
+                  assign size_values = option.values | join: '§'
+                  assign filter_sizes = filter_sizes | append: size_values | append: '§'
+                endif
+              endfor
+            -%}
+            {%- capture ld_item -%}{"@type":"ListItem","position":{{ paginate.current_offset | plus: forloop.index }},"url":{{ shop.url | append: product.url | json }},"name":{{ product.title | json }}}{%- endcapture -%}
+            {%- unless forloop.first -%}{%- assign ld_items = ld_items | append: ',' -%}{%- endunless -%}
+            {%- assign ld_items = ld_items | append: ld_item -%}
+          {%- endfor -%}
+        </ul>
+        {%- render 'pagination', paginate: paginate, class: 'ph-bg-pagination' -%}
+      {%- endpaginate -%}
+    {%- elsif section.settings.fallback_products.size > 0 -%}
+      <ul class="ph-bg-grid" role="list">
+        {%- for product in section.settings.fallback_products -%}
+          {%- render 'ph-banner-grid-card',
+            product: product,
+            index: forloop.index,
+            section_id: section.id,
+            images_per_product: section.settings.images_per_product,
+            show_finish: section.settings.show_finish,
+            sizes: card_sizes,
+            showcase_blocks: showcase_blocks
+          -%}
+          {%- render 'ph-banner-grid-lifestyle', blocks: lifestyle_blocks, after: forloop.index -%}
+          {%- liquid
+            assign filter_styles = filter_styles | append: product.title | append: '§'
+            for option in product.options_with_values
+              assign option_name = option.name | downcase
+              if option_name == 'size'
+                assign size_values = option.values | join: '§'
+                assign filter_sizes = filter_sizes | append: size_values | append: '§'
+              endif
+            endfor
+          -%}
+          {%- capture ld_item -%}{"@type":"ListItem","position":{{ forloop.index }},"url":{{ shop.url | append: product.url | json }},"name":{{ product.title | json }}}{%- endcapture -%}
+          {%- unless forloop.first -%}{%- assign ld_items = ld_items | append: ',' -%}{%- endunless -%}
+          {%- assign ld_items = ld_items | append: ld_item -%}
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <p class="ph-bg-empty">No products in this collection yet.</p>
+    {%- endif -%}
+
+    <div class="ph-bg-empty" data-ph-bg-no-results hidden>
+      <p>No products match these filters.</p>
+      <button class="ph-bg-empty__reset" type="button" data-ph-bg-filter-reset>CLEAR FILTERS</button>
+    </div>
+  </div>
+
+  {%- liquid
+    assign styles = filter_styles | split: '§' | uniq | sort
+    assign sizes = filter_sizes | split: '§' | uniq
+  -%}
+  {%- render 'ph-banner-grid-filter', section_id: section.id, styles: styles, sizes: sizes, option_blocks: filter_blocks -%}
+  {%- if use_collection_products -%}
+    {%- render 'ph-banner-grid-sort', section_id: section.id -%}
+  {%- endif -%}
+  {%- comment -%} Dims the page behind the filter/sort drawer on desktop {%- endcomment -%}
+  <div class="ph-bg-backdrop" data-ph-bg-backdrop hidden></div>
+</div>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": {{ canonical_url | append: '#collection' | json }},
+        "url": {{ canonical_url | json }},
+        "name": {{ page_title | json }}
+        {%- if page_description != blank -%}
+          ,"description": {{ page_description | strip_html | strip_newlines | truncate: 300 | json }}
+        {%- endif -%}
+        {%- if ld_items != blank -%}
+          ,"mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [{{ ld_items }}]
+          }
+        {%- endif -%}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ shop.url | json }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ page_title | json }},
+            "item": {{ shop.url | append: collection.url | json }}
+          }
+        ]
+      }
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Banner + product grid",
+  "tag": "section",
+  "class": "ph-banner-grid-section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "paragraph",
+      "content": "The banner uses the collection's \"Hero images\" field first. If that is empty, it uses the banner images added below, then the collection image."
+    },
+    {
+      "type": "range",
+      "id": "banner_height_mobile",
+      "label": "Banner height on mobile",
+      "info": "As a percentage of the screen width.",
+      "min": 60,
+      "max": 150,
+      "step": 1,
+      "unit": "%",
+      "default": 103
+    },
+    {
+      "type": "select",
+      "id": "banner_height_desktop",
+      "label": "Banner shape on desktop",
+      "options": [
+        { "value": "33.33", "label": "Extra wide (3:1)" },
+        { "value": "43.75", "label": "Wide (16:7)" },
+        { "value": "56.25", "label": "Standard (16:9)" },
+        { "value": "75", "label": "Tall (4:3)" }
+      ],
+      "default": "43.75"
+    },
+    {
+      "type": "select",
+      "id": "banner_focus",
+      "label": "Keep this part of the banner image in view",
+      "options": [
+        { "value": "center", "label": "Middle" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Sort, filter and view"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toolbar",
+      "label": "Show sort, filter and view row",
+      "info": "Sort orders by price (needs products in the collection). Filter options are set with \"Filter option\" blocks. View switches between 2 and 1 products per row on mobile.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Title and description"
+    },
+    {
+      "type": "paragraph",
+      "content": "The title and description come from the collection. Edit them in Products → Collections."
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_description",
+      "label": "Text to show when the collection has no description"
+    },
+    {
+      "type": "range",
+      "id": "description_lines",
+      "label": "Lines of description shown before \"Read more\"",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "paragraph",
+      "content": "Products come from the collection, in the collection's order. The list below is only used while the collection has no products. On desktop each product shows 3 thumbnails: add a \"Desktop thumbnails\" block to choose them, otherwise the product's own photos are used."
+    },
+    {
+      "type": "product_list",
+      "id": "fallback_products",
+      "label": "Products to show while the collection is empty",
+      "limit": 50
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "images_per_product",
+      "label": "Swipeable images per product",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_finish",
+      "label": "Show finish under the product name",
+      "info": "Uses the product's \"Finish\" field.",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Banner image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "showcase",
+      "name": "Desktop thumbnails",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Choose the images or videos shown either side of a product on desktop. Empty sides use the product's own photos."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left image"
+        },
+        {
+          "type": "video",
+          "id": "left_video",
+          "label": "Left video",
+          "info": "Used instead of the left image."
+        },
+        {
+          "type": "image_picker",
+          "id": "center_image",
+          "label": "Middle image (optional)",
+          "info": "Replaces the product's main photo on desktop."
+        },
+        {
+          "type": "image_picker",
+          "id": "right_image",
+          "label": "Right image"
+        },
+        {
+          "type": "video",
+          "id": "right_video",
+          "label": "Right video",
+          "info": "Used instead of the right image."
+        },
+        {
+          "type": "text",
+          "id": "finish",
+          "label": "Finish text (optional)",
+          "info": "Replaces the product's Finish field under the product name."
+        }
+      ]
+    },
+    {
+      "type": "filter_option",
+      "name": "Filter option",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Adds an option to the FINISH or STONE filter. STYLE and SIZE options are created automatically from the products."
+        },
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Filter group",
+          "options": [
+            { "value": "finish", "label": "Finish" },
+            { "value": "stone", "label": "Stone" }
+          ],
+          "default": "finish"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Option"
+        },
+        {
+          "type": "text",
+          "id": "match",
+          "label": "Match words",
+          "info": "Comma-separated. A product matches when its URL handle or Finish field contains one of these, e.g. chrome-diopside"
+        },
+        {
+          "type": "select",
+          "id": "swatch",
+          "label": "Stone swatch",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "white-topaz", "label": "White topaz" },
+            { "value": "chrome-diopside", "label": "Chrome diopside" },
+            { "value": "pink-tourmaline", "label": "Pink tourmaline" },
+            { "value": "green-citrine", "label": "Green citrine" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "swatch_image",
+          "label": "Custom swatch image (optional)",
+          "info": "Replaces the swatch above. Shown at 15×15px."
+        }
+      ]
+    },
+    {
+      "type": "lifestyle",
+      "name": "Lifestyle image",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "A large photo between products. Shown on desktop only."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "range",
+          "id": "after_product",
+          "label": "Show after product number",
+          "min": 1,
+          "max": 48,
+          "step": 1,
+          "default": 2
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50
+}
+{% endschema %}

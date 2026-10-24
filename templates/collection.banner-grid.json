@@ -1,0 +1,399 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ph-banner-grid",
+      "blocks": {
+        "image_p7GUDA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
+          }
+        },
+        "banner_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
+          }
+        },
+        "lifestyle_1": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_286_FINAL_5X4_300DPI_WHITE_1_2c301051-6873-4ac7-bdb0-e806c7be9cc7.jpg",
+            "after_product": 2
+          }
+        },
+        "lifestyle_2": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/Image_2.jpg",
+            "after_product": 4
+          }
+        },
+        "lifestyle_3": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_07_106_FINAL_5X4_300DPI.webp",
+            "after_product": 6
+          }
+        },
+        "lifestyle_4": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_328_FINAL_5X4_300DPI.webp",
+            "after_product": 8
+          }
+        },
+        "lifestyle_5": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_4_325_FINAL_5X4_300DPI_9308e7b4-fde5-4074-8302-ce7d6c502053.jpg",
+            "after_product": 10,
+            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chrome-diopside"
+          }
+        },
+        "lifestyle_6": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_155_FINAL_5X4_300DPI.webp",
+            "after_product": 12,
+            "url": "shopify://products/hookup-chain-ring-sterling-silver-chain-pink-tourmaline"
+          }
+        },
+        "lifestyle_7": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_5_0218_FINAL_5X4_300DPI_b3a6d5a8-1dde-4b0a-b5d6-04022a1eb84c.jpg",
+            "after_product": 14,
+            "url": "shopify://products/hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline"
+          }
+        },
+        "lifestyle_8": {
+          "type": "lifestyle",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_333_FINAL_5X4_300DPI.webp",
+            "after_product": 16,
+            "url": "shopify://products/hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine"
+          }
+        },
+        "thumbs_1": {
+          "type": "showcase",
+          "settings": {
+            "product": "1x-hookup-chain-ring-all-silver",
+            "left_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-4.jpg",
+            "right_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-3.jpg",
+            "finish": "925 STERLING SILVER // WHITE TOPAZ"
+          }
+        },
+        "thumbs_2": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-all-gold",
+            "left_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-6.jpg",
+            "right_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-7.jpg",
+            "finish": "18CT GOLD VERMEIL // WHITE TOPAZ"
+          }
+        },
+        "thumbs_3": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-all-silver",
+            "left_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-13.jpg",
+            "right_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-14.jpg",
+            "finish": "925 STERLING SILVER // WHITE TOPAZ"
+          }
+        },
+        "thumbs_4": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-all-gold",
+            "left_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-11_7752ed77-e84e-404a-b615-6529906219a5.jpg",
+            "right_image": "shopify://shop_images/ALLGOLD_SILVERHOOKUPS-10_a56a47c2-034e-4c4b-a347-6e0c24a9deb8.jpg",
+            "finish": "18CT GOLD VERMEIL // WHITE TOPAZ"
+          }
+        },
+        "thumbs_5": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-white-topaz",
+            "left_image": "shopify://shop_images/1-Hookup-Chain-Ring-Silver-_-White-Topaz.jpg",
+            "right_image": "shopify://shop_images/1-hookup-chain-ring-ii-1-gr2-g-rxrwt-1024x1024.webp",
+            "right_video": "shopify://files/videos/3-Hookup-Chain-Ring-Silver-_-White-Topaz.mp4",
+            "finish": "TWO-TONE SILVER CHAIN // WHITE TOPAZ"
+          }
+        },
+        "thumbs_6": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-white-topaz",
+            "left_video": "shopify://files/videos/4-Hookup-Chain-Ring-Gold-_-White-Topaz.mp4",
+            "right_image": "shopify://shop_images/6-Hookup-Chain-Ring-Gold-_-White-Topaz.webp",
+            "finish": "TWO-TONE GOLD CHAIN // WHITE TOPAZ"
+          }
+        },
+        "thumbs_7": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-white-topaz",
+            "left_image": "shopify://shop_images/7-Hookup-Chain-Ring-II-Silver-_-White-Topaz.webp",
+            "right_video": "shopify://files/videos/9-Hookup-Chain-Ring-II-Silver-_-White-Topaz.mp4",
+            "finish": "TWO-TONE SILVER CHAIN // WHITE TOPAZ"
+          }
+        },
+        "thumbs_8": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-white-topaz",
+            "left_video": "shopify://files/videos/10-Hookup-Chain-Ring-II-Gold-_-White-Topaz.mp4",
+            "right_image": "shopify://shop_images/12-Hookup-Chain-Ring-II-Gold-_-White-Topaz-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // WHITE TOPAZ"
+          }
+        },
+        "thumbs_9": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-chrome-diopside",
+            "left_image": "shopify://shop_images/13-Hookup-Chain-Ring-I-Silver-_-Chrome-Diopside.webp",
+            "right_image": "shopify://shop_images/15-Hookup-Chain-Ring-I-Silver-_-Chrome-Diopside.webp",
+            "finish": "TWO-TONE SILVER CHAIN // Chrome Diopside"
+          }
+        },
+        "thumbs_10": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chrome-diopside",
+            "left_image": "shopify://shop_images/16-Hookup-Chain-Ring-I-Gold-_-Chrome-Diopside.webp",
+            "right_image": "shopify://shop_images/18-Hookup-Chain-Ring-I-Gold-_-Chrome-Diopside-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // Chrome Diopside"
+          }
+        },
+        "thumbs_11": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-chrome-diopside",
+            "left_image": "shopify://shop_images/19-Hookup-Chain-Ring-II-Silver-_-Chrome-Diopside-768x768.webp",
+            "right_image": "shopify://shop_images/21-Hookup-Chain-Ring-II-Silver-_-Chrome-Diopside-768x768.webp",
+            "finish": "TWO-TONE SILVER CHAIN // Chrome Diopside"
+          }
+        },
+        "thumbs_12": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-chrome-diopside",
+            "left_image": "shopify://shop_images/22-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
+            "right_image": "shopify://shop_images/24-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // Chrome Diopside"
+          }
+        },
+        "thumbs_13": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+            "left_image": "shopify://shop_images/Untitled-17-768x768.webp",
+            "right_image": "shopify://shop_images/Untitled-18-768x768.webp",
+            "finish": "TWO-TONE SILVER CHAIN // Pink Tourmaline"
+          }
+        },
+        "thumbs_14": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline",
+            "left_image": "shopify://shop_images/Untitled-13-768x768.webp",
+            "right_image": "shopify://shop_images/Untitled-14-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // Pink Tourmaline"
+          }
+        },
+        "thumbs_15": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-sterling-silver-chain-pink-tourmaline",
+            "left_image": "shopify://shop_images/Untitled-29.jpg",
+            "right_image": "shopify://shop_images/Untitled-30.jpg",
+            "center_image": "shopify://shop_images/Untitled-31-1.jpg",
+            "finish": "TWO-TONE SILVER CHAIN // Pink Tourmaline"
+          }
+        },
+        "thumbs_16": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-pink-tourmaline",
+            "left_image": "shopify://shop_images/Untitled-25-1.jpg",
+            "right_image": "shopify://shop_images/Untitled-26-1.jpg",
+            "center_image": "shopify://shop_images/Untitled-27-1.jpg",
+            "finish": "TWO-TONE GOLD CHAIN // Pink Tourmaline"
+          }
+        },
+        "thumbs_17": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-18ct-gold-vermeil-chain-green-citrine",
+            "left_image": "shopify://shop_images/16-Hookup-Chain-Ring-I-Gold-_-Chrome-Diopside.webp",
+            "right_image": "shopify://shop_images/18-Hookup-Chain-Ring-I-Gold-_-Chrome-Diopside-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // Green Citrine"
+          }
+        },
+        "thumbs_18": {
+          "type": "showcase",
+          "settings": {
+            "product": "hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine",
+            "left_image": "shopify://shop_images/22-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
+            "right_image": "shopify://shop_images/24-Hookup-Chain-Ring-II-Gold-_-Chrome-Diopside-768x768.webp",
+            "finish": "TWO-TONE GOLD CHAIN // Green Citrine"
+          }
+        },
+        "filter_1": {
+          "type": "filter_option",
+          "settings": {
+            "group": "finish",
+            "label": "925 STERLING SILVER",
+            "match": "all-silver",
+            "swatch": "none"
+          }
+        },
+        "filter_2": {
+          "type": "filter_option",
+          "settings": {
+            "group": "finish",
+            "label": "18CT GOLD VERMEIL",
+            "match": "all-gold",
+            "swatch": "none"
+          }
+        },
+        "filter_3": {
+          "type": "filter_option",
+          "settings": {
+            "group": "finish",
+            "label": "TWO TONE (SILVER CHAIN)",
+            "match": "two-tone-silver, sterling-silver-chain",
+            "swatch": "none"
+          }
+        },
+        "filter_4": {
+          "type": "filter_option",
+          "settings": {
+            "group": "finish",
+            "label": "TWO TONE (GOLD CHAIN)",
+            "match": "two-tone-gold, ring-18ct-gold-vermeil, ii-18ct-gold-vermeil",
+            "swatch": "none"
+          }
+        },
+        "filter_5": {
+          "type": "filter_option",
+          "settings": {
+            "group": "stone",
+            "label": "WHITE TOPAZ",
+            "match": "white-topaz",
+            "swatch": "white-topaz"
+          }
+        },
+        "filter_6": {
+          "type": "filter_option",
+          "settings": {
+            "group": "stone",
+            "label": "CHROME DIOPSIDE",
+            "match": "chrome-diopside",
+            "swatch": "chrome-diopside"
+          }
+        },
+        "filter_7": {
+          "type": "filter_option",
+          "settings": {
+            "group": "stone",
+            "label": "PINK TOURMALINE",
+            "match": "pink-tourmaline",
+            "swatch": "pink-tourmaline"
+          }
+        },
+        "filter_8": {
+          "type": "filter_option",
+          "settings": {
+            "group": "stone",
+            "label": "GREEN CITRINE",
+            "match": "green-citrine",
+            "swatch": "green-citrine"
+          }
+        }
+      },
+      "block_order": [
+        "image_p7GUDA",
+        "banner_1",
+        "thumbs_1",
+        "thumbs_2",
+        "thumbs_3",
+        "thumbs_4",
+        "thumbs_5",
+        "thumbs_6",
+        "thumbs_7",
+        "thumbs_8",
+        "thumbs_9",
+        "thumbs_10",
+        "thumbs_11",
+        "thumbs_12",
+        "thumbs_13",
+        "thumbs_14",
+        "thumbs_15",
+        "thumbs_16",
+        "thumbs_17",
+        "thumbs_18",
+        "lifestyle_1",
+        "lifestyle_2",
+        "lifestyle_3",
+        "lifestyle_4",
+        "lifestyle_5",
+        "lifestyle_6",
+        "lifestyle_7",
+        "lifestyle_8",
+        "filter_1",
+        "filter_2",
+        "filter_3",
+        "filter_4",
+        "filter_5",
+        "filter_6",
+        "filter_7",
+        "filter_8"
+      ],
+      "settings": {
+        "banner_height_mobile": 103,
+        "banner_height_desktop": "43.75",
+        "banner_focus": "center",
+        "show_toolbar": true,
+        "fallback_description": "<p>OUR BESTSELLER FOR A REASON.</p><p>INTERCHANGEABLE, TRANSFORMABLE RINGS</p><p>WORN MULTIPLE WAYS ON REPEAT</p>",
+        "description_lines": 8,
+        "fallback_products": [
+          "1x-hookup-chain-ring-all-silver",
+          "hookup-chain-ring-ii-all-silver",
+          "hookup-chain-ring-all-gold",
+          "hookup-chain-ring-ii-all-gold",
+          "hookup-chain-ring-sterling-silver-chain-white-topaz",
+          "hookup-chain-ring-ii-sterling-silver-chain-white-topaz",
+          "hookup-chain-ring-18ct-gold-vermeil-white-topaz",
+          "hookup-chain-ring-ii-18ct-gold-vermeil-chain-white-topaz",
+          "hookup-chain-ring-sterling-silver-chain-chrome-diopside",
+          "hookup-chain-ring-ii-sterling-silver-chain-chrome-diopside",
+          "hookup-chain-ring-18ct-gold-vermeil-chrome-diopside",
+          "hookup-chain-ring-ii-18ct-gold-vermeil-chain-chrome-diopside",
+          "hookup-chain-ring-sterling-silver-chain-pink-tourmaline",
+          "hookup-chain-ring-ii-sterling-silver-chain-pink-tourmaline",
+          "hookup-chain-ring-18ct-gold-vermeil-chain-pink-tourmaline",
+          "hookup-chain-ring-ii-18ct-gold-vermeil-chain-pink-tourmaline",
+          "hookup-chain-ring-18ct-gold-vermeil-chain-green-citrine",
+          "hookup-chain-ring-ii-18ct-gold-vermeil-chain-green-citrine"
+        ],
+        "products_per_page": 24,
+        "images_per_product": 5,
+        "show_finish": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

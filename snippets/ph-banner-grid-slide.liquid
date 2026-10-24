@@ -1,0 +1,36 @@
+{%- comment -%}
+  One banner slide for sections/ph-banner-grid.liquid.
+
+  Accepts:
+  - image: {Object} Image
+  - index: {Number} 1-based slide position (slide 1 loads first, the rest lazily)
+  - fallback_alt: {String} Alt text when the image has none
+  - attributes: {String} (optional) Theme editor block attributes
+{%- endcomment -%}
+
+{%- assign alt = image.alt | default: fallback_alt -%}
+
+<div class="ph-bg-banner__slide swiper-slide" {{ attributes }}>
+  {%- if index == 1 -%}
+    {{
+      image
+      | image_url: width: 2600
+      | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        widths: '430, 750, 1100, 1500, 2000, 2600',
+        sizes: '100vw',
+        alt: alt
+    }}
+  {%- else -%}
+    {{
+      image
+      | image_url: width: 2600
+      | image_tag:
+        loading: 'lazy',
+        widths: '430, 750, 1100, 1500, 2000, 2600',
+        sizes: '100vw',
+        alt: alt
+    }}
+  {%- endif -%}
+</div>

@@ -1,0 +1,135 @@
+{%- comment -%}
+  Product card for sections/ph-banner-grid.liquid.
+  Mobile: swipeable product photos. Desktop (960px+): three thumbnails side by side.
+
+  Accepts:
+  - product: {Object} Product
+  - index: {Number} 1-based position in the grid
+  - section_id: {String}
+  - images_per_product: {Number} Max swipeable images on mobile
+  - show_finish: {Boolean} Show the finish line
+  - sizes: {String} sizes attribute for mobile card images
+  - showcase_blocks: {Array} "showcase" blocks with hand-picked desktop thumbnails per product
+{%- endcomment -%}
+
+{%- liquid
+  assign card_images = product.media | where: 'media_type', 'image'
+  assign finish = product.metafields.custom.finish.value
+  assign title_id = 'BannerGridCard-' | append: section_id | append: '-' | append: product.id
+
+  # Hand-picked desktop thumbnails for this product, if any
+  assign showcase = nil
+  for showcase_block in showcase_blocks
+    if showcase_block.settings.product.id == product.id
+      assign showcase = showcase_block
+      break
+    endif
+  endfor
+  if showcase and showcase.settings.finish != blank
+    assign finish = showcase.settings.finish
+  endif
+
+  # First row of cards sits close to the fold on mobile
+  assign image_loading = 'lazy'
+  if index <= 2
+    assign image_loading = 'eager'
+  endif
+
+  # Data used by the filter panel (assets/ph-banner-grid.js)
+  assign filter_style = product.title | handleize
+  assign filter_sizes = ''
+  for option in product.options_with_values
+    assign option_name = option.name | downcase
+    if option_name == 'size'
+      for value in option.values
+        assign size_key = value | handleize
+        assign filter_sizes = filter_sizes | append: ' ' | append: size_key
+      endfor
+    endif
+  endfor
+  assign filter_match = product.handle
+  assign finish_key = product.metafields.custom.finish.value | handleize
+  assign filter_match = filter_match | append: ' ' | append: finish_key
+  if showcase and showcase.settings.finish != blank
+    assign finish_key = showcase.settings.finish | handleize
+    assign filter_match = filter_match | append: ' ' | append: finish_key
+  endif
+-%}
+
+<li
+  class="ph-bg-grid__item"
+  data-ph-bg-item
+  data-style="{{ filter_style }}"
+  data-sizes="{{ filter_sizes | strip }}"
+  data-match="{{ filter_match | escape }}"
+>
+  <article class="ph-bg-card" data-ph-bg-card aria-labelledby="{{ title_id }}">
+    <div class="ph-bg-card__media">
+      <div class="ph-bg-card__swiper swiper" data-ph-bg-card-swiper>
+        <div class="swiper-wrapper">
+          {%- for media in card_images limit: images_per_product -%}
+            {%- liquid
+              assign media_alt = media.alt | default: product.title
+              assign slide_loading = 'lazy'
+              if forloop.first
+                assign slide_loading = image_loading
+              endif
+            -%}
+            <a class="ph-bg-card__slide swiper-slide" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+              {{
+                media.preview_image
+                | image_url: width: 900
+                | image_tag: loading: slide_loading, widths: '260, 400, 540, 720, 900', sizes: sizes, alt: media_alt
+              }}
+            </a>
+          {%- else -%}
+            <a class="ph-bg-card__slide swiper-slide" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'ph-bg-card__placeholder' }}
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+      <span class="ph-bg-card__progress" aria-hidden="true"></span>
+    </div>
+
+    {%- comment -%} Desktop thumbnails: left, main, right {%- endcomment -%}
+    <div class="ph-bg-card__showcase">
+      {%- liquid
+        assign center_image = card_images.first.preview_image
+        if showcase and showcase.settings.center_image != blank
+          assign center_image = showcase.settings.center_image
+        endif
+      -%}
+      {%- render 'ph-banner-grid-thumb',
+        position: 'left',
+        url: product.url,
+        video: showcase.settings.left_video,
+        image: showcase.settings.left_image,
+        fallback_image: card_images[1].preview_image,
+        alt: product.title
+      -%}
+      {%- render 'ph-banner-grid-thumb', position: 'center', url: product.url, image: center_image, alt: product.title -%}
+      {%- render 'ph-banner-grid-thumb',
+        position: 'right',
+        url: product.url,
+        video: showcase.settings.right_video,
+        image: showcase.settings.right_image,
+        fallback_image: card_images[2].preview_image,
+        alt: product.title
+      -%}
+    </div>
+
+    <div class="ph-bg-card__info">
+      <h3 class="ph-bg-card__title" id="{{ title_id }}">
+        <a class="ph-bg-card__link" href="{{ product.url }}">{{ product.title | escape }}</a>
+      </h3>
+      {%- if show_finish and finish != blank -%}
+        <p class="ph-bg-card__finish">{{ finish }}</p>
+      {%- endif -%}
+      <p class="ph-bg-card__price">
+        {%- if product.price_varies -%}FROM {% endif -%}
+        {%- render 'ph-round-money', amount: product.price -%}
+      </p>
+    </div>
+  </article>
+</li>

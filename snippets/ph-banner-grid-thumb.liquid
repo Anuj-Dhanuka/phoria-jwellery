@@ -1,0 +1,43 @@
+{%- comment -%}
+  One desktop thumbnail in a ph-banner-grid product card. Video wins over image, image over fallback_image.
+  Videos start paused and are played by assets/ph-banner-grid.js while on screen.
+
+  Accepts:
+  - position: {String} left | center | right
+  - url: {String} Product URL
+  - video: {Object} (optional) Video
+  - image: {Object} (optional) Image
+  - fallback_image: {Object} (optional) Image used when there is no video or image
+  - alt: {String} Fallback alt text
+{%- endcomment -%}
+
+{%- liquid
+  assign thumb_image = image | default: fallback_image
+  assign thumb_alt = thumb_image.alt | default: alt
+-%}
+
+{%- if video != blank -%}
+  <a class="ph-bg-card__thumb ph-bg-card__thumb--{{ position }}" href="{{ url }}" tabindex="-1" aria-hidden="true">
+    {{
+      video
+      | video_tag:
+        class: 'ph-bg-card__video',
+        muted: true,
+        loop: true,
+        playsinline: true,
+        preload: 'none',
+        controls: false,
+        image_size: '900x'
+    }}
+  </a>
+{%- elsif thumb_image != blank -%}
+  <a class="ph-bg-card__thumb ph-bg-card__thumb--{{ position }}" href="{{ url }}" tabindex="-1" aria-hidden="true">
+    {{
+      thumb_image
+      | image_url: width: 1100
+      | image_tag: loading: 'lazy', widths: '350, 450, 700, 900, 1100', sizes: 'calc((100vw - 144px) / 3)', alt: thumb_alt
+    }}
+  </a>
+{%- else -%}
+  <span class="ph-bg-card__thumb ph-bg-card__thumb--{{ position }}" aria-hidden="true"></span>
+{%- endif -%}

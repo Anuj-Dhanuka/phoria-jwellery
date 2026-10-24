@@ -1,0 +1,144 @@
+{%- comment -%}
+  Full-screen filter panel for sections/ph-banner-grid.liquid (Figma node 826:937).
+  Filtering runs in assets/ph-banner-grid.js on the products shown on the page.
+
+  Accepts:
+  - section_id: {String}
+  - styles: {Array} Product titles found on the page (STYLE options)
+  - sizes: {Array} Size option values found on the page (SIZE options)
+  - option_blocks: {Array} "filter_option" blocks (FINISH and STONE options)
+{%- endcomment -%}
+
+{%- liquid
+  assign finish_count = 0
+  assign stone_count = 0
+  for block in option_blocks
+    if block.settings.group == 'finish'
+      assign finish_count = finish_count | plus: 1
+    elsif block.settings.group == 'stone'
+      assign stone_count = stone_count | plus: 1
+    endif
+  endfor
+-%}
+
+<div
+  class="ph-bg-filter"
+  id="BannerGridFilter-{{ section_id }}"
+  data-ph-bg-filter
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="BannerGridFilterTitle-{{ section_id }}"
+  hidden
+>
+  <div class="ph-bg-filter__header">
+    <button class="ph-bg-filter__close" type="button" data-ph-bg-panel-close>CLOSE</button>
+    <a class="ph-bg-filter__logo" href="{{ routes.root_url }}">
+      <img src="{{ 'ph-banner-grid-logo.svg' | asset_url }}" width="137" height="12" alt="{{ shop.name | escape }}">
+    </a>
+    <a class="ph-bg-filter__cart" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items">
+      {{- cart.item_count -}}
+    </a>
+  </div>
+
+  <div class="ph-bg-filter__body">
+    <div class="ph-bg-filter__title-row">
+      <h2 class="ph-bg-filter__title" id="BannerGridFilterTitle-{{ section_id }}">FILTER</h2>
+      <div class="ph-bg-filter__actions">
+        <button class="ph-bg-filter__clear" type="button" data-ph-bg-filter-clear disabled>CLEAR ALL</button>
+        {%- comment -%} Divider + close; on desktop this replaces the top CLOSE row {%- endcomment -%}
+        <span class="ph-bg-filter__divider" aria-hidden="true"></span>
+        <button class="ph-bg-filter__dismiss" type="button" data-ph-bg-panel-close aria-label="Close filters">
+          <img src="{{ 'ph-banner-grid-clear-x.png' | asset_url }}" width="11" height="11" alt="">
+        </button>
+      </div>
+    </div>
+
+    {%- if styles.size > 0 -%}
+      <div class="ph-bg-filter__group" role="group" aria-labelledby="BannerGridFilterStyle-{{ section_id }}">
+        <p class="ph-bg-filter__label" id="BannerGridFilterStyle-{{ section_id }}">STYLE</p>
+        <div class="ph-bg-filter__options">
+          {%- for style in styles -%}
+            <button class="ph-bg-filter__option" type="button" data-ph-bg-filter-option data-group="style" data-value="{{ style | handleize }}" aria-pressed="false">
+              {{- style | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if finish_count > 0 -%}
+      <div class="ph-bg-filter__group" role="group" aria-labelledby="BannerGridFilterFinish-{{ section_id }}">
+        <p class="ph-bg-filter__label" id="BannerGridFilterFinish-{{ section_id }}">FINISH</p>
+        <div class="ph-bg-filter__options">
+          {%- for block in option_blocks -%}
+            {%- unless block.settings.group == 'finish' -%}{%- continue -%}{%- endunless -%}
+            <button
+              class="ph-bg-filter__option"
+              type="button"
+              data-ph-bg-filter-option
+              data-group="finish"
+              data-value="{{ block.settings.label | handleize }}"
+              data-match="{{ block.settings.match | downcase | escape }}"
+              aria-pressed="false"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if sizes.size > 0 -%}
+      <div class="ph-bg-filter__group" role="group" aria-labelledby="BannerGridFilterSize-{{ section_id }}">
+        <p class="ph-bg-filter__label" id="BannerGridFilterSize-{{ section_id }}">SIZE</p>
+        <div class="ph-bg-filter__options ph-bg-filter__options--inline">
+          {%- for size in sizes -%}
+            <button class="ph-bg-filter__option" type="button" data-ph-bg-filter-option data-group="size" data-value="{{ size | handleize }}" aria-pressed="false">
+              {{- size | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if stone_count > 0 -%}
+      <div class="ph-bg-filter__group" role="group" aria-labelledby="BannerGridFilterStone-{{ section_id }}">
+        <p class="ph-bg-filter__label" id="BannerGridFilterStone-{{ section_id }}">STONE</p>
+        <div class="ph-bg-filter__options">
+          {%- for block in option_blocks -%}
+            {%- unless block.settings.group == 'stone' -%}{%- continue -%}{%- endunless -%}
+            <button
+              class="ph-bg-filter__option ph-bg-filter__option--swatch"
+              type="button"
+              data-ph-bg-filter-option
+              data-group="stone"
+              data-value="{{ block.settings.label | handleize }}"
+              data-match="{{ block.settings.match | downcase | escape }}"
+              aria-pressed="false"
+              {{ block.shopify_attributes }}
+            >
+              <span class="ph-bg-filter__swatch" aria-hidden="true">
+                {%- if block.settings.swatch_image != blank -%}
+                  {{ block.settings.swatch_image | image_url: width: 30 | image_tag: width: 15, height: 15, alt: '' }}
+                {%- elsif block.settings.swatch != 'none' -%}
+                  {%- assign swatch_file = 'ph-banner-grid-stone-' | append: block.settings.swatch | append: '.png' -%}
+                  <img src="{{ swatch_file | asset_url }}" width="15" height="15" alt="">
+                {%- endif -%}
+              </span>
+              {{- block.settings.label | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- comment -%} Pinned to the bottom; shows how many products the current selection matches {%- endcomment -%}
+  <div class="ph-bg-filter__footer">
+    <button class="ph-bg-filter__apply" type="button" data-ph-bg-filter-apply>
+      <span data-ph-bg-filter-apply-label>FILTER</span>
+    </button>
+  </div>
+</div>

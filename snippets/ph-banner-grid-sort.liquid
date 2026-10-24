@@ -1,0 +1,71 @@
+{%- comment -%}
+  Full-screen sort panel for sections/ph-banner-grid.liquid (Figma node 826:1042).
+  Uses Shopify's own collection sorting (?sort_by=), so it sorts across every page.
+  Shares the panel styles of snippets/ph-banner-grid-filter.liquid.
+
+  Accepts:
+  - section_id: {String}
+{%- endcomment -%}
+
+{%- liquid
+  assign current_sort = collection.sort_by
+-%}
+
+<div
+  class="ph-bg-filter"
+  id="BannerGridSort-{{ section_id }}"
+  data-ph-bg-sort
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="BannerGridSortTitle-{{ section_id }}"
+  hidden
+>
+  <div class="ph-bg-filter__header">
+    <button class="ph-bg-filter__close" type="button" data-ph-bg-panel-close>CLOSE</button>
+    <a class="ph-bg-filter__logo" href="{{ routes.root_url }}">
+      <img src="{{ 'ph-banner-grid-logo.svg' | asset_url }}" width="137" height="12" alt="{{ shop.name | escape }}">
+    </a>
+    <a class="ph-bg-filter__cart" href="{{ routes.cart_url }}" aria-label="Cart, {{ cart.item_count }} items">
+      {{- cart.item_count -}}
+    </a>
+  </div>
+
+  <div class="ph-bg-filter__body">
+    <div class="ph-bg-filter__title-row ph-bg-filter__title-row--sort">
+      <h2 class="ph-bg-filter__title" id="BannerGridSortTitle-{{ section_id }}">SORT</h2>
+      <div class="ph-bg-filter__actions">
+        <button class="ph-bg-filter__dismiss" type="button" data-ph-bg-panel-close aria-label="Close sort">
+          <img src="{{ 'ph-banner-grid-clear-x.png' | asset_url }}" width="11" height="11" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="ph-bg-filter__group" role="group" aria-labelledby="BannerGridSortPrice-{{ section_id }}">
+      <p class="ph-bg-filter__label" id="BannerGridSortPrice-{{ section_id }}">PRICE</p>
+      <div class="ph-bg-filter__options">
+        {%- for sort in collection.sort_options -%}
+          {%- liquid
+            assign sort_label = ''
+            case sort.value
+              when 'price-ascending'
+                assign sort_label = 'LOW TO HIGH'
+              when 'price-descending'
+                assign sort_label = 'HIGH TO LOW'
+            endcase
+          -%}
+          {%- if sort_label == blank -%}{%- continue -%}{%- endif -%}
+          <a
+            class="ph-bg-filter__option"
+            href="{{ collection.url }}?sort_by={{ sort.value }}"
+            data-ph-bg-sort-option="{{ sort.value }}"
+            {% if sort.value == current_sort %}
+              aria-current="true"
+            {% endif %}
+          >
+            {{- sort_label -}}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>

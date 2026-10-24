@@ -1,0 +1,25 @@
+{%- comment -%}
+  Desktop-only lifestyle images placed between products in sections/ph-banner-grid.liquid.
+
+  Accepts:
+  - blocks: {Array} "lifestyle" blocks
+  - after: {Number} Product position just rendered; blocks with a matching "after_product" show here
+{%- endcomment -%}
+
+{%- for block in blocks -%}
+  {%- if block.settings.after_product == after and block.settings.image != blank -%}
+    <li class="ph-bg-grid__feature" {{ block.shopify_attributes }}>
+      {%- if block.settings.url != blank -%}<a href="{{ block.settings.url }}">{%- endif -%}
+      {{
+        block.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          widths: '750, 1000, 1500, 2000',
+          sizes: '(min-width: 1288px) 1000px, calc(100vw - 288px)',
+          alt: block.settings.image.alt
+      }}
+      {%- if block.settings.url != blank -%}</a>{%- endif -%}
+    </li>
+  {%- endif -%}
+{%- endfor -%}
