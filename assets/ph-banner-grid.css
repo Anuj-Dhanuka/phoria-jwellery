@@ -96,6 +96,10 @@ body.template-collection-banner-grid .ph-header {
   inset: -15px -12px;
 }
 
+.ph-bg-banner__arrow[hidden] {
+  display: none;
+}
+
 .ph-bg-banner__arrow img {
   display: block;
   width: 20px;
@@ -197,7 +201,7 @@ body.template-collection-banner-grid .ph-header {
 .ph-bg-intro__title {
   margin: 0;
   font-family: 'PhoriaBold', var(--font-heading-family);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.4px;
@@ -269,13 +273,13 @@ body.template-collection-banner-grid .ph-header {
   max-width: 367px;
   margin: 10px auto 0;
   font-family: 'PhoriaRegular', var(--font-body-family);
-  font-size: 8px;
-  line-height: 9px;
+  font-size: 9px;
+  line-height: 10px;
   text-transform: uppercase;
 }
 
 .ph-bg-intro__mobile-text p {
-  margin: 0 0 9px;
+  margin: 0 0 10px;
 }
 
 .ph-bg-intro__mobile-text p:last-child {
@@ -371,7 +375,7 @@ body.template-collection-banner-grid .ph-header {
 .ph-bg-card__title {
   margin: 0;
   font-family: 'PhoriaBold', var(--font-heading-family);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0;
@@ -387,7 +391,7 @@ body.template-collection-banner-grid .ph-header {
 .ph-bg-card__finish {
   margin: 4px 0 0; /* slight gap under the product name */
   color: var(--ph-bg-muted);
-  font-size: 8px;
+  font-size: 7px;
   line-height: 14px;
 }
 
@@ -943,14 +947,10 @@ body.ph-bg-filter-open {
     line-height: normal;
   }
 
-  .ph-bg-card__title {
-    font-size: 13px;
-  }
-
   .ph-bg-card__finish {
     margin: 0;
     color: inherit;
-    font-size: 11px;
+    font-size: 10px;
     line-height: normal;
   }
 

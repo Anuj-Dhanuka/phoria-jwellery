@@ -27,8 +27,7 @@
     nested: true
   };
 
-  // Moves the progress line to the current slide. Uses the real slide index because
-  // in loop mode Swiper reorders slides, so scroll progress no longer maps to position.
+  // Moves the progress line to the current slide.
   function updateProgress(target, swiper) {
     var count = Math.max(swiper.slides.length, 1);
     var width = swiper.el.clientWidth || 1;
@@ -38,17 +37,9 @@
     target.style.setProperty('--ph-bg-progress-x', lineWidth * index + 'px');
   }
 
-  // Carousels wrap around: past the last image comes the first again (and back).
-  // 3+ slides use a true loop; with only 2, Swiper's loop can jump, so rewind instead.
-  function wrapOptions(swiperEl) {
-    var count = swiperEl.querySelectorAll('.swiper-slide').length;
-    if (count >= 3) return { loop: true };
-    if (count === 2) return { rewind: true };
-    return {};
-  }
-
   function createSwiper(swiperEl, target, extraOptions) {
-    var options = Object.assign({}, SWIPER_OPTIONS, wrapOptions(swiperEl), extraOptions || {}, {
+    // Carousels stop at the first and last image (no looping).
+    var options = Object.assign({}, SWIPER_OPTIONS, extraOptions || {}, {
       on: {
         afterInit: function (swiper) {
           updateProgress(target, swiper);
@@ -81,6 +72,16 @@
     var next = banner.querySelector('[data-ph-bg-banner-next]');
     if (prev) prev.addEventListener('click', function () { swiper.slidePrev(); });
     if (next) next.addEventListener('click', function () { swiper.slideNext(); });
+
+    // No ‹ on the first image, no › on the last.
+    var syncArrows = function () {
+      if (prev) prev.hidden = swiper.isBeginning;
+      if (next) next.hidden = swiper.isEnd;
+    };
+    swiper.on('slideChange', syncArrows);
+    swiper.on('reachBeginning', syncArrows);
+    swiper.on('reachEnd', syncArrows);
+    syncArrows();
   }
 
   // Card photos swipe on mobile only; desktop shows thumbnails side by side (CSS).
