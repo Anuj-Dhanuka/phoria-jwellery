@@ -796,19 +796,22 @@ body.template-index .ph-black__logo {
         margin: 0;
         padding: 0 72px;
         line-height: 16px;
-        opacity: 0;
         visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+        transform: translateX(100%);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .ph-announcement__message{
         display: block;
         max-width: 100%;
         text-align: center;
     }
-    .ph-announcement__bar--carousel .ph-announcement__slide.is-active{
-        opacity: 1;
+    /* Slider: the active message sits in place; the outgoing one stays visible while it slides away */
+    .ph-announcement__bar--carousel .ph-announcement__slide.is-active,
+    .ph-announcement__bar--carousel .ph-announcement__slide.is-leaving{
         visibility: visible;
-        transition: opacity 0.4s ease;
+    }
+    .ph-announcement__bar--carousel .ph-announcement__slide.is-active{
+        transform: translateX(0);
     }
     .ph-announcement__arrow{
         position: absolute;
@@ -1416,17 +1419,51 @@ body.template-index .ph-black__logo {
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var autoplay = bar.dataset.autoplay === 'true' && !reduceMotion;
 
-      var show = function (index) {
-        current = (index + slides.length) % slides.length;
-        slides.forEach(function (slide, i) {
-          var active = i === current;
-          slide.classList.toggle('is-active', active);
-          if (active) {
-            slide.removeAttribute('aria-hidden');
-          } else {
-            slide.setAttribute('aria-hidden', 'true');
-          }
+      var cleanup = null;
+      var SLIDE_MS = 500;
+
+      // Slide to a message: dir 1 = next (new message comes in from the right),
+      // dir -1 = previous (comes in from the left).
+      var show = function (index, dir) {
+        var nextIndex = (index + slides.length) % slides.length;
+        if (nextIndex === current) return;
+        var from = slides[current];
+        var to = slides[nextIndex];
+        dir = dir || 1;
+
+        // Finish any slide still running so quick taps don't leave messages half-way.
+        window.clearTimeout(cleanup);
+        slides.forEach(function (slide) {
+          if (slide === from || slide === to) return;
+          slide.classList.remove('is-active', 'is-leaving');
+          slide.style.transition = 'none';
+          slide.style.transform = '';
         });
+
+        // Place the incoming message just off the side it enters from, then let it slide in.
+        to.style.transition = 'none';
+        to.style.transform = 'translateX(' + (dir > 0 ? 100 : -100) + '%)';
+        to.classList.add('is-leaving');
+        void to.offsetWidth;
+        to.style.transition = '';
+        to.style.transform = '';
+        to.classList.remove('is-leaving');
+        to.classList.add('is-active');
+        to.removeAttribute('aria-hidden');
+
+        from.style.transition = '';
+        from.classList.remove('is-active');
+        from.classList.add('is-leaving');
+        from.style.transform = 'translateX(' + (dir > 0 ? -100 : 100) + '%)';
+        from.setAttribute('aria-hidden', 'true');
+
+        cleanup = window.setTimeout(function () {
+          from.classList.remove('is-leaving');
+          from.style.transition = 'none';
+          from.style.transform = '';
+        }, SLIDE_MS + 50);
+
+        current = nextIndex;
       };
 
       var stop = function () {
@@ -1436,12 +1473,12 @@ body.template-index .ph-black__logo {
       var start = function () {
         stop();
         if (autoplay && !paused && !document.hidden) {
-          timer = window.setInterval(function () { show(current + 1); }, interval);
+          timer = window.setInterval(function () { show(current + 1, 1); }, interval);
         }
       };
       // Moving by hand restarts the countdown so the new message gets its full time.
       var go = function (step) {
-        show(current + step);
+        show(current + step, step);
         start();
       };
 
