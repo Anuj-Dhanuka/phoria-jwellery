@@ -12,24 +12,6 @@
     "main": {
       "type": "ph-banner-grid",
       "blocks": {
-        "image_p7GUDA": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
-          }
-        },
-        "image_kEXfBF": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
-          }
-        },
-        "banner_1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_-_08_September_2026_at_11.12.36-2_2_1.png"
-          }
-        },
         "thumbs_1": {
           "type": "showcase",
           "settings": {
@@ -330,12 +312,44 @@
             "match": "green-citrine",
             "swatch": "green-citrine"
           }
+        },
+        "banner_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_01_286_FINAL_5X4_300DPI_WHITE_1_2c301051-6873-4ac7-bdb0-e806c7be9cc7.jpg"
+          }
+        },
+        "banner_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Image_2.jpg"
+          }
+        },
+        "banner_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_07_106_FINAL_5X4_300DPI.webp"
+          }
+        },
+        "banner_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2024_03_13_SM_PHORIA_SHOT_02_328_FINAL_5X4_300DPI.webp"
+          }
+        },
+        "banner_5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2024_12_06_SM_PHORIA_AW25_Shot_4_325_FINAL_5X4_300DPI_9308e7b4-fde5-4074-8302-ce7d6c502053.jpg"
+          }
         }
       },
       "block_order": [
-        "image_p7GUDA",
-        "image_kEXfBF",
         "banner_1",
+        "banner_2",
+        "banner_3",
+        "banner_4",
+        "banner_5",
         "thumbs_1",
         "thumbs_2",
         "thumbs_3",
